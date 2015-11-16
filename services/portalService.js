@@ -124,7 +124,7 @@ angular.module("hmisPortal")
                     var area = [];
                     cardObject.chartObject.xAxis.categories = [];
                     //
-                    if (typeof response.data === 'object') {
+                    if (typeof data === 'object') {
                         var dataToUse = self.prepareData(data);
                         //
                         angular.forEach(dataToUse,function(val){
