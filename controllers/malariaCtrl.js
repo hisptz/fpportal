@@ -43,7 +43,7 @@ angular.module("hmisPortal")
                 icons:angular.copy(portalService.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'line',
                 chartObject:angular.copy(portalService.chartObject)
 
             },
@@ -55,7 +55,7 @@ angular.module("hmisPortal")
                 icons:angular.copy(portalService.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'combined',
                 chartObject:angular.copy(portalService.chartObject)
 
             },

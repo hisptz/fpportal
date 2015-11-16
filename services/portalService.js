@@ -185,7 +185,6 @@ angular.module("hmisPortal")
                             normalseries.push({type: chart, name: cardObject.title, data: serie})
                             cardObject.chartObject.series = normalseries;
                         }
-                        console.log(cardObject);
                         cardObject.chartObject.loading = false
                     }
 
