@@ -126,6 +126,7 @@ angular.module("hmisPortal")
                     //
                     if (typeof data === 'object') {
                         var dataToUse = self.prepareData(data);
+                        console.log(dataToUse)
                         //
                         angular.forEach(dataToUse,function(val){
                             cardObject.chartObject.xAxis.categories.push(val.name);

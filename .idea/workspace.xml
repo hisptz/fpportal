@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/portalService.js" afterPath="$PROJECT_DIR$/services/portalService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +28,7 @@
       <file leaf-file-name="portalService.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/portalService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="31" selection-start="4903" selection-end="4903" vertical-scroll-proportion="0.18151261" vertical-offset="2160" max-vertical-offset="3582">
+            <state line="128" column="45" selection-start="5033" selection-end="5033" vertical-scroll-proportion="0.51428574" vertical-offset="1998" max-vertical-offset="3600">
               <folding />
             </state>
           </provider>
@@ -250,7 +249,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/portalService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="31" selection-start="4903" selection-end="4903" vertical-scroll-proportion="0.18151261" vertical-offset="2160" max-vertical-offset="3582">
+        <state line="128" column="45" selection-start="5033" selection-end="5033" vertical-scroll-proportion="0.51428574" vertical-offset="1998" max-vertical-offset="3600">
           <folding />
         </state>
       </provider>
