@@ -158,7 +158,7 @@ angular.module("hmisPortal")
                             normalseries.push({type: 'pie', name: cardObject.title, data: serie1,center: [100, 80],size: 150,showInLegend: false,
                                 dataLabels: {
                                     enabled: false
-                                }})
+                                }});
                             cardObject.chartObject.series = normalseries;
                         }
                         else if(chart == 'table'){
@@ -185,6 +185,7 @@ angular.module("hmisPortal")
                             normalseries.push({type: chart, name: cardObject.title, data: serie})
                             cardObject.chartObject.series = normalseries;
                         }
+                        console.log(cardObject);
                         cardObject.chartObject.loading = false
                     }
 
