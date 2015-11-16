@@ -184,6 +184,7 @@ angular.module("hmisPortal")
             });
 
         }
+
         $scope.downloadExcelTotal = function(){
             var base = "https://dhis.moh.go.tz/";
             $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
