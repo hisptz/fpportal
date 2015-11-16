@@ -32,7 +32,7 @@ angular.module("hmisPortal")
                 displayTable:false,
                 displayMap:false,
                 chart:'bar',
-                chartObject:portalService.chartObject
+                chartObject:angular.copy(portalService.chartObject)
             },
             {
                 title:'ANC MALARIA PREVELANCE',
@@ -40,11 +40,11 @@ angular.module("hmisPortal")
                 cardClass:"col m6 s12",
                 cardSize:"medium",
                 data:'vfaY7k6TINl',
-                icons:portalService.icons,
+                icons:angular.copy(portalService.icons),
                 displayTable:false,
                 displayMap:false,
                 chart:'bar',
-                chartObject:portalService.chartObject
+                chartObject:angular.copy(portalService.chartObject)
 
             },
             {
@@ -52,11 +52,11 @@ angular.module("hmisPortal")
                 description:'Maelezo ya ANC Proportion  of pregnant women receiving ITN Voucher',
                 cardClass:"col m12 s12",
                 data:'tit1C1VPIV7',
-                icons:portalService.icons,
+                icons:angular.copy(portalService.icons),
                 displayTable:false,
                 displayMap:false,
                 chart:'bar',
-                chartObject:portalService.chartObject
+                chartObject:angular.copy(portalService.chartObject)
 
             },
             {
@@ -64,11 +64,11 @@ angular.module("hmisPortal")
                 description:'Proportional of Malaria cases in OPD',
                 cardClass:"col m6 s12",
                 data:'xrYmEc4LCCo',
-                icons:portalService.icons,
+                icons:angular.copy(portalService.icons),
                 displayTable:false,
                 displayMap:false,
                 chart:'bar',
-                chartObject:portalService.chartObject
+                chartObject:angular.copy(portalService.chartObject)
 
             },
             {
@@ -76,11 +76,11 @@ angular.module("hmisPortal")
                 description:'Proportional of Malaria cases in OPD',
                 cardClass:"col m6 s12",
                 data:'CaPhxP3hIHD',
-                icons:portalService.icons,
+                icons:angular.copy(portalService.icons),
                 displayTable:false,
                 displayMap:false,
                 chart:'bar',
-                chartObject:portalService.chartObject
+                chartObject:angular.copy(portalService.chartObject)
             }
         ]
 

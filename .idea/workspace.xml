@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/portalService.js" afterPath="$PROJECT_DIR$/services/portalService.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/malariaCtrl.js" afterPath="$PROJECT_DIR$/controllers/malariaCtrl.js" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,21 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="portalService.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="portalService.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/portalService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="187" column="48" selection-start="8439" selection-end="8439" vertical-scroll-proportion="0.75630254" vertical-offset="2916" max-vertical-offset="3618">
+            <state line="187" column="48" selection-start="8439" selection-end="8439" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="3618">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="malariaCtrl.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="malariaCtrl.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/malariaCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="244" column="30" selection-start="12302" selection-end="12302" vertical-scroll-proportion="-50.933334" vertical-offset="2076" max-vertical-offset="9452">
+            <state line="34" column="67" selection-start="1300" selection-end="1300" vertical-scroll-proportion="0.59823006" vertical-offset="240" max-vertical-offset="9452">
               <folding>
-                <element signature="e#6353#8957#0" expanded="false" />
+                <element signature="e#6479#9083#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -68,8 +68,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/controllers/malariaCtrl.js" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
+        <option value="$PROJECT_DIR$/controllers/malariaCtrl.js" />
       </list>
     </option>
   </component>
@@ -238,19 +238,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/malariaCtrl.js">
+    <entry file="file://$PROJECT_DIR$/services/portalService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="244" column="30" selection-start="12302" selection-end="12302" vertical-scroll-proportion="-50.933334" vertical-offset="2076" max-vertical-offset="9452">
-          <folding>
-            <element signature="e#6353#8957#0" expanded="false" />
-          </folding>
+        <state line="187" column="48" selection-start="8439" selection-end="8439" vertical-scroll-proportion="0.0" vertical-offset="1134" max-vertical-offset="3618">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/portalService.js">
+    <entry file="file://$PROJECT_DIR$/controllers/malariaCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="48" selection-start="8439" selection-end="8439" vertical-scroll-proportion="0.75630254" vertical-offset="2916" max-vertical-offset="3618">
-          <folding />
+        <state line="34" column="67" selection-start="1300" selection-end="1300" vertical-scroll-proportion="0.59823006" vertical-offset="240" max-vertical-offset="9452">
+          <folding>
+            <element signature="e#6479#9083#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
