@@ -28,7 +28,7 @@ angular.module("hmisPortal")
                 description:'Maelezo ya ANC IPT2 COVERAGE',
                 cardClass:"col s12 m6",
                 data:'i47jm4Pkkq6',
-                icons:portalService.icons,
+                icons:angular.copy(portalService.icons),
                 displayTable:false,
                 displayMap:false,
                 chart:'bar',
@@ -120,7 +120,6 @@ angular.module("hmisPortal")
                 if($scope.selectedOrgUnit == "m0frOspS7JY"){
                     url = "https://dhis.moh.go.tz/api/analytics.csv?dimension=dx:"+id+"&dimension=pe:"+$scope.selectedPeriod+"&dimension=ou:LEVEL-1;LEVEL-2;"+$scope.selectedOrgUnit+"&displayProperty=NAME&tableLayout=true&columns=dx&rows=pe;ou";
                 }else{
-
                     url = "https://dhis.moh.go.tz/api/analytics.csv?dimension=dx:"+id+"&dimension=pe:"+$scope.selectedPeriod+"&dimension=ou:LEVEL-2;LEVEL-3;"+$scope.selectedOrgUnit+"&displayProperty=NAME&tableLayout=true&columns=dx&rows=pe;ou";
                 }
                 $http.get(url,{'Content-Type': 'application/csv;charset=UTF-8'}).success(function(data){
@@ -131,7 +130,7 @@ angular.module("hmisPortal")
                     a.click();
                 });
             });
-        }
+        };
 
         $scope.lastCard=function(){
             $scope.loadingImage=true;
@@ -182,8 +181,7 @@ angular.module("hmisPortal")
                 console.log($scope.authenticationFailed);
             });
             });
-
-        }
+        };
 
         $scope.downloadExcelTotal = function(){
             var base = "https://dhis.moh.go.tz/";
