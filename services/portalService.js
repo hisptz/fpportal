@@ -53,33 +53,19 @@ angular.module("hmisPortal")
             series: []
         };
 
-        //set period
-        this.setPeriod = function(period){
-            self.period = period;
-        }
-
-        this.setOrgUnit = function(orgunitId){
-            self.orgUnitId = orgunitId;
-        }
-
-        this.setOrgUnitName = function(orgUnitName){
-            self.orgUnitName = orgUnitName;
-        }
-
-        this.updateCardContents = function(cards){
-            angular.forEach(cards,function(value){
-                $scope.prepareSeries(value,value.chart);
-            });
-        }
-
         this.authenticateDHIS = function(){
-            var promise = $http.post( self.base + "dhis-web-commons-security/login.action?authOnly=true", {
+            var promise = $.post( self.base + "dhis-web-commons-security/login.action?authOnly=true", {
                 j_username: "portal", j_password: "Portal123"
-            }).then(function (response) {
-                // The then function here is an opportunity to modify the response
+            },function(response){
                 console.log(response);
-                // The return value gets picked up by the then in the controller.
             });
+//             $http.post(  + "dhis-web-commons-security/login.action?authOnly=true", {
+//                j_username: "portal", j_password: "Portal123"
+//            }).then(function (response) {
+//                // The then function here is an opportunity to modify the response
+//                console.log(response);
+//                // The return value gets picked up by the then in the controller.
+//            });
             // Return the promise to the controller
             return promise;
         }
