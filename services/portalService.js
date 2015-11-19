@@ -96,6 +96,25 @@ angular.module("hmisPortal")
             return data;
         };
 
+        this.downloadExcel = function(id){
+            self.authenticateDHIS().then(function(){
+                var url = "";
+                if(self.selectedOrgUnit == "m0frOspS7JY"){
+                    url = "https://dhis.moh.go.tz/api/analytics.csv?dimension=dx:"+id+"&dimension=pe:"+self.period+"&dimension=ou:LEVEL-1;LEVEL-2;"+self.orgUnitId+"&displayProperty=NAME&tableLayout=true&columns=dx&rows=pe;ou";
+                }else{
+                    url = "https://dhis.moh.go.tz/api/analytics.csv?dimension=dx:"+id+"&dimension=pe:"+self.period+"&dimension=ou:LEVEL-2;LEVEL-3;"+self.orgUnitId+"&displayProperty=NAME&tableLayout=true&columns=dx&rows=pe;ou";
+                }
+                $http.get(url,{'Content-Type': 'application/csv;charset=UTF-8'}).success(function(data){
+                    var a = document.createElement('a');
+                    var blob = new Blob([data]);
+                    a.href = window.URL.createObjectURL(blob);
+                    a.download = "data.csv";
+                    a.click();
+                });
+            });
+        };
+
+
         this.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
             self.authenticateDHIS().then(function(){
