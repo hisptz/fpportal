@@ -7,6 +7,7 @@ angular.module("hmisPortal")
 
     })
     .controller("mainCtrl",function ($rootScope,$scope,$q) {
+
         $rootScope.showLoader = false;
         $rootScope.$on("$routeChangeStart",
             function (event, current, previous, rejection) {
@@ -61,13 +62,20 @@ angular.module("hmisPortal")
         $scope.hideFilter = function(){
             $scope.rightclass = 'col s12';
             $scope.showFilter = false;
-        }
+        };
         $scope.displayFilter = function(){
             $scope.leftclass = 'col s2';
             $scope.rightclass = 'col s10';
             $scope.showFilter = true;
+        };
+
+        $scope.linkValue = 'statistcs';
+
+        $scope.activateLink = function(linkValue){
+            $scope.linkValue = linkValue;
+            alert(linkValue);
         }
-     })
+     });
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

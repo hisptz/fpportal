@@ -1147,7 +1147,8 @@ angular.module("hmisPortal")
                         angular.forEach(dataToUse,function(val){
                             cardObject.table.colums.push({name:val.name,value:parseInt(val.value)});
                         });
-                    }else if(chart == 'map'){
+                    }
+                    else if(chart == 'map'){
                         if($scope.selectedOrgUnit == "m0frOspS7JY"){
                             $scope.drawMap($scope.selectedOrgUnit,2,cardObject);
                         }else{
@@ -1271,12 +1272,10 @@ angular.module("hmisPortal")
         }
         $scope.firstClick();
 
-
-
-
         /**
          *
          * DRAW MAP
+         *
          * */
         $scope.drawMap = function(parentUid,level,card){
             $scope.shared = shared;

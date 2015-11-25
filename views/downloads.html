@@ -1,16 +1,38 @@
 <div class="row">
-    <div class="col m12 s12 ">
+    <div class="col s2 m2">
+
+        <ul class="nav1">
+            <li ng-click="activateLink('statistcs')" ng-class="{'active' : linkValue == 'statistcs'}">
+                <a href="" ng-click="activateLink('statistcs')"><i class="mdi-editor-format-align-justify"></i>Statistics & Figures</a>
+                <hr>
+            </li>
+            <li ng-click="activateLink('Registry')" ng-class="{'active' : linkValue == 'Registry'}">
+                <a  href=""><i class="mdi-editor-format-align-justify"></i>Registry</a>
+                <hr>
+            </li>
+            <li ng-click="activateLink('Reports')" ng-class="{'active' : linkValue == 'Reports'}">
+                <a  href="" ng-click="activateLink('Reports')" ><i class="mdi-editor-format-align-justify"></i>TDHS Reports</a>
+<hr>
+            </li>
+            <li ng-click="activateLink('Other')" ng-class="{'active' : linkValue == 'Other'}">
+                <a  href=""><i class="mdi-editor-format-align-justify"></i>Other</a>
+                <hr>
+            </li>
+        </ul>
+    </div>
+    <div class="col m10 s10 ">
         <iframe src="https://drive.google.com/embeddedfolderview?id=0Bw11FiALlQzlflpFZnBVaG1UNGtMa2k0Wk5kSVdNbHdFamNNMnVWQmdDaGJwZk9YN0hlRnc&usp=sharing#grid" width="100%" height="600" frameborder="0"></iframe>
     </div>
 </div>
 <style>
-    iframe {
-        position: fixed;
-        /*background: #000;*/
-        border: none;
-        top: 0; right: 0;
-        bottom: 0; left: 0;
-        width: 100%;
-        height: 100%;
+    .nav1 li{
+
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 </style>
+        <script>
+            $(document).ready(function(){
+                $('.collapsible').collapsible();
+            });
+        </script>

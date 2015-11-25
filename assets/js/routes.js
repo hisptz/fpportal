@@ -16,7 +16,7 @@ angular.module("hmisPortal")
 
         $routeProvider.when("/downloads",{
             templateUrl: 'views/downloads.html',
-            controller: 'mainCtrl'
+            controller: 'dashboardCtrl'
         });
 
         $routeProvider.when("/district_profiles",{
