@@ -5,7 +5,7 @@
     }
 </style>
 <div class="row">
-    <div class="col s11 z-depth-1" style="position:fixed;top:70px;z-index:900;margin-left: 4%">
+    <div class="z-depth-1" style="width:96.5%;position:fixed;top:70px;z-index:900;margin-left: 24px; margin-right: 24px">
         <div class="section grey lighten-5 " >
             <div class="input-field col s6 grey lighten-5">
                 <select ng-model="$root.selectedPeriod" ng-change="$root.firstClick1()">
@@ -39,31 +39,31 @@
         <div class="section" style="margin-top: 70px">
             <div>
                 <ul class="collapsible popout fp-menu " data-collapsible="accordion">
-                            <li class="teal lighten-5">
+                            <li class="teal lighten-5" style="margin-right: 12px">
                                 <div class="collapsible-header"><i class="material-icons mdi-editor-format-align-justify"></i>Coverage</div>
                                 <div class="collapsible-body">
-                                    <p><a href=""><i class="material-icons mdi-navigation-arrow-right"></i>HWs Trained</a> </p><hr>
-                                    <p><a href="">Facilities with HWs Trained</a> </p><hr>
-                                    <p><a href="">Facilities Providing FP Over Time</a> </p><hr>
-                                    <p><a href="">Facilities Providing FP through CBD</a> </p><hr>
-                                    <p><a href="">Facilities with HWs Trained Providing FP</a> </p>
+                                    <p><a href="#"><i class="material-icons mdi-navigation-arrow-right"></i>HWs Trained</a> </p><hr>
+                                    <p><a href="#">Facilities with HWs Trained</a> </p><hr>
+                                    <p><a href="#">Facilities Providing FP Over Time</a> </p><hr>
+                                    <p><a href="#">Facilities Providing FP through CBD</a> </p><hr>
+                                    <p><a href="#">Facilities with HWs Trained Providing FP</a> </p>
                                 </div>
                             </li>
-                            <li  class="teal lighten-5">
+                            <li  class="teal lighten-5" style="margin-right: 12px">
                                 <div class="collapsible-header"><i class="material-icons mdi-editor-format-align-justify"></i>Clients</div>
                                 <div class="collapsible-body">
-                                    <p><a href="">Consumption by Method</a> </p><hr>
-                                    <p><a href="">Consumption by Demographics & Outreach</a> </p>
+                                    <p><a href="#">Consumption by Method</a> </p><hr>
+                                    <p><a href="#">Consumption by Demographics & Outreach</a> </p>
                                 </div>
                             </li>
-                            <li class="teal lighten-5">
+                            <li class="teal lighten-5" style="margin-right: 12px">
                                 <div class="collapsible-header"><i class="material-icons mdi-editor-format-align-justify"></i>Stock Outs</div>
                                 <div class="collapsible-body">
                                     <p><a href="#">SOs at Facilities Providing FP Over Time.</a></p><hr>
                                     <p><a href="#">SOs at Facilities with HWs Trained Over Time.</a></p>
                                 </div>
                             </li>
-                    <li class="teal lighten-5">
+                    <li class="teal lighten-5" style="margin-right: 12px">
                                 <div class="collapsible-header"><i class="material-icons mdi-editor-format-align-justify"></i>Service Integration</div>
                                 <div class="collapsible-body">
                                     <p><a href="#">Lorem ipsum dolor sit amet.</a> </p>
@@ -81,9 +81,9 @@
     </div>
 
 
-    <div class="col s12 m12 l10">
+    <div class="col s12 m12 l10" style="margin-top: 70px">
         <div class="section">
-            <div class="{{ card.cardClass }}" ng-repeat="card in cards.malaria">
+            <div class="{{ card.cardClass }}" ng-repeat="card in fpCards" style="padding-left: 0px">
                 <div class="card z-depth-2 teal lighten-5 large">
                     <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                         <div style="width: 100%">
@@ -125,62 +125,6 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ card.title }}<i class="material-icons right">close</i></span>
                         <p class="flow-text">{{ card.description }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m12">
-                <div class="card z-depth-2 teal lighten-5" >
-                    <div class="card-image waves-effect waves-block waves-light" style="height:400px;overflow:scroll">
-                        <div ng-show="authenticationFailed">
-                            <p class="red-text">Please check the internet connection {{authenticationFailed.status}} Try Agin</p>
-                        </div>
-                        <p ng-if="loadingImage" class="center"><img src="assets/img/loading.gif" style="width:40%;height: 40%"></p>
-                        <table ng-if="!loadingImage" class="bordered striped centered">
-                            <thead>
-                            <tr ng-repeat="header in arrayed">
-                                <th>Organisation unit</th>
-                                <th>{{header.underOne}}</th>
-                                <th>{{header.undertwo}}</th>
-                                <th>{{header.underMaralia}}</th>
-                                <th>{{header.underthree}}</th>
-                                <th>{{header.underfour}}</th>
-                                <th>{{header.underIPT2}}</th>
-                                <th>{{header.underITN}}</th>
-                                <th>{{header.underITNOne}}</th>
-                                <!--<th>{{header.underIPD}}</th>-->
-                                <th>{{header.underOPD}}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="content in tableContent">
-                                <td>{{content.orgUnit}}</td>
-                                <td>{{content.underOne}}</td>
-                                <td>{{content.undertwo}}</td>
-                                <td>{{content.underMaralia}}</td>
-                                <td>{{content.underthree}}</td>
-                                <td>{{content.underfour}}</td>
-                                <td>{{content.underIPT2}}</td>
-                                <td>{{content.underITN}}</td>
-                                <td>{{content.underITNOne}}</td>
-                                <!--<td>{{content.underIPD}}</td>-->
-                                <td>{{content.underOPD}}</td>
-
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
-
-                        <p>
-                            <a class="btn btn-link right" ng-click="downloadExcelTotal()" target="_blank">
-                                <span class="glyphicon glyphicon-share"></span> Export to Excel
-                            </a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                        <p class="flow-text">One common flaw we've seen in many frameworks is a lack of support for truly responsive text. While elements on the page resize fluidly, text still resizes on a fixed basis. To ameliorate this problem, for text heavy pages, we've created a class that fluidly scales text size and line-height to optimize readability for the user. Line length stays between 45-80 characters and line height scales to be larger on smaller screens.</p>
                     </div>
                 </div>
             </div>

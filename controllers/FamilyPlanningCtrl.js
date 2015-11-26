@@ -75,9 +75,20 @@ angular.module("hmisPortal")
 
         $scope.fpCards = [
             {
-                title:'OPD STI Genital Ulcer Diseases (GUD) < 5',
+                title:'Total Clients of [IMPLANTS]',
                 description:'OPD STI Genital Ulcer Diseases',
-                cardClass:"col s12 m6",
+                cardClass:"col s12 m12",
+                data:'ZnTi99UdGCS;lMFKZN3UaYp',
+                icons:angular.copy(portalService.icons),
+                displayTable:false,
+                displayMap:false,
+                chart:'bar',
+                chartObject:angular.copy(portalService.chartObject)
+
+            },{
+                title:'Total Clients',
+                description:'OPD STI Genital Ulcer Diseases',
+                cardClass:"col s12 m12",
                 data:'grtxKHUL0dh',
                 icons:angular.copy(portalService.icons),
                 displayTable:false,
@@ -86,6 +97,7 @@ angular.module("hmisPortal")
                 chartObject:angular.copy(portalService.chartObject)
 
             }];
+
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
             var base = "https://dhis.moh.go.tz/";
@@ -181,4 +193,12 @@ angular.module("hmisPortal")
             });
 
         };
+
+        $rootScope.firstClick = function(){
+            angular.forEach($scope.fpCards,function(value){
+//              $scope.data.chartType = value.chart;
+                $scope.prepareSeries(value,value.chart);
+            });
+        }
+        $scope.firstClick();
     });
