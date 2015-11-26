@@ -88,7 +88,18 @@ angular.module("hmisPortal")
             },{
                 title:'Total Clients',
                 description:'OPD STI Genital Ulcer Diseases',
-                cardClass:"col s12 m12",
+                cardClass:"col s12 m6",
+                data:'grtxKHUL0dh',
+                icons:angular.copy(portalService.icons),
+                displayTable:false,
+                displayMap:false,
+                chart:'bar',
+                chartObject:angular.copy(portalService.chartObject)
+
+            },{
+                title:'Total Clients',
+                description:'OPD STI Genital Ulcer Diseases',
+                cardClass:"col s12 m6",
                 data:'grtxKHUL0dh',
                 icons:angular.copy(portalService.icons),
                 displayTable:false,
