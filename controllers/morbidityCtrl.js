@@ -5,8 +5,34 @@
 angular.module("hmisPortal")
     .config(function($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
-    })
+        $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
+     })
     .controller("mainCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared) {
+        $scope.userGroupID='tthud5BXCSD';
+        var userGroups =[];
+        var dataTextToSend={};
+
+        var messageUrl='https://dhis.moh.go.tz/api/messageConversations';
+        $scope.sendMessage=function(subject,text){
+            userGroups.length=0;
+            userGroups.push({'id':$scope.userGroupID});
+            dataTextToSend['subject']=subject;
+            dataTextToSend['text']=text;
+            dataTextToSend['userGroups']=userGroups;
+            console.log(dataTextToSend);
+            $http({
+                method: 'POST',
+                url: messageUrl,
+                data: dataTextToSend
+             }).then(function(response) {
+                    console.log(dataTextToSend);
+                    // success
+                },
+                function(response) { // optional
+                    // failed
+                });
+
+         }
         //displaying loading during page change
         $rootScope.$on("$routeChangeStart",
             function (event, current, previous, rejection) {
