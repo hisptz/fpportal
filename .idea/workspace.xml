@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/hr.json" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Health Facilities 2014 (1).xls" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/dashboard.html" afterPath="$PROJECT_DIR$/views/dashboard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/dashboardCtrl.js" afterPath="$PROJECT_DIR$/controllers/dashboardCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/downloads.html" afterPath="$PROJECT_DIR$/views/downloads.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/jinsiCtrl.js" afterPath="$PROJECT_DIR$/controllers/jinsiCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/morbidityCtrl.js" afterPath="$PROJECT_DIR$/controllers/morbidityCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -93,8 +85,9 @@
       <file leaf-file-name="jinsiCtrl.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/jinsiCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="889" column="58" selection-start="40405" selection-end="40405" vertical-scroll-proportion="-41.483334" vertical-offset="13513" max-vertical-offset="18450">
+            <state line="757" column="61" selection-start="33820" selection-end="33820" vertical-scroll-proportion="-1.9166666" vertical-offset="13511" max-vertical-offset="16038">
               <folding>
+                <element signature="e#33820#40416#0" expanded="false" />
                 <element signature="e#41255#46869#0" expanded="false" />
                 <element signature="e#46993#53472#0" expanded="false" />
                 <element signature="e#53535#54663#0" expanded="false" />
@@ -142,8 +135,11 @@
       <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3096">
-              <folding />
+            <state line="81" column="35" selection-start="3943" selection-end="3943" vertical-scroll-proportion="0.736" vertical-offset="998" max-vertical-offset="3096">
+              <folding>
+                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -424,6 +420,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="667" column="50" selection-start="30081" selection-end="30081" vertical-scroll-proportion="0.0" vertical-offset="12006" max-vertical-offset="12348">
           <folding>
+            <element signature="e#33820#40416#0" expanded="false" />
             <element signature="e#41255#46869#0" expanded="false" />
             <element signature="e#46993#53472#0" expanded="false" />
             <element signature="e#53535#54663#0" expanded="false" />
@@ -635,17 +632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/jinsiCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="889" column="58" selection-start="40405" selection-end="40405" vertical-scroll-proportion="-41.483334" vertical-offset="13513" max-vertical-offset="18450">
-          <folding>
-            <element signature="e#41255#46869#0" expanded="false" />
-            <element signature="e#46993#53472#0" expanded="false" />
-            <element signature="e#53535#54663#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/dashboardCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9522">
@@ -660,10 +646,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/jinsiCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="757" column="61" selection-start="33820" selection-end="33820" vertical-scroll-proportion="-1.9166666" vertical-offset="13511" max-vertical-offset="16038">
+          <folding>
+            <element signature="e#33820#40416#0" expanded="false" />
+            <element signature="e#41255#46869#0" expanded="false" />
+            <element signature="e#46993#53472#0" expanded="false" />
+            <element signature="e#53535#54663#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3096">
-          <folding />
+        <state line="81" column="35" selection-start="3943" selection-end="3943" vertical-scroll-proportion="0.736" vertical-offset="998" max-vertical-offset="3096">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
