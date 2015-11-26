@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/jinsiCtrl.js" afterPath="$PROJECT_DIR$/controllers/jinsiCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,10 +82,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jinsiCtrl.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="jinsiCtrl.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/jinsiCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1075" column="51" selection-start="49471" selection-end="49471" vertical-scroll-proportion="0.37269938" vertical-offset="14751" max-vertical-offset="18414">
+            <state line="1075" column="51" selection-start="49471" selection-end="49471" vertical-scroll-proportion="-4.05" vertical-offset="14751" max-vertical-offset="18414">
               <folding>
                 <element signature="e#33820#40416#0" expanded="false" />
                 <element signature="e#41255#46869#0" expanded="false" />
@@ -131,10 +131,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="35" selection-start="3943" selection-end="3943" vertical-scroll-proportion="-5.2873564" vertical-offset="998" max-vertical-offset="3096">
+            <state line="48" column="57" selection-start="2008" selection-end="2066" vertical-scroll-proportion="0.2176" vertical-offset="728" max-vertical-offset="3096">
               <folding>
                 <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -178,8 +178,8 @@
         <option value="$PROJECT_DIR$/facility.json" />
         <option value="$PROJECT_DIR$/views/dashboard.html" />
         <option value="$PROJECT_DIR$/hr.json" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/controllers/jinsiCtrl.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -637,16 +637,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="35" selection-start="3943" selection-end="3943" vertical-scroll-proportion="-5.2873564" vertical-offset="998" max-vertical-offset="3096">
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hr.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4227" column="19" selection-start="130334" selection-end="130344" vertical-scroll-proportion="-1.7126436" vertical-offset="75937" max-vertical-offset="84726">
@@ -656,11 +646,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/jinsiCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1075" column="51" selection-start="49471" selection-end="49471" vertical-scroll-proportion="0.37269938" vertical-offset="14751" max-vertical-offset="18414">
+        <state line="1075" column="51" selection-start="49471" selection-end="49471" vertical-scroll-proportion="-4.05" vertical-offset="14751" max-vertical-offset="18414">
           <folding>
             <element signature="e#33820#40416#0" expanded="false" />
             <element signature="e#41255#46869#0" expanded="false" />
             <element signature="e#53600#54728#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="57" selection-start="2008" selection-end="2066" vertical-scroll-proportion="0.2176" vertical-offset="728" max-vertical-offset="3096">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
