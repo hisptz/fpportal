@@ -68,6 +68,10 @@ angular.module("hmisPortal")
             templateUrl: 'views/tb.html',
             controller: 'mainCtrl'
         });
+        $routeProvider.when("/family_planning",{
+            templateUrl: 'views/family_planning.html',
+            controller: 'FamilyPlanningCtrl'
+        });
 
 
         $routeProvider.otherwise({
