@@ -1073,7 +1073,7 @@ angular.module("hmisPortal")
                     angular.forEach(regions,function(value){
                         if(value.uid == $scope.selectedOrgUnit){
                             angular.forEach(value.districts,function(val){
-                                if(val.name != "Total"){
+                                if(val.region_uid == $scope.selectedOrgUnit){
                                     $scope.areaHR.push(val.name);
                                     $scope.useregionHR.push({'name':val.name,'id':val.uid});
                                 }
@@ -1081,6 +1081,7 @@ angular.module("hmisPortal")
                         }
                     });
                 }
+                console.log($scope.areaHR);
                 $scope.HRchartConfig.xAxis.categories = $scope.areaHR;
 
                 $scope.HRnormalseries = [];
