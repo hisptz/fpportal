@@ -7,15 +7,25 @@
 <div class="row">
     <div class="z-depth-1" style="width:96.5%;position:fixed;top:70px;z-index:900;margin-left: 24px; margin-right: 24px">
         <div class="section grey lighten-5 " >
-            <div class="input-field col s6 grey lighten-5">
+            <div class="input-field col s4 grey lighten-5">
                 <select ng-model="$root.selectedPeriod" ng-change="$root.firstClick1()">
                     <option value="2014">2014</option>
                     <!--<option value="2015">2015</option>-->
                 </select>
                 <label>Period</label>
             </div>
-            <div class="input-field col s6 orgDropdown grey lighten-5"  id="orgDropdown" >
+            <div class="input-field col s4 orgDropdown grey lighten-5"  id="orgDropdown" >
                 <label>Regions</label>
+            </div>
+            <div class="input-field col s4 grey lighten-5">
+                <select ng-model="$root.selectedPeriod" ng-change="$root.firstClick1()">
+                    <option value="2014">Injections</option>
+                    <option value="2014">Pills</option>
+                    <option value="2014">Condoms</option>
+                    <option value="2014">Injections</option>
+                    <!--<option value="2015">2015</option>-->
+                </select>
+                <label>Period</label>
             </div>
         </div>
     </div>

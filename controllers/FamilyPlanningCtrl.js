@@ -129,6 +129,7 @@ angular.module("hmisPortal")
                 cardObject.chartObject.title.text = cardObject.title;
                 cardObject.chartObject.yAxis.title.text = cardObject.title.toLowerCase();
 
+                var period = preparePeriod();
                 if($scope.selectedOrgUnit == "m0frOspS7JY"){
                     $scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:"+cardObject.data+"&dimension=ou:LEVEL-1;LEVEL-2;m0frOspS7JY&filter=pe:"+$scope.selectedPeriod+"&displayProperty=NAME";
                 }else{
@@ -213,3 +214,7 @@ angular.module("hmisPortal")
         }
         $scope.firstClick();
     });
+
+function preparePeriod(){
+    return "2014Q1;2014Q2;2014Q3;2014Q4";
+}
