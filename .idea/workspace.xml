@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/geographicalZones.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js" afterPath="$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data1.json" afterPath="$PROJECT_DIR$/data1.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning.html" afterPath="$PROJECT_DIR$/views/family_planning.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,7 +55,7 @@
       <file leaf-file-name="family_planning.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/family_planning.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="34" selection-start="1610" selection-end="1610" vertical-scroll-proportion="0.13138686" vertical-offset="486" max-vertical-offset="2970">
+            <state line="18" column="23" selection-start="712" selection-end="712" vertical-scroll-proportion="-0.4729927" vertical-offset="648" max-vertical-offset="2988">
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
@@ -758,7 +754,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="34" selection-start="1610" selection-end="1610" vertical-scroll-proportion="0.13138686" vertical-offset="486" max-vertical-offset="2970">
+        <state line="18" column="23" selection-start="712" selection-end="712" vertical-scroll-proportion="-0.4729927" vertical-offset="648" max-vertical-offset="2988">
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
