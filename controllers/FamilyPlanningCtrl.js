@@ -150,7 +150,7 @@ angular.module("hmisPortal")
                 cardObject.chartObject.loading = true;
             var datass = '';
             if($scope.currentOrgUnit == "m0frOspS7JY"){
-                if(cardObject.category == 'zones'){
+                if(cardObject.category == 'methods'){
                     cardObject.data = 'jvwTTzpWBD0';
                     cardObject.category = 'zones';
                 }
@@ -160,6 +160,10 @@ angular.module("hmisPortal")
                     cardObject.data = $scope.currentOrgUnit;
 //                    cardObject.data = 'JMmqv0tyVr7;Nt8M08bJKXl;IFxhP0O4k0W;epPM7fO8CnH;pqpVKzE951Y;OQpasUg1Tse;btKkJROB2gP;mlfh4fgiFhd;GGpsoh0DX6T';
                 }
+            }
+
+            if($scope.selectedMethod == ''){
+
             }
             $http.get('data1.json').success(function(data){
                 if(data.hasOwnProperty('metaData')){
