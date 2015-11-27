@@ -42,6 +42,10 @@ angular.module("hmisPortal")
             $scope.prepareSeries(card,$scope.data.chartType);
         };
 
+        $scope.changeOrgUnit = function(){
+            alert('fanya kazi');
+        }
+
         $scope.downloadExcel = function(id){
             var base = "https://dhis.moh.go.tz/";
             $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
@@ -99,7 +103,7 @@ angular.module("hmisPortal")
                 icons:angular.copy(portalService.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'line',
                 chartObject:angular.copy(portalService.chartObject)
 
             },{
@@ -111,7 +115,7 @@ angular.module("hmisPortal")
                 icons:angular.copy(portalService.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'line',
                 chartObject:angular.copy(portalService.chartObject)
 
             }];
@@ -299,13 +303,26 @@ angular.module("hmisPortal")
             var data = [];
             var per = $scope.selectedPeriod;
             if(type == 'zones'){
-                angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                   var names= "";
-                    angular.forEach(region.organisationUnits,function(value){
-                      names += value.id+';';
+                if($scope.currentOrgUnit == "m0frOspS7JY"){
+                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
+                        var names= "";
+                        angular.forEach(region.organisationUnits,function(value){
+                            names += value.id+';';
+                        });
+                        data.push({'name':region.name,'id':names});
                     });
-                    data.push({'name':region.name,'id':names});
-                });
+                }else{
+                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
+                        var names= "";
+                        if(region.id == $scope.currentOrgUnit){
+                            angular.forEach(region.organisationUnits,function(value){
+                                names += value.id+';';
+                            });
+                            data.push({'name':region.name,'id':names});
+                        }
+                    });
+                }
+
             }if(type == 'quarter'){
                 data.push({'name':'Jan - Mar '+per,'id':per+'Q1'});
                 data.push({'name':'Apr - Jun '+per,'id':per+'Q2'});
@@ -332,10 +349,9 @@ angular.module("hmisPortal")
 
         $rootScope.firstClick = function(){
             angular.forEach($scope.fpCards,function(value){
-//              $scope.data.chartType = value.chart;
                 $scope.prepareSeries(value,value.chart);
             });
-        }
+        };
         $scope.firstClick();
     });
 
