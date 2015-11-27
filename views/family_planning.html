@@ -9,13 +9,13 @@
     <div class="z-depth-1" style="width:96.5%;position:fixed;top:70px;z-index:900;margin-left: 24px; margin-right: 24px">
         <div class="section grey lighten-5 " >
             <div class="input-field col s4 grey lighten-5">
-                <select ng-model="$root.selectedPeriod" ng-change="$root.firstClick1()">
+                <select ng-model="selectedPeriod" ng-change="$root.firstClick1()">
                     <option value="2014">2014</option>
                     <!--<option value="2015">2015</option>-->
                 </select>
                 <label>Period</label>
             </div>
-            <div class="input-field col s4 grey lighten-5"  >
+            <div class="input-field col s4 grey lighten-5" ng-change="changeOrgUnit()" ng-model="currentOrgUnit" >
                 <select>
                     <option value='m0frOspS7JY'>MOH Tanzania</option>
                     <option value="gb4r7CSrT7U">Eastern Zone</option>
