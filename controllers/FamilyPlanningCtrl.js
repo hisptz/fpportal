@@ -7,20 +7,11 @@ angular.module("hmisPortal")
 
     })
     .controller("FamilyPlanningCtrl",function ($rootScope,$scope,$http,portalService) {
-       var url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:ZnTi99UdGCS;lMFKZN3UaYp&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:2014Q1;2014Q2;2014Q3;2014Q4&displayProperty=NAME";
+       var url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:GGpsoh0DX6T;IFxhP0O4k0W;JMmqv0tyVr7;Nt8M08bJKXl;OQpasUg1Tse;btKkJROB2gP;epPM7fO8CnH;mlfh4fgiFhd;pqpVKzE951Y&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201501;201502;201503;201504;201505;201506;201507;201508;201509;201510;201511;201512;2015Q1;2015Q2;2015Q3;2015Q4&displayProperty=NAME";
+       var geoZonesUrl = "https://dhis.moh.go.tz/api/organisationUnitGroupSets/eVyUn5tE93t.json?fields=id,name,organisationUnitGroups[id,name,organisationUnits[id,name]]";
 
-        $scope.prepareData = function(jsonObject){
-            var data = [];
-            data.push({'name':jsonObject.metaData.names[$rootScope.selectedOrgUnit],'id':$rootScope.selectedOrgUnit,'value':getDataFromUrl(jsonObject.rows,$rootScope.selectedOrgUnit)});
 
-            angular.forEach(jsonObject.metaData.ou,function(region){
-                if(region != $rootScope.selectedOrgUnit ){
-                    data.push({'name':jsonObject.metaData.names[region],'id':region,'value':getDataFromUrl(jsonObject.rows,region)});
-                }
-            });
-            return data;
-
-        };
+        $scope.geographicalZones = {"id":"eVyUn5tE93t","name":"FP Geographical Zones","organisationUnitGroups":[{"id":"kcE3vG4Eq3Q","name":"Southern Highlands Zone","organisationUnits":[{"id":"sWOWPBvwNY2","name":"Iringa Region"},{"id":"DWSo42hunXH","name":"Katavi Region"},{"id":"A3b5mw8DJYC","name":"Mbeya Region"},{"id":"vAtZ8a924Lx","name":"Rukwa Region"},{"id":"qarQhOt2OEh","name":"Njombe Region"}]},{"id":"nvKJnetaMxk","name":"Northern Zone","organisationUnits":[{"id":"YtVMnut7Foe","name":"Arusha Region"},{"id":"vU0Qt1A5IDz","name":"Tanga Region"}]},{"id":"zITJeBfrJ4J","name":"Western Zone","organisationUnits":[{"id":"RD96nI1JXVV","name":"Kigoma Region"},{"id":"kZ6RlMnt2bp","name":"Tabora Region"}]},{"id":"RRGOg1GyLsd","name":"Lake Zone","organisationUnits":[{"id":"lnOyHhoLzre","name":"Kilimanjaro Region"},{"id":"MAL4cfZoFhJ","name":"Geita Region"},{"id":"Crkg9BoUo5w","name":"Kagera Region"},{"id":"IgTAEKMqKRe","name":"Simiyu Region"},{"id":"EO3Ps3ny0Nr","name":"Shinyanga Region"},{"id":"vYT08q7Wo33","name":"Mara Region"},{"id":"hAFRrgDK0fy","name":"Mwanza Region"}]},{"id":"hiqGDmNAFJz","name":"Southern Zone","organisationUnits":[{"id":"VMgrQWSVIYn","name":"Lindi Region"},{"id":"bN5q5k5DgLA","name":"Mtwara Region"}]},{"id":"gb4r7CSrT7U","name":"Eastern Zone","organisationUnits":[{"id":"acZHYslyJLt","name":"Dar Es Salaam Region"},{"id":"yyW17iCz9As","name":"Pwani Region"},{"id":"Sj50oz9EHvD","name":"Morogoro Region"}]},{"id":"gzWRK9qFFVp","name":"Central Zone","organisationUnits":[{"id":"Cpd5l15XxwA","name":"Dodoma Region"},{"id":"LGTVRhKSn1V","name":"Singida Region"},{"id":"qg5ySBw9X5l","name":"Manyara Region"}]}]}
 
 
 
@@ -72,6 +63,18 @@ angular.module("hmisPortal")
                 });
             });
         };
+
+        $scope.FPmethods = [
+            {'name':'Male Condoms','uid':'JMmqv0tyVr7'},
+            {'name':'Female Condoms','uid':'Nt8M08bJKXl'},
+            {'name':'Oral Pills','uid':'IFxhP0O4k0W'},
+            {'name':'Injectables','uid':'epPM7fO8CnH'},
+            {'name':'Implants','uid':'pqpVKzE951Y'},
+            {'name':'IUCDs','uid':'OQpasUg1Tse'},
+            {'name':'NSV','uid':'btKkJROB2gP'},
+            {'name':'Min Lap','uid':'mlfh4fgiFhd'},
+            {'name':'Natural FP','uid':'GGpsoh0DX6T'}
+        ]
 
         $scope.fpCards = [
             {
@@ -206,6 +209,30 @@ angular.module("hmisPortal")
 
         };
 
+        $scope.prepareData = function(jsonObject){
+            var data = [];
+            data.push({'name':jsonObject.metaData.names[$rootScope.selectedOrgUnit],'id':$rootScope.selectedOrgUnit,'value':getDataFromUrl(jsonObject.rows,$rootScope.selectedOrgUnit)});
+
+            angular.forEach(jsonObject.metaData.ou,function(region){
+                if(region != $rootScope.selectedOrgUnit ){
+                    data.push({'name':jsonObject.metaData.names[region],'id':region,'value':getDataFromUrl(jsonObject.rows,region)});
+                }
+            });
+            return data;
+
+        };
+
+        $scope.prepareCategory = function(type){
+            if(type == 'zones'){
+                angular.forEach($scope.geographicalZones,function(region){
+                   var names= "";
+                    angular.forEach(region.organisationUnits,function(value){
+                      name += value.id;
+                    })
+                });
+            }
+        }
+
         $rootScope.firstClick = function(){
             angular.forEach($scope.fpCards,function(value){
 //              $scope.data.chartType = value.chart;
@@ -215,6 +242,9 @@ angular.module("hmisPortal")
         $scope.firstClick();
     });
 
-function preparePeriod(){
-    return "2014Q1;2014Q2;2014Q3;2014Q4";
-}
+    function preparePeriod(){
+        return "2014Q1;2014Q2;2014Q3;2014Q4";
+    }
+
+
+
