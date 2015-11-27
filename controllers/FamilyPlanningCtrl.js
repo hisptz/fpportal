@@ -42,9 +42,6 @@ angular.module("hmisPortal")
             $scope.prepareSeries(card,$scope.data.chartType);
         };
 
-        $scope.changeOrgUnit = function(){
-            alert('fanya kazi');
-        }
 
         $scope.downloadExcel = function(id){
             var base = "https://dhis.moh.go.tz/";
@@ -78,7 +75,14 @@ angular.module("hmisPortal")
             {'name':'NSV','uid':'btKkJROB2gP'},
             {'name':'Min Lap','uid':'mlfh4fgiFhd'},
             {'name':'All Clients','uid':'jvwTTzpWBD0'},
-            {'name':'Natural FP','uid':'GGpsoh0DX6T'}
+            {'name':'Natural FP','uid':'GGpsoh0DX6T'},
+            {'name':'Eastern Zone','uid':'gb4r7CSrT7U'},
+            {'name':'Lake Zone','uid':'RRGOg1GyLsd'},
+            {'name':'Northern Zone','uid':'nvKJnetaMxk'},
+            {'name':'Southern Highlands Zone','uid':'kcE3vG4Eq3Q'},
+            {'name':'Southern Zone','uid':'hiqGDmNAFJz'},
+            {'name':'Western Zone','uid':'zITJeBfrJ4J'},
+            {'name':'Central Zone','uid':'gzWRK9qFFVp'}
         ]
 
         $scope.fpCards = [
@@ -148,10 +152,13 @@ angular.module("hmisPortal")
             if($scope.currentOrgUnit == "m0frOspS7JY"){
                 if(cardObject.category == 'zones'){
                     cardObject.data = 'jvwTTzpWBD0';
+                    cardObject.category = 'zones';
                 }
             }else{
                 if(cardObject.category == 'zones'){
-                    cardObject.data = 'JMmqv0tyVr7;Nt8M08bJKXl;IFxhP0O4k0W;epPM7fO8CnH;pqpVKzE951Y;OQpasUg1Tse;btKkJROB2gP;mlfh4fgiFhd;GGpsoh0DX6T';
+                    cardObject.category = 'methods';
+                    cardObject.data = $scope.currentOrgUnit;
+//                    cardObject.data = 'JMmqv0tyVr7;Nt8M08bJKXl;IFxhP0O4k0W;epPM7fO8CnH;pqpVKzE951Y;OQpasUg1Tse;btKkJROB2gP;mlfh4fgiFhd;GGpsoh0DX6T';
                 }
             }
             $http.get('data1.json').success(function(data){
@@ -294,6 +301,13 @@ angular.module("hmisPortal")
                         num = num+parseInt(v[3])
                     }
                 });
+            }if(type == 'methods'){
+                num =0;
+                $.each(arr,function(k,v){
+                    if(v[0] == ou){
+                        num = num+parseInt(v[3])
+                    }
+                });
             }
 
             return num;
@@ -341,6 +355,16 @@ angular.module("hmisPortal")
                 data.push({'name':'Oct '+per,'id':per+'10'});
                 data.push({'name':'Nov'+per,'id':per+'11'});
                 data.push({'name':'Dec '+per,'id':per+'12'});
+            }if(type== 'methods'){
+                data.push({'name':'Male Condoms','id':'JMmqv0tyVr7'},
+                    {'name':'Female Condoms','id':'Nt8M08bJKXl'},
+                    {'name':'Oral Pills','id':'IFxhP0O4k0W'},
+                    {'name':'Injectables','id':'epPM7fO8CnH'},
+                    {'name':'Implants','id':'pqpVKzE951Y'},
+                    {'name':'IUCDs','id':'OQpasUg1Tse'},
+                    {'name':'NSV','id':'btKkJROB2gP'},
+                    {'name':'Min Lap','id':'mlfh4fgiFhd'},
+                    {'name':'Natural FP','id':'GGpsoh0DX6T'});
             }
 
             return data;
