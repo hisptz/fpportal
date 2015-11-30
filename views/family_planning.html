@@ -16,7 +16,7 @@
                 <label>Period</label>
             </div>
             <div class="input-field col s4 grey lighten-5">
-                <select  ng-change="firstClick()" ng-model="currentOrgUnit" >
+                <select  ng-change="changeZone()" ng-model="currentOrgUnit" >
                     <option value='m0frOspS7JY'>MOH Tanzania</option>
                     <option value="gb4r7CSrT7U">Eastern Zone</option>
                     <option value="RRGOg1GyLsd">Lake Zone</option>
@@ -29,7 +29,7 @@
                 <label>Geographical Zones</label>
             </div>
             <div class="input-field col s4 grey lighten-5">
-                <select ng-model="selectedMethod" ng-change="setMethod()">
+                <select ng-model="selectedMethod" ng-change="changeMethod()">
                     <option value="all">All Methods</option>
                     <option value="JMmqv0tyVr7">Male Condoms</option>
                     <option value="Nt8M08bJKXl">Female Condoms</option>
