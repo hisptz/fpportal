@@ -21,6 +21,14 @@ angular.module("hmisPortal")
             {name:'pie',image:'pie.png',action:''},
             {name:'map',image:'map.jpg',action:''}
         ];
+        this.minimalIcons = [
+            {name:'table',image:'table.jpg',action:''},
+            {name:'bar',image:'bar.png',action:''},
+            {name:'line',image:'line.png',action:''},
+            {name:'combined',image:'combined.jpg',action:''},
+            {name:'area',image:'area.jpg',action:''},
+            {name:'pie',image:'pie.png',action:''}
+        ];
         self.chartObject = {
             title: {
                 text: ''

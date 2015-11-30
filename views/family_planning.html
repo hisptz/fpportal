@@ -126,17 +126,19 @@
                         <div style="width: 100%" ng-if="card.displayTable" >
                             <p ng-if="card.chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>
                             <h5 class="center">{{ card.title }}</h5>
-                            <table ng-if="!card.chartObject.loading" class="bordered striped centered" id="facilityownership">
+                            <table ng-if="!card.chartObject.loading" class="bordered striped centered" id="jinsi">
                                 <thead>
                                 <tr>
-                                    <td class="center">Organisation unit</td>
-                                    <td  class="center">{{ card.title }}</td>
+                                    <th>#</th>
+                                    <th>Organisation Unit</th>
+                                    <th ng-repeat="cats in card.table.headers">{{ cats }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="row in card.table.colums">
-                                    <td>{{ row.name }}</td>
-                                    <td>{{ row.value }}</td>
+                                <tr data-ng-repeat="column in card.table.colums">
+                                    <td>{{ $index+1 }}</td>
+                                    <td>{{ column.name }}</td>
+                                    <td ng-repeat="nsf in column.values">{{ nsf.value }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -147,7 +149,7 @@
                         <span class="card-title activator grey-text text-darken-4">{{ card.title }}<i class="material-icons right">more_vert</i></span>
                         <p>
                             <a ng-click="changeChart(icon.name,card)" ng-repeat="icon in card.icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
-                            <a ng-click="downloadExcel(card.data)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>
+                            <!--<a ng-click="downloadExcel(card.data)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
                         </p>
                     </div>
                     <div class="card-reveal">

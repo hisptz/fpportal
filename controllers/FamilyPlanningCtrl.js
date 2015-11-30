@@ -104,7 +104,7 @@ angular.module("hmisPortal")
                 data1:$scope.currentOrgUnit,
                 category:'zones',
                 category1:'zones',
-                icons:angular.copy(portalService.icons),
+                icons:angular.copy(portalService.minimalIcons),
                 displayTable:false,
                 displayMap:false,
                 chart:'bar',
@@ -117,7 +117,7 @@ angular.module("hmisPortal")
                 data:'JMmqv0tyVr7;Nt8M08bJKXl;IFxhP0O4k0W;epPM7fO8CnH;pqpVKzE951Y;OQpasUg1Tse;btKkJROB2gP;mlfh4fgiFhd;GGpsoh0DX6T',
                 category:'quarter',
                 category1:'quarter',
-                icons:angular.copy(portalService.icons),
+                icons:angular.copy(portalService.minimalIcons),
                 displayTable:false,
                 displayMap:false,
                 chart:'line',
@@ -130,7 +130,7 @@ angular.module("hmisPortal")
                 data:'JMmqv0tyVr7;Nt8M08bJKXl;IFxhP0O4k0W;epPM7fO8CnH;pqpVKzE951Y;OQpasUg1Tse;btKkJROB2gP;mlfh4fgiFhd;GGpsoh0DX6T',
                 category:'month',
                 category1:'month',
-                icons:angular.copy(portalService.icons),
+                icons:angular.copy(portalService.minimalIcons),
                 displayTable:false,
                 displayMap:false,
                 chart:'line',
@@ -159,7 +159,7 @@ angular.module("hmisPortal")
                 cardObject.chartObject.yAxis.title.text = cardObject.title.toLowerCase();
 
                 var peri = preparePeriod($scope.selectedPeriod);
-                $scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:GGpsoh0DX6T;IFxhP0O4k0W;JMmqv0tyVr7;Nt8M08bJKXl;OQpasUg1Tse;btKkJROB2gP;epPM7fO8CnH;mlfh4fgiFhd;pqpVKzE951Y&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:"+peri+"&displayProperty=NAME";
+                $scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:GGpsoh0DX6T;IFxhP0O4k0W;JMmqv0tyVr7;Nt8M08bJKXl;OQpasUg1Tse;btKkJROB2gP;epPM7fO8CnH;mlfh4fgiFhd;pqpVKzE951Y&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201501;201502;201503;201504;201505;201506;201507;201508;201509;201510;201511;201512;2015Q1;2015Q2;2015Q3;2015Q4&displayProperty=NAME";
             var area = [];
                 cardObject.chartObject.loading = true;
             var datass = '';
@@ -176,7 +176,6 @@ angular.module("hmisPortal")
 //                    cardObject.data = 'JMmqv0tyVr7;Nt8M08bJKXl;IFxhP0O4k0W;epPM7fO8CnH;pqpVKzE951Y;OQpasUg1Tse;btKkJROB2gP;mlfh4fgiFhd;GGpsoh0DX6T';
                 }
 
-//                console.log(cardObject.category+ "----"+cardObject.title);
             }
 
             if($scope.selectedMethod == 'all'){
@@ -212,7 +211,6 @@ angular.module("hmisPortal")
             $http.get('data1.json').success(function(data){
                 if(data.hasOwnProperty('metaData')){
                     var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
-
                     angular.forEach(useThisData.regions,function(value){
                         area.push(value.name);
                     });
@@ -225,7 +223,7 @@ angular.module("hmisPortal")
                         var serie = [];
                         angular.forEach(useThisData.elements,function(value){
                             angular.forEach(useThisData.regions,function(val){
-                                var number = $scope.getcompletenesDataFromUrl(data.rows,val.id,cardObject.category,value.uid);
+                                var number = $scope.getDataFromUrl(data.rows,val.id,cardObject.category,value.uid);
 
                                 serie.push({name: value.name+" - "+ val.name , y: parseInt(number)})
                             });
