@@ -30,7 +30,7 @@
             </div>
             <div class="input-field col s4 grey lighten-5">
                 <select ng-model="selectedMethod" ng-change="setMethod()">
-                    <option value="">All Methods</option>
+                    <option value="all">All Methods</option>
                     <option value="JMmqv0tyVr7">Male Condoms</option>
                     <option value="Nt8M08bJKXl">Female Condoms</option>
                     <option value="IFxhP0O4k0W">Oral Pills</option>
@@ -109,7 +109,7 @@
     </div>
 
 
-    <div class="col s12 m12 l10" style="margin-top: 70px">
+    <div class="col s12 m12 l10" style="margin-top: 72px">
         <div class="section">
             <div class="{{ card.cardClass }}" ng-repeat="card in fpCards" style="padding-left: 0px">
                 <div class="card z-depth-2 teal lighten-5 large">
