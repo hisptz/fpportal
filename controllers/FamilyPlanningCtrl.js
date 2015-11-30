@@ -189,7 +189,12 @@ angular.module("hmisPortal")
                     cardObject.data = 'JMmqv0tyVr7;Nt8M08bJKXl;IFxhP0O4k0W;epPM7fO8CnH;pqpVKzE951Y;OQpasUg1Tse;btKkJROB2gP;mlfh4fgiFhd;GGpsoh0DX6T';
                 }
                 if(cardObject.category1 == 'zones'){
-                    cardObject.data = "jvwTTzpWBD0";
+                    if($scope.currentOrgUnit == "m0frOspS7JY"){
+                            cardObject.data = 'jvwTTzpWBD0';
+                    }else{
+                            cardObject.data = $scope.currentOrgUnit;
+                    }
+
                 }
             }else{
                 if(cardObject.category1 == "month"){

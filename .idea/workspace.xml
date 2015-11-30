@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js" afterPath="$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning.html" afterPath="$PROJECT_DIR$/views/family_planning.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="family_planning.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="family_planning.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="98" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.52519083" vertical-offset="214" max-vertical-offset="2988">
+            <state line="31" column="98" selection-start="1617" selection-end="1617" vertical-scroll-proportion="24.508772" vertical-offset="1955" max-vertical-offset="2988">
               <folding />
             </state>
           </provider>
@@ -81,15 +79,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FamilyPlanningCtrl.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="FamilyPlanningCtrl.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="25" selection-start="2498" selection-end="2507" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7614">
+            <state line="196" column="0" selection-start="10815" selection-end="10815" vertical-scroll-proportion="0.7078652" vertical-offset="2322" max-vertical-offset="7704">
               <folding>
                 <element signature="e#3799#5042#0" expanded="false" />
                 <element signature="e#5072#6089#0" expanded="false" />
-                <element signature="e#16074#16803#0" expanded="false" />
-                <element signature="e#22780#26638#0" expanded="false" />
+                <element signature="e#16265#16994#0" expanded="false" />
+                <element signature="e#22971#26829#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -149,9 +147,9 @@
         <option value="$PROJECT_DIR$/views/downloads.html" />
         <option value="$PROJECT_DIR$/geographicalZones.json" />
         <option value="$PROJECT_DIR$/data1.json" />
-        <option value="$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/views/family_planning.html" />
+        <option value="$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js" />
       </list>
     </option>
   </component>
@@ -443,8 +441,8 @@
           <folding>
             <element signature="e#3799#5042#0" expanded="false" />
             <element signature="e#5072#6089#0" expanded="false" />
-            <element signature="e#16074#16803#0" expanded="false" />
-            <element signature="e#22780#26638#0" expanded="false" />
+            <element signature="e#16265#16994#0" expanded="false" />
+            <element signature="e#22971#26829#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -510,8 +508,8 @@
           <folding>
             <element signature="e#3799#5042#0" expanded="false" />
             <element signature="e#5072#6089#0" expanded="false" />
-            <element signature="e#16074#16803#0" expanded="false" />
-            <element signature="e#22780#26638#0" expanded="false" />
+            <element signature="e#16265#16994#0" expanded="false" />
+            <element signature="e#22971#26829#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -707,18 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="25" selection-start="2498" selection-end="2507" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7614">
-          <folding>
-            <element signature="e#3799#5042#0" expanded="false" />
-            <element signature="e#5072#6089#0" expanded="false" />
-            <element signature="e#16074#16803#0" expanded="false" />
-            <element signature="e#22780#26638#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="143" column="153" selection-start="7880" selection-end="7880" vertical-scroll-proportion="-11.703704" vertical-offset="2258" max-vertical-offset="3150">
@@ -728,8 +714,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="98" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.52519083" vertical-offset="214" max-vertical-offset="2988">
+        <state line="31" column="98" selection-start="1617" selection-end="1617" vertical-scroll-proportion="24.508772" vertical-offset="1955" max-vertical-offset="2988">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="196" column="0" selection-start="10815" selection-end="10815" vertical-scroll-proportion="0.7078652" vertical-offset="2322" max-vertical-offset="7740">
+          <folding>
+            <element signature="e#3799#5042#0" expanded="false" />
+            <element signature="e#5072#6089#0" expanded="false" />
+            <element signature="e#16265#16994#0" expanded="false" />
+            <element signature="e#22971#26829#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
