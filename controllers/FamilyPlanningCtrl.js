@@ -15,6 +15,7 @@ angular.module("hmisPortal")
 
         $scope.changeMethod = function(){
             $scope.currentOrgUnit = "m0frOspS7JY";
+            $('#orgunitss option[value="m0frOspS7JY"]').prop('selected', true);
             $scope.firstClick();
         }
         $scope.changeZone = function(){
