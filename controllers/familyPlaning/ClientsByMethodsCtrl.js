@@ -1,4 +1,7 @@
 /**
+ * Created by kelvin on 12/10/15.
+ */
+/**
  * Created by kelvin on 11/26/15.
  */
 
@@ -6,9 +9,9 @@ angular.module("hmisPortal")
     .config(function($httpProvider) {
 
     })
-    .controller("FamilyPlanningCtrl",function ($rootScope,$scope,$http,portalService) {
-       var url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:GGpsoh0DX6T;IFxhP0O4k0W;JMmqv0tyVr7;Nt8M08bJKXl;OQpasUg1Tse;btKkJROB2gP;epPM7fO8CnH;mlfh4fgiFhd;pqpVKzE951Y&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201501;201502;201503;201504;201505;201506;201507;201508;201509;201510;201511;201512;2015Q1;2015Q2;2015Q3;2015Q4&displayProperty=NAME";
-       var geoZonesUrl = "https://dhis.moh.go.tz/api/organisationUnitGroupSets/eVyUn5tE93t.json?fields=id,name,organisationUnitGroups[id,name,organisationUnits[id,name]]";
+    .controller("ClientsByMethodsCtrl",function ($rootScope,$scope,$http,portalService) {
+        var url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:GGpsoh0DX6T;IFxhP0O4k0W;JMmqv0tyVr7;Nt8M08bJKXl;OQpasUg1Tse;btKkJROB2gP;epPM7fO8CnH;mlfh4fgiFhd;pqpVKzE951Y&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201501;201502;201503;201504;201505;201506;201507;201508;201509;201510;201511;201512;2015Q1;2015Q2;2015Q3;2015Q4&displayProperty=NAME";
+        var geoZonesUrl = "https://dhis.moh.go.tz/api/organisationUnitGroupSets/eVyUn5tE93t.json?fields=id,name,organisationUnitGroups[id,name,organisationUnits[id,name]]";
 
 
         $scope.geographicalZones = {"id":"eVyUn5tE93t","name":"FP Geographical Zones","organisationUnitGroups":[{"id":"kcE3vG4Eq3Q","name":"Southern Highlands Zone","organisationUnits":[{"id":"sWOWPBvwNY2","name":"Iringa Region"},{"id":"DWSo42hunXH","name":"Katavi Region"},{"id":"A3b5mw8DJYC","name":"Mbeya Region"},{"id":"vAtZ8a924Lx","name":"Rukwa Region"},{"id":"qarQhOt2OEh","name":"Njombe Region"}]},{"id":"nvKJnetaMxk","name":"Northern Zone","organisationUnits":[{"id":"YtVMnut7Foe","name":"Arusha Region"},{"id":"vU0Qt1A5IDz","name":"Tanga Region"}]},{"id":"zITJeBfrJ4J","name":"Western Zone","organisationUnits":[{"id":"RD96nI1JXVV","name":"Kigoma Region"},{"id":"kZ6RlMnt2bp","name":"Tabora Region"}]},{"id":"RRGOg1GyLsd","name":"Lake Zone","organisationUnits":[{"id":"lnOyHhoLzre","name":"Kilimanjaro Region"},{"id":"MAL4cfZoFhJ","name":"Geita Region"},{"id":"Crkg9BoUo5w","name":"Kagera Region"},{"id":"IgTAEKMqKRe","name":"Simiyu Region"},{"id":"EO3Ps3ny0Nr","name":"Shinyanga Region"},{"id":"vYT08q7Wo33","name":"Mara Region"},{"id":"hAFRrgDK0fy","name":"Mwanza Region"}]},{"id":"hiqGDmNAFJz","name":"Southern Zone","organisationUnits":[{"id":"VMgrQWSVIYn","name":"Lindi Region"},{"id":"bN5q5k5DgLA","name":"Mtwara Region"}]},{"id":"gb4r7CSrT7U","name":"Eastern Zone","organisationUnits":[{"id":"acZHYslyJLt","name":"Dar Es Salaam Region"},{"id":"yyW17iCz9As","name":"Pwani Region"},{"id":"Sj50oz9EHvD","name":"Morogoro Region"}]},{"id":"gzWRK9qFFVp","name":"Central Zone","organisationUnits":[{"id":"Cpd5l15XxwA","name":"Dodoma Region"},{"id":"LGTVRhKSn1V","name":"Singida Region"},{"id":"qg5ySBw9X5l","name":"Manyara Region"}]}]}
@@ -83,16 +86,9 @@ angular.module("hmisPortal")
             {'name':'IUCDs','uid':'OQpasUg1Tse'},
             {'name':'NSV','uid':'btKkJROB2gP'},
             {'name':'Min Lap','uid':'mlfh4fgiFhd'},
-            {'name':'client <20 Male Condoms','uid':'W74wyMy1mp0'},
-            {'name':'client <20 Female Condoms','uid':'p8cgxI3yPx8'},
-            {'name':'client <20 Oral Pills','uid':'aSJKs4oPZAf'},
-            {'name':'client <20 Injectables','uid':'LpkdcaLc4I9'},
-            {'name':'client <20 Implants','uid':'p14JdJaG2aC'},
-            {'name':'client <20 IUCDs','uid':'GvbkEo6sfSd'},
             {'name':'NSV','uid':'btKkJROB2gP'},
             {'name':'Min Lap','uid':'mlfh4fgiFhd'},
             {'name':'All Clients','uid':'jvwTTzpWBD0'},
-            {'name':'client <20 Natural FP','uid':'QRCRjFreECE'},
             {'name':'Natural FP','uid':'GGpsoh0DX6T'},
             {'name':'Eastern Zone','uid':'gb4r7CSrT7U'},
             {'name':'Lake Zone','uid':'RRGOg1GyLsd'},
@@ -148,34 +144,6 @@ angular.module("hmisPortal")
                 visible:'consumption by method',
                 chartObject:angular.copy(portalService.chartObject)
 
-            },{
-                title:'Clients < 20 Years of Age Quarterly',
-                description:'Total Clients Quarterly',
-                cardClass:"col s12 m6",
-                data:'W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE',
-                category:'quarter',
-                category1:'quarter',
-                icons:angular.copy(portalService.minimalIcons),
-                displayTable:false,
-                displayMap:false,
-                chart:'line',
-                visible:'consumption by demographic',
-                chartObject:angular.copy(portalService.chartObject)
-
-            },{
-                title:'Clients < 20 Years of Age Monthly',
-                description:'Total Clients Monthly',
-                cardClass:"col s12 m6",
-                data:'W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE',
-                category:'month',
-                category1:'month',
-                icons:angular.copy(portalService.minimalIcons),
-                displayTable:false,
-                displayMap:false,
-                chart:'line',
-                visible:'consumption by demographic',
-                chartObject:angular.copy(portalService.chartObject)
-
             }];
 
         $scope.prepareSeries = function(cardObject,chart){
@@ -184,24 +152,24 @@ angular.module("hmisPortal")
 //            $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
 //                j_username: "portal", j_password: "Portal123"
 //            },function(){
-                if(chart == 'table'){
-                    cardObject.displayTable = true;
-                    cardObject.displayMap = false;
-                }else if(chart == 'map'){
-                    cardObject.displayMap = true;
-                    cardObject.displayTable = false;
-                }
-                else{
-                    cardObject.displayMap = false;
-                    cardObject.displayTable = false;
-                }
-                cardObject.chartObject.title.text = cardObject.title;
-                cardObject.chartObject.yAxis.title.text = cardObject.title.toLowerCase();
+            if(chart == 'table'){
+                cardObject.displayTable = true;
+                cardObject.displayMap = false;
+            }else if(chart == 'map'){
+                cardObject.displayMap = true;
+                cardObject.displayTable = false;
+            }
+            else{
+                cardObject.displayMap = false;
+                cardObject.displayTable = false;
+            }
+            cardObject.chartObject.title.text = cardObject.title;
+            cardObject.chartObject.yAxis.title.text = cardObject.title.toLowerCase();
 
-                var peri = preparePeriod($scope.selectedPeriod);
-                $scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE;GGpsoh0DX6T;IFxhP0O4k0W;JMmqv0tyVr7;Nt8M08bJKXl;OQpasUg1Tse;btKkJROB2gP;epPM7fO8CnH;mlfh4fgiFhd;pqpVKzE951Y&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201501;201502;201503;201504;201505;201506;201507;201508;201509;201510;201511;201512;2015Q1;2015Q2;2015Q3;2015Q4&displayProperty=NAME";
+            var peri = preparePeriod($scope.selectedPeriod);
+            $scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE;GGpsoh0DX6T;IFxhP0O4k0W;JMmqv0tyVr7;Nt8M08bJKXl;OQpasUg1Tse;btKkJROB2gP;epPM7fO8CnH;mlfh4fgiFhd;pqpVKzE951Y&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201501;201502;201503;201504;201505;201506;201507;201508;201509;201510;201511;201512;2015Q1;2015Q2;2015Q3;2015Q4&displayProperty=NAME";
             var area = [];
-                cardObject.chartObject.loading = true;
+            cardObject.chartObject.loading = true;
             var datass = '';
 
             if($scope.currentOrgUnit == "m0frOspS7JY"){
@@ -229,9 +197,9 @@ angular.module("hmisPortal")
                 }
                 if(cardObject.category1 == 'zones'){
                     if($scope.currentOrgUnit == "m0frOspS7JY"){
-                            cardObject.data = 'jvwTTzpWBD0';
+                        cardObject.data = 'jvwTTzpWBD0';
                     }else{
-                            cardObject.data = $scope.currentOrgUnit;
+                        cardObject.data = $scope.currentOrgUnit;
                     }
 
                 }
@@ -585,10 +553,10 @@ angular.module("hmisPortal")
         $scope.firstClick();
     });
 
-    function preparePeriod(period){
+function preparePeriod(period){
 
-        return ""+period+"01;"+period+"02;"+period+"03;"+period+"04;"+period+"05;"+period+"06;"+period+"07;"+period+"08;"+period+"09;"+period+"10;"+period+"11;"+period+"12;"+period+"Q1;"+period+"Q2;"+period+"Q3;"+period+"Q4";
-    }
+    return ""+period+"01;"+period+"02;"+period+"03;"+period+"04;"+period+"05;"+period+"06;"+period+"07;"+period+"08;"+period+"09;"+period+"10;"+period+"11;"+period+"12;"+period+"Q1;"+period+"Q2;"+period+"Q3;"+period+"Q4";
+}
 
 
 
