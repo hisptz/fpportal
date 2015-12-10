@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="" />
+    <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/routes.js" afterPath="$PROJECT_DIR$/assets/js/routes.js" />
+    </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,7 +62,7 @@
       <file leaf-file-name="routes.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="30" selection-start="2217" selection-end="2217" vertical-scroll-proportion="0.6524138" vertical-offset="859" max-vertical-offset="1656">
+            <state line="75" column="47" selection-start="2291" selection-end="2291" vertical-scroll-proportion="0.6772414" vertical-offset="859" max-vertical-offset="1656">
               <folding />
             </state>
           </provider>
@@ -794,7 +796,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="30" selection-start="2217" selection-end="2217" vertical-scroll-proportion="0.6524138" vertical-offset="859" max-vertical-offset="1656">
+        <state line="75" column="47" selection-start="2291" selection-end="2291" vertical-scroll-proportion="0.6772414" vertical-offset="859" max-vertical-offset="1656">
           <folding />
         </state>
       </provider>

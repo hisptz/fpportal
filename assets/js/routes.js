@@ -73,7 +73,7 @@ angular.module("hmisPortal")
             controller: 'ClientsByMethodsCtrl'
         });
         $routeProvider.when("/clients_by_demographics",{
-            templateUrl: 'views/familyPlaning/client_by_demographics.html',
+            templateUrl: 'views/family_planning/client_by_demographics.html',
             controller: 'ClientsByDemographicsCtrl'
         });
 
