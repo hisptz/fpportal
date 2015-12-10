@@ -146,7 +146,7 @@ angular.module("hmisPortal")
             cardObject.chartObject.yAxis.title.text = cardObject.title.toLowerCase();
 
             var peri = preparePeriod($scope.selectedPeriod);
-            $scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201501;201502;201503;201504;201505;201506;201507;201508;201509;201510;201511;201512;2015Q1;2015Q2;2015Q3;2015Q4&displayProperty=NAME";
+            $scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412;2014Q1;2014Q2;2014Q3;2014Q4&displayProperty=NAME";
             var area = [];
             cardObject.chartObject.loading = true;
             var datass = '';
@@ -489,15 +489,13 @@ angular.module("hmisPortal")
                 data.push({'name':'Nov'+per,'id':per+'11'});
                 data.push({'name':'Dec '+per,'id':per+'12'});
             }if(type == 'methods'){
-                data.push({'name':'Male Condoms','id':'JMmqv0tyVr7'},
-                    {'name':'Female Condoms','id':'Nt8M08bJKXl'},
-                    {'name':'Oral Pills','id':'IFxhP0O4k0W'},
-                    {'name':'Injectables','id':'epPM7fO8CnH'},
-                    {'name':'Implants','id':'pqpVKzE951Y'},
-                    {'name':'IUCDs','id':'OQpasUg1Tse'},
-                    {'name':'NSV','id':'btKkJROB2gP'},
-                    {'name':'Min Lap','id':'mlfh4fgiFhd'},
-                    {'name':'Natural FP','id':'GGpsoh0DX6T'});
+                data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
+                    {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
+                    {'name':'client <20 Oral Pills','id':'aSJKs4oPZAf'},
+                    {'name':'client <20 Injectables','id':'LpkdcaLc4I9'},
+                    {'name':'client <20 Implants','id':'p14JdJaG2aC'},
+                    {'name':'client <20 IUCDs','id':'GvbkEo6sfSd'},
+                    {'name':'client <20 Natural FP','id':'QRCRjFreECE'});
             }if(type == 'method'){
                 if($scope.currentOrgUnit == "m0frOspS7JY"){
                     angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
