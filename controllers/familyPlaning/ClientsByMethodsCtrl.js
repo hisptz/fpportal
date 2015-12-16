@@ -541,25 +541,18 @@ angular.module("hmisPortal")
                     {'name':'Min Lap','id':'mlfh4fgiFhd'},
                     {'name':'Natural FP','id':'GGpsoh0DX6T'});
             }if(type == 'method'){
-                if($scope.currentOrgUnit == "m0frOspS7JY"){
+                angular.forEach($scope.selectedRegions,function(zones){
                     angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                        var names= "";
-                        angular.forEach(region.organisationUnits,function(value){
-                            names += value.id+';';
-                        });
-                        data.push({'name':region.name,'id':names});
-                    });
-                }else{
-                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                        var names= "";
-                        if(region.id == $scope.currentOrgUnit){
+                        if(zones.id == region.id){
+                            var names= "";
                             angular.forEach(region.organisationUnits,function(value){
                                 names += value.id+';';
                             });
                             data.push({'name':region.name,'id':names});
                         }
+
                     });
-                }
+                });
             }
 
             return data;
