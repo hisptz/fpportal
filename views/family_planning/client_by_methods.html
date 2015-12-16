@@ -16,16 +16,19 @@
                 <label>Period</label>
             </div>
             <div class="input-field col s4 grey lighten-5">
-                <select id="orgunitss" ng-change="changeZone()" ng-model="currentOrgUnit" material-select watch>
-                    <option value='m0frOspS7JY'>MOH Tanzania</option>
-                    <option value="gb4r7CSrT7U">Eastern Zone</option>
-                    <option value="RRGOg1GyLsd">Lake Zone</option>
-                    <option value="nvKJnetaMxk">Northern Zone</option>
-                    <option value="kcE3vG4Eq3Q">Southern Highlands Zone</option>
-                    <option value="hiqGDmNAFJz">Southern Zone</option>
-                    <option value="zITJeBfrJ4J">Western Zone</option>
-                    <option value="gzWRK9qFFVp">Central Zone</option>
-                </select>
+                <div
+                        multi-select
+                        input-model="geoToUse"
+                        button-label="name"
+                        item-label="name"
+                        tick-property="ticked"
+                        output-model="selectedRegions"
+                        max-labels="0"
+                        max-height ="250px"
+                        on-item-click = "changeZone()"
+                        helper-elements="filter"
+                        >
+                </div>
                 <label>Geographical Zones</label>
             </div>
             <div class="input-field col s4 grey lighten-5">

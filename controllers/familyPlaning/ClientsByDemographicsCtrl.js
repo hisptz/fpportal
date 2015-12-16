@@ -402,7 +402,6 @@ angular.module("hmisPortal")
 //                }
 
             }if(type == 'month'){
-//                if($scope.currentOrgUnit == 'm0frOspS7JY'){
                     if($scope.selectedMethod == "all"){
                             angular.forEach($scope.selectedRegions,function(value){
                                 var names= "";

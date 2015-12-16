@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" afterPath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js" afterPath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" afterPath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/client_by_methods.html" afterPath="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/routes.js" afterPath="$PROJECT_DIR$/assets/js/routes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +42,16 @@
       <file leaf-file-name="client_by_methods.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="115" selection-start="5347" selection-end="5558" vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="3024">
+            <state line="24" column="53" selection-start="957" selection-end="972" vertical-scroll-proportion="-11.37037" vertical-offset="125" max-vertical-offset="3078">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="71" column="48" selection-start="2121" selection-end="2121" vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="1656">
               <folding />
             </state>
           </provider>
@@ -48,7 +60,7 @@
       <file leaf-file-name="client_by_demographics.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="53" selection-start="958" selection-end="973" vertical-scroll-proportion="-8.592592" vertical-offset="218" max-vertical-offset="3258">
+            <state line="31" column="22" selection-start="697" selection-end="1210" vertical-scroll-proportion="-12.592592" vertical-offset="218" max-vertical-offset="3240">
               <folding />
             </state>
           </provider>
@@ -72,30 +84,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientsByMethodsCtrl.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ClientsByMethodsCtrl.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="13" selection-start="8161" selection-end="8161" vertical-scroll-proportion="0.0" vertical-offset="2628" max-vertical-offset="10224">
+            <state line="506" column="33" selection-start="24802" selection-end="24802" vertical-scroll-proportion="0.9926686" vertical-offset="8017" max-vertical-offset="10188">
               <folding>
-                <marker date="1449735576442" expanded="true" signature="7523:8161" placeholder="{&quot;title&quot;: 'Total Clients Monthly'...}" />
+                <element signature="e#5674#6791#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientsByDemographicsCtrl.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ClientsByDemographicsCtrl.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="420" column="56" selection-start="21556" selection-end="21556" vertical-scroll-proportion="0.5196629" vertical-offset="7154" max-vertical-offset="10602">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="malaria.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/malaria.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="12668" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3240">
+            <state line="403" column="33" selection-start="20525" selection-end="20525" vertical-scroll-proportion="-1.5666667" vertical-offset="7171" max-vertical-offset="10584">
               <folding />
             </state>
           </provider>
@@ -145,15 +148,15 @@
         <option value="$PROJECT_DIR$/data1.json" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
         <option value="$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js" />
-        <option value="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
-        <option value="$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js" />
-        <option value="$PROJECT_DIR$/assets/js/routes.js" />
         <option value="$PROJECT_DIR$/controllers/morbidityCtrl.js" />
         <option value="$PROJECT_DIR$/views/family_planning.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/css/angular-multi-select.css" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
+        <option value="$PROJECT_DIR$/assets/js/routes.js" />
+        <option value="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
         <option value="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" />
+        <option value="$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js" />
       </list>
     </option>
   </component>
@@ -391,16 +394,16 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16153847" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16153847" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24983211" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22162525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22162525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -413,14 +416,14 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16153847" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16153847" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24983211" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -499,7 +502,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="43" selection-start="2140" selection-end="2158" vertical-scroll-proportion="0.0" vertical-offset="787" max-vertical-offset="1584" />
+        <state line="72" column="43" selection-start="2140" selection-end="2158" vertical-scroll-proportion="0.0" vertical-offset="787" max-vertical-offset="1584">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js">
@@ -545,7 +550,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="38" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1512" />
+        <state line="18" column="38" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1512">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/mainCtrl.js">
@@ -688,27 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="115" selection-start="5347" selection-end="5558" vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="3024">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="13" selection-start="8161" selection-end="8161" vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="10188">
-          <folding>
-            <marker date="1449735576442" expanded="true" signature="7523:8161" placeholder="{&quot;title&quot;: 'Total Clients Monthly'...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="50" selection-start="2347" selection-end="2372" vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="1656" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/mainCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="57" selection-start="157" selection-end="159" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1548">
@@ -746,15 +732,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="53" selection-start="958" selection-end="973" vertical-scroll-proportion="-8.592592" vertical-offset="218" max-vertical-offset="3258">
+        <state line="31" column="22" selection-start="697" selection-end="1210" vertical-scroll-proportion="-12.592592" vertical-offset="218" max-vertical-offset="3240">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="48" selection-start="2121" selection-end="2121" vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="1656">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="420" column="56" selection-start="21556" selection-end="21556" vertical-scroll-proportion="0.5196629" vertical-offset="7154" max-vertical-offset="10602">
+        <state line="403" column="33" selection-start="20525" selection-end="20525" vertical-scroll-proportion="-1.5666667" vertical-offset="7171" max-vertical-offset="10584">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="53" selection-start="957" selection-end="972" vertical-scroll-proportion="-11.37037" vertical-offset="125" max-vertical-offset="3078">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="506" column="33" selection-start="24802" selection-end="24802" vertical-scroll-proportion="0.9926686" vertical-offset="8017" max-vertical-offset="10188">
+          <folding>
+            <element signature="e#5674#6791#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
