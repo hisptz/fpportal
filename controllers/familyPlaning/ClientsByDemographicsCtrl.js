@@ -15,14 +15,29 @@ angular.module("hmisPortal")
 
 
         $scope.geographicalZones = {"id":"eVyUn5tE93t","name":"FP Geographical Zones","organisationUnitGroups":[{"id":"kcE3vG4Eq3Q","name":"Southern Highlands Zone","organisationUnits":[{"id":"sWOWPBvwNY2","name":"Iringa Region"},{"id":"DWSo42hunXH","name":"Katavi Region"},{"id":"A3b5mw8DJYC","name":"Mbeya Region"},{"id":"vAtZ8a924Lx","name":"Rukwa Region"},{"id":"qarQhOt2OEh","name":"Njombe Region"}]},{"id":"nvKJnetaMxk","name":"Northern Zone","organisationUnits":[{"id":"YtVMnut7Foe","name":"Arusha Region"},{"id":"vU0Qt1A5IDz","name":"Tanga Region"}]},{"id":"zITJeBfrJ4J","name":"Western Zone","organisationUnits":[{"id":"RD96nI1JXVV","name":"Kigoma Region"},{"id":"kZ6RlMnt2bp","name":"Tabora Region"}]},{"id":"RRGOg1GyLsd","name":"Lake Zone","organisationUnits":[{"id":"lnOyHhoLzre","name":"Kilimanjaro Region"},{"id":"MAL4cfZoFhJ","name":"Geita Region"},{"id":"Crkg9BoUo5w","name":"Kagera Region"},{"id":"IgTAEKMqKRe","name":"Simiyu Region"},{"id":"EO3Ps3ny0Nr","name":"Shinyanga Region"},{"id":"vYT08q7Wo33","name":"Mara Region"},{"id":"hAFRrgDK0fy","name":"Mwanza Region"}]},{"id":"hiqGDmNAFJz","name":"Southern Zone","organisationUnits":[{"id":"VMgrQWSVIYn","name":"Lindi Region"},{"id":"bN5q5k5DgLA","name":"Mtwara Region"}]},{"id":"gb4r7CSrT7U","name":"Eastern Zone","organisationUnits":[{"id":"acZHYslyJLt","name":"Dar Es Salaam Region"},{"id":"yyW17iCz9As","name":"Pwani Region"},{"id":"Sj50oz9EHvD","name":"Morogoro Region"}]},{"id":"gzWRK9qFFVp","name":"Central Zone","organisationUnits":[{"id":"Cpd5l15XxwA","name":"Dodoma Region"},{"id":"LGTVRhKSn1V","name":"Singida Region"},{"id":"qg5ySBw9X5l","name":"Manyara Region"}]}]}
+        $scope.geoToUse = [];
+        $scope.zones = "";
+        angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
+//            console.log(value.name)
+            $scope.zones += value.id+";";
+            $scope.geoToUse.push({name:value.name,id:value.id, ticked: true });
+        });
+
 
         $scope.changeMethod = function(){
             $scope.currentOrgUnit = "m0frOspS7JY";
-            $('#orgunitss option[value="m0frOspS7JY"]').prop('selected', true);
+            angular.forEach($scope.geoToUse,function(value){
+                value.ticked = true;
+            });
+//            $('#orgunitss option[value="m0frOspS7JY"]').prop('selected', true);
             $scope.firstClick();
-        }
+        };
+
         $scope.changeZone = function(){
-            $scope.selectedMethod = "all";
+            $scope.zones = "";
+            angular.forEach($scope.selectedRegions,function(value){
+                $scope.zones += value.id+";";
+            })
             $scope.firstClick();
         }
         $scope.selectedMethod = 'all';
@@ -185,11 +200,11 @@ angular.module("hmisPortal")
             }else{
                 if(cardObject.category1 == "month"){
                     cardObject.category = 'month';
-                    cardObject.data = 'gb4r7CSrT7U;RRGOg1GyLsd;nvKJnetaMxk;kcE3vG4Eq3Q;hiqGDmNAFJz;zITJeBfrJ4J;gzWRK9qFFVp';
+                    cardObject.data = $scope.zones.substring(0, $scope.zones.length - 1);
                 }
                 if(cardObject.category1 == "quarter"){
                     cardObject.category = 'quarter';
-                    cardObject.data = 'gb4r7CSrT7U;RRGOg1GyLsd;nvKJnetaMxk;kcE3vG4Eq3Q;hiqGDmNAFJz;zITJeBfrJ4J;gzWRK9qFFVp';
+                    cardObject.data = $scope.zones.substring(0, $scope.zones.length - 1);
                 }
                 if(cardObject.category1 == 'zones'){
                     cardObject.data = $scope.selectedMethod;
@@ -321,13 +336,29 @@ angular.module("hmisPortal")
 
             }if(type == 'quarter'){
                 num =0;
-                if($scope.currentOrgUnit == 'm0frOspS7JY'){
+//                if($scope.currentOrgUnit == 'm0frOspS7JY'){
                     if($scope.selectedMethod == "all"){
-                        $.each(arr,function(k,v){
-                            if(v[2] == ou && v[0] == de){
-                                num = num+parseInt(v[3])
-                            }
+                        angular.forEach($scope.selectedRegions,function(value){
+                            var names= "";
+                            angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
+                                if(region.id == value.id){
+                                    angular.forEach(region.organisationUnits,function(value){
+                                        names += value.id+';';
+                                    });
+                                }
+                            });
+
+                            var orgs = names.substring(1, names.length-1);
+                            var orgArr = orgs.split(";");
+                            $.each(orgArr,function(c,j){
+                                $.each(arr,function(k,v){
+                                    if(v[1] == j && v[2] == ou && v[0] == de){
+                                        num = num+parseInt(v[3])
+                                    }
+                                });
+                            });
                         });
+
                     }else{
 
                         var names= "";
@@ -350,34 +381,49 @@ angular.module("hmisPortal")
                         });
 
                     }
-                }else{
-                    var names= "";
-                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                        if(region.id == $scope.currentOrgUnit){
-                            angular.forEach(region.organisationUnits,function(value){
-                                names += value.id+';';
-                            });
-                        }
-                    });
-                    var orgs = names.substring(1, names.length-1);
-                    var orgArr = orgs.split(";");
-                    $.each(orgArr,function(c,j){
-                        $.each(arr,function(k,v){
-                            if(v[1] == j && v[2] == ou && v[0] == de){
-                                num = num+parseInt(v[3])
-                            }
-                        });
-                    });
-                }
+//                }else{
+//                    var names= "";
+//                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
+//                        if(region.id == $scope.currentOrgUnit){
+//                            angular.forEach(region.organisationUnits,function(value){
+//                                names += value.id+';';
+//                            });
+//                        }
+//                    });
+//                    var orgs = names.substring(1, names.length-1);
+//                    var orgArr = orgs.split(";");
+//                    $.each(orgArr,function(c,j){
+//                        $.each(arr,function(k,v){
+//                            if(v[1] == j && v[2] == ou && v[0] == de){
+//                                num = num+parseInt(v[3])
+//                            }
+//                        });
+//                    });
+//                }
 
             }if(type == 'month'){
-                if($scope.currentOrgUnit == 'm0frOspS7JY'){
+//                if($scope.currentOrgUnit == 'm0frOspS7JY'){
                     if($scope.selectedMethod == "all"){
-                        $.each(arr,function(k,v){
-                            if(v[2] == ou && v[0] == de){
-                                num = num+parseInt(v[3])
-                            }
-                        });
+                            angular.forEach($scope.selectedRegions,function(value){
+                                var names= "";
+                                angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
+                                    if(region.id == value.id){
+                                        angular.forEach(region.organisationUnits,function(value){
+                                            names += value.id+';';
+                                        });
+                                    }
+                                });
+
+                                var orgs = names.substring(1, names.length-1);
+                                var orgArr = orgs.split(";");
+                                $.each(orgArr,function(c,j){
+                                    $.each(arr,function(k,v){
+                                        if(v[1] == j && v[2] == ou && v[0] == de){
+                                            num = num+parseInt(v[3])
+                                        }
+                                    });
+                                });
+                             });
                     }else{
 
                         var names= "";
@@ -400,25 +446,25 @@ angular.module("hmisPortal")
                         });
 
                     }
-                }else{
-                    var names= "";
-                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                        if(region.id == $scope.currentOrgUnit){
-                            angular.forEach(region.organisationUnits,function(value){
-                                names += value.id+';';
-                            });
-                        }
-                    });
-                    var orgs = names.substring(1, names.length-1);
-                    var orgArr = orgs.split(";");
-                    $.each(orgArr,function(c,j){
-                        $.each(arr,function(k,v){
-                            if(v[1] == j && v[2] == ou && v[0] == de){
-                                num = num+parseInt(v[3])
-                            }
-                        });
-                    });
-                }
+//                }else{
+//                    var names= "";
+//                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
+//                        if(region.id == $scope.currentOrgUnit){
+//                            angular.forEach(region.organisationUnits,function(value){
+//                                names += value.id+';';
+//                            });
+//                        }
+//                    });
+//                    var orgs = names.substring(1, names.length-1);
+//                    var orgArr = orgs.split(";");
+//                    $.each(orgArr,function(c,j){
+//                        $.each(arr,function(k,v){
+//                            if(v[1] == j && v[2] == ou && v[0] == de){
+//                                num = num+parseInt(v[3])
+//                            }
+//                        });
+//                    });
+//                }
             }if(type == 'methods'){
 
                 num =0;
