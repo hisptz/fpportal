@@ -24,7 +24,7 @@ angular.module("hmisPortal")
                 method: 'POST',
                 url: messageUrl,
                 data: dataTextToSend
-             }).then(function(response) {
+            }).then(function(response) {
                     console.log(dataTextToSend);
                     // success
                 },
@@ -32,7 +32,7 @@ angular.module("hmisPortal")
                     // failed
                 });
 
-         }
+        }
         //displaying loading during page change
         $rootScope.$on("$routeChangeStart",
             function (event, current, previous, rejection) {

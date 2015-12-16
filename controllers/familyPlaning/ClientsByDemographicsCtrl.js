@@ -78,13 +78,13 @@ angular.module("hmisPortal")
         };
 
         $scope.FPmethods = [
-            {'name':'client <20 Male Condoms','uid':'W74wyMy1mp0'},
-            {'name':'client <20 Female Condoms','uid':'p8cgxI3yPx8'},
-            {'name':'client <20 Oral Pills','uid':'aSJKs4oPZAf'},
-            {'name':'client <20 Injectables','uid':'LpkdcaLc4I9'},
-            {'name':'client <20 Implants','uid':'p14JdJaG2aC'},
-            {'name':'client <20 IUCDs','uid':'GvbkEo6sfSd'},
-            {'name':'client <20 Natural FP','uid':'QRCRjFreECE'},
+            {'name':'Male Condoms','uid':'W74wyMy1mp0'},
+            {'name':'Female Condoms','uid':'p8cgxI3yPx8'},
+            {'name':'Oral Pills','uid':'aSJKs4oPZAf'},
+            {'name':'Injectables','uid':'LpkdcaLc4I9'},
+            {'name':'Implants','uid':'p14JdJaG2aC'},
+            {'name':'IUCDs','uid':'GvbkEo6sfSd'},
+            {'name':'Natural FP','uid':'QRCRjFreECE'},
             {'name':'Eastern Zone','uid':'gb4r7CSrT7U'},
             {'name':'Lake Zone','uid':'RRGOg1GyLsd'},
             {'name':'Northern Zone','uid':'nvKJnetaMxk'},

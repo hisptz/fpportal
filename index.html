@@ -89,31 +89,43 @@
     </nav>
 </div>
 <form class="col s12" name="messageForm" novalidate >
- <div id="modal1" class="modal modal-fixed-footer">
-     <div class="modal-content">
-         <div class="row">
-             <div class="row">
-                 <div class="input-field col s12">
-             <input id="subject" type="text" name="subject" ng-model="subject" required>
-             <label for="subject" class="center-align">Subject</label>
-                 </div>
-             </div>
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <div class="row"><h5 class="center">Leave your Comments here..!</h5><hr></div>
+            <div class="row">
                 <div class="row">
-                  <div class="input-field col s12">
+                    <div class="input-field col s6">
+                        <input placeholder="Placeholder" id="mail" ng-model="mail" type="text" phone="mail">
+                        <label for="mail">Email</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="Placeholder" id="phone" type="text" ng-model="phone" name="phone">
+                        <label for="phone">Contacts phone</label>
+                    </div>
+                </div>
+                <div class="row"><strong>Option: Please provide contacts above for return feedback on the comment section</strong></div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="subject" type="text" name="subject" ng-model="subject" required>
+                        <label for="subject" class="center-align">Subject</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
                         <textarea id="textMessage" name="textMessage" class="materialize-textarea" ng-model="textMessage" required ></textarea>
                         <label for="textMessage">A bunch of text</label>
                     </div>
                 </div>
-             </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button ng-click="sendMessage(subject,textMessage,mail,phone)"
+                    ng-disabled="messageForm.$invalid" class="modal-action modal-close btn cyan waves-effect waves-light right" type="submit" >Submit
+                <i class="mdi-content-send right"></i>
+            </button>
+            <a style="cursor:pointer" class="modal-action modal-close waves-effect waves-green btn-flat ">Discard</a>
+        </div>
     </div>
-    <div class="modal-footer">
-          <button ng-click="sendMessage(subject,textMessage)"
-                ng-disabled="messageForm.$invalid" class="modal-action modal-close btn cyan waves-effect waves-light right" type="submit" >Submit
-            <i class="mdi-content-send right"></i>
-        </button>
-        <a style="cursor:pointer" class="modal-action modal-close waves-effect waves-green btn-flat ">Discard</a>
-     </div>
-  </div>
 </form>
 <!--file views will stay here-->
 <div ng-if="showLoader">Loading....</div>

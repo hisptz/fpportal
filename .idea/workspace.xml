@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" afterPath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" afterPath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/morbidityCtrl.js" afterPath="$PROJECT_DIR$/controllers/morbidityCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +32,7 @@
       <file leaf-file-name="family_planning.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="74" selection-start="5586" selection-end="5612" vertical-scroll-proportion="-11.333333" vertical-offset="1188" max-vertical-offset="3024">
+            <state line="83" column="74" selection-start="5586" selection-end="5612" vertical-scroll-proportion="0.0" vertical-offset="1188" max-vertical-offset="3024">
               <folding />
             </state>
           </provider>
@@ -37,32 +41,7 @@
       <file leaf-file-name="client_by_methods.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="115" selection-start="5347" selection-end="5558" vertical-scroll-proportion="-9.333333" vertical-offset="1242" max-vertical-offset="3024">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="50" selection-start="2347" selection-end="2372" vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="1656">
+            <state line="83" column="115" selection-start="5347" selection-end="5558" vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="3024">
               <folding />
             </state>
           </provider>
@@ -71,24 +50,17 @@
       <file leaf-file-name="client_by_demographics.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="46" selection-start="2071" selection-end="2071" vertical-scroll-proportion="0.4218978" vertical-offset="395" max-vertical-offset="2988">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-              </folding>
+            <state line="18" column="38" selection-start="719" selection-end="719" vertical-scroll-proportion="0.13284671" vertical-offset="233" max-vertical-offset="2988">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainCtrl.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/mainCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="57" selection-start="157" selection-end="159" vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="1548">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,7 +68,7 @@
       <file leaf-file-name="data1.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data1.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="21" selection-start="0" selection-end="176498" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108">
+            <state line="0" column="21" selection-start="0" selection-end="176498" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="108">
               <folding />
             </state>
           </provider>
@@ -105,8 +77,10 @@
       <file leaf-file-name="ClientsByMethodsCtrl.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="13" selection-start="8161" selection-end="8161" vertical-scroll-proportion="0.0" vertical-offset="1782" max-vertical-offset="10188">
-              <folding />
+            <state line="146" column="13" selection-start="8161" selection-end="8161" vertical-scroll-proportion="0.0" vertical-offset="2628" max-vertical-offset="10224">
+              <folding>
+                <marker date="1449735576442" expanded="true" signature="7523:8161" placeholder="{&quot;title&quot;: 'Total Clients Monthly'...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -114,7 +88,7 @@
       <file leaf-file-name="ClientsByDemographicsCtrl.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="57" selection-start="5506" selection-end="5517" vertical-scroll-proportion="-5.4166665" vertical-offset="1169" max-vertical-offset="9774">
+            <state line="80" column="21" selection-start="5146" selection-end="5146" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9774">
               <folding />
             </state>
           </provider>
@@ -141,7 +115,7 @@
       <file leaf-file-name="morbidityCtrl.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/morbidityCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1298" column="28" selection-start="56340" selection-end="56637" vertical-scroll-proportion="0.0" vertical-offset="23364" max-vertical-offset="31806">
+            <state line="34" column="9" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="31806">
               <folding />
             </state>
           </provider>
@@ -164,7 +138,6 @@
         <option value="$PROJECT_DIR$/controllers/malariaCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/dashboardCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/mainCtrl.js" />
-        <option value="$PROJECT_DIR$/controllers/morbidityCtrl.js" />
         <option value="$PROJECT_DIR$/facility.json" />
         <option value="$PROJECT_DIR$/views/dashboard.html" />
         <option value="$PROJECT_DIR$/hr.json" />
@@ -174,11 +147,12 @@
         <option value="$PROJECT_DIR$/data1.json" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
         <option value="$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/views/family_planning.html" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
         <option value="$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js" />
         <option value="$PROJECT_DIR$/assets/js/routes.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/controllers/morbidityCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
       </list>
@@ -404,7 +378,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24983211" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21826729" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22162525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -434,9 +408,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24983211" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21826729" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -515,9 +489,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="43" selection-start="2140" selection-end="2158" vertical-scroll-proportion="0.0" vertical-offset="787" max-vertical-offset="1584">
-          <folding />
-        </state>
+        <state line="72" column="43" selection-start="2140" selection-end="2158" vertical-scroll-proportion="0.0" vertical-offset="787" max-vertical-offset="1584" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js">
@@ -563,9 +535,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="38" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1512">
-          <folding />
-        </state>
+        <state line="18" column="38" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1512" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/mainCtrl.js">
@@ -623,11 +593,6 @@
         <state line="192" column="9" selection-start="6268" selection-end="7539" vertical-scroll-proportion="0.0" vertical-offset="2977" max-vertical-offset="13680" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/mainCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="57" selection-start="157" selection-end="159" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1548" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/facility.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="927" column="21" selection-start="20618" selection-end="20618" vertical-scroll-proportion="0.0" vertical-offset="16437" max-vertical-offset="91926" />
@@ -678,13 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/morbidityCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1298" column="28" selection-start="56340" selection-end="56637" vertical-scroll-proportion="0.0" vertical-offset="21439" max-vertical-offset="30222">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data1.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="21" selection-start="0" selection-end="176498" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="685">
@@ -720,84 +678,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="31" selection-start="3393" selection-end="3450" vertical-scroll-proportion="-5.703704" vertical-offset="1214" max-vertical-offset="3168">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="74" selection-start="5586" selection-end="5612" vertical-scroll-proportion="-11.333333" vertical-offset="1188" max-vertical-offset="3024">
+        <state line="83" column="74" selection-start="5586" selection-end="5612" vertical-scroll-proportion="0.0" vertical-offset="1188" max-vertical-offset="3024">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="115" selection-start="5347" selection-end="5558" vertical-scroll-proportion="-9.333333" vertical-offset="1242" max-vertical-offset="3024">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-          </folding>
+        <state line="83" column="115" selection-start="5347" selection-end="5558" vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="3024">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="146" column="13" selection-start="8161" selection-end="8161" vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="10188">
-          <folding />
+          <folding>
+            <marker date="1449735576442" expanded="true" signature="7523:8161" placeholder="{&quot;title&quot;: 'Total Clients Monthly'...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="50" selection-start="2347" selection-end="2372" vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="1656">
+        <state line="76" column="50" selection-start="2347" selection-end="2372" vertical-scroll-proportion="0.0" vertical-offset="859" max-vertical-offset="1656" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="32" selection-start="6798" selection-end="6798" vertical-scroll-proportion="1.2262774" vertical-offset="1482" max-vertical-offset="3384" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/mainCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="57" selection-start="157" selection-end="159" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1548">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/morbidityCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="9" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="31806">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="57" selection-start="5506" selection-end="5517" vertical-scroll-proportion="-5.4166665" vertical-offset="1169" max-vertical-offset="9774">
+        <state line="80" column="21" selection-start="5146" selection-end="5146" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9774">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="46" selection-start="2071" selection-end="2071" vertical-scroll-proportion="0.4218978" vertical-offset="395" max-vertical-offset="2988">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#li#3;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-          </folding>
+        <state line="18" column="38" selection-start="719" selection-end="719" vertical-scroll-proportion="0.13284671" vertical-offset="233" max-vertical-offset="2988">
+          <folding />
         </state>
       </provider>
     </entry>
