@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" afterPath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" afterPath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/morbidityCtrl.js" afterPath="$PROJECT_DIR$/controllers/morbidityCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning.html" afterPath="$PROJECT_DIR$/views/family_planning.html" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,10 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="family_planning.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="family_planning.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/family_planning.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="74" selection-start="5586" selection-end="5612" vertical-scroll-proportion="0.0" vertical-offset="1188" max-vertical-offset="3024">
+            <state line="82" column="66" selection-start="5518" selection-end="5518" vertical-scroll-proportion="0.42043796" vertical-offset="1188" max-vertical-offset="3024">
               <folding />
             </state>
           </provider>
@@ -47,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="client_by_demographics.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="client_by_demographics.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="38" selection-start="719" selection-end="719" vertical-scroll-proportion="0.13284671" vertical-offset="233" max-vertical-offset="2988">
+            <state line="80" column="40" selection-start="5263" selection-end="5281" vertical-scroll-proportion="-13.333333" vertical-offset="1080" max-vertical-offset="2988">
               <folding />
             </state>
           </provider>
@@ -147,7 +143,6 @@
         <option value="$PROJECT_DIR$/data1.json" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
         <option value="$PROJECT_DIR$/controllers/FamilyPlanningCtrl.js" />
-        <option value="$PROJECT_DIR$/views/family_planning.html" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
         <option value="$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js" />
         <option value="$PROJECT_DIR$/assets/js/routes.js" />
@@ -155,6 +150,7 @@
         <option value="$PROJECT_DIR$/controllers/morbidityCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
+        <option value="$PROJECT_DIR$/views/family_planning.html" />
       </list>
     </option>
   </component>
@@ -678,13 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="74" selection-start="5586" selection-end="5612" vertical-scroll-proportion="0.0" vertical-offset="1188" max-vertical-offset="3024">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="83" column="115" selection-start="5347" selection-end="5558" vertical-scroll-proportion="0.0" vertical-offset="1242" max-vertical-offset="3024">
@@ -734,7 +723,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="38" selection-start="719" selection-end="719" vertical-scroll-proportion="0.13284671" vertical-offset="233" max-vertical-offset="2988">
+        <state line="80" column="40" selection-start="5263" selection-end="5281" vertical-scroll-proportion="-13.333333" vertical-offset="1080" max-vertical-offset="2988">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="66" selection-start="5518" selection-end="5518" vertical-scroll-proportion="0.42043796" vertical-offset="1188" max-vertical-offset="3024">
           <folding />
         </state>
       </provider>
