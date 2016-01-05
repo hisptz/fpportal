@@ -29,7 +29,7 @@
     <link type="text/css" rel="stylesheet" href="assets/libs/materialize/css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" type="text/css" href="bower_components/openlayers3/build/ol.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-openlayers-directive/dist/angular-openlayers-directive.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/angular-multi-select.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/tree/angular-multi-select-tree-0.1.0.min.css">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -152,14 +152,16 @@
 <script src="bower_components/openlayers3/build/ol.js"></script>
 <script src="bower_components/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
 <script src="bower_components/angular-materialize/src/angular-materialize.js"></script>
-<script src="assets/js/angular-multi-select.js"></script>
+<script src="bower_components/tree/angular-multi-select-tree-0.1.0.min.js"></script>
+<script src="bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js"></script>
 
 <script>
-    var mainModule = angular.module('hmisPortal', ["ngRoute",'ngAnimate',"datatables",'ngSanitize','highcharts-ng','openlayers-directive','multi-select','ui.materialize']);
+    var mainModule = angular.module('hmisPortal', ["ngRoute",'ngAnimate',"datatables",'ngSanitize','highcharts-ng','openlayers-directive','ui.materialize','multi-select-tree']);
 </script>
 <script src="assets/js/routes.js"></script>
 <script src="controllers/mainCtrl.js"></script>
 <script src="services/portalService.js"></script>
+<script src="services/familyPlanningService.js"></script>
 <script src="controllers/malariaCtrl.js"></script>
 <script src="controllers/maternalCtrl.js"></script>
 <script src="controllers/mortalityCtrl.js"></script>

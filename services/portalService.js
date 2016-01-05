@@ -40,6 +40,13 @@ angular.module("hmisPortal")
                         style:{ "color": "#000000", "fontWeight": "normal" }
                 }
             },
+            plotOptions: {
+                series: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
             yAxis: {
                 min: 0,
                     title: {
