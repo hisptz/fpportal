@@ -520,31 +520,19 @@ angular.module("hmisPortal")
             var data = [];
             var per = $scope.selectedPeriod;
             if(type == 'zones'){
-                    angular.forEach($scope.selectedRegions,function(zones){
-                        angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                            if(zones.id == region.id){
-                                var names= "";
-                                angular.forEach(region.organisationUnits,function(value){
-                                    names += value.id+';';
-                                });
-                                data.push({'name':region.name,'id':names});
-                            }
-
+                angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
+                    var name = orgUnit.name;
+                    if(name.indexOf("Zone") > -1){
+                        var names = [];
+                        angular.forEach(orgUnit.children,function(regions){
+                            names.push(regions.id);
                         });
-                    });
+                        data.push({'name':orgUnit.name,'id':names.join(";")});
+                    }else{
+                        data.push({'name':orgUnit.name,'id':orgUnit.id});
 
-//                }else{
-//                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-//                        var names= "";
-//                        if(region.id == $scope.currentOrgUnit){
-//                            angular.forEach(region.organisationUnits,function(value){
-//                                names += value.id+';';
-//                            });
-//                            data.push({'name':region.name,'id':names});
-//                        }
-//                    });
-//                }
-
+                    }
+                });
             }if(type == 'quarter'){
                 data.push({'name':'Jan - Mar '+per,'id':per+'Q1'});
                 data.push({'name':'Apr - Jun '+per,'id':per+'Q2'});
@@ -564,32 +552,31 @@ angular.module("hmisPortal")
                 data.push({'name':'Nov'+per,'id':per+'11'});
                 data.push({'name':'Dec '+per,'id':per+'12'});
             }if(type == 'methods'){
-                data.push({'name':'Male Condoms','id':'JMmqv0tyVr7'},
-                    {'name':'Female Condoms','id':'Nt8M08bJKXl'},
-                    {'name':'Oral Pills','id':'IFxhP0O4k0W'},
-                    {'name':'Injectables','id':'epPM7fO8CnH'},
-                    {'name':'Implants','id':'pqpVKzE951Y'},
-                    {'name':'IUCDs','id':'OQpasUg1Tse'},
-                    {'name':'NSV','id':'btKkJROB2gP'},
-                    {'name':'Min Lap','id':'mlfh4fgiFhd'},
-                    {'name':'Natural FP','id':'GGpsoh0DX6T'});
+                data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
+                    {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
+                    {'name':'Oral Pills','id':'aSJKs4oPZAf'},
+                    {'name':'Injectables','id':'LpkdcaLc4I9'},
+                    {'name':'Implants','id':'p14JdJaG2aC'},
+                    {'name':'IUCDs','id':'GvbkEo6sfSd'},
+                    {'name':'Natural FP','id':'QRCRjFreECE'});
             }if(type == 'method'){
-                angular.forEach($scope.selectedRegions,function(zones){
-                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                        if(zones.id == region.id){
-                            var names= "";
-                            angular.forEach(region.organisationUnits,function(value){
-                                names += value.id+';';
-                            });
-                            data.push({'name':region.name,'id':names});
-                        }
+                angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
+                    var name = orgUnit.name;
+                    if(name.indexOf("Zone") > -1){
+                        var names = [];
+                        angular.forEach(orgUnit.children,function(regions){
+                            names.push(regions.id);
+                        });
+                        data.push({'name':orgUnit.name,'id':names.join(";")});
+                    }else{
+                        data.push({'name':orgUnit.name,'id':orgUnit.id});
 
-                    });
+                    }
                 });
             }
 
             return data;
-        }
+        };
 
 
         $rootScope.firstClick = function(){
