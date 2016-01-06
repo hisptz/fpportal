@@ -359,21 +359,16 @@ angular.module("hmisPortal")
             var structure = {};
             var data = [];
             var elements = [];
-            var arr = card.data.split(";")
+            var arr = card.data;
             angular.forEach(arr,function(val){
-                var name="";
-                angular.forEach($scope.FPmethods,function(valu){
-                    if(valu.uid == val){
-                        name = valu.name;
-                    }
-                });
-                elements.push({'name':name,'uid':val})
+                elements.push({'name':val.name,'uid':val.id})
             });
             angular.forEach(categories,function(region){
                 data.push({'name':region.name,'id':region.id});
             });
             structure.regions = data;
             structure.elements = elements;
+
             return structure;
         };
 

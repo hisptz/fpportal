@@ -183,10 +183,10 @@ angular.module("hmisPortal")
         };
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
-            var base = "https://dhis.moh.go.tz1/";
-            //$.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
-            //    j_username: "portal", j_password: "Portal123"
-            //},function(){
+            var base = "https://dhis.moh.go.tz/";
+            $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
+                j_username: "portal", j_password: "Portal123"
+            },function(){
             if(chart == 'table'){
                 cardObject.displayTable = true;
                 cardObject.displayMap = false;
@@ -247,8 +247,8 @@ angular.module("hmisPortal")
                 }
             }
 
-            //$http.get($scope.url).success(function(data){
-            //    if(data.hasOwnProperty('metaData')){
+            $http.get($scope.url).success(function(data){
+                if(data.hasOwnProperty('metaData')){
                     var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
                     angular.forEach(useThisData.regions,function(value){
                         area.push(value.name);
@@ -323,12 +323,12 @@ angular.module("hmisPortal")
                     }
                     cardObject.chartObject.loading = false
                     console.log(cardObject.chartObject)
-                //}else{
-                //    cardObject.chartObject.loading = false
-                //}
+                }else{
+                    cardObject.chartObject.loading = false
+                }
 
-            //});
-            //});
+            });
+            });
 
         };
 
