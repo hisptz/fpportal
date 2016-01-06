@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" afterPath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js" afterPath="$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,7 +73,7 @@
       <file leaf-file-name="ClientsByDemographicsCtrl.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="185" column="46" selection-start="67308" selection-end="67308" vertical-scroll-proportion="0.07584269" vertical-offset="3240" max-vertical-offset="9288">
+            <state line="248" column="391" selection-start="70372" selection-end="70372" vertical-scroll-proportion="0.55617976" vertical-offset="4032" max-vertical-offset="9288">
               <folding />
             </state>
           </provider>
@@ -83,7 +82,7 @@
       <file leaf-file-name="ClientsByMethodsCtrl.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="289" column="24" selection-start="23588" selection-end="23588" vertical-scroll-proportion="0.0" vertical-offset="4554" max-vertical-offset="11034">
+            <state line="289" column="24" selection-start="23588" selection-end="23588" vertical-scroll-proportion="0.0" vertical-offset="4770" max-vertical-offset="11034">
               <folding />
             </state>
           </provider>
@@ -655,14 +654,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByMethodsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="289" column="24" selection-start="23588" selection-end="23588" vertical-scroll-proportion="0.0" vertical-offset="4554" max-vertical-offset="11034">
+        <state line="289" column="24" selection-start="23588" selection-end="23588" vertical-scroll-proportion="0.0" vertical-offset="4770" max-vertical-offset="11034">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/familyPlaning/ClientsByDemographicsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="46" selection-start="67308" selection-end="67308" vertical-scroll-proportion="0.07584269" vertical-offset="3240" max-vertical-offset="9288">
+        <state line="248" column="391" selection-start="70372" selection-end="70372" vertical-scroll-proportion="0.55617976" vertical-offset="4032" max-vertical-offset="9288">
           <folding />
         </state>
       </provider>
