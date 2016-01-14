@@ -60,50 +60,7 @@
 </script>
 
 <div class="row" >
-    <div class="col s2 hide-on-med-and-down" style="padding: 0px" >
-        <div class="section" style="margin-top: 70px">
-            <div>
-                <ul class="collapsible popout fp-menu " data-collapsible="accordion">
-                    <li class="teal lighten-5" style="margin-right: 12px">
-                        <div class="collapsible-header"><i class="material-icons mdi-editor-format-align-justify"></i>Coverage</div>
-                        <div class="collapsible-body">
-                            <p><a href="#"><i class="material-icons mdi-navigation-arrow-right"></i>HWs Trained</a> </p><hr>
-                            <p><a href="#">Facilities with HWs Trained</a> </p><hr>
-                            <p><a href="#">Facilities Providing FP Over Time</a> </p><hr>
-                            <p><a href="#">Facilities Providing FP through CBD</a> </p><hr>
-                            <p><a href="#">Facilities with HWs Trained Providing FP</a> </p>
-                        </div>
-                    </li>
-                    <li  class="teal lighten-5" style="margin-right: 12px">
-                        <div class="collapsible-header"><i class="material-icons mdi-editor-format-align-justify"></i>Clients</div>
-                        <div class="collapsible-body">
-                            <p><a href="./#family_planning">Consumption by Method</a> </p><hr>
-                            <p><a href="./#clients_by_demographics">Consumption by Demographics & Outreach</a> </p>
-                        </div>
-                    </li>
-                    <li class="teal lighten-5" style="margin-right: 12px">
-                        <div class="collapsible-header"><i class="material-icons mdi-editor-format-align-justify"></i>Stock Outs</div>
-                        <div class="collapsible-body">
-                            <p><a href="#">SOs at Facilities Providing FP Over Time.</a></p><hr>
-                            <p><a href="#">SOs at Facilities with HWs Trained Over Time.</a></p>
-                        </div>
-                    </li>
-                    <li class="teal lighten-5" style="margin-right: 12px">
-                        <div class="collapsible-header"><i class="material-icons mdi-editor-format-align-justify"></i>Service Integration</div>
-                        <div class="collapsible-body">
-                            <p><a href="#">Lorem ipsum dolor sit amet.</a> </p>
-                        </div>
-                    </li>
-                </ul>
-
-                <script>
-                    $('.collapsible').collapsible({
-                        accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-                    });
-                </script>
-            </div>
-        </div>
-    </div>
+    <div ng-include="'views/family_planning/fp_menu.html'"></div>
 
 
     <div class="col s12 m12 l10" style="margin-top: 72px">

@@ -76,46 +76,61 @@ angular.module("hmisPortal")
 
                 var period = $scope.selectedPeriod;
                 var method = "uid";
+                var chartObject = angular.copy(portalService.chartObject);
+                var chartObject1 = angular.copy(portalService.chartObject);
+                var chartObject2 = angular.copy(portalService.chartObject);
 
-                var url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+FPManager.preparePeriod+"&displayProperty=NAME";
-                $http.get('survilianceData.json').success(function(data){
-                var period = ""
-                    var orgUnits = $scope.prepareCategory('zones');
-                    var periods = $scope.prepareCategory('month')
-                    var chartObject = angular.copy(portalService.chartObject);
-                    var chartObject1 = angular.copy(portalService.chartObject);
-                    var chartObject2 = angular.copy(portalService.chartObject);
+                chartObject.loading = true;
+                chartObject1.loading = true;
+                chartObject2.loading = true;
+
+                var url = portalService.base+"dhis/api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
+                var base = portalService.base;
+                $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
+                    j_username: "portal", j_password: "Portal123"
+                },function(){
+                    $http.get(url).success(function(data){
+                        var period = ""
+                        var orgUnits = $scope.prepareCategory('zones');
+                        var periods = $scope.prepareCategory('month')
 
 
 
-                    chartObject.title.text ="Clients Adopting FP Following MVA or D+C " +$scope.selectedPeriod;
-                    chartObject1.title.text ="Clients Adopting FP in the Postpartum Period " +$scope.selectedPeriod;
-                    chartObject2.title.text ="Clients Adopting HTC and FP " +$scope.selectedPeriod;
-                    angular.forEach(periods, function (val) {
-                        chartObject.xAxis.categories.push(val.name);
-                        chartObject1.xAxis.categories.push(val.name);
-                        chartObject2.xAxis.categories.push(val.name);
-                    });
-
-                    angular.forEach(orgUnits,function(yAxis){
-                        var chartSeries = [];
-                        var chartSeries1 = [];
-                        var chartSeries2 = [];
-                        angular.forEach(periods,function(xAxis){
-                            var number = $scope.findValue(data.rows,yAxis.id,xAxis.id,'cWMJ2HsNTtr','percent');
-                            var number1 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'b6O7BaQ46R4','number');
-                            var number2 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'reywf66stpK','percent');
-                            chartSeries.push(parseFloat(number));
-                            chartSeries1.push(parseFloat(number1));
-                            chartSeries2.push(parseFloat(number2));
+                        chartObject.title.text ="Clients Adopting FP Following MVA or D+C " +$scope.selectedPeriod;
+                        chartObject1.title.text ="Clients Adopting FP in the Postpartum Period " +$scope.selectedPeriod;
+                        chartObject2.title.text ="Clients Adopting HTC and FP " +$scope.selectedPeriod;
+                        angular.forEach(periods, function (val) {
+                            chartObject.xAxis.categories.push(val.name);
+                            chartObject1.xAxis.categories.push(val.name);
+                            chartObject2.xAxis.categories.push(val.name);
                         });
-                        chartObject.series.push({type: 'line', name: yAxis.name, data: chartSeries});
-                        chartObject1.series.push({type: 'line', name: yAxis.name, data: chartSeries1});
-                        chartObject2.series.push({type: 'line', name: yAxis.name, data: chartSeries2});
+
+                        angular.forEach(orgUnits,function(yAxis){
+                            var chartSeries = [];
+                            var chartSeries1 = [];
+                            var chartSeries2 = [];
+                            angular.forEach(periods,function(xAxis){
+                                var number = $scope.findValue(data.rows,yAxis.id,xAxis.id,'cWMJ2HsNTtr','percent');
+                                var number1 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'b6O7BaQ46R4','number');
+                                var number2 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'reywf66stpK','percent');
+                                chartSeries.push(parseFloat(number));
+                                chartSeries1.push(parseFloat(number1));
+                                chartSeries2.push(parseFloat(number2));
+                            });
+                            chartObject.series.push({type: 'line', name: yAxis.name, data: chartSeries});
+                            chartObject1.series.push({type: 'line', name: yAxis.name, data: chartSeries1});
+                            chartObject2.series.push({type: 'line', name: yAxis.name, data: chartSeries2});
+                        });
+                        chartObject.loading = false;
+                        chartObject1.loading = false;
+                        chartObject2.loading = false;
+
+                        $scope.chart = chartObject;
+                        $scope.chart2 = chartObject1;
+                        $scope.chart3 = chartObject2;
+
                     });
-                    $scope.chart = chartObject;
-                    $scope.chart2 = chartObject1;
-                    $scope.chart3 = chartObject2;
+
                 });
 
             }

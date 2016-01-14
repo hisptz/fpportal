@@ -14,7 +14,7 @@ angular.module("hmisPortal")
         this.denominator='';
         this.indicatorType='';
         this.header='';
-        this.base = "https://139.162.204.124/dhis/";
+        this.base = "https://hmisportal.moh.go.tz/dhis/";
         this.icons = [
             {name: 'table', image: 'table.jpg', action: ''},
             {name: 'bar', image: 'bar.png', action: ''},
