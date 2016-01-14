@@ -43,7 +43,7 @@
                 <label>Methods</label>
             </div>
 
-            <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="getSelectedValues()">Update</div>
+            <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="firstClick()">Update</div>
         </div>
     </div>
 </div>
@@ -66,30 +66,50 @@
 
     <div class="col s12 m12 l10" style="margin-top: 72px">
         <div class="section">
-            <!--Client Through Routine Facility-Based service-->
-            <div class="col s12 m12" style="padding-left: 0px">
+            <div class="{{ card.cardClass }}" ng-repeat="card in fpCards" style="padding-left: 0px">
                 <div class="card z-depth-2 teal lighten-5 large">
                     <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                         <div style="width: 100%">
-                            <highchart  config="chart"></highchart>
+                            <highchart ng-if="!card.displayTable && !card.displayMap" config="card.chartObject"></highchart>
                         </div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Client Through Routine Facility-Based service {{ getMethodName(selectedMethod) }} {{ selectedPeriod }}<i class="material-icons right"></i></span>
-                    </div>
-                </div>
-            </div>
+                        <div style="width: 100%" ng-if="card.displayMap">
+                            <p ng-if="card.chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>
+                            <openlayers ng-if="!card.chartObject.loading" ol-center="Africa" ol-defaults="defaults" custom-layers="true"  height="400px" >
+                                <ol-layer ol-layer-properties="layer" name="test" ng-repeat="layer in layers"></ol-layer>
+                            </openlayers>
+                        </div>
+                        <div style="width: 100%" ng-if="card.displayTable" >
+                            <p ng-if="card.chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>
+                            <h5 class="center">{{ card.title }}</h5>
+                            <table ng-if="!card.chartObject.loading" class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Organisation Unit</th>
+                                    <th ng-repeat="cats in card.table.headers">{{ cats }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="column in card.table.colums">
+                                    <td>{{ $index+1 }}</td>
+                                    <td>{{ column.name }}</td>
+                                    <td ng-repeat="nsf in column.values">{{ nsf.value }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-            <!--Client Through Routine Facility-Based service-->
-            <div class="col s12 m12" style="padding-left: 0px">
-                <div class="card z-depth-2 teal lighten-5 large">
-                    <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
-                        <div style="width: 100%">
-                            <highchart config="card.chartObject"></highchart>
-                        </div>
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Client Through Routine Facility-Based service {{ period }}<i class="material-icons right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">{{ card.title }}<i class="material-icons right">more_vert</i></span>
+                        <p>
+                            <a ng-click="changeChart(icon.name,card)" ng-repeat="icon in card.icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
+                            <!--<a ng-click="downloadExcel(card.data)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">{{ card.title }}<i class="material-icons right">close</i></span>
+                        <p class="flow-text">{{ card.description }}</p>
                     </div>
                 </div>
             </div>

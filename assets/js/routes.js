@@ -173,7 +173,7 @@ angular.module("hmisPortal")
 
         $routeProvider.when("/facilities_providing_FP",{
             templateUrl: 'views/family_planning/coverage3.html',
-            controller: 'familyPlanningCtrl'
+            controller: 'parcentageCtrl'
         });
 
         $routeProvider.when("/facilities_providing_CBD",{
