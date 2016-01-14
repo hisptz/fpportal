@@ -27,7 +27,7 @@
                 </multi-select-tree>
             </div>
             <div class="input-field col s3 grey lighten-5">
-                <select ng-model="selectedMethod" ng-change="changeMethod()" material-select watch>
+                <select ng-model="selectedMethod" ng-change="changeMethod(selectedMethod)" material-select watch>
                     <option value="all">All Methods</option>
                     <option value="W74wyMy1mp0">Male Condoms</option>
                     <option value="p8cgxI3yPx8">Female Condoms</option>
@@ -41,7 +41,7 @@
                 </select>
                 <label>Methods</label>
             </div>
-            <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="firstClick()">Update</div>
+            <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="getSelectedValues()">Update</div>
         </div>
     </div>
 </div>

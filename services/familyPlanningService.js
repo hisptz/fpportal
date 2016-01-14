@@ -46,6 +46,11 @@ FPServices.factory('FPManager',function($http,$q){
             return index;
         },
 
+        preparePeriod : function(period){
+
+            return ""+period+"01;"+period+"02;"+period+"03;"+period+"04;"+period+"05;"+period+"06;"+period+"07;"+period+"08;"+period+"09;"+period+"10;"+period+"11;"+period+"12;"+period+"Q1;"+period+"Q2;"+period+"Q3;"+period+"Q4";
+         },
+
         //return a list of fomated organisation units to send to analytics
         getUniqueOrgUnits: function(orgunitsListFromTree){
           var orgUnits = [];
@@ -78,26 +83,34 @@ FPServices.factory('FPManager',function($http,$q){
         },
 
         //get an array of items from analyticsObject[metadataType == dx,co,ou,pe,value]
-        getMetadataArray : function (analyticsObject,metadataType) {
+        getMetadataArray : function (analyticsObject,metadataType,defaultArr) {
             //determine the position of metadata in rows of values
-            var index = this.getTitleIndex(analyticsObject.headers,metadataType);
             var metadataArray = [];
             var checkArr = [];
             if(metadataType == 'dx' || metadataType == 'value'){
-                angular.forEach(analyticsObject.rows,function(value){
-                    if(checkArr.indexOf(value[index]) == -1){
-                        metadataArray.push(value[index]);
-                        checkArr.push(value[index]);
-                    }
+                angular.forEach(analyticsObject.metaData.dx,function(val){
+                    metadataArray.push({'name':analyticsObject.metaData.names[val],'uid':val})
                 });
             }else if(metadataType == 'ou'){
-                metadataArray = analyticsObject.metaData.ou;
+                if(typeof defaultArr !== 'undefined' && defaultArr.length !== 0){
+                    metadataArray = defaultArr;
+                }else{
+                    angular.forEach(analyticsObject.metaData.ou,function(val){
+                        metadataArray.push({'name':analyticsObject.metaData.names[val],'uid':val})
+                    });
+                }
             }else if(metadataType == 'co'){
-                metadataArray = analyticsObject.metaData.co;
-            }else if(metadataType == 'pe'){
-                metadataArray = analyticsObject.metaData.pe;
+                angular.forEach(analyticsObject.metaData.co,function(val){
+                    metadataArray.push({'name':analyticsObject.metaData.names[val],'uid':val})
+                });            }
+            else if(metadataType == 'pe'){
+                angular.forEach(analyticsObject.metaData.pe,function(val){
+                    metadataArray.push({'name':analyticsObject.metaData.names[val],'uid':val})
+                });
             }else{
-                metadataArray = analyticsObject.metaData.co;
+                angular.forEach(analyticsObject.metaData[metadataType],function(val){
+                    metadataArray.push({'name':analyticsObject.metaData.names[val],'uid':val})
+                });
             }
 
             return metadataArray;
@@ -108,10 +121,10 @@ FPServices.factory('FPManager',function($http,$q){
         prepareCategories : function(analyticsObject,xAxis,yAxis){
             var structure = {'xAxisItems':[],'yAxisItems':[]};
             angular.forEach(this.getMetadataArray(analyticsObject,yAxis),function(val){
-                structure.yAxisItems.push({'name':analyticsObject.metaData.names[val],'uid':val})
+                structure.yAxisItems.push({'name':val.name,'uid':val.uid})
             });
             angular.forEach(this.getMetadataArray(analyticsObject,xAxis),function(val){
-                structure.xAxisItems.push({'name':analyticsObject.metaData.names[val],'uid':val})
+                structure.xAxisItems.push({'name':val.name,'uid':val.uid})
             });
             return structure;
 
@@ -193,21 +206,26 @@ FPServices.factory('FPManager',function($http,$q){
         },
 
         //draw all other types of chart[bar,line,area]
-        drawOtherCharts : function(analyticsObject,xAxisType,yAxisType,filterType,filterUid,title,chartType){
+        drawOtherCharts : function(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems,filterType,filterUid,title,chartType){
             var chartObject = angular.copy(this.defaultChartObject);
             chartObject.title.text = title;
-            var metaDataObject = this.prepareCategories(analyticsObject,xAxisType,yAxisType);
+            var metaDataObject = this.prepareCategories(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems);
             var currentService = this;
+            angular.forEach(metaDataObject.xAxisItems, function (val) {
+                chartObject.xAxis.categories.push(val.name);
+            });
             angular.forEach(metaDataObject.yAxisItems,function(yAxis){
                 var chartSeries = [];
                 angular.forEach(metaDataObject.xAxisItems,function(xAxis){
                     var number = currentService.getDataValue(analyticsObject,xAxisType,xAxis.uid,yAxisType,yAxis.uid,filterType,filterUid);
+                    //console.log(xAxis.name+"("+xAxis.uid+")"+"---"+yAxis.name+"("+yAxis.uid+")"+" value is " + number);
                     chartSeries.push(parseFloat(number));
                 });
-                chartObject.series.push({type: chartType, name: yAxis.name, data: chartSeries})
+                chartObject.series.push({type: chartType, name: yAxis.name, data: chartSeries});
             });
             return chartObject;
         }
+
 
 
     };
