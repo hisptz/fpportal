@@ -157,8 +157,8 @@ angular.module("hmisPortal")
          * Used by family planning portal.
          */
         $routeProvider.when("/family_planning",{
-            templateUrl: 'views/family_planning/client_by_methods.html',
-            controller: 'familyPlanningCtrl'
+            templateUrl: 'views/family_planning/survilience.html',
+            controller: 'survilienceCtrl'
         });
 
         $routeProvider.when("/hw_trained",{
