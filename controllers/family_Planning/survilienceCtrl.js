@@ -136,7 +136,7 @@ angular.module("hmisPortal")
             }
 
         };
-        $scope.data.outOrganisationUnits = {};
+        $scope.data.outOrganisationUnits = [{name:'Tanzania',id:'m0frOspS7JY'}];
         $scope.getSelectedValues();
 
         $scope.getMethodName = function(uid){
