@@ -184,22 +184,22 @@ angular.module("hmisPortal")
                 chartObject.loading = true;
                 chartObject1.loading = true;
                 chartObject2.loading = true;
-                //angular.forEach(orgUnits,function(yAxis){
-                //    var chartSeries = [];
-                //    var chartSeries1 = [];
-                //    var chartSeries2 = [];
-                //    angular.forEach(periods,function(xAxis){
-                //        var number = $scope.findValue('data.rows',yAxis.id,xAxis.id,'cWMJ2HsNTtr','percent');
-                //        var number1 = $scope.findValue('data.rows',yAxis.id,xAxis.id,'b6O7BaQ46R4','number');
-                //        var number2 = $scope.findValue('data.rows',yAxis.id,xAxis.id,'reywf66stpK','percent');
-                //        chartSeries.push(parseFloat(number));
-                //        chartSeries1.push(parseFloat(number1));
-                //        chartSeries2.push(parseFloat(number2));
-                //    });
-                //    chartObject.series.push({type: 'line', name: yAxis.name, data: chartSeries});
-                //    chartObject1.series.push({type: 'line', name: yAxis.name, data: chartSeries1});
-                //    chartObject2.series.push({type: 'line', name: yAxis.name, data: chartSeries2});
-                //});
+                angular.forEach(orgUnits,function(yAxis){
+                    var chartSeries = [];
+                    var chartSeries1 = [];
+                    var chartSeries2 = [];
+                    angular.forEach(periods,function(xAxis){
+                        var number = $scope.findValue('data.rows',yAxis.id,xAxis.id,'cWMJ2HsNTtr','percent');
+                        var number1 = $scope.findValue('data.rows',yAxis.id,xAxis.id,'b6O7BaQ46R4','number');
+                        var number2 = $scope.findValue('data.rows',yAxis.id,xAxis.id,'reywf66stpK','percent');
+                        chartSeries.push(parseFloat(number));
+                        chartSeries1.push(parseFloat(number1));
+                        chartSeries2.push(parseFloat(number2));
+                    });
+                    chartObject.series.push({type: 'line', name: yAxis.name, data: chartSeries});
+                    chartObject1.series.push({type: 'line', name: yAxis.name, data: chartSeries1});
+                    chartObject2.series.push({type: 'line', name: yAxis.name, data: chartSeries2});
+                });
 
                 $scope.pchart = chartObject;
                 $scope.pchart2 = chartObject1;

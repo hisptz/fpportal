@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage3.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage3.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js" />
     </list>
     <ignored path="fp_portal.iws" />
@@ -102,11 +99,11 @@
       <file leaf-file-name="parcentageCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55766624" vertical-offset="3189" max-vertical-offset="5598">
-              <caret line="202" column="0" selection-start-line="186" selection-start-column="18" selection-end-line="202" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.3622795" vertical-offset="3189" max-vertical-offset="5598">
+              <caret line="194" column="33" selection-start-line="194" selection-start-column="33" selection-end-line="194" selection-end-column="33" />
               <folding>
                 <element signature="e#1#41#0" expanded="false" />
-                <element signature="e#24154#26494#0" expanded="false" />
+                <element signature="e#24122#26462#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -975,11 +972,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55766624" vertical-offset="3189" max-vertical-offset="5598">
-          <caret line="202" column="0" selection-start-line="186" selection-start-column="18" selection-end-line="202" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3622795" vertical-offset="3189" max-vertical-offset="5598">
+          <caret line="194" column="33" selection-start-line="194" selection-start-column="33" selection-end-line="194" selection-end-column="33" />
           <folding>
             <element signature="e#1#41#0" expanded="false" />
-            <element signature="e#24154#26494#0" expanded="false" />
+            <element signature="e#24122#26462#0" expanded="false" />
           </folding>
         </state>
       </provider>
