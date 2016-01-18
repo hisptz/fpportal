@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/survilience.html" afterPath="$PROJECT_DIR$/views/family_planning/survilience.html" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -112,8 +113,8 @@
       <file leaf-file-name="survilience.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/survilience.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.296297" vertical-offset="910" max-vertical-offset="1782">
-              <caret line="87" column="106" selection-start-line="87" selection-start-column="106" selection-end-line="87" selection-end-column="106" />
+            <state vertical-scroll-proportion="-36.296295" vertical-offset="586" max-vertical-offset="1782">
+              <caret line="87" column="162" selection-start-line="87" selection-start-column="162" selection-end-line="87" selection-end-column="162" />
               <folding />
             </state>
           </provider>
@@ -122,15 +123,15 @@
       <file leaf-file-name="clientDemographicsCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24423338" vertical-offset="5616" max-vertical-offset="7470">
-              <caret line="322" column="77" selection-start-line="322" selection-start-column="77" selection-end-line="322" selection-end-column="77" />
+            <state vertical-scroll-proportion="0.024423338" vertical-offset="2808" max-vertical-offset="7470">
+              <caret line="157" column="129" selection-start-line="157" selection-start-column="129" selection-end-line="157" selection-end-column="129" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#78777#81377#0" expanded="false" />
-                <element signature="e#81460#82089#0" expanded="false" />
-                <element signature="e#82162#82670#0" expanded="false" />
-                <element signature="e#82730#84885#0" expanded="false" />
-                <element signature="e#84935#88341#0" expanded="false" />
+                <element signature="e#78802#81402#0" expanded="false" />
+                <element signature="e#81485#82114#0" expanded="false" />
+                <element signature="e#82187#82695#0" expanded="false" />
+                <element signature="e#82755#84910#0" expanded="false" />
+                <element signature="e#84960#88366#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -183,8 +184,8 @@
         <option value="$PROJECT_DIR$/views/family_planning/coverage4.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" />
         <option value="$PROJECT_DIR$/views/family_planning/stock_out1.html" />
-        <option value="$PROJECT_DIR$/views/family_planning/survilience.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/survilienceCtrl.js" />
+        <option value="$PROJECT_DIR$/views/family_planning/survilience.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
       </list>
     </option>
@@ -869,14 +870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/survilience.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.296297" vertical-offset="910" max-vertical-offset="1782">
-          <caret line="87" column="106" selection-start-line="87" selection-start-column="106" selection-end-line="87" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/survilienceCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1458" max-vertical-offset="4896">
@@ -893,17 +886,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/survilience.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-36.296295" vertical-offset="586" max-vertical-offset="1782">
+          <caret line="87" column="162" selection-start-line="87" selection-start-column="162" selection-end-line="87" selection-end-column="162" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24423338" vertical-offset="5616" max-vertical-offset="7470">
-          <caret line="322" column="77" selection-start-line="322" selection-start-column="77" selection-end-line="322" selection-end-column="77" />
+        <state vertical-scroll-proportion="0.024423338" vertical-offset="2808" max-vertical-offset="7470">
+          <caret line="157" column="129" selection-start-line="157" selection-start-column="129" selection-end-line="157" selection-end-column="129" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#78777#81377#0" expanded="false" />
-            <element signature="e#81460#82089#0" expanded="false" />
-            <element signature="e#82162#82670#0" expanded="false" />
-            <element signature="e#82730#84885#0" expanded="false" />
-            <element signature="e#84935#88341#0" expanded="false" />
+            <element signature="e#78802#81402#0" expanded="false" />
+            <element signature="e#81485#82114#0" expanded="false" />
+            <element signature="e#82187#82695#0" expanded="false" />
+            <element signature="e#82755#84910#0" expanded="false" />
+            <element signature="e#84960#88366#0" expanded="false" />
           </folding>
         </state>
       </provider>
