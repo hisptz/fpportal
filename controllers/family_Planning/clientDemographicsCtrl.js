@@ -316,10 +316,12 @@ angular.module("hmisPortal")
                             }
                             //if the single method has been selected
                             else{
-                                console.log('imefika kwenye moja');
+
                                 var orgunits = $scope.prepareCategory('zones');
+                                console.log(orgunits);
                                 var singleMethod = $scope.getSingleMethodForOutreach($scope.selectedMethod);
-                                angular.forEach(subcats, function (value) {
+                                console.log(singleMethod);
+                                angular.forEach(orgunits, function (value) {
                                     cardObject.chartObject.xAxis.categories.push(value.name);
                                 });
                                 $scope.normalseries1 = [];
