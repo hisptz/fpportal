@@ -277,18 +277,18 @@ angular.module("hmisPortal")
                                 }
                                 else {
                                     delete cardObject.chartObject.chart;
-                                    angular.forEach(subcats, function (val) {
+                                    angular.forEach(cats, function (val) {
                                         var serie = [];
-                                        angular.forEach(cats, function (value) {
-                                            if (value == "Routine") {
-                                                var number = $scope.getDataFromUrl(data.rows, val.outreach, 'methods'.category, val.outreach);
+                                        angular.forEach(subcats, function (value) {
+                                            if (val == "Routine") {
+                                                var number = $scope.getDataFromUrl(data.rows, value.outreach, 'methods'.category, value.outreach);
                                             }
-                                            if (value == "Outreach") {
-                                                var number = $scope.getDataFromUrl(data.rows, val.facility, 'methods', val.facility);
+                                            if (val == "Outreach") {
+                                                var number = $scope.getDataFromUrl(data.rows, value.facility, 'methods', value.facility);
                                             }
                                             serie.push(number);
                                         });
-                                        $scope.normalseries1.push({type: chart, name: val.name, data: serie})
+                                        $scope.normalseries1.push({type: 'bar', name: val, data: serie})
                                     });
                                     cardObject.chartObject.series = $scope.normalseries1;
                                 }
