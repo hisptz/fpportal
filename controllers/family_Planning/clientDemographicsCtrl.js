@@ -315,7 +315,7 @@ angular.module("hmisPortal")
                             }
                             //if the single method has been selected
                             else{
-                                var subcats = $scope.prepareCategory('zones');
+                                var orgunits = $scope.prepareCategory('zones');
                                 var singleMethod = $scope.getSingleMethodForOutreach($scope.selectedMethod);
                                 angular.forEach(subcats, function (value) {
                                     cardObject.chartObject.xAxis.categories.push(value.name);
@@ -329,7 +329,7 @@ angular.module("hmisPortal")
                                         var serie = [];
                                         cardObject.table.headers.push(value);
                                     });
-                                    angular.forEach(subcats, function (val) {
+                                    angular.forEach(orgunits, function (val) {
                                         var seri = [];
                                         angular.forEach(cats, function (value) {
                                             if (value == "Routine") {
@@ -347,7 +347,7 @@ angular.module("hmisPortal")
                                     delete cardObject.chartObject.chart;
                                     angular.forEach(cats, function (val) {
                                         var serie = [];
-                                        angular.forEach(subcats, function (value) {
+                                        angular.forEach(orgunits, function (value) {
                                             if (val == "Routine") {
                                                 var number = $scope.getDataFromUrl(data.rows, value.id, 'methods', singleMethod.outreach);
                                             }
