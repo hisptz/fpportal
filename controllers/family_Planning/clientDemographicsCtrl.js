@@ -265,6 +265,7 @@ angular.module("hmisPortal")
 
                             //if selected method == all
                             if ($scope.selectedMethod == 'all') {
+                                console.log('imefika kwenye zote');
                                 var subcats = $scope.prepareCategory('routineOutreachMethod');
 
                                 angular.forEach(subcats, function (value) {
@@ -315,6 +316,7 @@ angular.module("hmisPortal")
                             }
                             //if the single method has been selected
                             else{
+                                console.log('imefika kwenye moja');
                                 var orgunits = $scope.prepareCategory('zones');
                                 var singleMethod = $scope.getSingleMethodForOutreach($scope.selectedMethod);
                                 angular.forEach(subcats, function (value) {
