@@ -252,6 +252,7 @@ angular.module("hmisPortal")
                                 angular.forEach(subcats, function (value) {
                                     cardObject.chartObject.xAxis.categories.push(value.name);
                                 });
+                                var orgUnits = $scope.prepareOu();
                                 $scope.normalseries1 = [];
                                 if (chart == 'table') {
                                     cardObject.table = {}
@@ -265,10 +266,10 @@ angular.module("hmisPortal")
                                         var seri = [];
                                         angular.forEach(cats, function (value) {
                                             if (value == "Routine") {
-                                                var number = $scope.getDataFromUrl(data.rows, val.outreach, 'methods'.category, val.outreach);
+                                                var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods'.category, val.outreach);
                                             }
                                             if (value == "Outreach") {
-                                                var number = $scope.getDataFromUrl(data.rows, val.facility, 'methods', val.facility);
+                                                var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', val.facility);
                                             }
                                             seri.push({name: value.name, value: parseInt(number)});
                                         });
@@ -281,10 +282,10 @@ angular.module("hmisPortal")
                                         var serie = [];
                                         angular.forEach(subcats, function (value) {
                                             if (val == "Routine") {
-                                                var number = $scope.getDataFromUrl(data.rows, value.outreach, 'methods'.category, value.outreach);
+                                                var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods'.category, value.outreach);
                                             }
                                             if (val == "Outreach") {
-                                                var number = $scope.getDataFromUrl(data.rows, value.facility, 'methods', value.facility);
+                                                var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', value.facility);
                                             }
                                             serie.push(number);
                                         });
@@ -350,6 +351,24 @@ angular.module("hmisPortal")
 
         };
 
+        $scope.prepareOu = function(){
+            var orgUnits = [];
+            angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
+                var name = orgUnit.name;
+                if(name.indexOf("Zone") > -1){
+                    var names = [];
+                    angular.forEach(orgUnit.children,function(regions){
+                        names.push(regions.id);
+                    });
+                    orgUnits.push({'name':orgUnit.name,'id':names.join(";")});
+                }else{
+                    orgUnits.push({'name':orgUnit.name,'id':orgUnit.id});
+                }
+            });
+            return orgUnits;
+        }
+
+
         $scope.prepareData = function(jsonObject,categories,type,card){
             var structure = {};
             var data = [];
@@ -403,31 +422,35 @@ angular.module("hmisPortal")
 
                 }
 //
-            }if(type == 'methods'){
+            }if(type == 'methods') {
 
-                num =0;
-                var names= "";
-                angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
+                num = 0;
+                var amount = 0;
+                if ((ou.indexOf(';') > -1)) {
 
-                    if(region.id == $scope.currentOrgUnit){
-                        angular.forEach(region.organisationUnits,function(value){
-                            names += value.id+';';
+                    var orgArr = ou.split(";");
+                    var i = 0;
+                    $.each(orgArr, function (c, j) {
+                        i++;
+                        $.each(arr, function (k, v) {
+                            if (v[0] == de) {
+                                if (v[1] == j) {
+                                    amount += parseInt(v[3]);
+                                }
+                            }
                         });
-                    }
-                });
-                var orgs = names.substring(1, names.length-1);
-                var orgArr = orgs.split(";");
-                $.each(orgArr,function(c,j){
-                    $.each(arr,function(k,v){
-                        if(v[1] == j && v[0] == ou){
-                            num += parseInt(v[3])
+                    });
+                } else {
+                    $.each(arr, function (k, v) {
+                        if (v[0] == de && v[1] == ou ) {
+                            amount = v[3];
                         }
                     });
-                });
+                }
 
+
+                return amount;
             }
-
-            return num;
         };
 
         $scope.prepareCategory = function(type){
