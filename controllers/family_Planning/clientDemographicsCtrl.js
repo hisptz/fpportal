@@ -155,7 +155,7 @@ angular.module("hmisPortal")
         $scope.fpCards = [
 
             {
-                title:'New Clients < 20 Years of Age through Routine Facility-Based Service and CBD '+$scope.selectedPeriod,
+                title:'New Family Planning clients < 20 Years of Age through Routine Facility-Based Service and CBD '+$scope.selectedPeriod,
                 description:'Total Clients Monthly',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
@@ -170,8 +170,8 @@ angular.module("hmisPortal")
                 chartObject:angular.copy(portalService.chartObject)
 
         }, {
-                title:'Clients through Routine Facility-Based and Outreach-Based Service December 2014',
-                description:'Clients through Routine Facility-Based and Outreach-Based Service December 2014',
+                title:'Family Planning clients through Routine Facility-Based and Outreach-Based Service December 2014',
+                description:'Family Planning clients through Routine Facility-Based and Outreach-Based Service December 2014',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
                 category:'quarter',
@@ -180,6 +180,7 @@ angular.module("hmisPortal")
                 displayTable:false,
                 displayMap:false,
                 chart:'line',
+                yaxisTittle:"# of Clients",
                 visible:'consumption by demographic',
                 chartObject:angular.copy(portalService.chartObject)
 

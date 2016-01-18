@@ -180,7 +180,7 @@ angular.module("hmisPortal")
             //
             //},
             {
-                title:'Clients by Method through Routine Facility-Based Service '+$scope.selectedPeriod,
+                title:'Family Planning clients by Method through Routine Facility-Based Service '+$scope.selectedPeriod,
                 description:'Total Clients Monthly',
                 cardClass:"col s12 m12",
                 data:$scope.methods,

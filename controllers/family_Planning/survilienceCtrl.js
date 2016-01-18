@@ -89,9 +89,12 @@ angular.module("hmisPortal")
 
 
 
-                        chartObject.title.text ="Clients Adopting FP Following MVA or D+C " +$scope.selectedPeriod;
-                        chartObject1.title.text ="Clients Adopting FP in the Postpartum Period " +$scope.selectedPeriod;
-                        chartObject2.title.text ="Clients Adopting HTC and FP " +$scope.selectedPeriod;
+                        chartObject.title.text ="Family Planning clients Adopting Family Planing Following MVA or D+C " +$scope.selectedPeriod;
+                        chartObject1.title.text ="Family Planning clients Adopting Family Planing in the Postpartum Period " +$scope.selectedPeriod;
+                        chartObject2.title.text ="Family Planning clients Adopting HIV testing and Counseling and Family Planing " +$scope.selectedPeriod;
+                        chartObject.yAxis.title.text ="%  of Family Planning Clients";
+                        chartObject1.yAxis.title.text ="# of Family Planning Clients";
+                        chartObject2.yAxis.title.text ="%  of Family Planning Clients";
                         angular.forEach(periods, function (val) {
                             chartObject.xAxis.categories.push(val.name);
                             chartObject1.xAxis.categories.push(val.name);
