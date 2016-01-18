@@ -320,7 +320,7 @@ angular.module("hmisPortal")
                                 var orgunits = $scope.prepareCategory('zones');
                                 console.log(orgunits);
                                 var singleMethod = $scope.getSingleMethodForOutreach($scope.selectedMethod);
-
+                                cardObject.chartObject.xAxis.categories = [];
                                 angular.forEach(orgunits, function (value) {
                                     cardObject.chartObject.xAxis.categories.push(value.name);
                                 });
