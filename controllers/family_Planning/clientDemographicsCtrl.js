@@ -175,7 +175,7 @@ angular.module("hmisPortal")
                 cardClass:"col s12 m12",
                 data:$scope.methods,
                 category:'quarter',
-                category1:'quarter',
+                category1:'routineFacility',
                 icons:angular.copy(portalService.minimalIcons),
                 displayTable:false,
                 displayMap:false,
@@ -241,48 +241,49 @@ angular.module("hmisPortal")
                 //data for routine facility
                 $http.get($scope.url1).success(function(data) {
                     if (data.hasOwnProperty('metaData')) {
-                        var cats = ['Routine','Outreach'];
+                        var cats = ['Routine', 'Outreach'];
 
                         //if selected method == all
-                        if($scope.selectedMethod == 'all') {
+                        if(cardObject.category1 == 'routineFacility' ){
+                        if ($scope.selectedMethod == 'all') {
                             var subcats = $scope.prepareCategory('routineOutreachMethod');
 
                             angular.forEach(subcats, function (value) {
                                 cardObject.chartObject.xAxis.categories.push(value.name);
                             });
                             $scope.normalseries1 = [];
-                            if(chart == 'table'){
-                                cardObject.table ={}
+                            if (chart == 'table') {
+                                cardObject.table = {}
                                 cardObject.table.headers = [];
-                                cardObject.table.colums =[];
-                                angular.forEach(cats,function(value){
+                                cardObject.table.colums = [];
+                                angular.forEach(cats, function (value) {
                                     var serie = [];
                                     cardObject.table.headers.push(value);
                                 });
-                                angular.forEach(subcats,function(val){
+                                angular.forEach(subcats, function (val) {
                                     var seri = [];
-                                    angular.forEach(cats,function(value){
-                                        if(value == "Routine"){
-                                            var number = $scope.getDataFromUrl(data.rows,val.outreach,'methods'.category,val.outreach);
+                                    angular.forEach(cats, function (value) {
+                                        if (value == "Routine") {
+                                            var number = $scope.getDataFromUrl(data.rows, val.outreach, 'methods'.category, val.outreach);
                                         }
-                                        if(value == "Outreach"){
-                                            var number = $scope.getDataFromUrl(data.rows,val.facility,'methods',val.facility);
+                                        if (value == "Outreach") {
+                                            var number = $scope.getDataFromUrl(data.rows, val.facility, 'methods', val.facility);
                                         }
-                                        seri.push({name:value.name,value:parseInt(number)});
+                                        seri.push({name: value.name, value: parseInt(number)});
                                     });
-                                    cardObject.table.colums.push({name:val.name,values:seri});
+                                    cardObject.table.colums.push({name: val.name, values: seri});
                                 });
                             }
-                            else{
+                            else {
                                 delete cardObject.chartObject.chart;
-                                angular.forEach(subcats,function(val){
+                                angular.forEach(subcats, function (val) {
                                     var serie = [];
-                                    angular.forEach(cats,function(value){
-                                        if(value == "Routine"){
-                                            var number = $scope.getDataFromUrl(data.rows,val.outreach,'methods'.category,val.outreach);
+                                    angular.forEach(cats, function (value) {
+                                        if (value == "Routine") {
+                                            var number = $scope.getDataFromUrl(data.rows, val.outreach, 'methods'.category, val.outreach);
                                         }
-                                        if(value == "Outreach"){
-                                            var number = $scope.getDataFromUrl(data.rows,val.facility,'methods',val.facility);
+                                        if (value == "Outreach") {
+                                            var number = $scope.getDataFromUrl(data.rows, val.facility, 'methods', val.facility);
                                         }
                                         serie.push(number);
                                     });
@@ -292,6 +293,7 @@ angular.module("hmisPortal")
                             }
                             cardObject.chartObject.loading = false
                         }
+                    }
                     }
                 });
 
