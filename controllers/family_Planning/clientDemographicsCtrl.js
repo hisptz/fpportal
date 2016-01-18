@@ -193,6 +193,23 @@ angular.module("hmisPortal")
                 }
             });
         };
+
+        $scope.getSingleMethodForOutreach = function(uid){
+            var method = {};
+            var meth = {};
+            angular.forEach($scope.methods,function(value){
+                if(value.id == uid){
+                    method = value;
+                }
+            });
+            var methods = $scope.prepareCategory('routineOutreachMethod');
+            angular.forEach(methods, function (val) {
+                if(val.name == method.name){
+                    meth = val;
+                }
+            });
+            return meth;
+        };
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
             var base = "https://dhis.moh.go.tz/";
@@ -287,6 +304,55 @@ angular.module("hmisPortal")
                                             }
                                             if (val == "Outreach") {
                                                 var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', value.facility);
+                                            }
+                                            serie.push(number);
+                                        });
+                                        $scope.normalseries1.push({type: 'bar', name: val, data: serie})
+                                    });
+                                    cardObject.chartObject.series = $scope.normalseries1;
+                                }
+                                cardObject.chartObject.loading = false
+                            }
+                            //if the single method has been selected
+                            else{
+                                var subcats = $scope.prepareCategory('zones');
+                                var singleMethod = $scope.getSingleMethodForOutreach($scope.selectedMethod);
+                                angular.forEach(subcats, function (value) {
+                                    cardObject.chartObject.xAxis.categories.push(value.name);
+                                });
+                                $scope.normalseries1 = [];
+                                if (chart == 'table') {
+                                    cardObject.table = {}
+                                    cardObject.table.headers = [];
+                                    cardObject.table.colums = [];
+                                    angular.forEach(cats, function (value) {
+                                        var serie = [];
+                                        cardObject.table.headers.push(value);
+                                    });
+                                    angular.forEach(subcats, function (val) {
+                                        var seri = [];
+                                        angular.forEach(cats, function (value) {
+                                            if (value == "Routine") {
+                                                var number = $scope.getDataFromUrl(data.rows, val.id, 'methods', singleMethod.outreach);
+                                            }
+                                            if (value == "Outreach") {
+                                                var number = $scope.getDataFromUrl(data.rows, val.id, 'methods', singleMethod.facility);
+                                            }
+                                            seri.push({name: value, value: parseInt(number)});
+                                        });
+                                        cardObject.table.colums.push({name: val.name, values: seri});
+                                    });
+                                }
+                                else {
+                                    delete cardObject.chartObject.chart;
+                                    angular.forEach(cats, function (val) {
+                                        var serie = [];
+                                        angular.forEach(subcats, function (value) {
+                                            if (val == "Routine") {
+                                                var number = $scope.getDataFromUrl(data.rows, value.id, 'methods', singleMethod.outreach);
+                                            }
+                                            if (val == "Outreach") {
+                                                var number = $scope.getDataFromUrl(data.rows, value.id, 'methods', singleMethod.facility);
                                             }
                                             serie.push(number);
                                         });
