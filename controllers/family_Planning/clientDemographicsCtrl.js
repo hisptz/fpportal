@@ -197,12 +197,12 @@ angular.module("hmisPortal")
             var base = "https://dhis.moh.go.tz/";
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                 j_username: "portal", j_password: "Portal123"
-            },function(){
-                if(chart == 'table'){
+            },function() {
+                if (chart == 'table') {
                     cardObject.displayTable = true;
                     cardObject.displayMap = false;
                 }
-                else{
+                else {
                     cardObject.displayMap = false;
                     cardObject.displayTable = false;
                 }
@@ -215,122 +215,123 @@ angular.module("hmisPortal")
                 cardObject.chartObject.loading = true;
                 var datass = '';
 
-                if($scope.selectedMethod == 'all'){
-                    if(cardObject.category1 == "month"){
+                if ($scope.selectedMethod == 'all') {
+                    if (cardObject.category1 == "month") {
                         cardObject.category = 'month';
-                        cardObject.data =$scope.methods;
+                        cardObject.data = $scope.methods;
                     }
-                    if(cardObject.category1 == 'zones'){
-                        cardObject.data = [{'name':'All Clients','id':'jvwTTzpWBD0'}];
-                    }if(cardObject.category1 == 'routineFacility'){
+                    if (cardObject.category1 == 'zones') {
+                        cardObject.data = [{'name': 'All Clients', 'id': 'jvwTTzpWBD0'}];
+                    }
+                    if (cardObject.category1 == 'routineFacility') {
                         cardObject.data = $scope.prepareCategory('routineOutreachMethod')
                     }
-                }else{
-                    if(cardObject.category1 == "month"){
+                } else {
+                    if (cardObject.category1 == "month") {
                         cardObject.category = 'month';
                         cardObject.data = $scope.prepareCategory('zones');
                     }
-                    if(cardObject.category1 == 'zones'){
+                    if (cardObject.category1 == 'zones') {
                         cardObject.data = $scope.getSingleMethods($scope.selectedMethod);
                     }
                 }
 
-                $scope.url1 = portalService.base+"api/analytics.json?dimension=dx:lMFKZN3UaYp;ZnTi99UdGCS;UjGebiXNg0t;RfSsrHPGBXV;JSmtnnW6WrR;xhcaH3H3pdK;xip1SDutimh;chmWn8ksICz&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201412;&displayProperty=NAME";
-                $scope.url = portalService.base+"api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412;&displayProperty=NAME";
+                $scope.url1 = portalService.base + "api/analytics.json?dimension=dx:lMFKZN3UaYp;ZnTi99UdGCS;UjGebiXNg0t;RfSsrHPGBXV;JSmtnnW6WrR;xhcaH3H3pdK;xip1SDutimh;chmWn8ksICz&dimension=ou:" + FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits) + "&dimension=pe:201412;&displayProperty=NAME";
+                $scope.url = portalService.base + "api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:" + FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits) + "&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412;&displayProperty=NAME";
 
                 //data for routine facility
-                $http.get($scope.url1).success(function(data) {
-                    if (data.hasOwnProperty('metaData')) {
-                        var cats = ['Routine', 'Outreach'];
+                if (cardObject.category1 == 'routineFacility') {
+                    $http.get($scope.url1).success(function (data) {
+                        if (data.hasOwnProperty('metaData')) {
+                            var cats = ['Routine', 'Outreach'];
 
-                        //if selected method == all
-                        if(cardObject.category1 == 'routineFacility' ){
-                        if ($scope.selectedMethod == 'all') {
-                            var subcats = $scope.prepareCategory('routineOutreachMethod');
+                            //if selected method == all
+                            if ($scope.selectedMethod == 'all') {
+                                var subcats = $scope.prepareCategory('routineOutreachMethod');
 
-                            angular.forEach(subcats, function (value) {
-                                cardObject.chartObject.xAxis.categories.push(value.name);
-                            });
-                            $scope.normalseries1 = [];
-                            if (chart == 'table') {
-                                cardObject.table = {}
-                                cardObject.table.headers = [];
-                                cardObject.table.colums = [];
-                                angular.forEach(cats, function (value) {
-                                    var serie = [];
-                                    cardObject.table.headers.push(value);
+                                angular.forEach(subcats, function (value) {
+                                    cardObject.chartObject.xAxis.categories.push(value.name);
                                 });
-                                angular.forEach(subcats, function (val) {
-                                    var seri = [];
+                                $scope.normalseries1 = [];
+                                if (chart == 'table') {
+                                    cardObject.table = {}
+                                    cardObject.table.headers = [];
+                                    cardObject.table.colums = [];
                                     angular.forEach(cats, function (value) {
-                                        if (value == "Routine") {
-                                            var number = $scope.getDataFromUrl(data.rows, val.outreach, 'methods'.category, val.outreach);
-                                        }
-                                        if (value == "Outreach") {
-                                            var number = $scope.getDataFromUrl(data.rows, val.facility, 'methods', val.facility);
-                                        }
-                                        seri.push({name: value.name, value: parseInt(number)});
+                                        var serie = [];
+                                        cardObject.table.headers.push(value);
                                     });
-                                    cardObject.table.colums.push({name: val.name, values: seri});
-                                });
-                            }
-                            else {
-                                delete cardObject.chartObject.chart;
-                                angular.forEach(subcats, function (val) {
-                                    var serie = [];
-                                    angular.forEach(cats, function (value) {
-                                        if (value == "Routine") {
-                                            var number = $scope.getDataFromUrl(data.rows, val.outreach, 'methods'.category, val.outreach);
-                                        }
-                                        if (value == "Outreach") {
-                                            var number = $scope.getDataFromUrl(data.rows, val.facility, 'methods', val.facility);
-                                        }
-                                        serie.push(number);
+                                    angular.forEach(subcats, function (val) {
+                                        var seri = [];
+                                        angular.forEach(cats, function (value) {
+                                            if (value == "Routine") {
+                                                var number = $scope.getDataFromUrl(data.rows, val.outreach, 'methods'.category, val.outreach);
+                                            }
+                                            if (value == "Outreach") {
+                                                var number = $scope.getDataFromUrl(data.rows, val.facility, 'methods', val.facility);
+                                            }
+                                            seri.push({name: value.name, value: parseInt(number)});
+                                        });
+                                        cardObject.table.colums.push({name: val.name, values: seri});
                                     });
-                                    $scope.normalseries1.push({type: chart, name: val.name, data: serie})
-                                });
-                                cardObject.chartObject.series = $scope.normalseries1;
+                                }
+                                else {
+                                    delete cardObject.chartObject.chart;
+                                    angular.forEach(subcats, function (val) {
+                                        var serie = [];
+                                        angular.forEach(cats, function (value) {
+                                            if (value == "Routine") {
+                                                var number = $scope.getDataFromUrl(data.rows, val.outreach, 'methods'.category, val.outreach);
+                                            }
+                                            if (value == "Outreach") {
+                                                var number = $scope.getDataFromUrl(data.rows, val.facility, 'methods', val.facility);
+                                            }
+                                            serie.push(number);
+                                        });
+                                        $scope.normalseries1.push({type: chart, name: val.name, data: serie})
+                                    });
+                                    cardObject.chartObject.series = $scope.normalseries1;
+                                }
+                                cardObject.chartObject.loading = false
                             }
-                            cardObject.chartObject.loading = false
+
                         }
-                    }
-                    }
-                });
-
-               ////////////////////////////data for <20/////////////////////////////////////////////
-                $http.get($scope.url).success(function(data){
-                    if(data.hasOwnProperty('metaData')){
-                        var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
-                        angular.forEach(useThisData.regions,function(value){
+                    });
+                } else {
+                ////////////////////////////data for <20/////////////////////////////////////////////
+                $http.get($scope.url).success(function (data) {
+                    if (data.hasOwnProperty('metaData')) {
+                        var useThisData = $scope.prepareData(data, $scope.prepareCategory(cardObject.category), cardObject.category, cardObject);
+                        angular.forEach(useThisData.regions, function (value) {
                             area.push(value.name);
                         });
                         $scope.subCategory = useThisData.elements;
                         cardObject.chartObject.xAxis.categories = area;
 
                         $scope.normalseries = [];
-                        if(chart == 'table'){
-                            cardObject.table ={}
+                        if (chart == 'table') {
+                            cardObject.table = {}
                             cardObject.table.headers = [];
-                            cardObject.table.colums =[];
-                            angular.forEach(useThisData.elements,function(value){
+                            cardObject.table.colums = [];
+                            angular.forEach(useThisData.elements, function (value) {
                                 var serie = [];
                                 cardObject.table.headers.push(value.name);
                             });
-                            angular.forEach(useThisData.regions,function(val){
+                            angular.forEach(useThisData.regions, function (val) {
                                 var seri = [];
-                                angular.forEach(useThisData.elements,function(value){
-                                    var number = $scope.getDataFromUrl(data.rows,val.id,cardObject.category,value.uid);
-                                    seri.push({name:value.name,value:parseInt(number)});
+                                angular.forEach(useThisData.elements, function (value) {
+                                    var number = $scope.getDataFromUrl(data.rows, val.id, cardObject.category, value.uid);
+                                    seri.push({name: value.name, value: parseInt(number)});
                                 });
-                                cardObject.table.colums.push({name:val.name,values:seri});
+                                cardObject.table.colums.push({name: val.name, values: seri});
                             });
                         }
-                        else{
+                        else {
                             delete cardObject.chartObject.chart;
-                            angular.forEach(useThisData.elements,function(value){
+                            angular.forEach(useThisData.elements, function (value) {
                                 var serie = [];
-                                angular.forEach(useThisData.regions,function(val){
-                                    var number = $scope.getDataFromUrl(data.rows,val.id,cardObject.category,value.uid);
+                                angular.forEach(useThisData.regions, function (val) {
+                                    var number = $scope.getDataFromUrl(data.rows, val.id, cardObject.category, value.uid);
                                     serie.push(number);
                                 });
                                 $scope.normalseries.push({type: chart, name: value.name, data: serie})
@@ -339,11 +340,12 @@ angular.module("hmisPortal")
                         }
                         cardObject.chartObject.loading = false
 
-                    }else{
+                    } else {
                         cardObject.chartObject.loading = false
                     }
 
                 });
+            }
             });
 
         };

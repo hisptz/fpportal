@@ -122,8 +122,8 @@
       <file leaf-file-name="clientDemographicsCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39077342" vertical-offset="2898" max-vertical-offset="9432">
-              <caret line="177" column="42" selection-start-line="177" selection-start-column="42" selection-end-line="177" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.46268657" vertical-offset="5041" max-vertical-offset="9468">
+              <caret line="299" column="24" selection-start-line="299" selection-start-column="24" selection-end-line="299" selection-end-column="24" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -887,8 +887,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39077342" vertical-offset="2898" max-vertical-offset="9432">
-          <caret line="177" column="42" selection-start-line="177" selection-start-column="42" selection-end-line="177" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.46268657" vertical-offset="5041" max-vertical-offset="9468">
+          <caret line="299" column="24" selection-start-line="299" selection-start-column="24" selection-end-line="299" selection-end-column="24" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
