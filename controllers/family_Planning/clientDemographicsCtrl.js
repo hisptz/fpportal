@@ -447,10 +447,9 @@ angular.module("hmisPortal")
                         }
                     });
                 }
-
-
-                return amount;
+             num = amount;
             }
+            return num;
         };
 
         $scope.prepareCategory = function(type){
