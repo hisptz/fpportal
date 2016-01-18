@@ -320,11 +320,12 @@ angular.module("hmisPortal")
                                 var orgunits = $scope.prepareCategory('zones');
                                 console.log(orgunits);
                                 var singleMethod = $scope.getSingleMethodForOutreach($scope.selectedMethod);
-                                console.log(singleMethod);
+
                                 angular.forEach(orgunits, function (value) {
                                     cardObject.chartObject.xAxis.categories.push(value.name);
                                 });
-                                $scope.normalseries1 = [];
+                                console.log(cardObject.chartObject.xAxis);
+                                $scope.normalseries2 = [];
                                 if (chart == 'table') {
                                     cardObject.table = {}
                                     cardObject.table.headers = [];
@@ -360,9 +361,9 @@ angular.module("hmisPortal")
                                             }
                                             serie.push(number);
                                         });
-                                        $scope.normalseries1.push({type: 'bar', name: val, data: serie})
+                                        $scope.normalseries2.push({type: 'bar', name: val, data: serie})
                                     });
-                                    cardObject.chartObject.series = $scope.normalseries1;
+                                    cardObject.chartObject.series = $scope.normalseries2;
                                 }
                                 cardObject.chartObject.loading = false
                             }
