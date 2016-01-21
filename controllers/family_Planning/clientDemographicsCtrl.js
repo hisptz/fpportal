@@ -152,6 +152,38 @@ angular.module("hmisPortal")
             {'name':'IUCDs','id':'GvbkEo6sfSd'},
             {'name':'Natural FP','id':'QRCRjFreECE'}];
 
+        $scope.updateMethod = function(){
+            $scope.data.menuMethods = [];
+            angular.forEach($scope.methods,function(value){
+                $scope.data.menuMethods.push({name:value.name,id:value.uid });
+            });
+        };
+        $scope.updateMethod();
+
+        $scope.selectOnly1Or3 = function(item, selectedItems) {
+            if (selectedItems  !== undefined && selectedItems.length >= 7) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+
+        $scope.getSingleMethods = function(methods){
+            var method = "";
+            if(methods.length === 1){
+                angular.forEach(methods,function(value){
+                    method= value.name;
+                });
+            }else{
+                angular.forEach($scope.data.outOrganisationUnits,function(value){
+                    method += value.name+", ";
+                });
+            }
+            console.log(method);
+            return method;
+
+        };
+
         $scope.fpCards = [
 
             {
@@ -265,7 +297,6 @@ angular.module("hmisPortal")
 
                             //if selected method == all
                             if ($scope.selectedMethod == 'all') {
-                                console.log('imefika kwenye zote');
                                 var subcats = $scope.prepareCategory('routineOutreachMethod');
 
                                 angular.forEach(subcats, function (value) {

@@ -23,6 +23,7 @@ angular.module("hmisPortal")
             $scope.geoToUse.push({name:value.name,id:value.id, ticked: true });
         });
         $scope.data = {};
+        $scope.data.outMethods = [];
         $scope.updateTree = function(){
             $scope.data.orgUnitTree1 = [];
             $scope.data.orgUnitTree = [];
@@ -41,6 +42,13 @@ angular.module("hmisPortal")
         };
         $scope.updateTree();
 
+        $scope.selectOnly1Or2 = function(item, selectedItems) {
+            if (selectedItems  !== undefined && selectedItems.length >= 7) {
+                return false;
+            } else {
+                return true;
+            }
+        };
         $scope.changeMethod = function(){
             $scope.currentOrgUnit = "m0frOspS7JY";
             angular.forEach($scope.geoToUse,function(value){
@@ -146,7 +154,38 @@ angular.module("hmisPortal")
             {'name':'Min Lap','uid':'mlfh4fgiFhd'}
         ];
 
+        $scope.updateMethod = function(){
+            $scope.data.menuMethods = [];
+            angular.forEach($scope.methods,function(value){
+                $scope.data.menuMethods.push({name:value.name,id:value.uid });
+            });
+        };
+        $scope.updateMethod();
 
+        $scope.selectOnly1Or3 = function(item, selectedItems) {
+            if (selectedItems  !== undefined && selectedItems.length >= 7) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+
+        $scope.getSingleMethods = function(methods){
+            var method = "";
+            if(methods.length === 1){
+                angular.forEach(methods,function(value){
+                    method= value.name;
+                });
+            }else{
+                angular.forEach($scope.data.outOrganisationUnits,function(value){
+                    method += value.name+", ";
+                });
+            }
+            console.log(method);
+            return method;
+
+
+        };
 
         $scope.fpCards = [
             //{
@@ -164,21 +203,22 @@ angular.module("hmisPortal")
             //    visible:'consumption by method',
             //    chartObject:angular.copy(portalService.chartObject)
             //
-            //},{
-            //    title:'Total Clients Quarterly',
-            //    description:'Total Clients Quarterly',
-            //    cardClass:"col s12 m6",
-            //    data:$scope.methods,
-            //    category:'quarter',
-            //    category1:'quarter',
-            //    icons:angular.copy(portalService.minimalIcons),
-            //    displayTable:false,
-            //    displayMap:false,
-            //    chart:'line',
-            //    visible:'consumption by method',
-            //    chartObject:angular.copy(portalService.chartObject)
-            //
             //},
+    {
+                title:'Family Planning clients by Method through Routine Facility-Based Service Dec 2014' ,
+                description:'Total Clients Quarterly',
+                cardClass:"col s12 m12",
+                data:$scope.methods,
+                category:'other',
+                category1:'quarter',
+                icons:angular.copy(portalService.minimalIcons),
+                displayTable:false,
+                displayMap:false,
+                chart:'line',
+                visible:'consumption by method',
+                chartObject:angular.copy(portalService.chartObject)
+
+            },
             {
                 title:'Family Planning clients by Method through Routine Facility-Based Service '+$scope.selectedPeriod,
                 description:'Total Clients Monthly',
@@ -190,38 +230,38 @@ angular.module("hmisPortal")
                 displayTable:false,
                 displayMap:false,
                 chart:'line',
+                yaxisTittle:'# client',
                 visible:'consumption by method',
                 chartObject:angular.copy(portalService.chartObject)
 
             }];
 
-        $scope.getSingleMethods = function(uid){
-            var method = [];
-            angular.forEach($scope.methods,function(value){
-                if(value.id == uid){
-                    method.push(value);
-                }
+
+
+        $scope.getMethodsNum = function(methods){
+            var count = 0;
+            angular.forEach(methods,function(value){
+                    count++;
             });
         };
         $scope.prepareSeries = function(cardObject,chart){
+
             cardObject.chartObject.loading = true;
             var base = "https://dhis.moh.go.tz/";
 //            $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
 //                j_username: "portal", j_password: "Portal123"
 //            },function(){
-            if(chart == 'table'){
+
+            if (chart == 'table') {
                 cardObject.displayTable = true;
                 cardObject.displayMap = false;
-            }else if(chart == 'map'){
-                cardObject.displayMap = true;
-                cardObject.displayTable = false;
             }
-            else{
+            else {
                 cardObject.displayMap = false;
                 cardObject.displayTable = false;
             }
-            cardObject.chartObject.title.text = cardObject.title;
-            cardObject.chartObject.yAxis.title.text = cardObject.title.toLowerCase();
+            cardObject.chartObject.title.text = cardObject.title+' '+$scope.getSingleMethods($scope.data.outMethods);
+            cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
             var peri = preparePeriod($scope.selectedPeriod);
             $scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE;GGpsoh0DX6T;IFxhP0O4k0W;JMmqv0tyVr7;Nt8M08bJKXl;OQpasUg1Tse;btKkJROB2gP;epPM7fO8CnH;mlfh4fgiFhd;pqpVKzE951Y&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201501;201502;201503;201504;201505;201506;201507;201508;201509;201510;201511;201512;2015Q1;2015Q2;2015Q3;2015Q4&displayProperty=NAME";
@@ -229,119 +269,110 @@ angular.module("hmisPortal")
             cardObject.chartObject.loading = true;
             var datass = '';
 
-            if($scope.currentOrgUnit == "m0frOspS7JY"){
-                if(cardObject.category1 == 'zones'){
-                    cardObject.data = 'jvwTTzpWBD0';
-                    cardObject.category = 'zones';
-                }
-            }else{
-                if(cardObject.category1 == 'zones'){
-                    cardObject.category = 'methods';
-                    cardObject.data = $scope.currentOrgUnit;
-                }
 
-            }
-
-            if($scope.selectedMethod == 'all'){
-                if(cardObject.category1 == "month"){
-                    cardObject.category = 'month';
-                    cardObject.data =$scope.methods;
-                }
-                if(cardObject.category1 == "quarter"){
-                    cardObject.category = 'quarter';
-                    cardObject.data = $scope.methods;
-                }
-                if(cardObject.category1 == 'zones'){
-                    cardObject.data = [{'name':'All Clients','id':'jvwTTzpWBD0'}];
-                }
-            }else{
-                if(cardObject.category1 == "month"){
-                    cardObject.category = 'month';
-                    cardObject.data = $scope.prepareCategory('zones');
-                }
-                if(cardObject.category1 == "quarter"){
-                    cardObject.category = 'quarter';
-                    cardObject.data = $scope.prepareCategory('zones');
-                }
-                if(cardObject.category1 == 'zones'){
-                    cardObject.data = $scope.getSingleMethods($scope.selectedMethod);
-                }
-            }
             $http.get('data1.json').success(function(data){
                 if(data.hasOwnProperty('metaData')){
                     var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
-                    angular.forEach(useThisData.regions,function(value){
-                        area.push(value.name);
-                    });
-                    $scope.subCategory = useThisData.elements;
-                    cardObject.chartObject.xAxis.categories = area;
+                    var yAxisItems = ['new','returning','total'];
+                    var xAxisItems = [];
+                    var xAxisItems1 = [];
+                    if($scope.data.outMethods.length == 1){
+                        xAxisItems = $scope.prepareCategory('zones');
 
-                    $scope.normalseries = [];
-                    if($scope.data.chartType == "pie"){
-                        delete cardObject.chartObject.chart;
-                        var serie = [];
-                        angular.forEach(useThisData.elements,function(value){
-                            angular.forEach(useThisData.regions,function(val){
-                                var number = $scope.getDataFromUrl(data.rows,val.id,cardObject.category,value.uid);
+                        xAxisItems1 = $scope.prepareCategory('month');
+                    }else{
+                        angular.forEach($scope.data.outMethods,function(value){
+                            xAxisItems.push({name:value.name});
+                        });
+                    }
+                    /////////////////////////// second chart ////////////////////////////////
+                    cardObject.chartObject.xAxis.categories = [];
+                    if(cardObject.category == 'month'){
+                        angular.forEach($scope.prepareCategory('month'), function (value) {
+                            cardObject.chartObject.xAxis.categories.push(value.name);
+                        });
+                        $scope.normalseries1 = [];
+                        if (chart == 'table') {
+                            cardObject.table = {};
+                            cardObject.table.headers = [];
+                            cardObject.table.colums = [];
+                            angular.forEach(xAxisItems, function (value) {
+                                var serie = [];
+                                cardObject.table.headers.push(value);
+                            });
+                            angular.forEach($scope.prepareCategory('month'), function (val) {
+                                var seri = [];
+                                angular.forEach(xAxisItems, function (value) {
+                                    var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods'.category, val.outreach);
+                                    seri.push({name: value.name, value: parseInt(number)});
+                                });
+                                cardObject.table.colums.push({name: val.name, values: seri});
+                            });
+                        }
+                        else {
+                            delete cardObject.chartObject.chart;
+                            angular.forEach(xAxisItems, function (val) {
+                                var serie = [];
+                                angular.forEach($scope.prepareCategory('month'), function (value) {
+                                    var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods'.category, value.outreach);
+                                    serie.push(number);
+                                });
+                                $scope.normalseries1.push({type: 'bar', name: val.name, data: serie})
+                            });
+                            cardObject.chartObject.series = $scope.normalseries1;
+                        }
+                    }
 
-                                serie.push({name: value.name+" - "+ val.name , y: parseInt(number)})
+                    //////////////////////////////first chart ///////////////////////////
+                    if(cardObject.category == 'other'){
+                        angular.forEach(xAxisItems, function (value) {
+                            cardObject.chartObject.xAxis.categories.push(value.name);
+                        });
+                        $scope.normalseries1 = [];
+                        if (chart == 'table') {
+                            cardObject.table = {}
+                            cardObject.table.headers = [];
+                            cardObject.table.colums = [];
+                            angular.forEach(yAxisItems, function (value) {
+                                var serie = [];
+                                cardObject.table.headers.push(value);
                             });
-                        });
-                        $scope.normalseries.push({type: chart, name:$scope.UsedName , data: serie,showInLegend: true,
-                            dataLabels: {
-                                enabled: false
-                            } })
-                        cardObject.chartObject.series = $scope.normalseries;
-                    }
-                    else if(chart == "combined"){
-                        delete cardObject.chartObject.chart;
-                        var serie1 = [];
-                        angular.forEach(useThisData.elements,function(value){
-                            var serie = [];
-
-                            angular.forEach(useThisData.regions,function(val){
-                                var number = $scope.getDataFromUrl(data.rows,val.id,cardObject.category,value.uid);
-                                serie.push(parseInt(number));
-                                serie1.push({name: value.name+" - "+ val.name , y: parseInt(number) })
+                            angular.forEach(xAxisItems, function (val) {
+                                var seri = [];
+                                angular.forEach(yAxisItems, function (value) {
+                                    if (value == "Routine") {
+                                        var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, '201412'.category, val.outreach);
+                                    }
+                                    if (value == "Outreach") {
+                                        var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, '201412', val.facility);
+                                    }
+                                    seri.push({name: value.name, value: parseInt(number)});
+                                });
+                                cardObject.table.colums.push({name: val.name, values: seri});
                             });
-                            $scope.normalseries.push({type: 'column', name: value.name, data: serie});
-                            $scope.normalseries.push({type: 'spline', name: value.name, data: serie});
-                        });
-                        $scope.normalseries.push({type: 'pie', name: $scope.UsedName, data: serie1,center: [100, 80],size: 150,showInLegend: false,
-                            dataLabels: {
-                                enabled: false
-                            }})
-                        cardObject.chartObject.series = $scope.normalseries;
-                    }
-                    else if(chart == 'table'){
-                        cardObject.table ={}
-                        cardObject.table.headers = [];
-                        cardObject.table.colums =[];
-                        angular.forEach(useThisData.elements,function(value){
-                            var serie = [];
-                            cardObject.table.headers.push(value.name);
-                        });
-                        angular.forEach(useThisData.regions,function(val){
-                            var seri = [];
-                            angular.forEach(useThisData.elements,function(value){
-                                var number = $scope.getDataFromUrl(data.rows,val.id,cardObject.category,value.uid);
-                                seri.push({name:value.name,value:parseInt(number)});
+                        }
+                        else {
+                            delete cardObject.chartObject.chart;
+                            angular.forEach(yAxisItems, function (val) {
+                                var serie = [];
+                                angular.forEach(xAxisItems, function (value) {
+                                    if (val == "new") {
+                                        var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, '201412'.category, value.new);
+                                    }
+                                    if (val == "returning") {
+                                        var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, '201412', value.returning);
+                                    }
+                                    if (val == "total") {
+                                        var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, '201412', value.total);
+                                    }
+                                    serie.push(number);
+                                });
+                                $scope.normalseries1.push({type: 'bar', name: val, data: serie})
                             });
-                            cardObject.table.colums.push({name:val.name,values:seri});
-                        });
+                            cardObject.chartObject.series = $scope.normalseries1;
+                        }
                     }
-                    else{
-                        delete cardObject.chartObject.chart;
-                        angular.forEach(useThisData.elements,function(value){
-                            var serie = [];
-                            angular.forEach(useThisData.regions,function(val){
-                                var number = $scope.getDataFromUrl(data.rows,val.id,cardObject.category,value.uid);
-                                serie.push(number);
-                            });
-                            $scope.normalseries.push({type: chart, name: value.name, data: serie})
-                        });
-                        cardObject.chartObject.series = $scope.normalseries;
-                    }
+                    console.log(cardObject.chartObject)
                     cardObject.chartObject.loading = false
                 }else{
                     cardObject.chartObject.loading = false
@@ -369,11 +400,11 @@ angular.module("hmisPortal")
             return structure;
         };
 
-        $scope.getDataFromUrl  = function(arr,ou,type,de){
+        $scope.getDataFromUrl  = function(arr,ou,pe,de){
             var num = 0;
             var k = 1;
 
-            if(type == 'zones'){
+
                 k =1
                 num =0;
                 var orgs = ou.substring(1, ou.length-1);
@@ -386,129 +417,6 @@ angular.module("hmisPortal")
                     });
                 });
 
-            }if(type == 'quarter'){
-                num =0;
-                if($scope.currentOrgUnit == 'm0frOspS7JY'){
-                    if($scope.selectedMethod == "all"){
-                        $.each(arr,function(k,v){
-                            if(v[2] == ou && v[0] == de){
-                                num = num+parseInt(v[3])
-                            }
-                        });
-                    }else{
-
-                        var names= "";
-                        angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                            if(region.id == de){
-                                angular.forEach(region.organisationUnits,function(value){
-                                    names += value.id+';';
-                                });
-                            }
-                        });
-
-                        var orgs = names.substring(1, names.length-1);
-                        var orgArr = orgs.split(";");
-                        $.each(orgArr,function(c,j){
-                            $.each(arr,function(k,v){
-                                if(v[2] == ou && v[1] == j && v[0] == $scope.selectedMethod){
-                                    num = num+parseInt(v[3])
-                                }
-                            });
-                        });
-
-                    }
-                }else{
-                    var names= "";
-                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                        if(region.id == $scope.currentOrgUnit){
-                            angular.forEach(region.organisationUnits,function(value){
-                                names += value.id+';';
-                            });
-                        }
-                    });
-                    var orgs = names.substring(1, names.length-1);
-                    var orgArr = orgs.split(";");
-                    $.each(orgArr,function(c,j){
-                        $.each(arr,function(k,v){
-                            if(v[1] == j && v[2] == ou && v[0] == de){
-                                num = num+parseInt(v[3])
-                            }
-                        });
-                    });
-                }
-
-            }if(type == 'month'){
-                if($scope.currentOrgUnit == 'm0frOspS7JY'){
-                    if($scope.selectedMethod == "all"){
-                        $.each(arr,function(k,v){
-                            if(v[2] == ou && v[0] == de){
-                                num = num+parseInt(v[3])
-                            }
-                        });
-                    }else{
-
-                        var names= "";
-                        angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                            if(region.id == de){
-                                angular.forEach(region.organisationUnits,function(value){
-                                    names += value.id+';';
-                                });
-                            }
-                        });
-
-                        var orgs = names.substring(1, names.length-1);
-                        var orgArr = orgs.split(";");
-                        $.each(orgArr,function(c,j){
-                            $.each(arr,function(k,v){
-                                if(v[2] == ou && v[1] == j && v[0] == $scope.selectedMethod){
-                                    num = num+parseInt(v[3])
-                                }
-                            });
-                        });
-
-                    }
-                }else{
-                    var names= "";
-                    angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-                        if(region.id == $scope.currentOrgUnit){
-                            angular.forEach(region.organisationUnits,function(value){
-                                names += value.id+';';
-                            });
-                        }
-                    });
-                    var orgs = names.substring(1, names.length-1);
-                    var orgArr = orgs.split(";");
-                    $.each(orgArr,function(c,j){
-                        $.each(arr,function(k,v){
-                            if(v[1] == j && v[2] == ou && v[0] == de){
-                                num = num+parseInt(v[3])
-                            }
-                        });
-                    });
-                }
-            }if(type == 'methods'){
-
-                num =0;
-                var names= "";
-                angular.forEach($scope.geographicalZones.organisationUnitGroups,function(region){
-
-                    if(region.id == $scope.currentOrgUnit){
-                        angular.forEach(region.organisationUnits,function(value){
-                            names += value.id+';';
-                        });
-                    }
-                });
-                var orgs = names.substring(1, names.length-1);
-                var orgArr = orgs.split(";");
-                $.each(orgArr,function(c,j){
-                    $.each(arr,function(k,v){
-                        if(v[1] == j && v[0] == ou){
-                            num += parseInt(v[3])
-                        }
-                    });
-                });
-
-            }
 
             return num;
         }
@@ -549,13 +457,16 @@ angular.module("hmisPortal")
                 data.push({'name':'Nov'+per,'id':per+'11'});
                 data.push({'name':'Dec '+per,'id':per+'12'});
             }if(type == 'methods'){
-                data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
-                    {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
-                    {'name':'Oral Pills','id':'aSJKs4oPZAf'},
-                    {'name':'Injectables','id':'LpkdcaLc4I9'},
-                    {'name':'Implants','id':'p14JdJaG2aC'},
-                    {'name':'IUCDs','id':'GvbkEo6sfSd'},
-                    {'name':'Natural FP','id':'QRCRjFreECE'});
+                data.push({'name':'Male Condoms','uid':'JMmqv0tyVr7'},
+                    {'name':'Female Condoms','uid':'Nt8M08bJKXl'},
+                    {'name':'Oral Pills','uid':'IFxhP0O4k0W'},
+                    {'name':'Injectables','uid':'epPM7fO8CnH'},
+                    {'name':'Implants','uid':'pqpVKzE951Y'},
+                    {'name':'IUCDs','uid':'OQpasUg1Tse'},
+                    {'name':'NSV','uid':'btKkJROB2gP'},
+                    {'name':'Min Lap','uid':'mlfh4fgiFhd'},
+                    {'name':'NSV','uid':'btKkJROB2gP'},
+                    {'name':'Min Lap','uid':'mlfh4fgiFhd'});
             }if(type == 'method'){
                 angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
                     var name = orgUnit.name;
@@ -577,6 +488,10 @@ angular.module("hmisPortal")
 
 
         $rootScope.firstClick = function(){
+            console.log();
+            if($scope.data.outMethods.length === 0){
+                alert('Please select at least one method');
+            }
             angular.forEach($scope.fpCards,function(value){
                 $scope.prepareSeries(value,value.chart);
             });

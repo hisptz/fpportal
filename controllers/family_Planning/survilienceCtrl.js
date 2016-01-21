@@ -93,8 +93,18 @@ angular.module("hmisPortal")
                         chartObject1.title.text ="Family Planning clients Adopting Family Planing in the Postpartum Period " +$scope.selectedPeriod;
                         chartObject2.title.text ="Family Planning clients Adopting HIV testing and Counseling and Family Planing " +$scope.selectedPeriod;
                         chartObject.yAxis.title.text ="%  of Family Planning Clients";
+                        chartObject.yAxis.labels = {
+                            formatter: function () {
+                                return this.value + '%';
+                            }
+                        };
                         chartObject1.yAxis.title.text ="# of Family Planning Clients";
                         chartObject2.yAxis.title.text ="%  of Family Planning Clients";
+                        chartObject2.yAxis.labels = {
+                            formatter: function () {
+                                return this.value + '%';
+                            }
+                        };
                         angular.forEach(periods, function (val) {
                             chartObject.xAxis.categories.push(val.name);
                             chartObject1.xAxis.categories.push(val.name);

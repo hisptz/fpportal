@@ -25,25 +25,17 @@
                 </multi-select-tree>
             </div>
 
-            <div class="input-field col s3 grey lighten-5">
-                <select ng-model="selectedMethod" ng-change="changeMethod()" material-select watch>
-                    <option value="EcP5Na7DO0r">All Methods</option>
-                    <option value="JMmqv0tyVr7">Male Condoms</option>
-                    <option value="Nt8M08bJKXl">Female Condoms</option>
-                    <option value="IFxhP0O4k0W">Oral Pills</option>
-                    <option value="epPM7fO8CnH">Injectables</option>
-                    <option value="pqpVKzE951Y">Implants</option>
-                    <option value="OQpasUg1Tse">IUCDs</option>
-                    <option value="btKkJROB2gP">NSV</option>
-                    <option value="mlfh4fgiFhd">Min Lap</option>
-                    <option value="GGpsoh0DX6T">Natural FP</option>
-
-                    <!--<option value="2015">2015</option>-->
-                </select>
-                <label>Methods</label>
+            <div class="input-field col s4 grey lighten-5">
+                <multi-select-tree
+                        data-input-model="data.menuMethods"
+                        multi-select="true"
+                        data-output-model="data.outMethods"
+                        data-default-label="Select Method"
+                        data-callback="selectOnly1Or3(item, selectedItems)">
+                </multi-select-tree>
             </div>
 
-            <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="getSelectedValues()">Update</div>
+            <div class="col s1 btn waves-effect waves-light" style="margin-top: 20px" ng-click="getSelectedValues()">Update</div>
         </div>
     </div>
 </div>

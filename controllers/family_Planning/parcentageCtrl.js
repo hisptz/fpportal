@@ -113,18 +113,24 @@ angular.module("hmisPortal")
             {'name':'NSV','uid':'btKkJROB2gP'},
             {'name':'Min Lap','uid':'mlfh4fgiFhd'},
             {'name':'NSV','uid':'btKkJROB2gP'},
-            {'name':'Min Lap','uid':'mlfh4fgiFhd'},
             {'name':'All Clients','uid':'EcP5Na7DO0r'},
-            {'name':'Natural FP','uid':'GGpsoh0DX6T'},
-            {'name':'Eastern Zone','uid':'gb4r7CSrT7U'},
-            {'name':'Lake Zone','uid':'RRGOg1GyLsd'},
-            {'name':'Northern Zone','uid':'nvKJnetaMxk'},
-            {'name':'Southern Highlands Zone','uid':'kcE3vG4Eq3Q'},
-            {'name':'Southern Zone','uid':'hiqGDmNAFJz'},
-            {'name':'Western Zone','uid':'zITJeBfrJ4J'},
-            {'name':'Central Zone','uid':'gzWRK9qFFVp'},
-            {'name':'MOH Tanzania','uid':'m0frOspS7JY'}
+            {'name':'Natural FP','uid':'GGpsoh0DX6T'}
         ];
+        $scope.updateMethod = function(){
+            $scope.data.menuMethods = [];
+            angular.forEach($scope.FPmethods,function(value){
+                $scope.data.menuMethods.push({name:value.name,id:value.uid });
+            });
+        };
+        $scope.updateMethod();
+
+        $scope.selectOnly1Or3 = function(item, selectedItems) {
+            if (selectedItems  !== undefined && selectedItems.length >= 7) {
+                return false;
+            } else {
+                return true;
+            }
+        };
 
         $scope.getMethodName = function(uid){
             var name  = ""
