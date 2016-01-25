@@ -148,9 +148,9 @@ angular.module("hmisPortal")
             var amount = 0;
 
             return amount;
-        }
+        };
 
-        $scope.getNumberPerOu = function(arr,ou){
+        $scope.getNumberPerOu = function(arr,ou,arr2,pe){
             var count = 0;
             angular.forEach(arr,function(value){
                 angular.forEach(value.ancestors,function(val){
@@ -168,8 +168,11 @@ angular.module("hmisPortal")
                     }
                 });
             });
-            return count;
+            var num = $scope.getDataFromUrl(arr2,ou,pe);
+            var percent = (num/count)*100;
+            return percent.toFixed(2);
         };
+
 
         $scope.getSelectedValues = function(){
             if($scope.data.outOrganisationUnits.length === 0){
@@ -206,24 +209,17 @@ angular.module("hmisPortal")
 
                     chartObject.loading = true;
                     $http.get('FPFacilities.json').success(function(data){
-                        $scope.periodsArr = [];
-                        angular.forEach(orgUnits,function(yAxis){
-                            $scope.periodsArr[yAxis.id] = [];
-                        });
-                        angular.forEach(orgUnits,function(yAxis){
-                            angular.forEach(periods,function(xAxis){
-                                $http.get(portalService.base+'api/sqlViews/NjciHi342Hw/data.json?var=month:'+xAxis.id).success(function(val){
-                                    var num = $scope.getDataFromUrl(val.rows,yAxis.id);
-                                    var count = $scope.getNumberPerOu(data.organisationUnits,yAxis.id);
-                                    $scope.parcent = (num/count)*100;
-                                    $scope.periodsArr[yAxis.id].push(parseFloat($scope.parcent.toFixed(2)));
+                        $http.get(portalService.base+'api/sqlViews/i9ko4WjK1Wj/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:2014041&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            angular.forEach(orgUnits,function(yAxis){
+                                var periodsArr = [];
+                                angular.forEach(periods, function (xAxis) {
+                                    periodsArr.push($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id));
                                 });
+                                chartObject.series.push({type: 'spline', name: yAxis.name, data: $scope.periodsArr[yAxis.id]});
+                                //$scope.periodsArr[yAxis.id] = [];
+                                chartObject.loading = false;
                             });
-                            chartObject.series.push({type: 'spline', name: yAxis.name, data: $scope.periodsArr[yAxis.id]});
-                            //$scope.periodsArr[yAxis.id] = [];
-                            chartObject.loading = false;
                         });
-
                     });
 
                     $scope.pchart = chartObject;
@@ -318,7 +314,7 @@ angular.module("hmisPortal")
             return data;
         };
 
-        $scope.getDataFromUrl  = function(arr,ou){
+        $scope.getDataFromUrl  = function(arr,ou,pe){
 
             var num = 0;
             if(ou == "m0frOspS7JY" ){
@@ -333,14 +329,19 @@ angular.module("hmisPortal")
                         i++;
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[1] == j) {
-                                num += parseInt(v[2]);
+                                if(v[3] == pe){
+                                    num += parseInt(v[2]);
+                                }
                             }
                         });
                     });
                 } else {
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[1] == ou) {
-                            num += parseInt(v[2]);
+                            if(v[3] == pe){
+                                num += parseInt(v[2]);
+                            }
+
                         }
                     });
                 }
