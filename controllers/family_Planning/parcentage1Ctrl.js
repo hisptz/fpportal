@@ -196,7 +196,7 @@ angular.module("hmisPortal")
                         }
                     });
 
-                    var chartObject = angular.copy(portalService.chartObject);
+                    var chartObject = angular.copy(FPManager.defaultChartObject);
 
                     chartObject.title.text ="Percent of Facilities Providing Pills or Condoms through CBD," +$scope.selectedPeriod;
                     chartObject.yAxis.title.text ="% of Facilities";
