@@ -319,7 +319,10 @@ angular.module("hmisPortal")
             var num = 0;
             if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
+                    if(v[3] == pe){
+                        console.log(v[2]);
                         num += parseInt(v[2]);
+                    }
                 });
             }else{
                 if (ou.indexOf(';') > -1) {
