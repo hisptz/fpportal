@@ -213,6 +213,7 @@ angular.module("hmisPortal")
                             angular.forEach(orgUnits,function(yAxis){
                                 var periodsArr = [];
                                 angular.forEach(periods, function (xAxis) {
+                                    console.log($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id));
                                     periodsArr.push($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id));
                                 });
                                 chartObject.series.push({type: 'spline', name: yAxis.name, data: periodsArr});
@@ -320,7 +321,6 @@ angular.module("hmisPortal")
             if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
                     if(v[3] == pe){
-                        console.log(v[2]);
                         num += parseInt(v[2]);
                     }
                 });
@@ -349,8 +349,6 @@ angular.module("hmisPortal")
                     });
                 }
             }
-
-
             return num;
         }
 
