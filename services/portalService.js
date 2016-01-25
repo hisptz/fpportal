@@ -63,7 +63,8 @@ angular.module("hmisPortal")
                     text: ''
                 }, labels: {
                     style: { "color": "#000000", "fontWeight": "bold" }
-                }
+                },minorGridLineWidth: 0,
+                gridLineWidth: 0
             },
             labels: {
                 items: [
@@ -78,7 +79,7 @@ angular.module("hmisPortal")
                 ]
             },
             plotOptions: {
-                series: {
+                spline: {
                     marker: {
                         enabled: false
                     }

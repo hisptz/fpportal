@@ -89,7 +89,7 @@ angular.module("hmisPortal")
 
 
 
-                        chartObject.title.text ="Family Planning clients Adopting Family Planing Following MVA or D+C " +$scope.selectedPeriod;
+                        chartObject.title.text ="Percent Clients Adopting Family Planning following comprehensive Post Abortion Care (cPAC)" +$scope.selectedPeriod;
                         chartObject1.title.text ="Family Planning clients Adopting Family Planing in the Postpartum Period " +$scope.selectedPeriod;
                         chartObject2.title.text ="Family Planning clients Adopting HIV testing and Counseling and Family Planing " +$scope.selectedPeriod;
                         chartObject.yAxis.title.text ="%  of Family Planning Clients";
@@ -123,17 +123,17 @@ angular.module("hmisPortal")
                                 chartSeries1.push(parseFloat(number1));
                                 chartSeries2.push(parseFloat(number2));
                             });
-                            chartObject.series.push({type: 'line', name: yAxis.name, data: chartSeries});
-                            chartObject1.series.push({type: 'line', name: yAxis.name, data: chartSeries1});
-                            chartObject2.series.push({type: 'line', name: yAxis.name, data: chartSeries2});
+                            chartObject.series.push({type: 'spline', name: yAxis.name, data: chartSeries});
+                            chartObject1.series.push({type: 'spline', name: yAxis.name, data: chartSeries1});
+                            chartObject2.series.push({type: 'spline', name: yAxis.name, data: chartSeries2});
                         });
                         chartObject.loading = false;
                         chartObject1.loading = false;
                         chartObject2.loading = false;
 
-                        $scope.chart = chartObject;
-                        $scope.chart2 = chartObject1;
-                        $scope.chart3 = chartObject2;
+                        $('#chart').highcharts(chartObject);
+                        $('#chart2').highcharts(chartObject1);
+                        $('#chart3').highcharts(chartObject2);
 
                     });
 

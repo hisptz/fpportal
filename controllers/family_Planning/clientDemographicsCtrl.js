@@ -287,7 +287,7 @@ angular.module("hmisPortal")
                 }
 
                 $scope.url1 = portalService.base + "api/analytics.json?dimension=dx:lMFKZN3UaYp;ZnTi99UdGCS;UjGebiXNg0t;RfSsrHPGBXV;JSmtnnW6WrR;xhcaH3H3pdK;xip1SDutimh;chmWn8ksICz&dimension=ou:" + FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits) + "&dimension=pe:201412;&displayProperty=NAME";
-                $scope.url = portalService.base + "api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:" + FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits) + "&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412;&displayProperty=NAME";
+                $scope.url = portalService.base + "api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:" + FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits) + "&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
 
                 //data for routine facility
                 if (cardObject.category1 == 'routineFacility') {
@@ -638,7 +638,7 @@ angular.module("hmisPortal")
 
 function preparePeriod(period){
 
-    return ""+period+"01;"+period+"02;"+period+"03;"+period+"04;"+period+"05;"+period+"06;"+period+"07;"+period+"08;"+period+"09;"+period+"10;"+period+"11;"+period+"12;"+period+"Q1;"+period+"Q2;"+period+"Q3;"+period+"Q4";
+    return ""+period+"01;"+period+"02;"+period+"03;"+period+"04;"+period+"05;"+period+"06;"+period+"07;"+period+"08;"+period+"09;"+period+"10;"+period+"11;"+period+"12";
 }
 
 
