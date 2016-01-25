@@ -216,7 +216,6 @@ angular.module("hmisPortal")
                             angular.forEach(orgUnits, function (yAxis) {
                                 var serie = [];
                                 angular.forEach(periods, function (xAxis) {
-
                                     serie.push($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id));
                                 });
                                 console.log(serie);
@@ -224,7 +223,7 @@ angular.module("hmisPortal")
                             });
                             $('#pchart').highcharts(chartObject);
                             $scope.pchart = chartObject;
-                            console.log(chartObject)
+                            console.log(JSON.stringify(chartObject))
                         });
                     });
                 });

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage4.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage4.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" />
     </list>
     <ignored path="fp_portal.iws" />
@@ -40,14 +39,14 @@
       <file leaf-file-name="parcentage1Ctrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39077342" vertical-offset="3222" max-vertical-offset="5112">
-              <caret line="214" column="66" selection-start-line="214" selection-start-column="66" selection-end-line="214" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.65943015" vertical-offset="3222" max-vertical-offset="5094">
+              <caret line="225" column="67" selection-start-line="225" selection-start-column="67" selection-end-line="225" selection-end-column="67" />
               <folding>
                 <element signature="e#1#41#0" expanded="false" />
                 <element signature="e#15326#15925#0" expanded="false" />
                 <element signature="e#15967#16177#0" expanded="false" />
-                <element signature="e#21232#22000#0" expanded="false" />
-                <element signature="e#22049#24389#0" expanded="false" />
+                <element signature="e#21247#22015#0" expanded="false" />
+                <element signature="e#22064#24404#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -924,14 +923,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39077342" vertical-offset="3222" max-vertical-offset="5112">
-          <caret line="214" column="66" selection-start-line="214" selection-start-column="66" selection-end-line="214" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.65943015" vertical-offset="3222" max-vertical-offset="5094">
+          <caret line="225" column="67" selection-start-line="225" selection-start-column="67" selection-end-line="225" selection-end-column="67" />
           <folding>
             <element signature="e#1#41#0" expanded="false" />
             <element signature="e#15326#15925#0" expanded="false" />
             <element signature="e#15967#16177#0" expanded="false" />
-            <element signature="e#21232#22000#0" expanded="false" />
-            <element signature="e#22049#24389#0" expanded="false" />
+            <element signature="e#21247#22015#0" expanded="false" />
+            <element signature="e#22064#24404#0" expanded="false" />
           </folding>
         </state>
       </provider>
