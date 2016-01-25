@@ -216,10 +216,12 @@ angular.module("hmisPortal")
 
                                     serie.push($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id));
                                 });
+                                console.log(serie);
                                 chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                             });
 
                             $scope.pchart = chartObject;
+                            console.log(chartObject)
                         });
                     });
 
