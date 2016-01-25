@@ -260,6 +260,8 @@ angular.module("hmisPortal")
 
             cardObject.chartObject.loading = true;
             var base = "https://dhis.moh.go.tz/";
+            $rootScope.progressMessage = "Fetching data please wait ...";
+            $rootScope.showProgressMessage = true;
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
             j_username: "portal", j_password: "Portal123"
             },function() {
@@ -420,6 +422,8 @@ angular.module("hmisPortal")
                 }else{
                     cardObject.chartObject.loading = false
                 }
+
+                $rootScope.showProgressMessage = false;
 
             });
             });
