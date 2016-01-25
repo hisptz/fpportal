@@ -220,10 +220,11 @@ angular.module("hmisPortal")
                                 //$scope.periodsArr[yAxis.id] = [];
                                 chartObject.loading = false;
                             });
+
+                            $scope.pchart = chartObject;
                         });
                     });
 
-                    $scope.pchart = chartObject;
                 });
 
 
