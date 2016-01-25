@@ -171,7 +171,6 @@ angular.module("hmisPortal")
             return count;
         };
 
-        $scope.getNumberPerOu('DWSo42hunXH');
         $scope.getSelectedValues = function(){
             if($scope.data.outOrganisationUnits.length === 0){
                 alert("no orgunit selected")
@@ -219,9 +218,8 @@ angular.module("hmisPortal")
                                     $scope.periodsArr[yAxis.id].push(parseFloat($scope.parcent.toFixed(2)));
                                 });
                             });
-
                             chartObject.series.push({type: 'spline', name: yAxis.name, data: $scope.periodsArr[yAxis.id]});
-
+                            chartObject.loading = false;
                         });
 
                     });
