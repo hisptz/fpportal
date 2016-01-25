@@ -177,83 +177,58 @@ angular.module("hmisPortal")
                 alert("no orgunit selected")
             }else
             {
-                var orgUnits = [];
-                angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
-                    var name = orgUnit.name;
-                    if(name.indexOf("Zone") > -1){
-                        var names = [];
-                        angular.forEach(orgUnit.children,function(regions){
-                            names.push(regions.id);
-                        });
-                        orgUnits.push({'name':orgUnit.name,'id':names.join(";")});
-                    }else{
-                        orgUnits.push({'name':orgUnit.name,'id':orgUnit.id});
-                    }
-                });
-
-                var chartObject = angular.copy(portalService.chartObject);
-
-                chartObject.title.text ="Percent of Facilities Providing Pills or Condoms through CBD," +$scope.selectedPeriod;
-
-                var orgUnits = $scope.prepareCategory('zones');
-                var periods = $scope.prepareCategory('month');
-
-                angular.forEach(periods, function (val) {
-                    chartObject.xAxis.categories.push(val.name);
-                });
-
-                chartObject.loading = true;
-                $http.get('FPFacilities.json').success(function(data){
-                angular.forEach(orgUnits,function(yAxis){
-                    var chartSeries = [];
-                    angular.forEach(periods,function(xAxis){
-                        $scope.parcent = 0;
-
-                            var count = $scope.getNumberPerOu(data.organisationUnits,yAxis.id)
-
-                            $http.get('parcentData.json').success(function(val){
-                                var num = $scope.getDataFromUrl(val.rows,yAxis.id);
-                                $scope.parcent = (num/count)*100;
+                $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
+                    j_username: "portal", j_password: "Portal123"
+                },function() {
+                    var orgUnits = [];
+                    angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
+                        var name = orgUnit.name;
+                        if(name.indexOf("Zone") > -1){
+                            var names = [];
+                            angular.forEach(orgUnit.children,function(regions){
+                                names.push(regions.id);
                             });
-                        chartSeries.push(parseFloat($scope.parcent.toFixed(2)));
+                            orgUnits.push({'name':orgUnit.name,'id':names.join(";")});
+                        }else{
+                            orgUnits.push({'name':orgUnit.name,'id':orgUnit.id});
+                        }
                     });
-                    chartObject.series.push({type: 'spline', name: yAxis.name, data: chartSeries});
-                });
+
+                    var chartObject = angular.copy(portalService.chartObject);
+
+                    chartObject.title.text ="Percent of Facilities Providing Pills or Condoms through CBD," +$scope.selectedPeriod;
+
+                    var orgUnits = $scope.prepareCategory('zones');
+                    var periods = $scope.prepareCategory('month');
+
+                    angular.forEach(periods, function (val) {
+                        chartObject.xAxis.categories.push(val.name);
+                    });
+
+                    chartObject.loading = true;
+                    $http.get('FPFacilities.json').success(function(data){
+
+                        $scope.periodsArr = [];
+                        angular.forEach(orgUnits,function(yAxis){
+                            $scope.periodsArr[yAxis.id] = []
+                            angular.forEach(periods,function(xAxis){
+                                $http.get(portalService.base+'api/sqlViews/NjciHi342Hw/data.json?var=month:'+xAxis.id).success(function(val){
+                                    var num = $scope.getDataFromUrl(val.rows,yAxis.id);
+                                    var count = $scope.getNumberPerOu(data.organisationUnits,yAxis.id);
+                                    $scope.parcent = (num/count)*100;
+                                    $scope.periodsArr[yAxis.id].push(parseFloat($scope.parcent.toFixed(2)));
+                                });
+                            });
+
+                            chartObject.series.push({type: 'spline', name: yAxis.name, data: $scope.periodsArr[yAxis.id]});
+
+                        });
+
+                    });
+
+                    $scope.pchart = chartObject;
                 });
 
-                $scope.pchart = chartObject;
-                var url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.selectedMethod+"&dimension=ou:LEVEL-4;"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
-                var base = portalService.base;
-                //$.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
-                //    j_username: "portal", j_password: "Portal123"
-                //},function(){
-                //$http.get('parcentData.json').success(function(data){
-                //    var period = "";
-                //    var orgUnits = $scope.prepareCategory('zones');
-                //    var periods = $scope.prepareCategory('month');
-                //
-                //
-                //
-                //
-                //    angular.forEach(periods, function (val) {
-                //        chartObject.xAxis.categories.push(val.name);
-                //    });
-                //
-                //    angular.forEach(orgUnits,function(yAxis){
-                //        var chartSeries = [];
-                //        angular.forEach(periods,function(xAxis){
-                //            var number = $scope.findValue(data.rows,yAxis.id,xAxis.id,'cWMJ2HsNTtr','percent');
-                //            chartSeries.push(parseFloat(number));
-                //        });
-                //        chartObject.series.push({type: 'line', name: yAxis.name, data: chartSeries});
-                //    });
-                //    chartObject.loading = true;
-                //
-                //    $scope.chart = chartObject;
-                //
-                //});
-
-                //});
 
             }
 
