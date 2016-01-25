@@ -209,6 +209,8 @@ angular.module("hmisPortal")
                         $scope.periodsArr = [];
                         angular.forEach(orgUnits,function(yAxis){
                             $scope.periodsArr[yAxis.id] = [];
+                        });
+                        angular.forEach(orgUnits,function(yAxis){
                             angular.forEach(periods,function(xAxis){
                                 $http.get(portalService.base+'api/sqlViews/NjciHi342Hw/data.json?var=month:'+xAxis.id).success(function(val){
                                     var num = $scope.getDataFromUrl(val.rows,yAxis.id);
@@ -218,7 +220,7 @@ angular.module("hmisPortal")
                                 });
                             });
                             chartObject.series.push({type: 'spline', name: yAxis.name, data: $scope.periodsArr[yAxis.id]});
-                            $scope.periodsArr[yAxis.id] = [];
+                            //$scope.periodsArr[yAxis.id] = [];
                             chartObject.loading = false;
                         });
 
