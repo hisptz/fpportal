@@ -216,9 +216,9 @@ angular.module("hmisPortal")
 
                                     serie.push($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id));
                                 });
-                                chartObject.series.push({type: 'spline', name: val.name, data: serie})
+                                chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                             });
-                            
+
                             $scope.pchart = chartObject;
                         });
                     });
