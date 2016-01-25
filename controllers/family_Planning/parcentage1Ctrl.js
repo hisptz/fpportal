@@ -215,7 +215,7 @@ angular.module("hmisPortal")
                                 angular.forEach(periods, function (xAxis) {
                                     periodsArr.push($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id));
                                 });
-                                chartObject.series.push({type: 'spline', name: yAxis.name, data: $scope.periodsArr[yAxis.id]});
+                                chartObject.series.push({type: 'spline', name: yAxis.name, data: periodsArr});
                                 //$scope.periodsArr[yAxis.id] = [];
                                 chartObject.loading = false;
                             });
