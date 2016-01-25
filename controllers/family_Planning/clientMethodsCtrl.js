@@ -282,7 +282,7 @@ angular.module("hmisPortal")
             var datass = '';
 
 
-            $http.get('data1.json').success(function(data){
+            $http.get($scope.url).success(function(data){
                 if(data.hasOwnProperty('metaData')){
                     var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
                     var yAxisItems = ['new','returning','total'];
