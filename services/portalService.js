@@ -66,18 +66,6 @@ angular.module("hmisPortal")
                 },minorGridLineWidth: 0,
                 gridLineWidth: 0
             },
-            labels: {
-                items: [
-                    {
-                        html: 'doses',
-                        style: {
-                            left: '50px',
-                            top: '18px',
-                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
-                        }
-                    }
-                ]
-            },
             plotOptions: {
                 spline: {
                     marker: {
