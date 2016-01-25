@@ -196,7 +196,7 @@ angular.module("hmisPortal")
                     var chartObject = angular.copy(portalService.chartObject);
 
                     chartObject.title.text ="Percent of Facilities Providing Pills or Condoms through CBD," +$scope.selectedPeriod;
-                    chartObject.yAxis.title.text ="%  of Facilities";
+                    chartObject.yAxis.title.text ="% of Facilities";
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = $scope.prepareCategory('month');
 
@@ -206,11 +206,11 @@ angular.module("hmisPortal")
 
                     chartObject.loading = true;
                     $http.get('FPFacilities.json').success(function(data){
-
                         $scope.periodsArr = [];
                         angular.forEach(orgUnits,function(yAxis){
-                            $scope.periodsArr[yAxis.id] = []
+
                             angular.forEach(periods,function(xAxis){
+                                $scope.periodsArr[yAxis.id] = [];
                                 $http.get(portalService.base+'api/sqlViews/NjciHi342Hw/data.json?var=month:'+xAxis.id).success(function(val){
                                     var num = $scope.getDataFromUrl(val.rows,yAxis.id);
                                     var count = $scope.getNumberPerOu(data.organisationUnits,yAxis.id);
