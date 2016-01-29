@@ -299,7 +299,7 @@ angular.module("hmisPortal")
                             //if selected method == all
                             if ($scope.selectedMethod == 'all') {
                                 var subcats = $scope.prepareCategory('routineOutreachMethod');
-
+                                cardObject.chartObject.xAxis.categories = [];
                                 angular.forEach(subcats, function (value) {
                                     cardObject.chartObject.xAxis.categories.push(value.name);
                                 });
