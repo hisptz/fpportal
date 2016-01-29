@@ -211,8 +211,8 @@ angular.module("hmisPortal")
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
                     $http.get('FPFacilities.json').success(function(data){
-                        //$http.get(portalService.base+'api/sqlViews/i9ko4WjK1Wj/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:2014041&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                        $http.get(portalService.base+'api/sqlViews/u1ISMipOV2T/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                        $http.get(portalService.base+'api/sqlViews/i9ko4WjK1Wj/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:2014041&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                        //$http.get(portalService.base+'api/sqlViews/u1ISMipOV2T/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                             $rootScope.showProgressMessage = false;
                             angular.forEach(orgUnits, function (yAxis) {
                                 var serie = [];

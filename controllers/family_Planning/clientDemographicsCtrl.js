@@ -149,6 +149,7 @@ angular.module("hmisPortal")
             {'name':'Oral Pills','id':'aSJKs4oPZAf'},
             {'name':'Injectables','id':'LpkdcaLc4I9'},
             {'name':'Implants','id':'p14JdJaG2aC'},
+            {'name':'NSV','id':'p14JdJaG2a'},
             {'name':'IUCDs','id':'GvbkEo6sfSd'},
             {'name':'Natural FP','id':'QRCRjFreECE'}];
 
@@ -316,10 +317,11 @@ angular.module("hmisPortal")
                                         var seri = [];
                                         angular.forEach(cats, function (value) {
                                             if (value == "Routine") {
-                                                var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods'.category, val.outreach);
+                                                var number = parseInt($scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', val.facility));
+
                                             }
                                             if (value == "Outreach") {
-                                                var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', val.facility);
+                                                var number = parseInt($scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', val.outreach));
                                             }
                                             seri.push({name: value.name, value: parseInt(number)});
                                         });
@@ -332,13 +334,15 @@ angular.module("hmisPortal")
                                         var serie = [];
                                         angular.forEach(subcats, function (value) {
                                             if (val == "Routine") {
-                                                var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods'.category, value.outreach);
+                                                var number = parseInt($scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', value.facility));
+
                                             }
                                             if (val == "Outreach") {
-                                                var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', value.facility);
+                                                var number =  parseInt($scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', value.outreach));
                                             }
                                             serie.push(number);
                                         });
+
                                         $scope.normalseries1.push({type: 'bar', name: val, data: serie})
                                     });
                                     cardObject.chartObject.series = $scope.normalseries1;
@@ -385,10 +389,10 @@ angular.module("hmisPortal")
                                         var serie = [];
                                         angular.forEach(orgunits, function (value) {
                                             if (val == "Routine") {
-                                                var number = $scope.getDataFromUrl(data.rows, value.id, 'methods', singleMethod.outreach);
+                                                var number = parseInt($scope.getDataFromUrl(data.rows, value.id, 'methods', singleMethod.facility));
                                             }
                                             if (val == "Outreach") {
-                                                var number = $scope.getDataFromUrl(data.rows, value.id, 'methods', singleMethod.facility);
+                                                var number = parseInt($scope.getDataFromUrl(data.rows, value.id, 'methods', singleMethod.outreach));
                                             }
                                             serie.push(number);
                                         });
@@ -401,7 +405,8 @@ angular.module("hmisPortal")
 
                         }
                     });
-                } else {
+                }
+                else {
                 ////////////////////////////data for <20/////////////////////////////////////////////
                 $http.get($scope.url).success(function (data) {
                     if (data.hasOwnProperty('metaData')) {
@@ -527,8 +532,7 @@ angular.module("hmisPortal")
 //
             }if(type == 'methods') {
 
-                num = 0;
-                var amount = 0;
+
                 if ((ou.indexOf(';') > -1)) {
 
                     var orgArr = ou.split(";");
@@ -538,7 +542,7 @@ angular.module("hmisPortal")
                         $.each(arr, function (k, v) {
                             if (v[0] == de) {
                                 if (v[1] == j) {
-                                    amount += parseInt(v[3]);
+                                    num += parseInt(v[3]);
                                 }
                             }
                         });
@@ -546,11 +550,12 @@ angular.module("hmisPortal")
                 } else {
                     $.each(arr, function (k, v) {
                         if (v[0] == de && v[1] == ou ) {
-                            amount = v[3];
+                            num += v[3];
                         }
                     });
                 }
-             num = amount;
+
+                return num;
             }
             return num;
         };
