@@ -14,7 +14,8 @@ angular.module("hmisPortal")
         this.denominator='';
         this.indicatorType='';
         this.header='';
-        this.base = "https://hmisportal.moh.go.tz/dhis/";
+        //this.base = "https://hmisportal.moh.go.tz/dhis/";
+        this.base = "http://127.0.0.1:9000/";
         this.icons = [
             {name: 'table', image: 'table.jpg', action: ''},
             {name: 'bar', image: 'bar.png', action: ''},
@@ -63,8 +64,7 @@ angular.module("hmisPortal")
                     text: ''
                 }, labels: {
                     style: { "color": "#000000", "fontWeight": "bold" }
-                },minorGridLineWidth: 0,
-                gridLineWidth: 0
+                }
             },
             plotOptions: {
                 spline: {

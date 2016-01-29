@@ -28,9 +28,9 @@ angular.module("hmisPortal")
                     });
                     zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
                 });
-                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
+                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
             });
-            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
+            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
         };
         $scope.updateTree();
 
@@ -79,12 +79,12 @@ angular.module("hmisPortal")
 
                 var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
                 var base = portalService.base;
-                //$.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
-                //    j_username: "portal", j_password: "Portal123"
-                //},function(){
+                $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
+                    j_username: "portal", j_password: "Portal123"
+                },function(){
                 $rootScope.progressMessage = "Fetching data please wait ...";
                 $rootScope.showProgressMessage = true;
-                    $http.get('survilianceData.json').success(function(data){
+                    $http.get(url).success(function(data){
                         var period = ""
                         var orgUnits = $scope.prepareCategory('zones');
                         var periods = $scope.prepareCategory('month')
@@ -92,8 +92,8 @@ angular.module("hmisPortal")
 
 
                         chartObject.title.text ="Percent Clients Adopting Family Planning following comprehensive Post Abortion Care (cPAC)" +$scope.selectedPeriod;
-                        chartObject1.title.text ="Family Planning clients Adopting Family Planing in the Postpartum Period " +$scope.selectedPeriod;
-                        chartObject2.title.text ="Family Planning clients Adopting HIV testing and Counseling and Family Planing " +$scope.selectedPeriod;
+                        chartObject1.title.text ="Clients Adopting Family Planing in the Postpartum Period " +$scope.selectedPeriod;
+                        chartObject2.title.text ="Family Planning clients Adopting HIV testing and Counseling  " +$scope.selectedPeriod;
                         chartObject.yAxis.title.text ="%  of Family Planning Clients";
                         chartObject.yAxis.labels = {
                             formatter: function () {
@@ -139,7 +139,7 @@ angular.module("hmisPortal")
 
                     });
 
-                //});
+                });
 
             }
 

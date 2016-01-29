@@ -35,9 +35,9 @@ angular.module("hmisPortal")
                     });
                     zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
                 });
-                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
+                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
             });
-            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
+            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
         };
         $scope.updateTree();
 
@@ -166,7 +166,11 @@ angular.module("hmisPortal")
         $scope.updateMethod = function(){
             $scope.data.menuMethods = [];
             angular.forEach($scope.detailedMethod,function(value){
-                $scope.data.menuMethods.push({name:value.name,id:value.total,new:value.new,returning:value.returning,total1:value.total1 });
+                if(value.name == "Male Condoms"){
+                    $scope.data.menuMethods.push({name:value.name,id:value.total,new:value.new,returning:value.returning,total1:value.total1,selected:true });
+                }else{
+                    $scope.data.menuMethods.push({name:value.name,id:value.total,new:value.new,returning:value.returning,total1:value.total1 });
+                }
             });
         };
         $scope.updateMethod();
@@ -257,7 +261,6 @@ angular.module("hmisPortal")
         $scope.getAllMethods();
 
         $scope.prepareSeries = function(cardObject,chart){
-
             cardObject.chartObject.loading = true;
             var base = "https://dhis.moh.go.tz/";
             $rootScope.progressMessage = "Fetching data please wait ...";
@@ -286,7 +289,7 @@ angular.module("hmisPortal")
 
             $http.get($scope.url).success(function(data){
                 if(data.hasOwnProperty('metaData')){
-                    var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
+                    //var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
                     var yAxisItems = ['new','returning','total'];
                     var xAxisItems = [];
                     var methodId = [];
@@ -390,6 +393,7 @@ angular.module("hmisPortal")
                                     if($scope.data.outMethods.length == 1){
                                         if (val == "new") {
                                             var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.new);
+                                            console.log(value.id+" === "+ methodId1.new);
                                         }
                                         if (val == "returning") {
                                             var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.returning);
@@ -557,7 +561,7 @@ angular.module("hmisPortal")
 
         $rootScope.firstClick = function(){
             if($scope.data.outMethods.length === 0){
-                alert('Please select at least one method');
+
             }
             angular.forEach($scope.fpCards,function(value){
                 $scope.prepareSeries(value,value.chart);
