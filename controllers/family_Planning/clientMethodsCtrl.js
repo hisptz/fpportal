@@ -415,6 +415,7 @@ angular.module("hmisPortal")
 
                                     serie.push(number);
                                 });
+                                console.log(serie)
                                 $scope.normalseries1.push({ name: val, data: serie})
                             });
                             cardObject.chartObject.series = $scope.normalseries1;
