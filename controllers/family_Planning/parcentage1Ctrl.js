@@ -31,9 +31,9 @@ angular.module("hmisPortal")
                     });
                     zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
                 });
-                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
+                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
             });
-            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
+            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
         };
         $scope.updateTree();
 
@@ -169,7 +169,6 @@ angular.module("hmisPortal")
                 });
             });
             var num = $scope.getDataFromUrl(arr2,ou,pe);
-            console.log(count+"/"+num+"")
             var percent = (num/count)*100;
             return percent.toFixed(2);
         };
@@ -220,12 +219,10 @@ angular.module("hmisPortal")
                                 angular.forEach(periods, function (xAxis) {
                                     serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id)));
                                 });
-                                console.log(serie);
                                 chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                             });
                             $('#pchart').highcharts(chartObject);
                             $scope.pchart = chartObject;
-                            console.log(JSON.stringify(chartObject))
                         });
                     });
                 });
