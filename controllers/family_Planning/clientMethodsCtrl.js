@@ -158,7 +158,7 @@ angular.module("hmisPortal")
             {'name':'Oral Pills','total':'IFxhP0O4k0W','new':'RAGwynaw4MI','returning':'vrqwn4dNqQY','total1':''},
             {'name':'Injectables','total':'epPM7fO8CnH','new':'sN2NtkZjVyJ','returning':'LmbDl4YdYAn','total1':''},
             {'name':'Implants','total':'pqpVKzE951Y','new':'','returning':'','total1':'pqpVKzE951Y'},
-            {'name':'IUCDs','total':'OQpasUg1Tse','new':'gHL3qXij2Yg','returning':'','total1':''},
+            {'name':'IUCDs','total':'OQpasUg1Tse','new':'','returning':'','total1':'gHL3qXij2Yg'},
             {'name':'NSV','total':'btKkJROB2gP','new':'','returning':'','total1':'btKkJROB2gP'},
             {'name':'Min Lap','total':'mlfh4fgiFhd','new':'','returning':'','total1':'mlfh4fgiFhd'}
         ];
@@ -227,6 +227,7 @@ angular.module("hmisPortal")
                 displayTable:false,
                 displayMap:false,
                 chart:'line',
+                yaxisTittle:'# client',
                 visible:'consumption by method',
                 chartObject:angular.copy(FPManager.defaultChartObject)
 
