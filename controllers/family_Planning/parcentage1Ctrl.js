@@ -198,7 +198,7 @@ angular.module("hmisPortal")
 
                     var chartObject = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent of Facilities Providing Pills or Condoms through Community Based Distribution," +$scope.selectedPeriod;
+                    chartObject.title.text ="Percent of Facilities Providing Pills or Condoms through Community Based Distribution,  Jan 2014 to Dec 2014";
                     chartObject.yAxis.title.text ="% of Facilities";
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = $scope.prepareCategory('month');

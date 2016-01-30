@@ -27,17 +27,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="parcentage1Ctrl.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="parcentage1Ctrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2999" max-vertical-offset="5274">
-              <caret line="200" column="130" selection-start-line="200" selection-start-column="130" selection-end-line="200" selection-end-column="130" />
+            <state vertical-scroll-proportion="0.36530325" vertical-offset="2999" max-vertical-offset="5274">
+              <caret line="200" column="154" selection-start-line="200" selection-start-column="154" selection-end-line="200" selection-end-column="154" />
               <folding>
                 <element signature="e#1#41#0" expanded="false" />
                 <element signature="e#15326#15925#0" expanded="false" />
                 <element signature="e#15967#16177#0" expanded="false" />
-                <element signature="e#21498#22266#0" expanded="false" />
-                <element signature="e#24710#25882#0" expanded="false" />
+                <element signature="e#21497#22265#0" expanded="false" />
+                <element signature="e#24709#25881#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -98,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coverage4.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="coverage4.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/coverage4.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6568915" vertical-offset="632" max-vertical-offset="1314">
-              <caret line="60" column="168" selection-start-line="60" selection-start-column="168" selection-end-line="60" selection-end-column="168" />
+            <state vertical-scroll-proportion="-16.592592" vertical-offset="632" max-vertical-offset="1314">
+              <caret line="60" column="189" selection-start-line="60" selection-start-column="168" selection-end-line="60" selection-end-column="189" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
               </folding>
@@ -206,8 +206,8 @@
         <option value="$PROJECT_DIR$/views/family_planning/coverage2.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" />
-        <option value="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" />
         <option value="$PROJECT_DIR$/views/family_planning/coverage4.html" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" />
       </list>
     </option>
   </component>
@@ -462,7 +462,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15343915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15343915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -944,26 +944,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
+    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage4.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2999" max-vertical-offset="5274">
-          <caret line="200" column="130" selection-start-line="200" selection-start-column="130" selection-end-line="200" selection-end-column="130" />
+        <state vertical-scroll-proportion="-16.592592" vertical-offset="632" max-vertical-offset="1314">
+          <caret line="60" column="189" selection-start-line="60" selection-start-column="168" selection-end-line="60" selection-end-column="189" />
           <folding>
-            <element signature="e#1#41#0" expanded="false" />
-            <element signature="e#15326#15925#0" expanded="false" />
-            <element signature="e#15967#16177#0" expanded="false" />
-            <element signature="e#21498#22266#0" expanded="false" />
-            <element signature="e#24710#25882#0" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage4.html">
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6568915" vertical-offset="632" max-vertical-offset="1314">
-          <caret line="60" column="168" selection-start-line="60" selection-start-column="168" selection-end-line="60" selection-end-column="168" />
+        <state vertical-scroll-proportion="0.36530325" vertical-offset="2999" max-vertical-offset="5274">
+          <caret line="200" column="154" selection-start-line="200" selection-start-column="154" selection-end-line="200" selection-end-column="154" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#1#41#0" expanded="false" />
+            <element signature="e#15326#15925#0" expanded="false" />
+            <element signature="e#15967#16177#0" expanded="false" />
+            <element signature="e#21497#22265#0" expanded="false" />
+            <element signature="e#24709#25881#0" expanded="false" />
           </folding>
         </state>
       </provider>
