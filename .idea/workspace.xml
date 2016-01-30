@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage2.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/routes.js" afterPath="$PROJECT_DIR$/assets/js/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage4.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage4.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,30 +30,14 @@
       <file leaf-file-name="parcentage1Ctrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3334" max-vertical-offset="5274">
-              <caret line="213" column="160" selection-start-line="213" selection-start-column="160" selection-end-line="213" selection-end-column="160" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2999" max-vertical-offset="5274">
+              <caret line="200" column="130" selection-start-line="200" selection-start-column="130" selection-end-line="200" selection-end-column="130" />
               <folding>
                 <element signature="e#1#41#0" expanded="false" />
                 <element signature="e#15326#15925#0" expanded="false" />
                 <element signature="e#15967#16177#0" expanded="false" />
-                <element signature="e#21473#22241#0" expanded="false" />
-                <element signature="e#24685#25857#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parcentageCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="511" max-vertical-offset="5778">
-              <caret line="68" column="92" selection-start-line="0" selection-start-column="0" selection-end-line="367" selection-end-column="0" />
-              <folding>
-                <element signature="e#1#41#0" expanded="false" />
-                <element signature="e#14065#14306#0" expanded="false" />
-                <element signature="e#14362#14430#0" expanded="false" />
-                <element signature="e#14695#15229#0" expanded="false" />
-                <element signature="e#23365#24133#0" expanded="false" />
+                <element signature="e#21498#22266#0" expanded="false" />
+                <element signature="e#24710#25882#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -118,6 +98,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="coverage4.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/family_planning/coverage4.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6568915" vertical-offset="632" max-vertical-offset="1314">
+              <caret line="60" column="168" selection-start-line="60" selection-start-column="168" selection-end-line="60" selection-end-column="168" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="clientDemographicsCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -143,10 +135,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clientMethodsCtrl.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="clientMethodsCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.30747533" vertical-offset="1294" max-vertical-offset="8622">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2320" max-vertical-offset="8622">
               <caret line="160" column="95" selection-start-line="160" selection-start-column="95" selection-end-line="160" selection-end-column="95" />
               <folding>
                 <element signature="e#13845#14613#0" expanded="false" />
@@ -202,7 +194,6 @@
         <option value="$PROJECT_DIR$/views/family_planning/coverage3.html" />
         <option value="$PROJECT_DIR$/views/family_planning/survilience.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/survilienceCtrl.js" />
-        <option value="$PROJECT_DIR$/views/family_planning/coverage4.html" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
         <option value="$PROJECT_DIR$/FPFacilities.json" />
@@ -210,12 +201,13 @@
         <option value="$PROJECT_DIR$/views/family_planning/stock_out1.html" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/stockoutCtrl.js" />
-        <option value="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" />
         <option value="$PROJECT_DIR$/assets/js/routes.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/views/family_planning/coverage2.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" />
+        <option value="$PROJECT_DIR$/views/family_planning/coverage4.html" />
       </list>
     </option>
   </component>
@@ -470,7 +462,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15343915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15343915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -810,16 +802,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.296296" vertical-offset="370" max-vertical-offset="1314">
-          <caret line="33" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="67" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/stock_out1.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.62963" vertical-offset="604" max-vertical-offset="1314">
@@ -853,20 +835,6 @@
           <caret line="213" column="160" selection-start-line="213" selection-start-column="160" selection-end-line="213" selection-end-column="160" />
           <folding>
             <element signature="e#1#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3334" max-vertical-offset="5274">
-          <caret line="213" column="160" selection-start-line="213" selection-start-column="160" selection-end-line="213" selection-end-column="160" />
-          <folding>
-            <element signature="e#1#41#0" expanded="false" />
-            <element signature="e#15326#15925#0" expanded="false" />
-            <element signature="e#15967#16177#0" expanded="false" />
-            <element signature="e#21473#22241#0" expanded="false" />
-            <element signature="e#24685#25857#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -963,7 +931,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30747533" vertical-offset="1294" max-vertical-offset="8622">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1294" max-vertical-offset="8622">
           <caret line="160" column="95" selection-start-line="160" selection-start-column="95" selection-end-line="160" selection-end-column="95" />
           <folding>
             <element signature="e#13845#14613#0" expanded="false" />
@@ -972,6 +940,30 @@
             <element signature="e#17078#17618#0" expanded="false" />
             <element signature="e#21930#22269#0" expanded="false" />
             <element signature="e#28134#29649#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2999" max-vertical-offset="5274">
+          <caret line="200" column="130" selection-start-line="200" selection-start-column="130" selection-end-line="200" selection-end-column="130" />
+          <folding>
+            <element signature="e#1#41#0" expanded="false" />
+            <element signature="e#15326#15925#0" expanded="false" />
+            <element signature="e#15967#16177#0" expanded="false" />
+            <element signature="e#21498#22266#0" expanded="false" />
+            <element signature="e#24710#25882#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage4.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6568915" vertical-offset="632" max-vertical-offset="1314">
+          <caret line="60" column="168" selection-start-line="60" selection-start-column="168" selection-end-line="60" selection-end-column="168" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
