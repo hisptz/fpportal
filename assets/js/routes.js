@@ -198,7 +198,7 @@ angular.module("hmisPortal")
 
         $routeProvider.when("/sos_at_facilities",{
             templateUrl: 'views/family_planning/stock_out1.html',
-            controller: 'familyPlanningCtrl'
+            controller: 'stockoutCtrl'
         });
 
         $routeProvider.when("/sos_at_facilities_trained_hw",{
