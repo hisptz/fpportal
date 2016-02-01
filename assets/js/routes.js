@@ -163,7 +163,7 @@ angular.module("hmisPortal")
 
         $routeProvider.when("/hw_trained",{
             templateUrl: 'views/family_planning/coverage1.html',
-            controller: 'familyPlanningCtrl'
+            controller: 'HWTrainedCtrl'
         });
 
         $routeProvider.when("/facilities_hw_trained",{
