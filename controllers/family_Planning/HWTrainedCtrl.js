@@ -281,9 +281,9 @@ angular.module("hmisPortal")
                                     var serie = [];
                                     angular.forEach(yAxisItems, function (value) {
                                         if($scope.data.outMethods.length == 1){
-                                            var number = $scope.getDataFromUrl(data.rows, val.id, '2016', value.id);
+                                            var number = $scope.getDataFromUrl(data.rows, val.id, '2015', value.id);
                                         }else{
-                                            var number = $scope.getDataFromUrl(data.rows,value.id, '2016', val.id);
+                                            var number = $scope.getDataFromUrl(data.rows,value.id, '2015', val.id);
                                         }
                                         serie.push(number);
                                     });
