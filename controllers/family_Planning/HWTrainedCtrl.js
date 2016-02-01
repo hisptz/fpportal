@@ -209,6 +209,8 @@ angular.module("hmisPortal")
             return methods.join(";");
         };
 
+        $scope.currentYear = '2015'
+
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
             var base = "https://dhis.moh.go.tz/";
@@ -230,7 +232,7 @@ angular.module("hmisPortal")
                 cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
                 var peri = preparePeriod($scope.selectedPeriod);
-                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:2016&displayProperty=NAME";
+                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+$scope.currentYear+"&displayProperty=NAME";
                 var area = [];
                 cardObject.chartObject.loading = true;
                 var datass = '';
@@ -281,9 +283,9 @@ angular.module("hmisPortal")
                                     var serie = [];
                                     angular.forEach(yAxisItems, function (value) {
                                         if($scope.data.outMethods.length == 1){
-                                            var number = $scope.getDataFromUrl(data.rows, val.id, '2015', value.id);
+                                            var number = $scope.getDataFromUrl(data.rows, val.id, $scope.currentYear, value.id);
                                         }else{
-                                            var number = $scope.getDataFromUrl(data.rows,value.id, '2015', val.id);
+                                            var number = $scope.getDataFromUrl(data.rows,value.id, $scope.currentYear, val.id);
                                         }
                                         serie.push(number);
                                     });
