@@ -52,7 +52,7 @@ angular.module("hmisPortal")
             }
         };
         $scope.getSelectedValues = function(){
-            alert('imefika')
+
             if($scope.data.outOrganisationUnits.length === 0){
                 alert("no orgunit selected")
             }else{
