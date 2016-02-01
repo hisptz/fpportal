@@ -254,7 +254,7 @@ angular.module("hmisPortal")
                         }
                         /////////////////////////// second chart ////////////////////////////////
                         cardObject.chartObject.xAxis.categories = [];
-                            angular.forEach(xAxisItems, function (value) {
+                            angular.forEach(yAxisItems, function (value) {
                                 cardObject.chartObject.xAxis.categories.push(value.name);
                             });
                             $scope.normalseries1 = [];
