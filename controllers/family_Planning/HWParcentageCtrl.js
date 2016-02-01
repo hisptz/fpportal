@@ -199,7 +199,7 @@ angular.module("hmisPortal")
                                     serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Hospital')));
                                 });
                                 console.log(serie);
-                                chartObject.series.push({type: 'bar', name: yAxis.name, data: serie})
+                                chartObject.series.push({type: 'column', name: yAxis.name, data: serie})
                             });
                             $('#pchart').highcharts(chartObject);
                             $scope.pchart = chartObject;
@@ -213,7 +213,7 @@ angular.module("hmisPortal")
                                     serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Health Center')));
                                 });
                                 console.log(serie);
-                                chartObject1.series.push({type: 'bar', name: yAxis.name, data: serie})
+                                chartObject1.series.push({type: 'column', name: yAxis.name, data: serie})
                             });
                             $('#pchart1').highcharts(chartObject1);
                             $scope.pchart1 = chartObject;
@@ -227,7 +227,7 @@ angular.module("hmisPortal")
                                     serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Dispensary')));
                                 });
                                 console.log(serie);
-                                chartObject2.series.push({type: 'bar', name: yAxis.name, data: serie})
+                                chartObject2.series.push({type: 'column', name: yAxis.name, data: serie})
                             });
                             $('#pchart2').highcharts(chartObject2);
                             $scope.pchart2 = chartObject;
@@ -321,9 +321,7 @@ angular.module("hmisPortal")
             var num = 0;
             if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
-                    if(v[3] == pe){
-                        num += parseInt(v[2]);
-                    }
+                    num += parseInt(v[2]);
                 });
             }else{
                 if (ou.indexOf(';') > -1) {
@@ -333,19 +331,14 @@ angular.module("hmisPortal")
                         i++;
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[1] == j) {
-                                if(v[3] == pe){
-                                    num += parseInt(v[2]);
-                                }
+                                num += parseInt(v[2]);
                             }
                         });
                     });
                 } else {
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[1] == ou) {
-                            if(v[3] == pe){
-                                num += parseInt(v[2]);
-                            }
-
+                             num += parseInt(v[2]);
                         }
                     });
                 }
