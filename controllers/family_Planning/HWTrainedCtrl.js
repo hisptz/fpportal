@@ -240,7 +240,6 @@ angular.module("hmisPortal")
                         var xAxisItems = [];
                         var yAxisItems = [];
                         var methodId = [];
-                        var methodId1 = [];
                         if($scope.data.outMethods.length == 1){
                             xAxisItems = $scope.prepareCategory('zones');
                             yAxisItems = $scope.prepareCategory('methods');
@@ -274,7 +273,7 @@ angular.module("hmisPortal")
                                 });
                             }
                             else {
-                                //delete cardObject.chartObject.chart;
+                                delete cardObject.chartObject.chart;
                                 angular.forEach(xAxisItems, function (val) {
                                     var serie = [];
                                     angular.forEach(yAxisItems, function (value) {
@@ -285,7 +284,7 @@ angular.module("hmisPortal")
                                         }
                                         serie.push(number);
                                     });
-                                    $scope.normalseries1.push({type: 'spline', name: val.name, data: serie})
+                                    $scope.normalseries1.push({type: 'column', name: val.name, data: serie})
                                 });
                                 cardObject.chartObject.series = $scope.normalseries1;
                                 $('#container12').highcharts(cardObject.chartObject);
