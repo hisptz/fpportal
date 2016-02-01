@@ -188,7 +188,7 @@ angular.module("hmisPortal")
         $scope.fpCards = [
 
             {
-                title:'New Family Planning clients < 20 Years of Age through Routine Facility-Based Service and Community Based Distribution '+$scope.selectedPeriod,
+                title:'New Family Planning clients < 20 Years of Age through Routine Facility-Based Service and Community Based Distribution Jan 2014 to Dec 2014',
                 description:'Total Clients Monthly',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
