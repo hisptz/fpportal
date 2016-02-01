@@ -191,7 +191,7 @@ angular.module("hmisPortal")
                     var method = $scope.data.outMethods[0].id;
                     $http.get('FPFacilities.json').success(function(data){
                         //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Hospital&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                        $http.get(portalService.base+'api/sqlViews/bUYj0dQ4RUE/data.json?var=types:Hospital&var=methods:'+method+'&var=year:2016').success(function(val1){
+                        $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Hospital&var=methods:'+method+'&var=year:2016').success(function(val1){
                             $rootScope.showProgressMessage = false;
                             angular.forEach(orgUnits, function (yAxis) {
                                 var serie = [];
@@ -205,7 +205,7 @@ angular.module("hmisPortal")
                             $scope.pchart = chartObject;
                         });
                         //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Health Center&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                        $http.get(portalService.base+'api/sqlViews/bUYj0dQ4RUE/data.json?var=types:Health Center&var=methods:'+method+'&var=year:2016').success(function(val1){
+                        $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Health Center&var=methods:'+method+'&var=year:2016').success(function(val1){
                             $rootScope.showProgressMessage = false;
                             angular.forEach(orgUnits, function (yAxis) {
                                 var serie = [];
@@ -219,7 +219,7 @@ angular.module("hmisPortal")
                             $scope.pchart1 = chartObject;
                         });
                         //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Dispensary&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                        $http.get(portalService.base+'api/sqlViews/bUYj0dQ4RUE/data.json?var=types:Dispensary&var=methods:'+method+'&var=year:2016').success(function(val1){
+                        $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Dispensary&var=methods:'+method+'&var=year:2016').success(function(val1){
                             $rootScope.showProgressMessage = false;
                             angular.forEach(orgUnits, function (yAxis) {
                                 var serie = [];

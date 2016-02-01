@@ -16,6 +16,7 @@ angular.module("hmisPortal")
             $scope.geoToUse.push({name:value.name,id:value.id, ticked: true });
         });
         $scope.data = {};
+        $scope.data.outOrganisationUnits = [];
         $scope.updateTree = function(){
             $scope.data.orgUnitTree1 = [];
             $scope.data.orgUnitTree = [];
@@ -29,6 +30,7 @@ angular.module("hmisPortal")
                     zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
                 });
                 $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
+                $scope.data.outOrganisationUnits.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
             });
             $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
         };
@@ -50,6 +52,7 @@ angular.module("hmisPortal")
             }
         };
         $scope.getSelectedValues = function(){
+            alert('imefika')
             if($scope.data.outOrganisationUnits.length === 0){
                 alert("no orgunit selected")
             }else{
@@ -91,17 +94,17 @@ angular.module("hmisPortal")
                         $rootScope.showProgressMessage = false;
 
 
-                        chartObject.title.text ="Percent Clients Adopting Family Planning following comprehensive Post Abortion Care (cPAC)" +$scope.selectedPeriod;
-                        chartObject1.title.text ="Clients Adopting Family Planing in the Postpartum Period " +$scope.selectedPeriod;
-                        chartObject2.title.text ="Family Planning clients Adopting HIV testing and Counseling  " +$scope.selectedPeriod;
-                        chartObject.yAxis.title.text ="%  of Family Planning Clients";
+                        chartObject.title.text ="Percent Clients Adopting Family Planning following comprehensive Post Abortion Care (cPAC) Jan 2014 to Dec 2014";
+                        chartObject1.title.text ="Clients Adopting Family Planing in the Postpartum Period  Jan 2014 to Dec 2014";
+                        chartObject2.title.text ="Family Planning clients Adopting HIV testing and Counseling   Jan 2014 to Dec 2014";
+                        chartObject.yAxis.title.text ="%  of Clients";
                         chartObject.yAxis.labels = {
                             formatter: function () {
                                 return this.value + '%';
                             }
                         };
-                        chartObject1.yAxis.title.text ="# of Family Planning Clients";
-                        chartObject2.yAxis.title.text ="%  of Family Planning Clients";
+                        chartObject1.yAxis.title.text ="# of Clients";
+                        chartObject2.yAxis.title.text ="%  of Clients";
                         chartObject2.yAxis.labels = {
                             formatter: function () {
                                 return this.value + '%';
@@ -138,13 +141,10 @@ angular.module("hmisPortal")
                         $('#chart3').highcharts(chartObject2);
 
                     });
-
                 });
-
             }
-
         };
-        $scope.data.outOrganisationUnits = [{name:'Tanzania',id:'m0frOspS7JY'}];
+
         $scope.getSelectedValues();
 
         $scope.getMethodName = function(uid){
