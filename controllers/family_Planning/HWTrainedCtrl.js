@@ -132,8 +132,8 @@ angular.module("hmisPortal")
         $scope.updateMethod = function(){
             $scope.data.menuMethods = [];
             angular.forEach($scope.methods,function(value){
-                if(value.name == "Male Condoms"){
-                    $scope.data.menuMethods.push({ name:value.name,id:value.uid });
+                if(value.name == "Short Acting"){
+                    $scope.data.menuMethods.push({ name:value.name,id:value.uid,selected:true });
                 }else{
                     $scope.data.menuMethods.push({ name:value.name,id:value.uid });
                 }
