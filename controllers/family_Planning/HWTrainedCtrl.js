@@ -202,7 +202,7 @@ angular.module("hmisPortal")
         $scope.getAllMethods = function(){
             var methods = [];
             angular.forEach($scope.methods,function(value){
-                methods.push(value.id);
+                methods.push(value.uid);
             });
             return methods.join(";");
         };
