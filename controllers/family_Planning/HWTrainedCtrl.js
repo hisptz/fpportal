@@ -26,6 +26,7 @@ angular.module("hmisPortal")
         });
         $scope.data = {};
         $scope.data.outMethods = [];
+        $scope.data.outOrganisationUnits = [];
         $scope.updateTree = function(){
             $scope.data.orgUnitTree1 = [];
             $scope.data.orgUnitTree = [];
@@ -38,6 +39,7 @@ angular.module("hmisPortal")
                     });
                     zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
                 });
+                $scope.data.outOrganisationUnits.push({ name:value.name,id:value.id, children:zoneRegions,selected:true })
                 $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
             });
             $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
@@ -243,12 +245,12 @@ angular.module("hmisPortal")
                             xAxisItems = $scope.prepareCategory('zones');
                             console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('methods');
-                            console.log("xaxis items are :"+yAxisItems);
+                            console.log("yaxis items are :"+yAxisItems);
                         }else{
                             xAxisItems = $scope.prepareCategory('methods');
                             console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('zones');
-                            console.log("xaxis items are :"+yAxisItems);
+                            console.log("yaxis items are :"+yAxisItems);
                         }
                         /////////////////////////// second chart ////////////////////////////////
                         cardObject.chartObject.xAxis.categories = [];
