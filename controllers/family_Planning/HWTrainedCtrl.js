@@ -192,7 +192,7 @@ angular.module("hmisPortal")
                 icons:angular.copy(portalService.minimalIcons),
                 displayTable:false,
                 displayMap:false,
-                chart:'line',
+                chart:'column',
                 yaxisTittle:'# Health Workers Trained',
                 visible:'consumption by method',
                 chartObject:angular.copy(FPManager.defaultChartObject)
@@ -236,21 +236,22 @@ angular.module("hmisPortal")
 
                 $http.get($scope.url).success(function(data){
                     if(data.hasOwnProperty('metaData')){
-                        //var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
                         var xAxisItems = [];
                         var yAxisItems = [];
                         var methodId = [];
                         if($scope.data.outMethods.length == 1){
                             xAxisItems = $scope.prepareCategory('zones');
+                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('methods');
-
+                            console.log("xaxis items are :"+yAxisItems);
                         }else{
                             xAxisItems = $scope.prepareCategory('methods');
+                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('zones');
+                            console.log("xaxis items are :"+yAxisItems);
                         }
                         /////////////////////////// second chart ////////////////////////////////
                         cardObject.chartObject.xAxis.categories = [];
-                        if(cardObject.category == 'month'){
                             angular.forEach(xAxisItems, function (value) {
                                 cardObject.chartObject.xAxis.categories.push(value.name);
                             });
@@ -290,7 +291,6 @@ angular.module("hmisPortal")
                                 $('#container12').highcharts(cardObject.chartObject);
 
                             }
-                        }
 
                         //////////////////////////////first chart ///////////////////////////
                         cardObject.chartObject.loading = false
