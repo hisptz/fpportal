@@ -197,7 +197,7 @@ angular.module("hmisPortal")
                 chart:'column',
                 yaxisTittle:'# Health Workers Trained',
                 visible:'consumption by method',
-                chartObject:angular.copy(FPManager.defaultChartObject)
+                chartObject:angular.copy(portalService.chartObject)
             }];
 
 
