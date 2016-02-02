@@ -27,20 +27,27 @@
                 </multi-select-tree>
             </div>
             <div class="input-field col s3 grey lighten-5">
-                <select ng-model="selectedMethod" ng-change="changeMethod(selectedMethod)" material-select watch>
-                    <option value="all">All Methods</option>
-                    <option value="W74wyMy1mp0">Male Condoms</option>
-                    <option value="p8cgxI3yPx8">Female Condoms</option>
-                    <option value="aSJKs4oPZAf">Oral Pills</option>
-                    <option value="LpkdcaLc4I9">Injectables</option>
-                    <option value="p14JdJaG2aC">Implants</option>
-                    <option value="GvbkEo6sfSd">IUCDs</option>
-                    <option value="p14JdJaG2a">NSV</option>
-                    <option value="QRCRjFreECE">Natural FP</option>
+                <multi-select-tree
+                        data-input-model="data.menuMethods"
+                        multi-select="true"
+                        data-output-model="data.outMethods"
+                        data-default-label="Select Method"
+                        data-callback="selectOnly1Or3(item, selectedItems)">
+                </multi-select-tree>
+                <!--<select ng-model="selectedMethod" ng-change="changeMethod(selectedMethod)" material-select watch>-->
+                    <!--<option value="all">All Methods</option>-->
+                    <!--<option value="W74wyMy1mp0">Male Condoms</option>-->
+                    <!--<option value="p8cgxI3yPx8">Female Condoms</option>-->
+                    <!--<option value="aSJKs4oPZAf">Oral Pills</option>-->
+                    <!--<option value="LpkdcaLc4I9">Injectables</option>-->
+                    <!--<option value="p14JdJaG2aC">Implants</option>-->
+                    <!--<option value="GvbkEo6sfSd">IUCDs</option>-->
+                    <!--<option value="p14JdJaG2a">NSV</option>-->
+                    <!--<option value="QRCRjFreECE">Natural FP</option>-->
 
-                    <!--<option value="2015">2015</option>-->
-                </select>
-                <label>Methods</label>
+                    <!--&lt;!&ndash;<option value="2015">2015</option>&ndash;&gt;-->
+                <!--</select>-->
+                <!--<label>Methods</label>-->
             </div>
             <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="firstClick()">Update</div>
         </div>
@@ -66,50 +73,94 @@
 
     <div class="col s12 m12 l10" style="margin-top: 72px">
         <div class="section">
-            <div class="{{ card.cardClass }}" ng-repeat="card in fpCards" style="padding-left: 0px">
-                <div class="card z-depth-2 teal lighten-5 large">
-                    <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
-                        <div style="width: 100%">
-                            <highchart ng-if="!card.displayTable && !card.displayMap" config="card.chartObject"></highchart>
-                        </div>
-                        <div style="width: 100%" ng-if="card.displayMap">
-                            <p ng-if="card.chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>
-                            <openlayers ng-if="!card.chartObject.loading" ol-center="Africa" ol-defaults="defaults" custom-layers="true"  height="400px" >
-                                <ol-layer ol-layer-properties="layer" name="test" ng-repeat="layer in layers"></ol-layer>
-                            </openlayers>
-                        </div>
-                        <div style="width: 100%" ng-if="card.displayTable" >
-                            <p ng-if="card.chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>
-                            <h5 class="center">{{ card.title }}</h5>
-                            <table ng-if="!card.chartObject.loading" class="bordered striped centered" id="jinsi">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Organisation Unit</th>
-                                    <th ng-repeat="cats in card.table.headers">{{ cats }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr data-ng-repeat="column in card.table.colums">
-                                    <td>{{ $index+1 }}</td>
-                                    <td>{{ column.name }}</td>
-                                    <td ng-repeat="nsf in column.values">{{ nsf.value }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+            <div class="section">
+                <div class="{{ fpCards[0].cardClass }}" style="padding-left: 0px">
+                    <div class="card z-depth-2 teal lighten-5 large">
+                        <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
+                            <div style="width: 100%">
+                                <!--<highchart ng-if="!fpCards[0].displayTable && !fpCards[0].displayMap" config="fpCards[0].chartObject"></highchart>-->
+                                <div id="container11" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                            </div>
+                            <div style="width: 100%" ng-if="fpCards[0].displayTable" >
+                                <p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>
+                                <h5 class="center">{{ fpCards[0].title }}</h5>
+                                <table ng-if="!fpCards[0].chartObject.loading" class="bordered striped centered" id="jinsi">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Organisation Unit</th>
+                                        <th ng-repeat="cats in fpCards[0].table.headers">{{ cats }}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr data-ng-repeat="column in fpCards[0].table.colums">
+                                        <td>{{ $index+1 }}</td>
+                                        <td>{{ column.name }}</td>
+                                        <td ng-repeat="nsf in column.values">{{ nsf.value }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ fpCards[0].title }}<i class="material-icons right">more_vert</i></span>
+                            <p>
+                                <a ng-click="changeChart(icon.name,card)" ng-repeat="icon in fpCards[0].icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
+                                <!--<a ng-click="downloadExcel(card.data)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
+                            </p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{ fpCards[0].title }}<i class="material-icons right">close</i></span>
+                            <p class="flow-text">{{ fpCards[0].description }}</p>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ card.title }}<i class="material-icons right">more_vert</i></span>
-                        <p>
-                            <a ng-click="changeChart(icon.name,card)" ng-repeat="icon in card.icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
-                            <!--<a ng-click="downloadExcel(card.data)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4">{{ card.title }}<i class="material-icons right">close</i></span>
-                        <p class="flow-text">{{ card.description }}</p>
+                </div>
+
+                <div class="{{ fpCards[1].cardClass }}" style="padding-left: 0px">
+                    <div class="card z-depth-2 teal lighten-5 large">
+                        <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
+                            <div style="width: 100%">
+                                <highchart ng-if="!fpCards[1].displayTable && !fpCards[1].displayMap && displayMesage" config="fpCards[1].chartObject"></highchart>
+                               <h4 style="font-weight: 200; margin-top: 200px;margin-left: 70px">
+                                   Select the long term method [ Implants, IUCDs, NSV, Min Lap ]
+                               </h4>
+                                <!--<div id="container12" style="min-width: 310px; height: 400px; margin: 0 auto"></div>-->
+
+                            </div>
+                            <div style="width: 100%" ng-if="fpCards[1].displayTable" >
+                                <p ng-if="fpCards[1].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>
+                                <h5 class="center">{{ fpCards[1].title }}</h5>
+                                <table ng-if="!fpCards[1].chartObject.loading" class="bordered striped centered" id="jinsi">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Organisation Unit</th>
+                                        <th ng-repeat="cats in fpCards[1].table.headers">{{ cats }}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr data-ng-repeat="column in fpCards[1].table.colums">
+                                        <td>{{ $index+1 }}</td>
+                                        <td>{{ column.name }}</td>
+                                        <td ng-repeat="nsf in column.values">{{ nsf.value }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">{{ fpCards[1].title }}<i class="material-icons right">more_vert</i></span>
+                            <p>
+                                <a ng-click="changeChart(icon.name,card)" ng-repeat="icon in fpCards[1].icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
+                                <!--<a ng-click="downloadExcel(fpCards[1].data)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
+                            </p>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">{{ fpCards[1].title }}<i class="material-icons right">close</i></span>
+                            <p class="flow-text">{{ fpCards[1].description }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
