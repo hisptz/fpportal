@@ -444,7 +444,6 @@ angular.module("hmisPortal")
                             yAxisItems = $scope.prepareCategory('month');
                             console.log("yaxis items are :"+yAxisItems);
                         }
-                        /////////////////////////// second chart ////////////////////////////////
                         cardObject.chartObject.xAxis.categories = [];
                         angular.forEach(yAxisItems, function (value) {
                             cardObject.chartObject.xAxis.categories.push(value.name);
@@ -671,13 +670,6 @@ angular.module("hmisPortal")
                 data.push({'name':'Nov'+per,'id':per+'11'});
                 data.push({'name':'Dec '+per,'id':per+'12'});
             }if(type == 'methods'){
-                data.push({'name':'Male Condoms','id':'W74wyMy1mp0'},
-                    {'name':'Female Condoms','id':'p8cgxI3yPx8'},
-                    {'name':'Oral Pills','id':'aSJKs4oPZAf'},
-                    {'name':'Injectables','id':'LpkdcaLc4I9'},
-                    {'name':'Implants','id':'p14JdJaG2aC'},
-                    {'name':'IUCDs','id':'GvbkEo6sfSd'},
-                    {'name':'Natural FP','id':'QRCRjFreECE'});
                 angular.forEach($scope.data.outMethods,function(value){
                     if(value.name == 'Male Condoms' || value.name == 'Female Condoms' || value.name == 'Oral Pills' || value.name == 'Injectables' || value.name == 'Implants' || value.name == 'IUCDs' || value.name == 'Natural FP')
                         data.push({'name':value.name,'id':value.id})

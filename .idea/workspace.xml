@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" afterPath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="portalService.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="portalService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/portalService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43962008" vertical-offset="0" max-vertical-offset="4896">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4896">
               <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
               <folding />
             </state>
@@ -113,15 +111,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clientDemographicsCtrl.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="clientDemographicsCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.354839" vertical-offset="2858" max-vertical-offset="12150">
-              <caret line="170" column="121" selection-start-line="170" selection-start-column="38" selection-end-line="170" selection-end-column="121" />
+            <state vertical-scroll-proportion="0.41076487" vertical-offset="9394" max-vertical-offset="10692">
+              <caret line="671" column="35" selection-start-line="671" selection-start-column="35" selection-end-line="671" selection-end-column="35" />
               <folding>
+                <element signature="e#73549#81375#0" expanded="false" />
                 <element signature="e#74509#76012#0" expanded="false" />
                 <element signature="e#78464#79944#0" expanded="false" />
-                <element signature="e#86063#86571#0" expanded="false" />
+                <element signature="e#85965#86473#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -201,9 +200,9 @@
         <option value="$PROJECT_DIR$/views/family_planning/coverage1.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HWTrainedCtrl.js" />
-        <option value="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
       </list>
     </option>
   </component>
@@ -501,8 +500,13 @@
           <line>64</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js</url>
+          <line>310</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="18" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -888,18 +892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.354839" vertical-offset="2858" max-vertical-offset="12150">
-          <caret line="170" column="121" selection-start-line="170" selection-start-column="38" selection-end-line="170" selection-end-column="121" />
-          <folding>
-            <element signature="e#74509#76012#0" expanded="false" />
-            <element signature="e#78464#79944#0" expanded="false" />
-            <element signature="e#86063#86571#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.962963" vertical-offset="1774" max-vertical-offset="3132">
@@ -927,9 +919,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/portalService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43962008" vertical-offset="0" max-vertical-offset="4896">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4896">
           <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41076487" vertical-offset="9394" max-vertical-offset="10692">
+          <caret line="671" column="35" selection-start-line="671" selection-start-column="35" selection-end-line="671" selection-end-column="35" />
+          <folding>
+            <element signature="e#73549#81375#0" expanded="false" />
+            <element signature="e#74509#76012#0" expanded="false" />
+            <element signature="e#78464#79944#0" expanded="false" />
+            <element signature="e#85965#86473#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
