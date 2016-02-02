@@ -55,12 +55,12 @@ angular.module("hmisPortal")
         $scope.selectedMethod = 't8vQoqdY0en';
 
 
-        $scope.FPmethods = [
-            {'name':'Short Acting','uid':'Igxe3yXGEoW'},
-            {'name':'Implants','uid':'t8vQoqdY0en'},
-            {'name':'IUCDs','uid':'acbet8SSjCY'},
+        $scope.methods = [
+            {'name':'Short Acting','uid':'iWDh2fUbRTJ'},
+            {'name':'Implants','uid':'Igxe3yXGEoW'},
+            {'name':'IUCDs','uid':'t8vQoqdY0en'},
             {'name':'NSV','uid':'BLqgpawRwGN'},
-            {'name':'Min Lap','uid':'iWDh2fUbRTJ'}
+            {'name':'Min Lap','uid':'acbet8SSjCY'}
         ];
         $scope.updateMethod = function(){
             $scope.data.menuMethods = [];
