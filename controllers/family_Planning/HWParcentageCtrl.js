@@ -55,7 +55,7 @@ angular.module("hmisPortal")
         $scope.selectedMethod = 't8vQoqdY0en';
 
 
-        $scope.methods = [
+        $scope.FPmethods = [
             {'name':'Short Acting','uid':'iWDh2fUbRTJ'},
             {'name':'Implants','uid':'Igxe3yXGEoW'},
             {'name':'IUCDs','uid':'t8vQoqdY0en'},
