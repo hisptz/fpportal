@@ -39,6 +39,24 @@ angular.module("hmisPortal")
             });
             $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
         };
+
+        $scope.updateTreeWithOne = function(){
+            $scope.data.orgUnitTree1 = [];
+            $scope.data.orgUnitTree = [];
+            angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
+                var zoneRegions = [];
+                angular.forEach(value.organisationUnits,function(regions){
+                    var regionDistricts = [];
+                    angular.forEach(regions.children,function(district){
+                        regionDistricts.push({name:district.name,id:district.id });
+                    });
+                    zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
+                });
+                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
+            });
+            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
+        };
+
         $scope.updateTree();
 
         $scope.selectOnly1Or2 = function(item, selectedItems) {
@@ -158,7 +176,7 @@ angular.module("hmisPortal")
             {'name':'Oral Pills','total':'IFxhP0O4k0W','new':'RAGwynaw4MI','returning':'vrqwn4dNqQY','total1':''},
             {'name':'Injectables','total':'epPM7fO8CnH','new':'sN2NtkZjVyJ','returning':'LmbDl4YdYAn','total1':''},
             {'name':'Implants','total':'pqpVKzE951Y','new':'','returning':'','total1':'pqpVKzE951Y'},
-            {'name':'IUCDs','total':'OQpasUg1Tse','new':'','returning':'','total1':'gHL3qXij2Yg'},
+            {'name':'IUCDs','total':'gHL3qXij2Yg','new':'','returning':'','total1':'gHL3qXij2Yg'},
             {'name':'NSV','total':'btKkJROB2gP','new':'','returning':'','total1':'btKkJROB2gP'},
             {'name':'Min Lap','total':'mlfh4fgiFhd','new':'','returning':'','total1':'mlfh4fgiFhd'}
         ];
@@ -166,7 +184,7 @@ angular.module("hmisPortal")
         $scope.updateMethod = function(){
             $scope.data.menuMethods = [];
             angular.forEach($scope.detailedMethod,function(value){
-                if(value.name == "Male Condoms"){
+                if(value.name == "Implants"){
                     $scope.data.menuMethods.push({name:value.name,id:value.total,new:value.new,returning:value.returning,total1:value.total1,selected:true });
                 }else{
                     $scope.data.menuMethods.push({name:value.name,id:value.total,new:value.new,returning:value.returning,total1:value.total1 });
@@ -174,6 +192,28 @@ angular.module("hmisPortal")
             });
         };
         $scope.updateMethod();
+
+        $scope.$watch('data.outOrganisationUnits', function() {
+            if($scope.data.outOrganisationUnits){
+                if($scope.data.outOrganisationUnits.length > 1){
+                    $scope.updateMethod();
+                }else{
+
+                }
+            }
+
+        }, true);
+
+        $scope.$watch('data.outMethods', function() {
+            if($scope.data.outMethods){
+                if($scope.data.outMethods.length > 1){
+                    $scope.updateTreeWithOne();
+                }else{
+
+                }
+            }
+
+        }, true);
 
         $scope.selectOnly1Or3 = function(item, selectedItems) {
             if (selectedItems  !== undefined && selectedItems.length >= 7) {
@@ -278,7 +318,7 @@ angular.module("hmisPortal")
                 cardObject.displayMap = false;
                 cardObject.displayTable = false;
             }
-            cardObject.chartObject.title.text = cardObject.title+' '+$scope.getSingleMethods($scope.data.outMethods);
+            cardObject.chartObject.title.text = cardObject.title  + " " +$scope.titleToUse;
             cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
             var peri = preparePeriod($scope.selectedPeriod);
@@ -296,6 +336,7 @@ angular.module("hmisPortal")
                     var methodId = [];
                     var methodId1 = [];
                     if($scope.data.outMethods.length == 1){
+                        $scope.titleToUse = $scope.data.outMethods[0].name;
                         xAxisItems = $scope.prepareCategory('zones');
                         angular.forEach($scope.data.outMethods,function(value){
                             angular.forEach($scope.detailedMethod,function(va){
@@ -306,6 +347,7 @@ angular.module("hmisPortal")
                             });
                         });
                     }else{
+                        $scope.titleToUse = $scope.data.outMethods[0].name;
                         angular.forEach($scope.data.outMethods,function(value){
                             xAxisItems.push(value);
                         });

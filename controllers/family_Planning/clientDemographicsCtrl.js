@@ -39,19 +39,81 @@ angular.module("hmisPortal")
             });
             $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
         };
+
+        $scope.updateTreeWithOne = function(){
+            $scope.data.orgUnitTree1 = [];
+            $scope.data.orgUnitTree = [];
+            angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
+                var zoneRegions = [];
+                angular.forEach(value.organisationUnits,function(regions){
+                    var regionDistricts = [];
+                    angular.forEach(regions.children,function(district){
+                        regionDistricts.push({name:district.name,id:district.id });
+                    });
+                    zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
+                });
+                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
+            });
+            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
+        };
+
         $scope.updateTree();
 
+        $scope.methods = [
+            {'name':'Male Condoms','id':'W74wyMy1mp0','facility':'','outreach':''},
+            {'name':'Female Condoms','id':'p8cgxI3yPx8','facility':'','outreach':''},
+            {'name':'Oral Pills','id':'aSJKs4oPZAf','facility':'','outreach':''},
+            {'name':'Injectables','id':'LpkdcaLc4I9','facility':'','outreach':''},
+            {'name':'Implants','id':'p14JdJaG2aC','facility':'lMFKZN3UaYp','outreach':'ZnTi99UdGCS'},
+            {'name':'IUCDs','id':'GvbkEo6sfSd','facility':'UjGebiXNg0t','outreach':'RfSsrHPGBXV'},
+            {'name':'NSV','id':'p14JdJaG2a','facility':'JSmtnnW6WrR','outreach':'chmWn8ksICz'},
+            {'name':'Min Lap','facility':'xhcaH3H3pdK','outreach':'xip1SDutimh'},
+            {'name':'Natural FP','id':'QRCRjFreECE','facility':'','outreach':''}];
+
         $scope.updateMethod = function(){
+            $scope.data.menuMethods = [];
+            angular.forEach($scope.methods,function(value){
+                if(value.name == "Implants"){
+                    $scope.data.menuMethods.push({ name:value.name,id:value.id,'facility':value.facility,'outreach':value.outreach,selected:true });
+                }else{
+                    $scope.data.menuMethods.push({ name:value.name,id:value.id,'facility':value.facility,'outreach':value.outreach });
+                }
+            });
 
         };
 
         $scope.selectOnly1Or2 = function(item, selectedItems) {
+
+            if (selectedItems  !== undefined && selectedItems.length >= 1) {
+            }
             if (selectedItems  !== undefined && selectedItems.length >= 7) {
                 return false;
             } else {
                 return true;
             }
         };
+
+        $scope.$watch('data.outOrganisationUnits', function() {
+            if($scope.data.outOrganisationUnits){
+                if($scope.data.outOrganisationUnits.length > 1){
+                    $scope.updateMethod();
+                }else{
+
+                }
+            }
+
+        }, true);
+
+        $scope.$watch('data.outMethods', function() {
+            if($scope.data.outMethods){
+                if($scope.data.outMethods.length > 1){
+                    $scope.updateTreeWithOne();
+                }else{
+
+                }
+            }
+
+        }, true);
 
 
         $scope.changeMethod = function(){
@@ -143,37 +205,18 @@ angular.module("hmisPortal")
             {'name':'MOH Tanzania','uid':'m0frOspS7JY'}
         ];
 
-        $scope.methods = [
-            {'name':'Male Condoms','id':'W74wyMy1mp0','facility':'','outreach':''},
-            {'name':'Female Condoms','id':'p8cgxI3yPx8','facility':'','outreach':''},
-            {'name':'Oral Pills','id':'aSJKs4oPZAf','facility':'','outreach':''},
-            {'name':'Injectables','id':'LpkdcaLc4I9','facility':'','outreach':''},
-            {'name':'Implants','id':'p14JdJaG2aC','facility':'lMFKZN3UaYp','outreach':'ZnTi99UdGCS'},
-            {'name':'IUCDs','id':'GvbkEo6sfSd','facility':'UjGebiXNg0t','outreach':'RfSsrHPGBXV'},
-            {'name':'NSV','id':'p14JdJaG2a','facility':'JSmtnnW6WrR','outreach':'chmWn8ksICz'},
-            {'name':'Min Lap','facility':'xhcaH3H3pdK','outreach':'xip1SDutimh'},
-            {'name':'Natural FP','id':'QRCRjFreECE','facility':'','outreach':''}];
 
-        $scope.updateMethod = function(){
-            $scope.data.menuMethods = [];
-            angular.forEach($scope.methods,function(value){
-                if(value.name == "Implants"){
-                    $scope.data.menuMethods.push({ name:value.name,id:value.id,'facility':value.facility,'outreach':value.outreach,selected:true });
-                }else{
-                    $scope.data.menuMethods.push({ name:value.name,id:value.id,'facility':value.facility,'outreach':value.outreach });
+
+        $scope.displayMesage = true;
+
+        $scope.updateDisplayMessage = function(methods){
+            $scope.displayMesage = false;
+            angular.forEach(methods,function(value){
+                if(value.name == 'Implants' || value.name == 'IUCDs' || value.name == 'NSV' || value.name == 'Min Lap'){
+                    $scope.displayMesage = true;
                 }
-        })
-            $scope.displayMesage = true;
-
-            $scope.updateDisplayMessage = function(methods){
-                $scope.displayMesage = false;
-                angular.forEach(methods,function(value){
-                    if(value.name == 'Implants' || value.name == 'IUCDs' || value.name == 'NSV' || value.name == 'Min Lap'){
-                        $scope.displayMesage = true;
-                    }
-                });
-            }
-        };
+            });
+        }
         $scope.updateMethod();
 
         $scope.selectOnly1Or3 = function(item, selectedItems) {
@@ -262,10 +305,16 @@ angular.module("hmisPortal")
             cardObject.chartObject.loading = true;
             $rootScope.progressMessage = "Fetching data please wait ...";
             $rootScope.showProgressMessage = true;
+
             var base = "https://dhis.moh.go.tz/";
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                 j_username: "portal", j_password: "Portal123"
             },function() {
+                if($scope.data.outMethods.length == 1){
+                    $scope.titleToUse = $scope.data.outMethods[0].name;
+                }else{
+                    $scope.titleToUse = $scope.data.outMethods[0].name;
+                }
                 if (chart == 'table') {
                     cardObject.displayTable = true;
                     cardObject.displayMap = false;
@@ -274,7 +323,7 @@ angular.module("hmisPortal")
                     cardObject.displayMap = false;
                     cardObject.displayTable = false;
                 }
-                cardObject.chartObject.title.text = cardObject.title;
+                cardObject.chartObject.title.text = cardObject.title + " " +$scope.titleToUse;
                 cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
                 var peri = preparePeriod($scope.selectedPeriod);
@@ -310,6 +359,7 @@ angular.module("hmisPortal")
                 //data for routine facility
                 if (cardObject.category1 == 'routineFacility') {
                     $http.get($scope.url1).success(function (data) {
+
                         $scope.updateDisplayMessage($scope.data.outMethods);
                         if (data.hasOwnProperty('metaData')) {
                             var cats = ['Routine', 'Outreach'];

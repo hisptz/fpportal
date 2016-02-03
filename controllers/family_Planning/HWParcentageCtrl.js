@@ -31,11 +31,28 @@ angular.module("hmisPortal")
                     });
                     zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
                 });
+                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
+            });
+            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
+        };
+        $scope.updateTree();
+
+        $scope.updateTreeWithOne = function(){
+            $scope.data.orgUnitTree1 = [];
+            $scope.data.orgUnitTree = [];
+            angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
+                var zoneRegions = [];
+                angular.forEach(value.organisationUnits,function(regions){
+                    var regionDistricts = [];
+                    angular.forEach(regions.children,function(district){
+                        regionDistricts.push({name:district.name,id:district.id });
+                    });
+                    zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
+                });
                 $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
             });
             $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
         };
-        $scope.updateTree();
 
         $scope.selectOnly1Or2 = function(item, selectedItems) {
             if (selectedItems  !== undefined && selectedItems.length >= 7) {
@@ -74,6 +91,28 @@ angular.module("hmisPortal")
             });
         };
         $scope.updateMethod();
+
+        $scope.$watch('data.outOrganisationUnits', function() {
+            if($scope.data.outOrganisationUnits){
+                if($scope.data.outOrganisationUnits.length > 1){
+                    $scope.updateMethod();
+                }else{
+
+                }
+            }
+
+        }, true);
+
+        $scope.$watch('data.outMethods', function() {
+            if($scope.data.outMethods){
+                if($scope.data.outMethods.length > 1){
+                    $scope.updateTreeWithOne();
+                }else{
+
+                }
+            }
+
+        }, true);
 
         $scope.selectOnly1Or3 = function(item, selectedItems) {
             if (selectedItems  !== undefined && selectedItems.length >= 7) {
@@ -140,6 +179,11 @@ angular.module("hmisPortal")
                 $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function() {
+                    if($scope.data.outMethods.length == 1){
+                        $scope.titleToUse = $scope.data.outMethods[0].name;
+                    }else{
+                        $scope.titleToUse = $scope.data.outMethods[0].name;
+                    }
                     var orgUnits = [];
                     angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
                         var name = orgUnit.name;
@@ -158,9 +202,9 @@ angular.module("hmisPortal")
                     var chartObject1 = angular.copy(portalService.chartObject);
                     var chartObject2 = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent of Hospitals with  => 2 Health Workers Trained " ;
-                    chartObject1.title.text ="Percent of Health Centres => 2 Health Workers Trained " ;
-                    chartObject2.title.text ="Percent of Dispensaries => 2 Health Workers Trained ";
+                    chartObject.title.text ="Percent of Hospitals with  => 2 Health Workers Trained "+$scope.titleToUse;
+                    chartObject1.title.text ="Percent of Health Centres => 2 Health Workers Trained "+$scope.titleToUse;
+                    chartObject2.title.text ="Percent of Dispensaries => 2 Health Workers Trained "+$scope.titleToUse;
 
                     chartObject.yAxis.title.text ="% of Facilities";
                     chartObject1.yAxis.title.text ="% of Facilities";

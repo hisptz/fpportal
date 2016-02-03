@@ -8,14 +8,14 @@
 <div class="row">
     <div class="z-depth-1" style="width:96.5%;position:fixed;top:70px;z-index:900;margin-left: 24px; margin-right: 24px">
         <div class="section grey lighten-5 " >
-            <div class="input-field col s3 grey lighten-5">
+            <div class="input-field col s2 grey lighten-5">
                 <select ng-model="selectedPeriod" ng-change="$root.firstClick1()">
-                    <option value="2014">2014</option>
+                    <option value="2014"></option>
                     <!--<option value="2015">2015</option>-->
                 </select>
                 <label>Period</label>
             </div>
-            <div class="input-field col s4 grey lighten-5">
+            <div class="input-field col s5 grey lighten-5">
                 <multi-select-tree
                         data-input-model="data.orgUnitTree"
                         multi-select="true"
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Percent of Hospitals with  => 2 Health Workers Trained {{ getMethodName(selectedMethod) }} <i class="material-icons right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">Percent of Hospitals with  => 2 Health Workers Trained  {{ titleToUse }} <i class="material-icons right"></i></span>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Percent of Health Centres => 2 Health Workers Trained {{ getMethodName(selectedMethod) }} <i class="material-icons right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">Percent of Health Centres => 2 Health Workers Trained  {{ titleToUse }} <i class="material-icons right"></i></span>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">Percent of Dispensaries => 2 Health Workers Trained {{ getMethodName(selectedMethod) }} <i class="material-icons right"></i></span>
+                        <span class="card-title activator grey-text text-darken-4">Percent of Dispensaries => 2 Health Workers Trained  {{ titleToUse }} <i class="material-icons right"></i></span>
                     </div>
                 </div>
             </div>
