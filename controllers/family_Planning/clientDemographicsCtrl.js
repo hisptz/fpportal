@@ -313,7 +313,7 @@ angular.module("hmisPortal")
                 if($scope.data.outMethods.length == 1){
                     $scope.titleToUse = $scope.data.outMethods[0].name;
                 }else{
-                    $scope.titleToUse = $scope.data.outMethods[0].name;
+                    $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
                 }
                 if (chart == 'table') {
                     cardObject.displayTable = true;

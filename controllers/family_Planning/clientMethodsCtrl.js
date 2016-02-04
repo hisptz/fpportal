@@ -347,7 +347,7 @@ angular.module("hmisPortal")
                             });
                         });
                     }else{
-                        $scope.titleToUse = $scope.data.outMethods[0].name;
+                        $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
                         angular.forEach($scope.data.outMethods,function(value){
                             xAxisItems.push(value);
                         });
