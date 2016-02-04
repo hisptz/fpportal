@@ -204,11 +204,7 @@ angular.module("hmisPortal")
                 $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function() {
-                    if($scope.data.outMethods.length == 1){
-                        $scope.titleToUse = $scope.data.outMethods[0].name;
-                    }else{
-                        $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
-                    }
+
                     var orgUnits = [];
                     angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
                         var name = orgUnit.name;
@@ -242,11 +238,17 @@ angular.module("hmisPortal")
 
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = [];
-
-                    angular.forEach($scope.data.outMethods,function(value){
-                        periods.push({name:value.name,id:value.id})
-                    });
-
+                    if($scope.data.outMethods.length == 1){
+                        $scope.titleToUse = $scope.data.outMethods[0].name;
+                        angular.forEach($scope.data.outMethods,function(value){
+                            periods.push({name:value.name,id:value.id})
+                        });
+                    }else{
+                        $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
+                        angular.forEach($scope.data.outOrganisationUnits,function(value){
+                            periods.push({name:value.name,id:value.id})
+                        });
+                    }
                     angular.forEach(periods, function (val) {
                         chartObject.xAxis.categories.push(val.name);
                     });
@@ -305,7 +307,6 @@ angular.module("hmisPortal")
                             });
 
                         }else{
-                            $scope.preparevar
                             //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Hospital&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                             $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Hospital&var=year:2016').success(function(val1){
                                 $rootScope.showProgressMessage = false;
