@@ -170,6 +170,31 @@ angular.module("hmisPortal")
             return percent.toFixed(2);
         };
 
+        $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,type,method){
+            var count = 0;
+            angular.forEach(arr,function(value){
+                if ((value.name.indexOf(type) > -1)) {
+                    angular.forEach(value.ancestors, function (val) {
+                        if ((ou.indexOf(';') > -1)) {
+                            var orgArr = ou.split(";");
+                            $.each(orgArr, function (c, j) {
+                                if (j == val.id) {
+                                    count++;
+                                }
+                            });
+                        } else {
+                            if (ou == val.id) {
+                                count++;
+                            }
+                        }
+                    });
+                }
+            });
+            var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
+            var percent = (num/count)*100;
+            return percent.toFixed(2);
+        };
+
 
         $scope.getSelectedValues = function(){
             if($scope.data.outOrganisationUnits.length === 0){
@@ -196,6 +221,11 @@ angular.module("hmisPortal")
                         }else{
                             orgUnits.push({'name':orgUnit.name,'id':orgUnit.id});
                         }
+                    });
+
+                    var methodss = [];
+                    angular.forEach($scope.data.outMethods,function(method){
+                        methodss.push({'name':method.name,'id':method.id});
                     });
 
                     var chartObject = angular.copy(portalService.chartObject);
@@ -233,45 +263,91 @@ angular.module("hmisPortal")
                     $rootScope.showProgressMessage = true;
                     var method = $scope.data.outMethods[0].id;
                     $http.get('FPFacilities.json').success(function(data){
-                        //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Hospital&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                        $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Hospital&var=methods:'+method+'&var=year:2016').success(function(val1){
-                            $rootScope.showProgressMessage = false;
-                            angular.forEach(orgUnits, function (yAxis) {
-                                var serie = [];
-                                angular.forEach(periods, function (xAxis) {
-                                    serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Hospital')));
+                        if($scope.data.outMethods.length  == 1){
+                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Hospital&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Hospital&var=methods:'+method+'&var=year:2016').success(function(val1){
+                                $rootScope.showProgressMessage = false;
+                                angular.forEach(orgUnits, function (yAxis) {
+                                    var serie = [];
+                                    angular.forEach(periods, function (xAxis) {
+                                        serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Hospital')));
+                                    });
+                                    chartObject.series.push({type: 'column', name: yAxis.name, data: serie})
                                 });
-                                chartObject.series.push({type: 'column', name: yAxis.name, data: serie})
+                                $('#pchart').highcharts(chartObject);
+                                $scope.pchart = chartObject;
                             });
-                            $('#pchart').highcharts(chartObject);
-                            $scope.pchart = chartObject;
-                        });
-                        //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Health Center&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                        $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Health Center&var=methods:'+method+'&var=year:2016').success(function(val1){
-                            $rootScope.showProgressMessage = false;
-                            angular.forEach(orgUnits, function (yAxis) {
-                                var serie = [];
-                                angular.forEach(periods, function (xAxis) {
-                                    serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Health Center')));
+                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Health Center&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Health Center&var=methods:'+method+'&var=year:2016').success(function(val1){
+                                $rootScope.showProgressMessage = false;
+                                angular.forEach(orgUnits, function (yAxis) {
+                                    var serie = [];
+                                    angular.forEach(periods, function (xAxis) {
+                                        serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Health Center')));
+                                    });
+                                    chartObject1.series.push({type: 'column', name: yAxis.name, data: serie})
                                 });
-                                chartObject1.series.push({type: 'column', name: yAxis.name, data: serie})
+                                $('#pchart1').highcharts(chartObject1);
+                                $scope.pchart1 = chartObject;
                             });
-                            $('#pchart1').highcharts(chartObject1);
-                            $scope.pchart1 = chartObject;
-                        });
-                        //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Dispensary&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                        $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Dispensary&var=methods:'+method+'&var=year:2016').success(function(val1){
-                            $rootScope.showProgressMessage = false;
-                            angular.forEach(orgUnits, function (yAxis) {
-                                var serie = [];
-                                angular.forEach(periods, function (xAxis) {
-                                    serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Dispensary')));
+                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Dispensary&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Dispensary&var=methods:'+method+'&var=year:2016').success(function(val1){
+                                $rootScope.showProgressMessage = false;
+                                angular.forEach(orgUnits, function (yAxis) {
+                                    var serie = [];
+                                    angular.forEach(periods, function (xAxis) {
+                                        serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Dispensary')));
+                                    });
+                                    chartObject2.series.push({type: 'column', name: yAxis.name, data: serie})
                                 });
-                                chartObject2.series.push({type: 'column', name: yAxis.name, data: serie})
+                                $('#pchart2').highcharts(chartObject2);
+                                $scope.pchart2 = chartObject;
                             });
-                            $('#pchart2').highcharts(chartObject2);
-                            $scope.pchart2 = chartObject;
-                        });
+
+                        }else{
+                            $scope.preparevar
+                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Hospital&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Hospital&var=year:2016').success(function(val1){
+                                $rootScope.showProgressMessage = false;
+                                angular.forEach(methodss, function (yAxis) {
+                                    var serie = [];
+                                    angular.forEach(periods, function (xAxis) {
+                                        serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,$scope.data.outOrganisationUnits[0].id,val1.rows,xAxis.id,'Hospital',yAxis.name)));
+                                    });
+                                    chartObject.series.push({type: 'column', name: yAxis.name, data: serie})
+                                });
+                                $('#pchart').highcharts(chartObject);
+                                $scope.pchart = chartObject;
+                            });
+                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Health Center&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:2016').success(function(val1){
+                                $rootScope.showProgressMessage = false;
+                                angular.forEach(methodss, function (yAxis) {
+                                    var serie = [];
+                                    angular.forEach(periods, function (xAxis) {
+                                        serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,$scope.data.outOrganisationUnits[0].id,val1.rows,xAxis.id,'Health Center',yAxis.name)));
+                                    });
+                                    chartObject1.series.push({type: 'column', name: yAxis.name, data: serie})
+                                });
+                                $('#pchart1').highcharts(chartObject1);
+                                $scope.pchart1 = chartObject;
+                            });
+                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Dispensary&var=methods:'+method+'&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Dispensary&var=year:2016').success(function(val1){
+                                $rootScope.showProgressMessage = false;
+                                angular.forEach(methodss, function (yAxis) {
+                                    var serie = [];
+                                    angular.forEach(periods, function (xAxis) {
+                                        serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,$scope.data.outOrganisationUnits[0].id,val1.rows,xAxis.id,'Dispensary',yAxis.name)));
+                                    });
+                                    chartObject2.series.push({type: 'column', name: yAxis.name, data: serie})
+                                });
+                                $('#pchart2').highcharts(chartObject2);
+                                $scope.pchart2 = chartObject;
+                            });
+
+                        }
+
                     });
                 });
             }
@@ -379,6 +455,48 @@ angular.module("hmisPortal")
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[1] == ou) {
                              num += parseInt(v[2]);
+                        }
+                    });
+                }
+            }
+            return num;
+        }
+        $scope.getDataFromUrl1  = function(arr,ou,pe,method){
+
+            var index = 0;
+            if(method == 'Short Acting'){
+                index = 3;
+            }if(method == 'Implants'){
+                index = 4;
+            }if(method == 'IUCDs'){
+                index = 5;
+            }if(method == 'NSV'){
+                index = 6;
+            }if(method == 'Min Lap'){
+                index = 7;
+            }
+
+            var num = 0;
+            if(ou == "m0frOspS7JY" ){
+                $.each(arr, function (k, v) {
+                    num += parseInt(v[index]);
+                });
+            }else{
+                if (ou.indexOf(';') > -1) {
+                    var orgArr = ou.split(";");
+                    var i = 0;
+                    $.each(orgArr, function (c, j) {
+                        i++;
+                        $.each(arr, function (k, v) {
+                            if (v[0] == j || v[1] == j) {
+                                num += parseInt(v[index]);
+                            }
+                        });
+                    });
+                } else {
+                    $.each(arr, function (k, v) {
+                        if (v[0] == ou || v[1] == ou) {
+                             num += parseInt(v[index]);
                         }
                     });
                 }

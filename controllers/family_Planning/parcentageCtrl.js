@@ -359,8 +359,8 @@ angular.module("hmisPortal")
                 data.push({'name':'Nov '+per,'id':per+'11'});
                 data.push({'name':'Dec '+per,'id':per+'12'});
             }if(type == 'methods'){
-                data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
-                    {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
+                data.push({'name':'Male Condoms','id':'W74wyMy1mp0'},
+                    {'name':'Female Condoms','id':'p8cgxI3yPx8'},
                     {'name':'Oral Pills','id':'aSJKs4oPZAf'},
                     {'name':'Injectables','id':'LpkdcaLc4I9'},
                     {'name':'Implants','id':'p14JdJaG2aC'},
@@ -399,6 +399,56 @@ angular.module("hmisPortal")
                         if (v[0] == ou || v[1] == ou) {
                             if(v[3] == pe){
                                 num += parseInt(v[2]);
+                            }
+
+                        }
+                    });
+                }
+            }
+            return num;
+        }
+
+        $scope.getDataFromUrl1  = function(arr,ou,pe,method){
+
+            var index = 0;
+            if(method == 'Short Acting'){
+                index = 3;
+            }if(method == 'Implants'){
+                index = 4;
+            }if(method == 'IUCDs'){
+                index = 5;
+            }if(method == 'NSV'){
+                index = 6;
+            }if(method == 'Min Lap'){
+                index = 7;
+            }
+
+            var num = 0;
+            if(ou == "m0frOspS7JY" ){
+                $.each(arr, function (k, v) {
+                    if(v[3] == pe){
+                        num += parseInt(v[index]);
+                    }
+                });
+            }else{
+                if (ou.indexOf(';') > -1) {
+                    var orgArr = ou.split(";");
+                    var i = 0;
+                    $.each(orgArr, function (c, j) {
+                        i++;
+                        $.each(arr, function (k, v) {
+                            if (v[0] == j || v[1] == j) {
+                                if(v[3] == pe){
+                                    num += parseInt(v[index]);
+                                }
+                            }
+                        });
+                    });
+                } else {
+                    $.each(arr, function (k, v) {
+                        if (v[0] == ou || v[1] == ou) {
+                            if(v[3] == pe){
+                                num += parseInt(v[index]);
                             }
 
                         }
