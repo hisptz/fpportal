@@ -1,35 +1,47 @@
-<div class="col s2 hide-on-med-and-down" style="padding: 0px" >
+<style>
+    .active1{
+        background-color: #37474f;
+        color: #ffffff;
+    }
+    .active1 a{
+        color: #ffffff;
+    }
+    a{
+        color:#000000;
+    }
+</style>
+<div class="col s2 hide-on-med-and-down" style="padding: 0px" ng-controller="menuController" >
     <div class="section" style="margin-top: 70px">
         <div>
             <ul class="collapsible popout fp-menu " data-collapsible="accordion">
-                <li class="teal lighten-5" style="margin-right: 12px">
-                    <div class="collapsible-header" style="font-size: 12px"><i class="material-icons mdi-editor-format-align-justify"></i>Coverage</div>
+                <li class="teal lighten-5" style="margin-right: 12px" >
+                    <div class="collapsible-header" style="font-size: 12px" ng-class="{ active: isActive('/hw_trained') || isActive('/facilities_hw_trained') || isActive('/facilities_providing_FP') || isActive('/facilities_providing_CBD') || isActive('/facilities_with_trained_hw') }"><i class="material-icons mdi-editor-format-align-justify"></i>Coverage</div>
                     <div class="collapsible-body">
-                        <p><a href="./#hw_trained" style="font-size: 12px"><i class="material-icons mdi-navigation-arrow-right"></i>HWs Trained</a> </p><hr>
-                        <p><a href="./#facilities_hw_trained" style="font-size: 12px">Facilities with HWs Trained</a> </p><hr>
-                        <p><a href="./#facilities_providing_FP" style="font-size: 12px">Facilities Providing FP Over Time</a> </p><hr>
-                        <p><a href="./#facilities_providing_CBD" style="font-size: 12px">Facilities Providing FP through CBD</a> </p><hr>
-                        <p><a href="./#facilities_with_trained_hw" style="font-size: 12px">Facilities with HWs Trained Providing FP</a> </p>
+                        <p ng-class="{ active1: isActive('/hw_trained') }"><a href="./#hw_trained" style="font-size: 12px"><i class="material-icons mdi-navigation-arrow-right"></i>HWs Trained</a> </p><hr>
+                        <p ng-class="{ active1: isActive('/facilities_hw_trained') }"><a href="./#facilities_hw_trained" style="font-size: 12px">Facilities with HWs Trained</a> </p><hr>
+                        <p ng-class="{ active1: isActive('/facilities_providing_FP') }"><a href="./#facilities_providing_FP" style="font-size: 12px">Facilities Providing FP Over Time</a> </p><hr>
+                        <p ng-class="{ active1: isActive('/facilities_providing_CBD') }"><a href="./#facilities_providing_CBD" style="font-size: 12px">Facilities Providing FP through CBD</a> </p><hr>
+                        <p ng-class="{ active1: isActive('/facilities_with_trained_hw') }"><a href="./#facilities_with_trained_hw" style="font-size: 12px">Facilities with HWs Trained Providing FP</a> </p>
                     </div>
                 </li>
-                <li  class="teal lighten-5" style="margin-right: 12px">
-                    <div class="collapsible-header" style="font-size: 12px"><i class="material-icons mdi-editor-format-align-justify"></i>Clients</div>
+                <li  class="teal lighten-5" style="margin-right: 12px" >
+                    <div class="collapsible-header" style="font-size: 12px" ng-class="{ active: isActive('/consumption_by_method') || isActive('/consumption_by_demographic') }"><i class="material-icons mdi-editor-format-align-justify"></i>Clients</div>
                     <div class="collapsible-body">
-                        <p><a href="./#consumption_by_method" style="font-size: 12px">Consumption by Method</a> </p><hr>
-                        <p><a href="./#consumption_by_demographic"   style="font-size: 12px">Consumption by Demographics & Outreach</a> </p>
-                    </div>
-                </li>
-                <li class="teal lighten-5" style="margin-right: 12px">
-                    <div class="collapsible-header"><i class="material-icons mdi-editor-format-align-justify"></i>Stock Outs</div>
-                    <div class="collapsible-body">
-                        <p><a href="./#sos_at_facilities"   style="font-size: 12px">SOs at Facilities Providing FP Over Time.</a></p><hr>
-                        <p><a href="./#sos_at_facilities_trained_hw"   style="font-size: 12px">SOs at Facilities with HWs Trained Over Time.</a></p>
+                        <p  ng-class="{ active1: isActive('/consumption_by_method') }"><a href="./#consumption_by_method" style="font-size: 12px">Consumption by Method</a> </p><hr>
+                        <p  ng-class="{ active1: isActive('/consumption_by_demographic') }"><a href="./#consumption_by_demographic"   style="font-size: 12px">Consumption by Demographics & Outreach</a> </p>
                     </div>
                 </li>
                 <li class="teal lighten-5" style="margin-right: 12px">
-                    <div class="collapsible-header" style="font-size: 12px"><i class="material-icons mdi-editor-format-align-justify"></i>Service Integration</div>
+                    <div class="collapsible-header" style="font-size: 12px" ng-class="{ active: isActive('/sos_at_facilities') || isActive('/sos_at_facilities_trained_hw') }"><i class="material-icons mdi-editor-format-align-justify"></i>Stock Outs</div>
                     <div class="collapsible-body">
-                        <p><a href="./#service_intergration"  style="font-size: 12px">service integration</a> </p>
+                        <p  ng-class="{ active1: isActive('/sos_at_facilities') }"><a href="./#sos_at_facilities"   style="font-size: 12px">SOs at Facilities Providing FP Over Time.</a></p><hr>
+                        <p  ng-class="{ active1: isActive('/sos_at_facilities_trained_hw') }"><a href="./#sos_at_facilities_trained_hw"   style="font-size: 12px">SOs at Facilities with HWs Trained Over Time.</a></p>
+                    </div>
+                </li>
+                <li class="teal lighten-5" style="margin-right: 12px">
+                    <div class="collapsible-header" style="font-size: 12px"  ng-class="{ active: isActive('/service_intergration') }"><i class="material-icons mdi-editor-format-align-justify"></i>Service Integration</div>
+                    <div class="collapsible-body">
+                        <p  ng-class="{ active1: isActive('/service_intergration') }"><a href="./#service_intergration"  style="font-size: 12px">service integration</a> </p>
                     </div>
                 </li>
             </ul>
