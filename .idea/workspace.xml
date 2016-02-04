@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/fp_menu.html" afterPath="$PROJECT_DIR$/views/family_planning/fp_menu.html" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,8 +86,8 @@
       <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19402985" vertical-offset="4123" max-vertical-offset="7020">
-              <caret line="311" column="63" selection-start-line="311" selection-start-column="63" selection-end-line="311" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.95115334" vertical-offset="6013" max-vertical-offset="7074">
+              <caret line="509" column="25" selection-start-line="509" selection-start-column="25" selection-end-line="509" selection-end-column="25" />
               <folding>
                 <element signature="e#14295#14578#0" expanded="false" />
                 <element signature="e#14686#14912#0" expanded="false" />
@@ -885,20 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-65.741936" vertical-offset="3542" max-vertical-offset="7632">
-          <caret line="362" column="29" selection-start-line="362" selection-start-column="29" selection-end-line="362" selection-end-column="29" />
-          <folding>
-            <element signature="e#1#41#0" expanded="false" />
-            <element signature="e#15620#15861#0" expanded="false" />
-            <element signature="e#15917#15985#0" expanded="false" />
-            <element signature="e#16250#16784#0" expanded="false" />
-            <element signature="e#25779#26547#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/FPFacilities1.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-50.407406" vertical-offset="408031" max-vertical-offset="409500">
@@ -937,10 +922,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-65.741936" vertical-offset="3542" max-vertical-offset="7632">
+          <caret line="362" column="29" selection-start-line="362" selection-start-column="29" selection-end-line="362" selection-end-column="29" />
+          <folding>
+            <element signature="e#1#41#0" expanded="false" />
+            <element signature="e#15620#15861#0" expanded="false" />
+            <element signature="e#15917#15985#0" expanded="false" />
+            <element signature="e#16250#16784#0" expanded="false" />
+            <element signature="e#25779#26547#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19402985" vertical-offset="4123" max-vertical-offset="7020">
-          <caret line="311" column="63" selection-start-line="311" selection-start-column="63" selection-end-line="311" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.95115334" vertical-offset="6013" max-vertical-offset="7074">
+          <caret line="509" column="25" selection-start-line="509" selection-start-column="25" selection-end-line="509" selection-end-column="25" />
           <folding>
             <element signature="e#14295#14578#0" expanded="false" />
             <element signature="e#14686#14912#0" expanded="false" />

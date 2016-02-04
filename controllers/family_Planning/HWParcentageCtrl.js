@@ -485,6 +485,7 @@ angular.module("hmisPortal")
                     num += parseInt(v[index]);
                 });
                 console.log(arr)
+                console.log(num)
             }else{
                 if (ou.indexOf(';') > -1) {
                     var orgArr = ou.split(";");
@@ -505,6 +506,8 @@ angular.module("hmisPortal")
                     });
                 }
             }
+
+            console.log('number is '+num)
             return num;
         }
 
