@@ -481,11 +481,10 @@ angular.module("hmisPortal")
             var num = 0;
             if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
-
-                    num += parseInt(v[index]);
+                    if(!isNaN(v[index])){
+                        num += parseInt(v[index]);
+                    }
                 });
-                console.log(arr)
-                console.log(num)
             }else{
                 if (ou.indexOf(';') > -1) {
                     var orgArr = ou.split(";");
@@ -494,14 +493,18 @@ angular.module("hmisPortal")
                         i++;
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[1] == j) {
-                                num += parseInt(v[index]);
+                                if(!isNaN(v[index])){
+                                    num += parseInt(v[index]);
+                                }
                             }
                         });
                     });
                 } else {
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[1] == ou) {
-                             num += parseInt(v[index]);
+                            if(!isNaN(v[index])){
+                                num += parseInt(v[index]);
+                            }
                         }
                     });
                 }
