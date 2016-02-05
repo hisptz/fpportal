@@ -176,7 +176,7 @@ angular.module("hmisPortal")
             var name = false;
            angular.forEach(arr,function(value){
                if(value.name == type){
-                   name = false;
+                   name = true;
                }
            });
             return name;
