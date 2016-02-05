@@ -150,9 +150,7 @@ angular.module("hmisPortal")
             var item = {  name: type }
 
             angular.forEach(arr,function(value){
-                console.log(value.organisationUnitGroups.indexOf(item));
-                console.log(value.organisationUnitGroups);
-                if ((value.organisationUnitGroups.indexOf(item) > -1)) {
+                if ($scope.orgUnitType(value.organisationUnitGroups,type)) {
                     angular.forEach(value.ancestors, function (val) {
                         if ((ou.indexOf(';') > -1)) {
                             var orgArr = ou.split(";");
@@ -174,11 +172,21 @@ angular.module("hmisPortal")
             return percent.toFixed(2);
         };
 
+        $scope.orgUnitType = function(arr,type){
+            var name = false;
+           angular.forEach(arr,function(value){
+               if(value.name == type){
+                   name = false;
+               }
+           });
+            return name;
+        };
+
         $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,type,method){
             var item = {  name: type };
             var count = 0;
             angular.forEach(arr,function(value){
-                if ((value.organisationUnitGroups.indexOf(item) > -1)) {
+                if ($scope.orgUnitType(value.organisationUnitGroups,type)) {
                     angular.forEach(value.ancestors, function (val) {
                         if ((ou.indexOf(';') > -1)) {
                             var orgArr = ou.split(";");
