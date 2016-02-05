@@ -435,23 +435,29 @@ angular.module("hmisPortal")
                                 angular.forEach(xAxisItems, function (value) {
                                     if($scope.data.outMethods.length == 1){
                                         if (val == "new") {
+                                            if(methodId1.new !== "")
                                             var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.new);
-                                            console.log(value.id+" === "+ methodId1.new);
+
                                         }
                                         if (val == "returning") {
+                                            if(methodId1.returning !== "")
                                             var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.returning);
                                         }
                                         if (val == "total") {
+                                            if(methodId1.total1 !== "")
                                             var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.total1);
                                         }
                                     }else{
                                         if (val == "new") {
+                                            if(value.new !== "")
                                             var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.new);
                                         }
                                         if (val == "returning") {
+                                            if(value.returning !== "")
                                             var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.returning);
                                         }
                                         if (val == "total") {
+                                            if(value.total1 !== "")
                                             var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.total1);
                                         }
                                     }
