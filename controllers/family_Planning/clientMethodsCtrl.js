@@ -453,15 +453,15 @@ angular.module("hmisPortal")
                                         }
                                     }else{
                                         if (val == "new") {
-                                            if(value.new !== "")
+                                            //if(value.new !== "")
                                             var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.new);
                                         }
                                         if (val == "returning") {
-                                            if(value.returning !== "")
+                                            //if(value.returning !== "")
                                             var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.returning);
                                         }
                                         if (val == "total") {
-                                            if(value.total1 !== "")
+                                            //if(value.total1 !== "")
                                             var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.total1);
                                         }
                                     }
