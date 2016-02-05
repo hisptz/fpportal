@@ -481,7 +481,7 @@ angular.module("hmisPortal")
             var num = 0;
             if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
-                    if(!isNaN(v[index])){
+                    if(parseInt(v[index]) !== NaN){
                         num += parseInt(v[index]);
                     }
                 });
@@ -493,7 +493,7 @@ angular.module("hmisPortal")
                         i++;
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[1] == j) {
-                                if(!isNaN(v[index])){
+                                if(parseInt(v[index]) !== NaN){
                                     num += parseInt(v[index]);
                                 }
                             }
@@ -502,7 +502,7 @@ angular.module("hmisPortal")
                 } else {
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[1] == ou) {
-                            if(!isNaN(v[index])){
+                            if(parseInt(v[index]) !== NaN){
                                 num += parseInt(v[index]);
                             }
                         }
