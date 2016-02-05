@@ -318,8 +318,6 @@ angular.module("hmisPortal")
                 cardObject.displayMap = false;
                 cardObject.displayTable = false;
             }
-            cardObject.chartObject.title.text = cardObject.title  + " " +$scope.titleToUse;
-            cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
             var peri = preparePeriod($scope.selectedPeriod);
             $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
@@ -337,6 +335,9 @@ angular.module("hmisPortal")
                     var methodId1 = [];
                     if($scope.data.outMethods.length == 1){
                         $scope.titleToUse = $scope.data.outMethods[0].name;
+                        cardObject.chartObject.title.text = cardObject.title  + " " +$scope.titleToUse;
+                        cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
+
                         xAxisItems = $scope.prepareCategory('zones');
                         angular.forEach($scope.data.outMethods,function(value){
                             angular.forEach($scope.detailedMethod,function(va){
@@ -348,6 +349,9 @@ angular.module("hmisPortal")
                         });
                     }else{
                         $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
+                        cardObject.chartObject.title.text = cardObject.title  + " " +$scope.titleToUse;
+                        cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
+
                         angular.forEach($scope.data.outMethods,function(value){
                             xAxisItems.push(value);
                         });
