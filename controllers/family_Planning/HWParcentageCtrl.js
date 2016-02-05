@@ -241,12 +241,12 @@ angular.module("hmisPortal")
                             return this.value + '%';
                         }
                     };
-chartObject1.yAxis.labels = {
+                    chartObject1.yAxis.labels = {
                         formatter: function () {
                             return this.value + '%';
                         }
                     };
-chartObject2.yAxis.labels = {
+                    chartObject2.yAxis.labels = {
                         formatter: function () {
                             return this.value + '%';
                         }
