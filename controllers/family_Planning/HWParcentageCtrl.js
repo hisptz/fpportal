@@ -236,6 +236,22 @@ angular.module("hmisPortal")
                     chartObject1.yAxis.title.text ="% of Facilities";
                     chartObject2.yAxis.title.text ="% of Facilities";
 
+                    chartObject.yAxis.labels = {
+                        formatter: function () {
+                            return this.value + '%';
+                        }
+                    };
+chartObject1.yAxis.labels = {
+                        formatter: function () {
+                            return this.value + '%';
+                        }
+                    };
+chartObject2.yAxis.labels = {
+                        formatter: function () {
+                            return this.value + '%';
+                        }
+                    };
+
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = [];
                     if($scope.data.outMethods.length == 1){
