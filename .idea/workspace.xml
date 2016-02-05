@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/familyPlanningService.js" afterPath="$PROJECT_DIR$/services/familyPlanningService.js" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,21 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FPFacilities1.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FPFacilities1.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="408031" max-vertical-offset="409500">
-              <caret line="22744" column="0" selection-start-line="22744" selection-start-column="0" selection-end-line="22744" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clientMethodsCtrl.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="clientMethodsCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7407932" vertical-offset="5291" max-vertical-offset="8964">
-              <caret line="464" column="69" selection-start-line="464" selection-start-column="69" selection-end-line="464" selection-end-column="69" />
+            <state vertical-scroll-proportion="-76.09677" vertical-offset="3347" max-vertical-offset="8964">
+              <caret line="458" column="49" selection-start-line="458" selection-start-column="49" selection-end-line="458" selection-end-column="49" />
               <folding>
                 <element signature="e#14788#15556#0" expanded="false" />
                 <element signature="e#15603#16846#0" expanded="false" />
@@ -117,6 +107,16 @@
                 <element signature="e#26995#29568#0" expanded="false" />
                 <element signature="e#29998#31513#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="familyPlanningService.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/services/familyPlanningService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4871099" vertical-offset="667" max-vertical-offset="4878">
+              <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -181,7 +181,6 @@
         <option value="$PROJECT_DIR$/survilianceData.json" />
         <option value="$PROJECT_DIR$/views/family_planning/stock_out2.html" />
         <option value="$PROJECT_DIR$/data1.json" />
-        <option value="$PROJECT_DIR$/services/familyPlanningService.js" />
         <option value="$PROJECT_DIR$/bower_components/highcharts-ng/src/highcharts-ng.js" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
         <option value="$PROJECT_DIR$/parcentData.json" />
@@ -207,6 +206,7 @@
         <option value="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" />
+        <option value="$PROJECT_DIR$/services/familyPlanningService.js" />
       </list>
     </option>
   </component>
@@ -690,14 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/familyPlanningService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4734">
-          <caret line="4" column="26" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/stock_out2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.666667" vertical-offset="234" max-vertical-offset="1332">
@@ -910,8 +902,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7407932" vertical-offset="5291" max-vertical-offset="8964">
-          <caret line="464" column="69" selection-start-line="464" selection-start-column="69" selection-end-line="464" selection-end-column="69" />
+        <state vertical-scroll-proportion="-76.09677" vertical-offset="3347" max-vertical-offset="8964">
+          <caret line="458" column="49" selection-start-line="458" selection-start-column="49" selection-end-line="458" selection-end-column="49" />
           <folding>
             <element signature="e#14788#15556#0" expanded="false" />
             <element signature="e#15603#16846#0" expanded="false" />
@@ -920,6 +912,14 @@
             <element signature="e#26995#29568#0" expanded="false" />
             <element signature="e#29998#31513#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/familyPlanningService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4871099" vertical-offset="667" max-vertical-offset="4878">
+          <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>

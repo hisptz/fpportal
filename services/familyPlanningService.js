@@ -25,6 +25,7 @@ FPServices.factory('FPManager',function($http,$q){
                     }
                 }
             },
+
             legend: {
                 align: 'right',
                 x: -30,
@@ -51,7 +52,14 @@ FPServices.factory('FPManager',function($http,$q){
                         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                         style: {
                             textShadow: '0 0 3px black'
+                        },
+                    formatter: function() {
+                        if (this.y != 0) {
+                            return this.y;
+                        } else {
+                            return null;
                         }
+                    }
                     }
                 }
             },
