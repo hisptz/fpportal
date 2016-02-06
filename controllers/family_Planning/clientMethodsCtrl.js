@@ -335,7 +335,7 @@ angular.module("hmisPortal")
                     var methodId1 = [];
                     if($scope.data.outMethods.length == 1){
                         $scope.titleToUse = $scope.data.outMethods[0].name;
-                        cardObject.chartObject.title.text = cardObject.title  + " " +$scope.titleToUse;
+                        cardObject.chartObject.title.text = cardObject.title  + " - " +$scope.titleToUse;
                         cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
                         xAxisItems = $scope.prepareCategory('zones');
@@ -349,7 +349,7 @@ angular.module("hmisPortal")
                         });
                     }else{
                         $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
-                        cardObject.chartObject.title.text = cardObject.title  + " " +$scope.titleToUse;
+                        cardObject.chartObject.title.text = cardObject.title  + " - " +$scope.titleToUse;
                         cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
                         angular.forEach($scope.data.outMethods,function(value){

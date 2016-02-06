@@ -331,7 +331,7 @@ angular.module("hmisPortal")
                     cardObject.displayMap = false;
                     cardObject.displayTable = false;
                 }
-                cardObject.chartObject.title.text = cardObject.title + " " +$scope.titleToUse;
+                cardObject.chartObject.title.text = cardObject.title + " - " +$scope.titleToUse;
                 cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
                 var peri = preparePeriod($scope.selectedPeriod);

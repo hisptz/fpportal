@@ -207,13 +207,13 @@ angular.module("hmisPortal")
                     var chartObject2 = angular.copy(portalService.chartObject);
 
                     if($scope.data.outMethods.length == 1){
-                        chartObject.title.text ="Percent of Hospitals Providing " +$scope.titleToUse +" Jan 2014 to Dec 2014";
-                        chartObject1.title.text ="Percent of Health Centres Providing " +$scope.titleToUse +" Jan 2014 to Dec 2014";
-                        chartObject2.title.text ="Percent of Dispensaries Providing " +$scope.titleToUse +" Jan 2014 to Dec 2014";
+                        chartObject.title.text ="Percent of Hospitals Providing - " +$scope.titleToUse +" Jan 2014 to Dec 2014";
+                        chartObject1.title.text ="Percent of Health Centres Providing - " +$scope.titleToUse +" Jan 2014 to Dec 2014";
+                        chartObject2.title.text ="Percent of Dispensaries Providing - " +$scope.titleToUse +" Jan 2014 to Dec 2014";
                     }else{
-                        chartObject.title.text ="Percent of Hospitals Providing Family Planning " +$scope.titleToUse +" Jan 2014 to Dec 2014";
-                        chartObject1.title.text ="Percent of Health Centres  Providing Family Planning " +$scope.titleToUse +" Jan 2014 to Dec 2014";
-                        chartObject2.title.text ="Percent of Dispensaries  Providing Family Planning  " +$scope.titleToUse +" Jan 2014 to Dec 2014";
+                        chartObject.title.text ="Percent of Hospitals Providing Family Planning - " +$scope.titleToUse +" Jan 2014 to Dec 2014";
+                        chartObject1.title.text ="Percent of Health Centres  Providing Family Planning - " +$scope.titleToUse +" Jan 2014 to Dec 2014";
+                        chartObject2.title.text ="Percent of Dispensaries  Providing Family Planning  - " +$scope.titleToUse +" Jan 2014 to Dec 2014";
                     }
 
                     chartObject.yAxis.title.text ="% of Facilities";

@@ -241,9 +241,9 @@ angular.module("hmisPortal")
                     var chartObject1 = angular.copy(portalService.chartObject);
                     var chartObject2 = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent of Hospitals with at least 2 Health Workers Trained "+$scope.titleToUse;
-                    chartObject1.title.text ="Percent of Health Centres with at least 2 Health Workers Trained "+$scope.titleToUse;
-                    chartObject2.title.text ="Percent of Dispensaries with at least 2 Health Workers Trained "+$scope.titleToUse;
+                    chartObject.title.text ="Percent of Hospitals with at least 2 Health Workers Trained - "+$scope.titleToUse;
+                    chartObject1.title.text ="Percent of Health Centres with at least 2 Health Workers Trained - "+$scope.titleToUse;
+                    chartObject2.title.text ="Percent of Dispensaries with at least 2 Health Workers Trained - "+$scope.titleToUse;
 
                     chartObject.yAxis.title.text ="% of Facilities";
                     chartObject1.yAxis.title.text ="% of Facilities";
