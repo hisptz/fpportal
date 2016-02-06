@@ -228,7 +228,7 @@ angular.module("hmisPortal")
         };
 
         $scope.updateDisplayShortMessage = function(methods){
-            $scope.displayMesage = false;
+            $scope.displayshortMesage = false;
             angular.forEach(methods,function(value){
                 if(value.name == 'Male Condoms' || value.name == 'Female Condoms' || value.name == 'Oral Pills' || value.name == 'Implants' || value.name == 'Injectables' || value.name == 'IUCDs' || value.name == 'Natural FP'){
                     $scope.displayshortMesage = true;
