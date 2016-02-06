@@ -216,12 +216,22 @@ angular.module("hmisPortal")
 
 
         $scope.displayMesage = true;
+        $scope.displayshortMesage = true;
 
         $scope.updateDisplayMessage = function(methods){
             $scope.displayMesage = false;
             angular.forEach(methods,function(value){
                 if(value.name == 'Implants' || value.name == 'IUCDs' || value.name == 'NSV' || value.name == 'Min Lap'){
                     $scope.displayMesage = true;
+                }
+            });
+        };
+
+        $scope.updateDisplayShortMessage = function(methods){
+            $scope.displayMesage = false;
+            angular.forEach(methods,function(value){
+                if(value.name == 'Male Condoms' || value.name == 'Female Condoms' || value.nam<e == 'Oral Pills' || value.name == 'Implants' || value.name == 'Injectables' || value.name == 'IUCDs' || value.name == 'Natural FP'){
+                    $scope.displayshortMesage = true;
                 }
             });
         }
@@ -485,6 +495,7 @@ angular.module("hmisPortal")
                 }
                 else {
                 ////////////////////////////data for <20/////////////////////////////////////////////
+                    $scope.updateDisplayShortMessage($scope.data.outMethods);
                 $http.get($scope.url).success(function (data) {
                     $rootScope.showProgressMessage = false;
                     if (data.hasOwnProperty('metaData')) {
