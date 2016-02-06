@@ -103,7 +103,7 @@
 
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ fpCards[0].title }}<i class="material-icons right">more_vert</i></span>
+                        <span class="card-title activator grey-text text-darken-4">{{ fpCards[0].title }}<i class="material-icons mdi-navigation-more-vert right"></i></span>
                         <p>
                             <a ng-click="changeChart(icon.name,card)" ng-repeat="icon in fpCards[0].icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
                             <!--<a ng-click="downloadExcel(card.data)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
@@ -111,7 +111,25 @@
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ fpCards[0].title }}<i class="material-icons right">close</i></span>
-                        <p class="flow-text">{{ fpCards[0].description }}</p>
+                        <p class="flow-text">Description: Compare the number of clients by method and geography</p>
+                        <p class="flow-text">Indicator Type: Number</p>
+                        <p class="flow-text"> Numerator: For each family planning method:
+                            number of new clients of any age receiving male condoms, female condoms, oral pills, injectables through routine facility-based service,
+                            in a given facility
+                            among facilities given the FP Reporting Template
+                            in selected geographies in the given month<br><br>
+
+                            number of returning clients of any age receiving male condoms, female condoms, oral pills, injectables through routine facility-based service,
+                            in a given facility
+                            among facilities given the FP Reporting Template
+                            in selected geographies in the given month<br><br>
+
+                            number of general clients of any age receiving implants, IUCDs, minilap, NSV, or natural family planning through routine facility-based service,
+                            in a given facility
+                            among facilities given the FP Reporting Template
+                            in selected geographies in the given month</p>
+                        <p class="flow-text"> Denominator: 1</p>
+                        <p class="flow-text">Data Source: HMIS Data warehouse</p>
                     </div>
                 </div>
             </div>
@@ -147,7 +165,7 @@
 
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">{{ fpCards[1].title }}<i class="material-icons right">more_vert</i></span>
+                        <span class="card-title activator grey-text text-darken-4">{{ fpCards[1].title }}<i class="material-icons mdi-navigation-more-vert right"></i></span>
                         <p>
                             <a ng-click="changeChart(icon.name,card)" ng-repeat="icon in fpCards[1].icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
                             <!--<a ng-click="downloadExcel(fpCards[1].data)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
@@ -155,7 +173,15 @@
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ fpCards[1].title }}<i class="material-icons right">close</i></span>
-                        <p class="flow-text">{{ fpCards[1].description }}</p>
+                        <p class="flow-text">Description: Compare the number of clients by method and greography over time</p>
+                        <p class="flow-text">Indicator Type: Number</p>
+                        <p class="flow-text"> Numerator: For each family planning method:
+                            number of new, returning and other clients of any age receiving male condoms, female condoms, oral pills, injectables, implants, IUCDs, minilap, NSV, natural family planning,
+                            in a given facility
+                            among facilities given the FP Reporting Template
+                            in selected geographies in the given month</p>
+                        <p class="flow-text"> Denominator: 1</p>
+                        <p class="flow-text">Data Source: HMIS Data warehouse</p>
                     </div>
                 </div>
             </div>
