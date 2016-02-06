@@ -144,6 +144,15 @@ angular.module("hmisPortal")
             return amount;
         }
 
+        $scope.orgUnitType = function(arr,type){
+            var name = false;
+            angular.forEach(arr,function(value){
+                if(value.name == type){
+                    name = true;
+                }
+            });
+            return name;
+        };
 
         $scope.getNumberPerOu = function(arr,ou,arr2,pe,type){
             var count = 0;
@@ -172,15 +181,7 @@ angular.module("hmisPortal")
             return percent.toFixed(2);
         };
 
-        $scope.orgUnitType = function(arr,type){
-            var name = false;
-           angular.forEach(arr,function(value){
-               if(value.name == type){
-                   name = true;
-               }
-           });
-            return name;
-        };
+
 
         $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,type,method){
             var item = {  name: type };
@@ -241,9 +242,6 @@ angular.module("hmisPortal")
                     var chartObject1 = angular.copy(portalService.chartObject);
                     var chartObject2 = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent of Hospitals with at least 2 Health Workers Trained - "+$scope.titleToUse;
-                    chartObject1.title.text ="Percent of Health Centres with at least 2 Health Workers Trained - "+$scope.titleToUse;
-                    chartObject2.title.text ="Percent of Dispensaries with at least 2 Health Workers Trained - "+$scope.titleToUse;
 
                     chartObject.yAxis.title.text ="% of Facilities";
                     chartObject1.yAxis.title.text ="% of Facilities";
@@ -278,6 +276,9 @@ angular.module("hmisPortal")
                             periods.push({name:value.name,id:value.id})
                         });
                     }
+                    chartObject.title.text ="Percent of Hospitals with at least 2 Health Workers Trained - "+$scope.titleToUse;
+                    chartObject1.title.text ="Percent of Health Centres with at least 2 Health Workers Trained - "+$scope.titleToUse;
+                    chartObject2.title.text ="Percent of Dispensaries with at least 2 Health Workers Trained - "+$scope.titleToUse;
                     angular.forEach(periods, function (val) {
                         chartObject.xAxis.categories.push(val.name);
                     });
@@ -295,6 +296,7 @@ angular.module("hmisPortal")
                     var method = $scope.data.outMethods[0].id;
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
                         if($scope.data.outMethods.length  == 1){
+
                             $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Hospital&var=methods:'+method+'&var=year:2016').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
@@ -307,6 +309,7 @@ angular.module("hmisPortal")
                                 $('#pchart').highcharts(chartObject);
                                 $scope.pchart = chartObject;
                             });
+
                             $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Health Center&var=methods:'+method+'&var=year:2016').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
@@ -319,6 +322,7 @@ angular.module("hmisPortal")
                                 $('#pchart1').highcharts(chartObject1);
                                 $scope.pchart1 = chartObject;
                             });
+
                             $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Dispensary&var=methods:'+method+'&var=year:2016').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
@@ -333,7 +337,7 @@ angular.module("hmisPortal")
                             });
 
                         }else{
-                            //$http.get(portalService.base+'api/sqlViews/Hy2xe200MW9/data.json?var=types:Hospital&var=year:2016').success(function(val1){
+
                             $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Hospital&var=year:2016').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
@@ -346,7 +350,7 @@ angular.module("hmisPortal")
                                 $('#pchart').highcharts(chartObject);
                                 $scope.pchart = chartObject;
                             });
-                            //$http.get(portalService.base+'api/sqlViews/Hy2xe200MW9/data.json?var=types:Health Center&var=year:2016').success(function(val1){
+
                             $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:2016').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
@@ -359,7 +363,7 @@ angular.module("hmisPortal")
                                 $('#pchart1').highcharts(chartObject1);
                                 $scope.pchart1 = chartObject;
                             });
-                            //$http.get(portalService.base+'api/sqlViews/Hy2xe200MW9/data.json?var=types:Dispensary&var=year:2016').success(function(val1){
+
                             $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Dispensary&var=year:2016').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
@@ -536,7 +540,6 @@ angular.module("hmisPortal")
                 }
             }
 
-            console.log('number is '+num)
             return num;
         }
 
