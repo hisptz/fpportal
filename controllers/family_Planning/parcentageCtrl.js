@@ -346,7 +346,7 @@ angular.module("hmisPortal")
                                     angular.forEach(periods, function (xAxis) {
                                         serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,$scope.data.outOrganisationUnits[0].id,val1.rows,xAxis.id,'Hospital',yAxis.name)));
                                     });
-                                    chartObject.series.push({type: 'column', name: yAxis.name, data: serie})
+                                    chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart').highcharts(chartObject);
                                 $scope.pchart = chartObject;
@@ -360,7 +360,7 @@ angular.module("hmisPortal")
                                     angular.forEach(periods, function (xAxis) {
                                         serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,$scope.data.outOrganisationUnits[0].id,val1.rows,xAxis.id,'Health Center',yAxis.name)));
                                     });
-                                    chartObject1.series.push({type: 'column', name: yAxis.name, data: serie})
+                                    chartObject1.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart1').highcharts(chartObject1);
                                 $scope.pchart1 = chartObject1;
@@ -374,7 +374,7 @@ angular.module("hmisPortal")
                                     angular.forEach(periods, function (xAxis) {
                                         serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,$scope.data.outOrganisationUnits[0].id,val1.rows,xAxis.id,'Dispensary',yAxis.name)));
                                     });
-                                    chartObject2.series.push({type: 'column', name: yAxis.name, data: serie})
+                                    chartObject2.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart2').highcharts(chartObject2);
                                 $scope.pchart2 = chartObject2;
