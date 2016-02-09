@@ -145,7 +145,8 @@ angular.module("hmisPortal")
             var amount = 0;
 
             return amount;
-        }
+        };
+
         $scope.orgUnitType = function(arr,type){
             var name = false;
             angular.forEach(arr,function(value){
@@ -184,7 +185,7 @@ angular.module("hmisPortal")
 
 
         $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,type,method){
-            var item = {  name: type };
+
             var count = 0;
             angular.forEach(arr,function(value){
                 if ($scope.orgUnitType(value.organisationUnitGroups,type)) {
@@ -205,6 +206,7 @@ angular.module("hmisPortal")
                 }
             });
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
+            console.log(num+"/"+count);
             var percent = (num/count)*100;
             return percent.toFixed(2);
         };
@@ -337,6 +339,7 @@ angular.module("hmisPortal")
                         }else{
 
                             $http.get(portalService.base+'api/sqlViews/Fxxmkdxm58j/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
                                     var serie = [];
@@ -350,6 +353,7 @@ angular.module("hmisPortal")
                             });
 
                             $http.get(portalService.base+'api/sqlViews/Fxxmkdxm58j/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
                                     var serie = [];
@@ -359,10 +363,11 @@ angular.module("hmisPortal")
                                     chartObject1.series.push({type: 'column', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart1').highcharts(chartObject1);
-                                $scope.pchart1 = chartObject;
+                                $scope.pchart1 = chartObject1;
                             });
 
                             $http.get(portalService.base+'api/sqlViews/Fxxmkdxm58j/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
                                     var serie = [];
@@ -372,7 +377,7 @@ angular.module("hmisPortal")
                                     chartObject2.series.push({type: 'column', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart2').highcharts(chartObject2);
-                                $scope.pchart2 = chartObject;
+                                $scope.pchart2 = chartObject2;
                             });
 
                         }
@@ -518,15 +523,15 @@ angular.module("hmisPortal")
                 index = 7;
             }
 
-
+            var count = 0;
             var num = 0;
             if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
                     if(v[index] !== ""){
-                        if(v[3] == pe){
+                        if(v[2] == pe){
                             num += parseInt(v[index]);
+                            count++;
                         }
-
                     }
                 });
             }else{
@@ -538,7 +543,7 @@ angular.module("hmisPortal")
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[1] == j) {
                                 if(v[index] !== ""){
-                                    if(v[3] == pe){
+                                    if(v[2] == pe){
                                         num += parseInt(v[index]);
                                     }
                                 }
@@ -549,7 +554,7 @@ angular.module("hmisPortal")
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[1] == ou) {
                             if(v[index] !== ""){
-                                if(v[3] == pe){
+                                if(v[2] == pe){
                                     num += parseInt(v[index]);
                                 }
                             }
