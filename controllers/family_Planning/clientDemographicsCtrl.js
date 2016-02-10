@@ -261,6 +261,14 @@ angular.module("hmisPortal")
 
         };
 
+        $scope.changeTable =function(displayTable,value){
+            if(value == "table"){
+                displayTable = true;
+            }if(value == "chart"){
+                displayTable = false;
+            }
+        };
+
         $scope.fpCards = [
 
             {

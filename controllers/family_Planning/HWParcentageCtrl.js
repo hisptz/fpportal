@@ -276,9 +276,9 @@ angular.module("hmisPortal")
                             periods.push({name:value.name,id:value.id})
                         });
                     }
-                    chartObject.title.text ="Percent of Hospitals with at least 2 Health Workers Trained - "+$scope.titleToUse;
-                    chartObject1.title.text ="Percent of Health Centres with at least 2 Health Workers Trained - "+$scope.titleToUse;
-                    chartObject2.title.text ="Percent of Dispensaries with at least 2 Health Workers Trained - "+$scope.titleToUse;
+                    chartObject.title.text ="Percent of Hospitals with 2 or more Health Workers Trained in - "+$scope.titleToUse;
+                    chartObject1.title.text ="Percent of Health Centres  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
+                    chartObject2.title.text ="Percent of Dispensaries  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
                     angular.forEach(periods, function (val) {
                         chartObject.xAxis.categories.push(val.name);
                     });
@@ -425,6 +425,7 @@ angular.module("hmisPortal")
             var data = [];
             var per = $scope.selectedPeriod;
             if(type == 'zones'){
+                data.push({'name':"Tanzania",'id':"m0frOspS7JY"});
                 angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
                     var name = orgUnit.name;
                     if(name.indexOf("Zone") > -1){
@@ -434,7 +435,9 @@ angular.module("hmisPortal")
                         });
                         data.push({'name':orgUnit.name,'id':names.join(";")});
                     }else{
-                        data.push({'name':orgUnit.name,'id':orgUnit.id});
+                        if(orgUnit.id !== 'm0frOspS7JY'){
+                            data.push({'name':orgUnit.name,'id':orgUnit.id});
+                        }
 
                     }
                 });
