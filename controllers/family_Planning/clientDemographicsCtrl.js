@@ -15,6 +15,8 @@ angular.module("hmisPortal")
             return active;
         };
 
+
+
     })
     .controller("clientDemographicsCtrl",function ($rootScope,$scope,$http,portalService,FPManager,$location) {
 

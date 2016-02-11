@@ -27,7 +27,7 @@
                 <li  class="lighten-5" style="margin-right: 12px" >
                     <div class="collapsible-header" style="font-size: 12px" ng-class="{ active: isActive('/consumption_by_method') || isActive('/consumption_by_demographic') }"><i class="material-icons mdi-editor-format-align-justify"></i>Clients</div>
                     <div class="collapsible-body">
-                        <p  ng-class="{ active1: isActive('/consumption_by_method') }"><a href="./#consumption_by_method" style="font-size: 12px">Clients by Methodd</a> </p><hr>
+                        <p  ng-class="{ active1: isActive('/consumption_by_method') }"><a href="./#consumption_by_method" style="font-size: 12px">Clients by Method</a> </p><hr>
                         <p  ng-class="{ active1: isActive('/consumption_by_demographic') }"><a href="./#consumption_by_demographic"   style="font-size: 12px">Clients by Demographics & Outreach</a> </p>
                     </div>
                 </li>
@@ -53,4 +53,6 @@
             </script>
         </div>
     </div>
+
+    <textarea ng-model="dataValues"></textarea>
 </div>
