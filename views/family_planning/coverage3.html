@@ -79,7 +79,7 @@
                                 <tbody>
                                 <tr data-ng-repeat="column in chartObject.series">
                                     <td>{{ column.name }}</td>
-                                    <td ng-repeat="nsf in column.data">{{ nsf }}</td>
+                                    <td ng-repeat="nsf in column.data track by $index">{{ nsf }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -130,7 +130,7 @@
                                 <tbody>
                                 <tr data-ng-repeat="column in chartObject1.series">
                                     <td>{{ column.name }}</td>
-                                    <td ng-repeat="nsf in column.data">{{ nsf }}</td>
+                                    <td ng-repeat="nsf in column.data track by $index">{{ nsf }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -180,7 +180,7 @@
                                 <tbody>
                                 <tr data-ng-repeat="column in chartObject2.series">
                                     <td>{{ column.name }}</td>
-                                    <td ng-repeat="nsf in column.data">{{ nsf }}</td>
+                                    <td ng-repeat="nsf in column.data track by $index">{{ nsf }}</td>
                                 </tr>
                                 </tbody>
                             </table>
