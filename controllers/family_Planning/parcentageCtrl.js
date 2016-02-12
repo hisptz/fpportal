@@ -71,6 +71,19 @@ angular.module("hmisPortal")
         };
         $scope.selectedMethod = 'EcP5Na7DO0r';
 
+        //switching between tables and charts
+        $scope.displayTables = {card1:false,card2:false,card3:false}
+        $scope.changeTable =function(card,value){
+            if(value == "table"){
+                if(card == "card1"){$scope.displayTables.card1 = true}
+                if(card == "card2"){$scope.displayTables.card2 = true}
+                if(card == "card3"){$scope.displayTables.card3 = true}
+            }if(value == "chart"){
+                if(card == "card1"){$scope.displayTables.card1 = false}
+                if(card == "card2"){$scope.displayTables.card2 = false}
+                if(card == "card3"){$scope.displayTables.card3 = false}
+            }
+        };
 
         $scope.FPmethods = [
             {'name':'Short Acting','uid':'PHN05p61ByJ'},
@@ -306,6 +319,7 @@ angular.module("hmisPortal")
                                     chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart').highcharts(chartObject);
+                                $scope.chartObject = chartObject
                                 $scope.pchart = chartObject;
                             });
 
@@ -320,6 +334,7 @@ angular.module("hmisPortal")
                                     chartObject1.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart1').highcharts(chartObject1);
+                                $scope.chartObject1 = chartObject1
                                 $scope.pchart1 = chartObject;
                             });
 
@@ -334,6 +349,7 @@ angular.module("hmisPortal")
                                     chartObject2.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart2').highcharts(chartObject2);
+                                $scope.chartObject2 = chartObject2
                                 $scope.pchart2 = chartObject;
                             });
                         }else{
@@ -349,6 +365,7 @@ angular.module("hmisPortal")
                                     chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart').highcharts(chartObject);
+                                $scope.chartObject = chartObject
                                 $scope.pchart = chartObject;
                             });
 
@@ -363,6 +380,7 @@ angular.module("hmisPortal")
                                     chartObject1.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart1').highcharts(chartObject1);
+                                $scope.chartObject1 = chartObject1
                                 $scope.pchart1 = chartObject1;
                             });
 
@@ -377,6 +395,7 @@ angular.module("hmisPortal")
                                     chartObject2.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart2').highcharts(chartObject2);
+                                $scope.chartObject2 = chartObject2
                                 $scope.pchart2 = chartObject2;
                             });
 

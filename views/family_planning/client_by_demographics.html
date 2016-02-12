@@ -79,12 +79,12 @@
                         <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                             <div style="width: 100%">
                                 <!--<highchart ng-if="!fpCards[0].displayTable && !fpCards[0].displayMap" config="fpCards[0].chartObject"></highchart>-->
-                                <div ng-if="displayshortMesage" id="container11" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                <div ng-show="!displayTables.card1 && displayshortMesage" id="container11" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                                 <h4 style="font-weight: 200; margin-top: 200px;margin-left: 70px" ng-if="!displayshortMesage">
                                     Select short acting or long acting methods [ Male condom, Female condom, Oral pills, Injectables, Implants, IUCDs, Natural FP ]
                                 </h4>
                             </div>
-                            <div style="width: 100%"  ng-if="fpCards[0].displayTable">
+                            <div style="width: 100%"  ng-if="displayTables.card1 && displayshortMesage">
                                 <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
                                 <h5 class="center">{{ fpCards[0].title }}</h5>
                                 <table class="bordered striped centered" id="jinsi">
@@ -107,8 +107,8 @@
                         <div class="card-content">
                             <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
                             <p>
-                                <!--<a ng-click="changeTable(fpCards[0].displayTable,'table')"  title="Table" class="btn-floating btn-small waves-effect waves-light teal darken-2" >Table</a>-->
-                                <!--<a ng-click="changeTable(fpCards[0].displayTable,'chart')"  title="Chart" class="btn-floating btn-small waves-effect waves-light teal darken-2" >Chart</a>-->
+                                <a ng-click="changeTable('card1','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                                <a ng-click="changeTable('card1','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
                             </p>
                         </div>
                         <div class="card-reveal">
@@ -131,14 +131,14 @@
                     <div class="card z-depth-2 teal lighten-5 large">
                         <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                             <div style="width: 100%">
-                                <highchart ng-if="!fpCards[1].displayTable && !fpCards[1].displayMap && displayMesage" config="fpCards[1].chartObject"></highchart>
+                                <highchart ng-if="!displayTables.card2 && displayMesage" config="fpCards[1].chartObject"></highchart>
                                <h4 style="font-weight: 200; margin-top: 200px;margin-left: 70px" ng-if="!displayMesage">
                                    Select the permanent or long term method [ Implants, IUCDs, NSV, Min Lap ]
                                </h4>
                                 <!--<div id="container12" style="min-width: 310px; height: 400px; margin: 0 auto"></div>-->
 
                             </div>
-                            <div style="width: 100%"  ng-if="fpCards[1].displayTable">
+                            <div style="width: 100%"  ng-if="displayTables.card2 && displayMesage">
                                 <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
                                 <h5 class="center">{{ fpCards[1].title }}</h5>
                                 <table class="bordered striped centered" id="jinsi">
@@ -161,8 +161,8 @@
                         <div class="card-content">
                             <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
                             <p>
-                                <!--<a ng-click="changeTable(fpCards[1].displayTable,'table')"  title="Table" class="btn-floating btn-small waves-effect waves-light teal darken-2" >Table</a>-->
-                                <!--<a ng-click="changeTable(fpCards[1].displayTable,'chart')"  title="Chart" class="btn-floating btn-small waves-effect waves-light teal darken-2" >Chart</a>-->
+                                <a ng-click="changeTable('card2','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                                <a ng-click="changeTable('card2','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
                             </p>
                         </div>
                         <div class="card-reveal">

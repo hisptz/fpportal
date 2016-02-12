@@ -265,11 +265,9 @@ angular.module("hmisPortal")
 
         $scope.displayTables = {card1:false,card2:false}
         $scope.changeTable =function(card,value){
-            alert("clicked")
             if(value == "table"){
                 if(card == "card1"){$scope.displayTables.card1 = true}
                 if(card == "card2"){$scope.displayTables.card2 = true}
-                displayTable = true;
             }if(value == "chart"){
                 if(card == "card1"){$scope.displayTables.card1 = false}
                 if(card == "card2"){$scope.displayTables.card2 = false}

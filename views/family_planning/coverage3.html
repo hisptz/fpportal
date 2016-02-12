@@ -64,11 +64,33 @@
                     <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                         <div style="width: 100%">
                             <!--<highchart  config="pchart"></highchart>-->
-                            <div id="pchart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                            <div ng-show="!displayTables.card1" id="pchart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                        <div style="width: 100%"  ng-if="displayTables.card1">
+                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+                            <h5 class="center">{{ chartObject.title.text }}</h5>
+                            <table class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-repeat="cats in chartObject.xAxis.categories">{{ cats }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="column in chartObject.series">
+                                    <td>{{ column.name }}</td>
+                                    <td ng-repeat="nsf in column.data">{{ nsf }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
+                        <p>
+                            <a ng-click="changeTable('card1','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeTable('card1','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                        </p>
                     </div>
                     <div class="card-reveal">
                         <p class="flow-text"><b>Description:</b> View gaps in hospitals providing each method type by method type and geography by month over a 12-month period</p>
@@ -93,11 +115,33 @@
                         <div style="width: 100%">
 
                             <!--<highchart  config="pchart"></highchart>-->
-                            <div id="pchart1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                            <div ng-show="!displayTables.card2" id="pchart1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                        <div style="width: 100%"  ng-if="displayTables.card2">
+                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+                            <h5 class="center">{{ chartObject1.title.text }}</h5>
+                            <table class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-repeat="cats in chartObject1.xAxis.categories">{{ cats }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="column in chartObject1.series">
+                                    <td>{{ column.name }}</td>
+                                    <td ng-repeat="nsf in column.data">{{ nsf }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
+                        <p>
+                            <a ng-click="changeTable('card2','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeTable('card2','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                        </p>
                     </div>
                     <div class="card-reveal">
                         <p class="flow-text"><b>Description:</b> View gaps in health centres providing each method type by method type and geography by month over a 12-month period</p>
@@ -121,11 +165,33 @@
                         <div style="width: 100%">
 
                             <!--<highchart  config="pchart"></highchart>-->
-                            <div id="pchart2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                            <div ng-show="!displayTables.card3" id="pchart2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                        <div style="width: 100%"  ng-if="displayTables.card3">
+                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+                            <h5 class="center">{{ chartObject2.title.text }}</h5>
+                            <table class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-repeat="cats in chartObject2.xAxis.categories">{{ cats }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="column in chartObject2.series">
+                                    <td>{{ column.name }}</td>
+                                    <td ng-repeat="nsf in column.data">{{ nsf }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
+                        <p>
+                            <a ng-click="changeTable('card3','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeTable('card3','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                        </p>
                     </div>
                     <div class="card-reveal">
                         <p class="flow-text"><b>Description:</b> View gaps in dispensaries hospitals providing each method type by method type and geography by month over a 12-month period</p>
