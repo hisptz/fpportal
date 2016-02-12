@@ -51,6 +51,21 @@ angular.module("hmisPortal")
                 $scope.updateTree();
             }
         };
+
+        //switching between tables and charts
+        $scope.displayTables = {card1:false,card2:false,card3:false}
+        $scope.changeTable =function(card,value){
+            if(value == "table"){
+                if(card == "card1"){$scope.displayTables.card1 = true}
+                if(card == "card2"){$scope.displayTables.card2 = true}
+                if(card == "card3"){$scope.displayTables.card3 = true}
+            }if(value == "chart"){
+                if(card == "card1"){$scope.displayTables.card1 = false}
+                if(card == "card2"){$scope.displayTables.card2 = false}
+                if(card == "card3"){$scope.displayTables.card3 = false}
+            }
+        };
+
         $scope.getSelectedValues = function(){
 
             if($scope.data.outOrganisationUnits.length === 0){
@@ -137,8 +152,11 @@ angular.module("hmisPortal")
                         chartObject2.loading = false;
 
                         $('#chart').highcharts(chartObject);
+                        $scope.chartObject = chartObject;
                         $('#chart2').highcharts(chartObject1);
+                        $scope.chartObject1 = chartObject1;
                         $('#chart3').highcharts(chartObject2);
+                        $scope.chartObject2 = chartObject2;
 
                     });
                 });
