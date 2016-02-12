@@ -169,6 +169,21 @@ angular.module("hmisPortal")
             return name;
         };
 
+        //prepare data for use in csv
+        $scope.prepareDataForCSV = function(arr){
+            var items = [];
+            angular.forEach(arr.series,function(value){
+                var obj = {name:value.name};
+                var i = 0;
+                angular.forEach(arr.xAxis.categories,function(val){
+                    obj[val] = value.data[i];
+                    i++;
+                })
+                items.push(obj);
+            })
+            return items;
+        };
+
         $scope.getNumberPerOu = function(arr,ou,arr2,pe,type){
             var count = 0;
             var item = {  name: type }
@@ -323,6 +338,7 @@ angular.module("hmisPortal")
                                 });
                                 $('#pchart').highcharts(chartObject);
                                 $scope.chartObject = chartObject
+                                $scope.csvdata = $scope.prepareDataForCSV(chartObject);
                                 $scope.pchart = chartObject;
                             });
 
@@ -337,6 +353,7 @@ angular.module("hmisPortal")
                                 });
                                 $('#pchart1').highcharts(chartObject1);
                                 $scope.chartObject1 = chartObject1
+                                $scope.csvdata1 = $scope.prepareDataForCSV(chartObject1);
                                 $scope.pchart1 = chartObject;
                             });
 
@@ -350,7 +367,8 @@ angular.module("hmisPortal")
                                     chartObject2.series.push({type: 'column', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart2').highcharts(chartObject2);
-                                $scope.chartObject2 = chartObject2
+                                $scope.chartObject2 = chartObject2;
+                                $scope.csvdata2 = $scope.prepareDataForCSV(chartObject2);
                                 $scope.pchart2 = chartObject;
                             });
 
@@ -367,6 +385,7 @@ angular.module("hmisPortal")
                                 });
                                 $('#pchart').highcharts(chartObject);
                                 $scope.chartObject = chartObject
+                                $scope.csvdata = $scope.prepareDataForCSV(chartObject);
                                 $scope.pchart = chartObject;
                             });
 
@@ -381,6 +400,7 @@ angular.module("hmisPortal")
                                 });
                                 $('#pchart1').highcharts(chartObject1);
                                 $scope.chartObject1 = chartObject1
+                                $scope.csvdata1 = $scope.prepareDataForCSV(chartObject1);
                                 $scope.pchart1 = chartObject;
                             });
 
@@ -395,6 +415,7 @@ angular.module("hmisPortal")
                                 });
                                 $('#pchart2').highcharts(chartObject2);
                                 $scope.chartObject2 = chartObject2
+                                $scope.csvdata2 = $scope.prepareDataForCSV(chartObject2);
                                 $scope.pchart2 = chartObject;
                             });
 

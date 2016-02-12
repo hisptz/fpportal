@@ -252,6 +252,21 @@ angular.module("hmisPortal")
             }
         };
 
+        //prepare data for use in csv
+        $scope.prepareDataForCSV = function(arr){
+            var items = [];
+            angular.forEach(arr.series,function(value){
+                var obj = {name:value.name};
+                var i = 0;
+                angular.forEach(arr.xAxis.categories,function(val){
+                    obj[val] = value.data[i];
+                    i++;
+                })
+                items.push(obj);
+            })
+            return items;
+        };
+
         $scope.fpCards = [
             //{
             //    title:'Total Clients of [IMPLANTS]',
@@ -376,42 +391,24 @@ angular.module("hmisPortal")
                             cardObject.chartObject.xAxis.categories.push(value.name);
                         });
                         $scope.normalseries1 = [];
-                        if (chart == 'table') {
-                            cardObject.table = {};
-                            cardObject.table.headers = [];
-                            cardObject.table.colums = [];
-                            angular.forEach(xAxisItems, function (value) {
-                                var serie = [];
-                                cardObject.table.headers.push(value);
+                        //delete cardObject.chartObject.chart;
+                        angular.forEach(xAxisItems, function (val) {
+                            var serie = [];
+                            angular.forEach($scope.prepareCategory('month'), function (value) {
+                                if($scope.data.outMethods.length == 1){
+                                    //console.log(methodId+"--pe: "+value.id+" -- ou: "+val.id)
+                                    var number = $scope.getDataFromUrl(data.rows, val.id, value.id, methodId);
+                                }else{
+                                    var number = $scope.getDataFromUrl(data.rows,'none', value.id, val.id);
+                                }
+                                serie.push(number);
                             });
-                            angular.forEach($scope.prepareCategory('month'), function (val) {
-                                var seri = [];
-                                angular.forEach(xAxisItems, function (value) {
-                                    var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods'.category, methodId);
-                                    seri.push({name: value.name, value: parseInt(number)});
-                                });
-                                cardObject.table.colums.push({name: val.name, values: seri});
-                            });
-                        }
-                        else {
-                            //delete cardObject.chartObject.chart;
-                            angular.forEach(xAxisItems, function (val) {
-                                var serie = [];
-                                angular.forEach($scope.prepareCategory('month'), function (value) {
-                                    if($scope.data.outMethods.length == 1){
-                                        //console.log(methodId+"--pe: "+value.id+" -- ou: "+val.id)
-                                        var number = $scope.getDataFromUrl(data.rows, val.id, value.id, methodId);
-                                    }else{
-                                        var number = $scope.getDataFromUrl(data.rows,'none', value.id, val.id);
-                                    }
-                                    serie.push(number);
-                                });
-                                $scope.normalseries1.push({type: 'spline', name: val.name, data: serie})
-                            });
-                            cardObject.chartObject.series = $scope.normalseries1;
-                            $('#container12').highcharts(cardObject.chartObject);
+                            $scope.normalseries1.push({type: 'spline', name: val.name, data: serie})
+                        });
+                        cardObject.chartObject.series = $scope.normalseries1;
+                        $('#container12').highcharts(cardObject.chartObject);
+                        cardObject.csvdata = $scope.prepareDataForCSV(cardObject.chartObject);
 
-                        }
                     }
 
                     //////////////////////////////first chart ///////////////////////////
@@ -420,74 +417,49 @@ angular.module("hmisPortal")
                             cardObject.chartObject.xAxis.categories.push(value.name);
                         });
                         $scope.normalseries1 = [];
-                        if (chart == 'table') {
-                            cardObject.table = {}
-                            cardObject.table.headers = [];
-                            cardObject.table.colums = [];
-                            angular.forEach(yAxisItems, function (value) {
-                                var serie = [];
-                                cardObject.table.headers.push(value);
-                            });
-                            angular.forEach(xAxisItems, function (val) {
-                                var seri = [];
-                                angular.forEach(yAxisItems, function (value) {
 
-                                    if (value == "new") {
-                                        var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, '201412'.category, val.new);
-                                    }
-                                    if (value == "returning") {
-                                        var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, '201412', val.returning);
-                                    }if (value == "total") {
-                                        var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, '201412', val.total);
-                                    }
-                                    seri.push({name: value.name, value: parseInt(number)});
-                                });
-                                cardObject.table.colums.push({name: val.name, values: seri});
-                            });
-                        }
-                        else {
-                            //delete cardObject.chartObject.chart;
-                            angular.forEach(yAxisItems, function (val) {
-                                var serie = [];
-                                angular.forEach(xAxisItems, function (value) {
-                                    if($scope.data.outMethods.length == 1){
-                                        if (val == "new") {
-                                            if(methodId1.new !== "")
-                                            var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.new);
+                        //delete cardObject.chartObject.chart;
+                        angular.forEach(yAxisItems, function (val) {
+                            var serie = [];
+                            angular.forEach(xAxisItems, function (value) {
+                                if($scope.data.outMethods.length == 1){
+                                    if (val == "new") {
+                                        if(methodId1.new !== "")
+                                        var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.new);
 
-                                        }
-                                        if (val == "returning") {
-                                            if(methodId1.returning !== "")
-                                            var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.returning);
-                                        }
-                                        if (val == "total") {
-                                            if(methodId1.total1 !== "")
-                                            var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.total1);
-                                        }
-                                    }else{
-                                        if (val == "new") {
-                                            //if(value.new !== "")
-                                            var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.new);
-                                        }
-                                        if (val == "returning") {
-                                            //if(value.returning !== "")
-                                            var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.returning);
-                                        }
-                                        if (val == "total") {
-                                            //if(value.total1 !== "")
-                                            var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.total1);
-                                        }
                                     }
+                                    if (val == "returning") {
+                                        if(methodId1.returning !== "")
+                                        var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.returning);
+                                    }
+                                    if (val == "total") {
+                                        if(methodId1.total1 !== "")
+                                        var number = $scope.getDataFromUrl(data.rows, value.id, '201412', methodId1.total1);
+                                    }
+                                }else{
+                                    if (val == "new") {
+                                        //if(value.new !== "")
+                                        var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.new);
+                                    }
+                                    if (val == "returning") {
+                                        //if(value.returning !== "")
+                                        var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.returning);
+                                    }
+                                    if (val == "total") {
+                                        //if(value.total1 !== "")
+                                        var number = $scope.getDataFromUrl(data.rows, 'none', '201412', value.total1);
+                                    }
+                                }
 
-                                    serie.push(number);
-                                });
-                                console.log(serie)
-                                $scope.normalseries1.push({ name: val, data: serie})
+                                serie.push(number);
                             });
-                            cardObject.chartObject.series = $scope.normalseries1;
-                            $('#container11').highcharts(cardObject.chartObject);
-                            console.log(JSON.stringify(cardObject.chartObject));
-                        }
+                            console.log(serie)
+                            $scope.normalseries1.push({ name: val, data: serie})
+                        });
+                        cardObject.chartObject.series = $scope.normalseries1;
+                        $('#container11').highcharts(cardObject.chartObject);
+                        cardObject.csvdata = $scope.prepareDataForCSV(cardObject.chartObject);
+
                     }
                     cardObject.chartObject.loading = false
                 }else{

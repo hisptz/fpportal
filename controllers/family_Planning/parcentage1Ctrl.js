@@ -160,6 +160,21 @@ angular.module("hmisPortal")
             }
         };
 
+        //prepare data for use in csv
+        $scope.prepareDataForCSV = function(arr){
+            var items = [];
+            angular.forEach(arr.series,function(value){
+                var obj = {name:value.name};
+                var i = 0;
+                angular.forEach(arr.xAxis.categories,function(val){
+                    obj[val] = value.data[i];
+                    i++;
+                })
+                items.push(obj);
+            })
+            return items;
+        };
+
         $scope.getNumberPerOu = function(arr,ou,arr2,pe){
             var count = 0;
             angular.forEach(arr,function(value){
@@ -234,6 +249,7 @@ angular.module("hmisPortal")
                             $('#pchart').highcharts(chartObject);
                             $scope.pchart = chartObject;
                             $scope.chartObject = chartObject;
+                            $scope.csvdata = $scope.prepareDataForCSV(chartObject);
                         });
                     });
                 });

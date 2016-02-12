@@ -190,6 +190,21 @@ angular.module("hmisPortal")
             }
         };
 
+        //prepare data for use in csv
+        $scope.prepareDataForCSV = function(arr){
+            var items = [];
+            angular.forEach(arr.series,function(value){
+                var obj = {name:value.name};
+                var i = 0;
+                angular.forEach(arr.xAxis.categories,function(val){
+                    obj[val] = value.data[i];
+                    i++;
+                })
+                items.push(obj);
+            })
+            return items;
+        };
+
         $scope.fpCards = [
             //{
             //    title:'Total Clients of [IMPLANTS]',
@@ -287,24 +302,6 @@ angular.module("hmisPortal")
                                 cardObject.chartObject.xAxis.categories.push(value.name);
                             });
                             $scope.normalseries1 = [];
-                            if (chart == 'table') {
-                                cardObject.table = {};
-                                cardObject.table.headers = [];
-                                cardObject.table.colums = [];
-                                angular.forEach(xAxisItems, function (value) {
-                                    var serie = [];
-                                    cardObject.table.headers.push(value);
-                                });
-                                angular.forEach(yAxisItems, function (val) {
-                                    var seri = [];
-                                    angular.forEach(xAxisItems, function (value) {
-                                        var number = $scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods'.category, methodId);
-                                        seri.push({name: value.name, value: parseInt(number)});
-                                    });
-                                    cardObject.table.colums.push({name: val.name, values: seri});
-                                });
-                            }
-                            else {
                                 delete cardObject.chartObject.chart;
                                 angular.forEach(xAxisItems, function (val) {
                                     var serie = [];
@@ -320,9 +317,9 @@ angular.module("hmisPortal")
                                 });
                                 cardObject.chartObject.series = $scope.normalseries1;
                                 $scope.chartObject = $scope.normalseries1;
+                                $scope.csvdata = $scope.prepareDataForCSV($scope.chartObject);
                                 $('#container12').highcharts(cardObject.chartObject);
 
-                            }
 
                         //////////////////////////////first chart ///////////////////////////
                         cardObject.chartObject.loading = false
