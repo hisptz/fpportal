@@ -150,6 +150,16 @@ angular.module("hmisPortal")
             return amount;
         };
 
+        //switching between tables and charts
+        $scope.displayTables = {card1:false}
+        $scope.changeTable =function(card,value){
+            if(value == "table"){
+                if(card == "card1"){$scope.displayTables.card1 = true}
+            }if(value == "chart"){
+                if(card == "card1"){$scope.displayTables.card1 = false}
+            }
+        };
+
         $scope.getNumberPerOu = function(arr,ou,arr2,pe){
             var count = 0;
             angular.forEach(arr,function(value){
@@ -223,6 +233,7 @@ angular.module("hmisPortal")
                             });
                             $('#pchart').highcharts(chartObject);
                             $scope.pchart = chartObject;
+                            $scope.chartObject = chartObject;
                         });
                     });
                 });

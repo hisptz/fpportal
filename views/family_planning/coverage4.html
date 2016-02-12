@@ -54,11 +54,33 @@
                     <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                         <div style="width: 100%">
                             <!--<highchart  config="pchart"></highchart>-->
-                            <div id="pchart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                            <div ng-show="!displayTables.card1" id="pchart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                        <div style="width: 100%"  ng-if="displayTables.card1">
+                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+                            <h5 class="center">{{ chartObject.title.text }}</h5>
+                            <table class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-repeat="cats in chartObject.xAxis.categories">{{ cats }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="column in chartObject.series">
+                                    <td>{{ column.name }}</td>
+                                    <td ng-repeat="nsf in column.data track by $index">{{ nsf }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
+                        <p>
+                            <a ng-click="changeTable('card1','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeTable('card1','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                        </p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">{{ fpCards[0].title }}<i class="material-icons right">close</i></span>

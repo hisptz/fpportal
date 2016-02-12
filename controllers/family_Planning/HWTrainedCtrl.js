@@ -180,6 +180,16 @@ angular.module("hmisPortal")
 
         };
 
+        //switching between tables and charts
+        $scope.displayTables = {card1:false}
+        $scope.changeTable =function(card,value){
+            if(value == "table"){
+                if(card == "card1"){$scope.displayTables.card1 = true}
+            }if(value == "chart"){
+                if(card == "card1"){$scope.displayTables.card1 = false}
+            }
+        };
+
         $scope.fpCards = [
             //{
             //    title:'Total Clients of [IMPLANTS]',
@@ -309,6 +319,7 @@ angular.module("hmisPortal")
                                     $scope.normalseries1.push({type: 'column', name: val.name, data: serie})
                                 });
                                 cardObject.chartObject.series = $scope.normalseries1;
+                                $scope.chartObject = $scope.normalseries1;
                                 $('#container12').highcharts(cardObject.chartObject);
 
                             }
