@@ -311,15 +311,15 @@ angular.module("hmisPortal")
                     chartObject2.title.text ="Percent of Dispensaries  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
                     angular.forEach(periods, function (val) {
                         chartObject.xAxis.categories.push(val.name);
-                        chartObject.xAxis.title = { enabled: false };
+                        chartObject.xAxis.labels.style = { visibility: 'hidden' };
                     });
                     angular.forEach(periods, function (val) {
                         chartObject1.xAxis.categories.push(val.name);
-                        chartObject.xAxis.title = { enabled: false };
+                        chartObject1.xAxis.labels.style = { visibility: 'hidden' };
                     });
                     angular.forEach(periods, function (val) {
                         chartObject2.xAxis.categories.push(val.name);
-                        chartObject.xAxis.title = { enabled: false };
+                        chartObject2.xAxis.labels.style = { visibility: 'hidden' };
                     });
 
 
