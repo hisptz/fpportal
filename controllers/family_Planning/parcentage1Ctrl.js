@@ -111,7 +111,7 @@ angular.module("hmisPortal")
             {'name':'Implants','uid':'pqpVKzE951Y'},
             {'name':'IUCDs','uid':'OQpasUg1Tse'},
             {'name':'NSV','uid':'btKkJROB2gP'},
-            {'name':'Min Lap','uid':'mlfh4fgiFhd'},
+            {'name':'Mini Lap','uid':'mlfh4fgiFhd'},
             {'name':'NSV','uid':'btKkJROB2gP'},
             {'name':'All Clients','uid':'EcP5Na7DO0r'},
             {'name':'Natural FP','uid':'GGpsoh0DX6T'}

@@ -119,7 +119,7 @@ angular.module("hmisPortal")
             {'name':'Implants','uid':'Igxe3yXGEoW'},
             {'name':'IUCDs','uid':'t8vQoqdY0en'},
             {'name':'NSV','uid':'BLqgpawRwGN'},
-            {'name':'Min Lap','uid':'acbet8SSjCY'}
+            {'name':'Mini Lap','uid':'acbet8SSjCY'}
         ];
 
         $scope.updateMethod = function(){

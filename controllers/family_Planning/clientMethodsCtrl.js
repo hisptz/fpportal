@@ -143,9 +143,9 @@ angular.module("hmisPortal")
             {'name':'Implants','uid':'pqpVKzE951Y'},
             {'name':'IUCDs','uid':'OQpasUg1Tse'},
             {'name':'NSV','uid':'btKkJROB2gP'},
-            {'name':'Min Lap','uid':'mlfh4fgiFhd'},
+            {'name':'Mini Lap','uid':'mlfh4fgiFhd'},
             {'name':'NSV','uid':'btKkJROB2gP'},
-            {'name':'Min Lap','uid':'mlfh4fgiFhd'},
+            {'name':'Mini Lap','uid':'mlfh4fgiFhd'},
             {'name':'All Clients','uid':'jvwTTzpWBD0'},
             {'name':'Natural FP','uid':'GGpsoh0DX6T'},
             {'name':'Eastern Zone','uid':'gb4r7CSrT7U'},
@@ -166,9 +166,9 @@ angular.module("hmisPortal")
             {'name':'Implants','uid':'pqpVKzE951Y'},
             {'name':'IUCDs','uid':'OQpasUg1Tse'},
             {'name':'NSV','uid':'btKkJROB2gP'},
-            {'name':'Min Lap','uid':'mlfh4fgiFhd'},
+            {'name':'Mini Lap','uid':'mlfh4fgiFhd'},
             {'name':'NSV','uid':'btKkJROB2gP'},
-            {'name':'Min Lap','uid':'mlfh4fgiFhd'}
+            {'name':'Mini Lap','uid':'mlfh4fgiFhd'}
         ];
         $scope.detailedMethod =[
             {'name':'Male Condoms','total':'JMmqv0tyVr7','new':'i1Zz36jwvdx','returning':'q7IbPTlyMFT','total1':''},
@@ -178,7 +178,7 @@ angular.module("hmisPortal")
             {'name':'Implants','total':'pqpVKzE951Y','new':'','returning':'','total1':'pqpVKzE951Y'},
             {'name':'IUCDs','total':'gHL3qXij2Yg','new':'','returning':'','total1':'gHL3qXij2Yg'},
             {'name':'NSV','total':'btKkJROB2gP','new':'','returning':'','total1':'btKkJROB2gP'},
-            {'name':'Min Lap','total':'mlfh4fgiFhd','new':'','returning':'','total1':'mlfh4fgiFhd'}
+            {'name':'Mini Lap','total':'mlfh4fgiFhd','new':'','returning':'','total1':'mlfh4fgiFhd'}
         ];
 
         $scope.updateMethod = function(){
@@ -575,9 +575,9 @@ angular.module("hmisPortal")
                     {'name':'Implants','uid':'pqpVKzE951Y'},
                     {'name':'IUCDs','uid':'OQpasUg1Tse'},
                     {'name':'NSV','uid':'btKkJROB2gP'},
-                    {'name':'Min Lap','uid':'mlfh4fgiFhd'},
+                    {'name':'Mini Lap','uid':'mlfh4fgiFhd'},
                     {'name':'NSV','uid':'btKkJROB2gP'},
-                    {'name':'Min Lap','uid':'mlfh4fgiFhd'});
+                    {'name':'Mini Lap','uid':'mlfh4fgiFhd'});
             }if(type == 'method'){
                 angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
                     var name = orgUnit.name;

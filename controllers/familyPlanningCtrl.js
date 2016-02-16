@@ -75,7 +75,7 @@ angular.module("hmisPortal")
                     {'name':'Implants','new_id':'p14JdJaG2aC','return_id':'',outreach:'ZnTi99UdGCS',routine:'lMFKZN3UaYp'},
                     {'name':'IUCDs','new_id':'GvbkEo6sfSd','return_id':'',outreach:'ZnTi99UdGCS',routine:'lMFKZN3UaYp'},
                     {'name':'NSV','new_id':'QRCRjFreECE','return_id':'',outreach:'chmWn8ksICz',routine:'JSmtnnW6WrR'},
-                    {'name':'Min Lap','new_id':'QRCRjFreECE','return_id':'',outreach:'xip1SDutimh',routine:'JSmtnnW6WrR'}];
+                    {'name':'Mini Lap','new_id':'QRCRjFreECE','return_id':'',outreach:'xip1SDutimh',routine:'JSmtnnW6WrR'}];
                 var url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+FPManager.preparePeriod+"&displayProperty=NAME";
                 $http.get('data.json').success(function(data){
 

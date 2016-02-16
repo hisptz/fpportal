@@ -92,7 +92,7 @@ angular.module("hmisPortal")
             {'name':'Implants','uid':'Igxe3yXGEoW'},
             {'name':'IUCDs','uid':'t8vQoqdY0en'},
             {'name':'NSV','uid':'BLqgpawRwGN'},
-            {'name':'Min Lap','uid':'acbet8SSjCY'}
+            {'name':'Mini Lap','uid':'acbet8SSjCY'}
         ];
         $scope.updateMethod = function(){
             $scope.data.menuMethods = [];
@@ -551,7 +551,7 @@ angular.module("hmisPortal")
                 index = 5;
             }if(method == 'NSV'){
                 index = 6;
-            }if(method == 'Min Lap'){
+            }if(method == 'Mini Lap'){
                 index = 7;
             }
 

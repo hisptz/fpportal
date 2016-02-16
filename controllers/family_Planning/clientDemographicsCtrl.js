@@ -77,7 +77,7 @@ angular.module("hmisPortal")
             {'name':'Implants','id':'p14JdJaG2aC','facility':'lMFKZN3UaYp','outreach':'ZnTi99UdGCS'},
             {'name':'IUCDs','id':'GvbkEo6sfSd','facility':'UjGebiXNg0t','outreach':'RfSsrHPGBXV'},
             {'name':'NSV','id':'p14JdJaG2a','facility':'JSmtnnW6WrR','outreach':'chmWn8ksICz'},
-            {'name':'Min Lap','facility':'xhcaH3H3pdK','outreach':'xip1SDutimh'},
+            {'name':'Mini Lap','facility':'xhcaH3H3pdK','outreach':'xip1SDutimh'},
             {'name':'Natural FP','id':'QRCRjFreECE','facility':'','outreach':''}];
 
         $scope.updateMethod = function(){
@@ -223,7 +223,7 @@ angular.module("hmisPortal")
         $scope.updateDisplayMessage = function(methods){
             $scope.displayMesage = false;
             angular.forEach(methods,function(value){
-                if(value.name == 'Implants' || value.name == 'IUCDs' || value.name == 'NSV' || value.name == 'Min Lap'){
+                if(value.name == 'Implants' || value.name == 'IUCDs' || value.name == 'NSV' || value.name == 'Mini Lap'){
                     $scope.displayMesage = true;
                 }
             });
@@ -762,7 +762,7 @@ angular.module("hmisPortal")
                 });
             }if(type == 'routineOutreachMethod'){
                 angular.forEach($scope.data.outMethods,function(value){
-                    if(value.name == 'Implants' || value.name == 'IUCDs' || value.name == 'NSV' || value.name == 'Min Lap'){
+                    if(value.name == 'Implants' || value.name == 'IUCDs' || value.name == 'NSV' || value.name == 'Mini Lap'){
                         data.push({'name':value.name,'facility':value.facility,'outreach':value.outreach})
                     }
                 });
