@@ -243,31 +243,29 @@ angular.module("hmisPortal")
             var DispensaryCount = 0;
             var HosptalCount = 0;
             var HealthCount = 0;
+            var OtherCount = 0;
             angular.forEach(arr,function(value){
                 if ($scope.orgUnitType(value.organisationUnitGroups,'Hospital')) {
-                    angular.forEach(value.ancestors, function (val) {
-                        if ("m0frOspS7JY" == val.id) {
+
                             HosptalCount++;
-                        }
-                    });
-                }if ($scope.orgUnitType(value.organisationUnitGroups,'Health Center')) {
-                    angular.forEach(value.ancestors, function (val) {
-                        if ("m0frOspS7JY" == val.id) {
+
+                }else if ($scope.orgUnitType(value.organisationUnitGroups,'Health Center')) {
+
                             HealthCount++;
-                        }
-                    });
-                }if ($scope.orgUnitType(value.organisationUnitGroups,'Dispensary')) {
-                    angular.forEach(value.ancestors, function (val) {
-                        if ("m0frOspS7JY" == val.id) {
+
+                }else if ($scope.orgUnitType(value.organisationUnitGroups,'Dispensary')) {
+
                             DispensaryCount++;
-                        }
-                    });
+
+                }else{
+                    OtherCount++
                 }
             });
             console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
             console.log(HosptalCount)
             console.log(DispensaryCount)
             console.log(HealthCount)
+            console.log(OtherCount)
             console.log('******************************************');
         }
 
