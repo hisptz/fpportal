@@ -258,6 +258,7 @@ angular.module("hmisPortal")
                             DispensaryCount++;
 
                 }else{
+                    console.log(value.name+"  "+JSON.stringify(value.organisationUnitGroups))
                     OtherCount++
                 }
             });
