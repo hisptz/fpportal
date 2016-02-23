@@ -223,7 +223,7 @@ angular.module("hmisPortal")
 
                     var chartObject = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent of Facilities Stocked out of Injectables or Pills Jan 2014 to Dec 2014";
+                    chartObject.title.text ="Percent of Facilities Stocked out of Injectables Jan 2014 to Dec 2014";
                     chartObject.yAxis.title.text ="% of Facilities";
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = $scope.prepareCategory('month');
