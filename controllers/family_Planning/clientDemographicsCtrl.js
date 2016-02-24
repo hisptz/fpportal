@@ -285,11 +285,11 @@ angular.module("hmisPortal")
         //prepare data for use in csv
         $scope.prepareDataForCSV = function(arr){
             var items = [];
-            angular.forEach(arr.series,function(value){
-                var obj = {name:value.name};
+            angular.forEach(arr.xAxis.categories,function(value){
+                var obj = {name:value};
                 var i = 0;
-                angular.forEach(arr.xAxis.categories,function(val){
-                   obj[val] = value.data[i];
+                angular.forEach(arr.series,function(val){
+                    obj[val.name] = val.data[i];
                     i++;
                 })
                 items.push(obj);
