@@ -88,15 +88,18 @@ angular.module("hmisPortal")
         //prepare data for use in csv
         $scope.prepareDataForCSV = function(arr){
             var items = [];
+            var i = 0;
             angular.forEach(arr.xAxis.categories,function(value){
                 var obj = {name:value};
-                var i = 0;
+                console.log(arr.series)
                 angular.forEach(arr.series,function(val){
                     obj[val.name] = val.data[i];
-                    i++;
-                })
+
+                });
+                i++;
                 items.push(obj);
-            })
+            });
+            console.log(items)
             return items;
         };
 
@@ -153,27 +156,6 @@ angular.module("hmisPortal")
             }
         };
 
-        //$scope.getSelectedMethod = function(){
-        //    angular.forEach()
-        //}
-
-        $scope.getMethodName = function(uid){
-            var name  = ""
-            angular.forEach($scope.FPmethods, function (value) {
-                if(value.uid == uid){
-
-                    name = value.name;
-                }
-            });
-
-            return name;
-        };
-        $scope.findValue = function(arr,ou,pe,dx,type){
-
-            var amount = 0;
-
-            return amount;
-        };
 
         $scope.orgUnitType = function(arr,type){
             var name = false;
@@ -213,7 +195,6 @@ angular.module("hmisPortal")
 
 
         $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,type,method){
-
             var count = 0;
             angular.forEach(arr,function(value){
                 if ($scope.orgUnitType(value.organisationUnitGroups,type)) {
@@ -234,7 +215,6 @@ angular.module("hmisPortal")
                 }
             });
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
-            console.log(num+"/"+count);
             var percent = (num/count)*100;
             return percent.toFixed(2);
         };
@@ -263,10 +243,10 @@ angular.module("hmisPortal")
                 }
             });
             console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
-            console.log(HosptalCount)
-            console.log(DispensaryCount)
-            console.log(HealthCount)
-            console.log(OtherCount)
+            console.log(HosptalCount);
+            console.log(DispensaryCount);
+            console.log(HealthCount);
+            console.log(OtherCount);
             console.log('******************************************');
         }
 
@@ -354,14 +334,14 @@ angular.module("hmisPortal")
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
                         $scope.getNumberPerOu2(data.organisationUnits);
                         if($scope.data.outMethods.length  == 1) {
-                            $http.get(portalService.base + 'api/sqlViews/bUYj0dQ4RUE/data.json?var=types:Hospital&var=methods:' + method + '&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function (val1) {
+                            //$http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/hmdb4ItS0B8/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
                                     var serie = [];
                                     angular.forEach(periods, function (xAxis) {
-                                        serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits, yAxis.id, val1.rows, xAxis.id, 'Hospital')));
+                                        serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Hospital',$scope.data.outMethods[0].name)));
                                     });
-                                    console.log(serie);
                                     chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart').highcharts(chartObject);
@@ -370,14 +350,14 @@ angular.module("hmisPortal")
                                 $scope.pchart = chartObject;
                             });
 
-                            $http.get(portalService.base + 'api/sqlViews/bUYj0dQ4RUE/data.json?var=types:Health Center&var=methods:' + method + '&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function (val1) {
+                            //$http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/hmdb4ItS0B8/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
                                     var serie = [];
                                     angular.forEach(periods, function (xAxis) {
-                                        serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits, yAxis.id, val1.rows, xAxis.id, 'Health Center')));
+                                        serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Health Center',$scope.data.outMethods[0].name)));
                                     });
-                                    console.log(serie);
                                     chartObject1.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart1').highcharts(chartObject1);
@@ -386,14 +366,14 @@ angular.module("hmisPortal")
                                 $scope.pchart1 = chartObject;
                             });
 
-                            $http.get(portalService.base + 'api/sqlViews/bUYj0dQ4RUE/data.json?var=types:Dispensary&var=methods:' + method + '&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function (val1) {
+                            //$http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/hmdb4ItS0B8/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
                                     var serie = [];
                                     angular.forEach(periods, function (xAxis) {
-                                        serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits, yAxis.id, val1.rows, xAxis.id, 'Dispensary')));
+                                        serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Dispensary',$scope.data.outMethods[0].name)));
                                     });
-                                    console.log(serie);
                                     chartObject2.series.push({type: 'spline', name: yAxis.name, data: serie})
                                 });
                                 $('#pchart2').highcharts(chartObject2);
@@ -403,8 +383,8 @@ angular.module("hmisPortal")
                             });
                         }else{
 
-                            $http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            //$http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/hmdb4ItS0B8/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
                                     var serie = [];
@@ -419,8 +399,8 @@ angular.module("hmisPortal")
                                 $scope.pchart = chartObject;
                             });
 
-                            $http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            //$http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/hmdb4ItS0B8/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
                                     var serie = [];
@@ -435,8 +415,8 @@ angular.module("hmisPortal")
                                 $scope.pchart1 = chartObject1;
                             });
 
-                            $http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                            //$http.get(portalService.base+'api/sqlViews/cuiaKwuXtis/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            //$http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/hmdb4ItS0B8/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
                                     var serie = [];

@@ -85,14 +85,6 @@ angular.module("hmisPortal")
             },function(){
                 deferred.reject();
             });
-
-            //$http.post(self.base + "dhis-web-commons-security/login.action?authOnly=true", { j_username: "portal", j_password: "Portal123" })
-            //    .success(function(response){
-            //        deferred.resolve(response);
-            //    })
-            //    .error(function(errorMessageData){
-            //        deferred.reject();
-            //    });
             return deferred.promise;
         };
 
