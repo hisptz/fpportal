@@ -2,23 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/HWTrainedCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/HWTrainedCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" afterPath="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/client_by_methods.html" afterPath="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage1.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage2.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage3.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage4.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage4.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/portalService.js" afterPath="$PROJECT_DIR$/services/portalService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/stock_out1.html" afterPath="$PROJECT_DIR$/views/family_planning/stock_out1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/stockoutCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/stockoutCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/survilience.html" afterPath="$PROJECT_DIR$/views/family_planning/survilience.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/survilienceCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/survilienceCtrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/HWParcentageCtrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/clientDemographicsCtrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/clientMethodsCtrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nationalPDF.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/stockoutCtrl.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/survilienceCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="fp_portal.iws" />
@@ -43,64 +33,75 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="clientMethodsCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js">
+      <file leaf-file-name="nationalPDF.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nationalPDF.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.5161295" vertical-offset="7445" max-vertical-offset="10692">
-              <caret line="432" column="76" selection-start-line="432" selection-start-column="45" selection-end-line="432" selection-end-column="76" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parcentage1Ctrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0819674" vertical-offset="2649" max-vertical-offset="6876">
-              <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.672131" vertical-offset="6267" max-vertical-offset="9054">
-              <caret line="405" column="81" selection-start-line="405" selection-start-column="50" selection-end-line="405" selection-end-column="81" />
+            <state vertical-scroll-proportion="-4.87931" vertical-offset="2993" max-vertical-offset="4086">
+              <caret line="239" column="78" selection-start-line="239" selection-start-column="78" selection-end-line="239" selection-end-column="78" />
               <folding>
-                <element signature="e#4450#4733#0" expanded="false" />
-                <element signature="e#4841#5067#0" expanded="false" />
-                <element signature="e#5129#5340#0" expanded="false" />
-                <element signature="e#5412#5594#0" expanded="false" />
-                <element signature="e#5827#5938#0" expanded="false" />
-                <element signature="e#6032#6100#0" expanded="false" />
-                <element signature="e#20519#21287#0" expanded="false" />
-                <element signature="e#23457#24403#0" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#td#1;n#tr#0;n#table#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#td#1;n#tr#0;n#table#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#0;n#table#0;n#td#1;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#td#1;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#td#2;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#h6#0;n#td#2;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#0;n#table#0;n#td#2;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#td#1;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#7;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#7;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#table#7;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#7;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parcentageCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
+      <file leaf-file-name="survilience.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/family_planning/survilience.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0819674" vertical-offset="1299" max-vertical-offset="11214">
-              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="-14.407408" vertical-offset="727" max-vertical-offset="2160">
+              <caret line="161" column="139" selection-start-line="161" selection-start-column="28" selection-end-line="161" selection-end-column="139" />
+              <folding>
+                <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HWTrainedCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWTrainedCtrl.js">
+      <file leaf-file-name="survilienceCtrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/survilienceCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="5.9508195" vertical-offset="3747" max-vertical-offset="7020">
-              <caret line="190" column="10" selection-start-line="190" selection-start-column="10" selection-end-line="190" selection-end-column="10" />
-              <folding>
-                <element signature="e#12881#13389#0" expanded="false" />
-                <element signature="e#13447#14647#0" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="1621" max-vertical-offset="5706">
+              <caret line="106" column="75" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="75" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,7 +109,7 @@
       <file leaf-file-name="portalService.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/portalService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3478735" vertical-offset="5" max-vertical-offset="4014">
+            <state vertical-scroll-proportion="0.3140676" vertical-offset="36" max-vertical-offset="4014">
               <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
               <folding>
                 <element signature="e#1084#1622#0" expanded="false" />
@@ -119,42 +120,49 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/HWParcentageCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3313" max-vertical-offset="7632">
+              <caret line="296" column="120" selection-start-line="296" selection-start-column="120" selection-end-line="296" selection-end-column="120" />
+              <folding>
+                <element signature="e#4841#5067#0" expanded="false" />
+                <element signature="e#5129#5340#0" expanded="false" />
+                <element signature="e#5412#5594#0" expanded="false" />
+                <element signature="e#5641#5882#0" expanded="false" />
+                <element signature="e#5938#6006#0" expanded="false" />
+                <element signature="e#6055#6277#0" expanded="false" />
+                <element signature="e#6341#7323#0" expanded="false" />
+                <element signature="e#7397#8387#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clientMethodsCtrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/clientMethodsCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6166" max-vertical-offset="8604">
+              <caret line="362" column="13" selection-start-line="356" selection-start-column="12" selection-end-line="362" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="stockoutCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/stockoutCtrl.js">
+        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/stockoutCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0819674" vertical-offset="2145" max-vertical-offset="6876">
-              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="survilienceCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/survilienceCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="896" max-vertical-offset="5490">
-              <caret line="66" column="10" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clientDemographicsCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.5161295" vertical-offset="9659" max-vertical-offset="14346">
-              <caret line="555" column="62" selection-start-line="555" selection-start-column="62" selection-end-line="555" selection-end-column="62" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="familyPlanningService.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/services/familyPlanningService.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="4878">
-              <caret line="3" column="13" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1919" max-vertical-offset="5094">
+              <caret line="213" column="72" selection-start-line="213" selection-start-column="35" selection-end-line="213" selection-end-column="72" />
+              <folding>
+                <element signature="e#2386#4726#0" expanded="false" />
+                <element signature="e#5399#5609#0" expanded="false" />
+                <element signature="e#5705#5887#0" expanded="false" />
+                <element signature="e#6030#6267#0" expanded="false" />
+                <element signature="e#6314#6555#0" expanded="false" />
+                <element signature="e#6611#6679#0" expanded="false" />
+                <element signature="e#6738#7522#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -184,7 +192,6 @@
         <option value="$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.min.css" />
         <option value="$PROJECT_DIR$/dhis2_data_new_format.xml" />
         <option value="$PROJECT_DIR$/views/family_planning/stock_out2.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/csv.html" />
         <option value="$PROJECT_DIR$/controllers/familyPlanningCtrl.js" />
         <option value="$PROJECT_DIR$/data1.json" />
@@ -209,6 +216,15 @@
         <option value="$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/stockoutCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/survilienceCtrl.js" />
+        <option value="$PROJECT_DIR$/National.html" />
+        <option value="$PROJECT_DIR$/NationalPDF.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/clientDemographicsCtrl.js" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/clientMethodsCtrl.js" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/stockoutCtrl.js" />
+        <option value="$PROJECT_DIR$/nationalPDF.html" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/survilienceCtrl.js" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
       </list>
     </option>
@@ -355,6 +371,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="family_Planning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PDFControllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fp_portal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fpportal" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -396,11 +434,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/controllers/family_Planning/PDFControllers" />
       <recent name="$PROJECT_DIR$/assets/js" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/services" />
       <recent name="$PROJECT_DIR$/bower_components" />
-      <recent name="$PROJECT_DIR$/views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -529,54 +567,17 @@
           <line>64</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/stockoutCtrl.js</url>
+          <line>161</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="24" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/controllers/dashboardCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/downloads.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/mainCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/morbidityCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="737">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/jinsiCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="21708">
-          <caret line="9" column="4" selection-start-line="4" selection-start-column="0" selection-end-line="9" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="7200">
@@ -696,13 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.037037" vertical-offset="5120" max-vertical-offset="6390">
-          <caret line="316" column="225" selection-start-line="316" selection-start-column="225" selection-end-line="316" selection-end-column="225" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/ng-csv.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5832">
@@ -766,22 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.62963" vertical-offset="1234" max-vertical-offset="2394">
-          <caret line="95" column="70" selection-start-line="95" selection-start-column="70" selection-end-line="95" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.962963" vertical-offset="3178" max-vertical-offset="4230">
-          <caret line="193" column="73" selection-start-line="193" selection-start-column="73" selection-end-line="193" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/coverage3.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.62963" vertical-offset="3124" max-vertical-offset="4068">
@@ -794,38 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.296296" vertical-offset="892" max-vertical-offset="1998">
           <caret line="71" column="72" selection-start-line="71" selection-start-column="72" selection-end-line="71" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/stock_out1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.296296" vertical-offset="892" max-vertical-offset="2052">
-          <caret line="71" column="72" selection-start-line="71" selection-start-column="72" selection-end-line="71" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="18.074074" vertical-offset="2198" max-vertical-offset="3528">
-          <caret line="95" column="70" selection-start-line="95" selection-start-column="70" selection-end-line="95" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/survilience.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.703704" vertical-offset="2404" max-vertical-offset="3942">
-          <caret line="125" column="64" selection-start-line="125" selection-start-column="64" selection-end-line="125" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.962963" vertical-offset="1432" max-vertical-offset="3564">
-          <caret line="99" column="74" selection-start-line="99" selection-start-column="74" selection-end-line="99" selection-end-column="74" />
           <folding />
         </state>
       </provider>
@@ -843,23 +789,6 @@
         <state vertical-scroll-proportion="-9.5161295" vertical-offset="9659" max-vertical-offset="14346">
           <caret line="555" column="62" selection-start-line="555" selection-start-column="62" selection-end-line="555" selection-end-column="62" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.672131" vertical-offset="6267" max-vertical-offset="9054">
-          <caret line="405" column="81" selection-start-line="405" selection-start-column="50" selection-end-line="405" selection-end-column="81" />
-          <folding>
-            <element signature="e#4450#4733#0" expanded="false" />
-            <element signature="e#4841#5067#0" expanded="false" />
-            <element signature="e#5129#5340#0" expanded="false" />
-            <element signature="e#5412#5594#0" expanded="false" />
-            <element signature="e#5827#5938#0" expanded="false" />
-            <element signature="e#6032#6100#0" expanded="false" />
-            <element signature="e#20519#21287#0" expanded="false" />
-            <element signature="e#23457#24403#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -890,14 +819,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0819674" vertical-offset="2649" max-vertical-offset="6876">
-          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/stockoutCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.0819674" vertical-offset="2145" max-vertical-offset="6876">
@@ -914,9 +835,198 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.9629629" vertical-offset="1234" max-vertical-offset="2394">
+          <caret line="73" column="32" selection-start-line="73" selection-start-column="8" selection-end-line="73" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="52.962963" vertical-offset="2960" max-vertical-offset="6282">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1570338" vertical-offset="0" max-vertical-offset="9054">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="33" />
+          <folding>
+            <element signature="e#4450#4733#0" expanded="false" />
+            <element signature="e#4841#5067#0" expanded="false" />
+            <element signature="e#5129#5340#0" expanded="false" />
+            <element signature="e#5412#5594#0" expanded="false" />
+            <element signature="e#5827#5938#0" expanded="false" />
+            <element signature="e#6032#6100#0" expanded="false" />
+            <element signature="e#20519#21287#0" expanded="false" />
+            <element signature="e#23457#24403#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentage1Ctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2588" max-vertical-offset="6876">
+          <caret line="161" column="0" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.296297" vertical-offset="2098" max-vertical-offset="4230">
+          <caret line="141" column="36" selection-start-line="128" selection-start-column="28" selection-end-line="141" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.962963" vertical-offset="1162" max-vertical-offset="3564">
+          <caret line="81" column="169" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="169" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.259259" vertical-offset="2414" max-vertical-offset="3528">
+          <caret line="142" column="143" selection-start-line="142" selection-start-column="28" selection-end-line="142" selection-end-column="143" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/stock_out1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.296296" vertical-offset="892" max-vertical-offset="2052">
+          <caret line="56" column="107" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/clientDemographicsCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-99.77419" vertical-offset="4035" max-vertical-offset="12078">
+          <caret line="398" column="0" selection-start-line="398" selection-start-column="0" selection-end-line="398" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/stockoutCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1919" max-vertical-offset="5094">
+          <caret line="213" column="72" selection-start-line="213" selection-start-column="35" selection-end-line="213" selection-end-column="72" />
+          <folding>
+            <element signature="e#2386#4726#0" expanded="false" />
+            <element signature="e#5399#5609#0" expanded="false" />
+            <element signature="e#5705#5887#0" expanded="false" />
+            <element signature="e#6030#6267#0" expanded="false" />
+            <element signature="e#6314#6555#0" expanded="false" />
+            <element signature="e#6611#6679#0" expanded="false" />
+            <element signature="e#6738#7522#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/survilience.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.407408" vertical-offset="727" max-vertical-offset="2160">
+          <caret line="161" column="139" selection-start-line="161" selection-start-column="28" selection-end-line="161" selection-end-column="139" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/clientMethodsCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6166" max-vertical-offset="8604">
+          <caret line="362" column="13" selection-start-line="356" selection-start-column="12" selection-end-line="362" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nationalPDF.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.87931" vertical-offset="2993" max-vertical-offset="4086">
+          <caret line="239" column="78" selection-start-line="239" selection-start-column="78" selection-end-line="239" selection-end-column="78" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#td#1;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#td#1;n#tr#0;n#table#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#td#1;n#tr#0;n#table#3;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#1;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#td#1;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#td#2;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#h6#0;n#td#2;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#2;n#tr#0;n#table#5;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#td#1;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#table#6;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#7;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#7;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#table#7;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#7;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/survilienceCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1621" max-vertical-offset="5706">
+          <caret line="106" column="75" selection-start-line="106" selection-start-column="39" selection-end-line="106" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/HWParcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3313" max-vertical-offset="7632">
+          <caret line="296" column="120" selection-start-line="296" selection-start-column="120" selection-end-line="296" selection-end-column="120" />
+          <folding>
+            <element signature="e#4841#5067#0" expanded="false" />
+            <element signature="e#5129#5340#0" expanded="false" />
+            <element signature="e#5412#5594#0" expanded="false" />
+            <element signature="e#5641#5882#0" expanded="false" />
+            <element signature="e#5938#6006#0" expanded="false" />
+            <element signature="e#6055#6277#0" expanded="false" />
+            <element signature="e#6341#7323#0" expanded="false" />
+            <element signature="e#7397#8387#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/services/portalService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3478735" vertical-offset="5" max-vertical-offset="4014">
+        <state vertical-scroll-proportion="0.3140676" vertical-offset="36" max-vertical-offset="4014">
           <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
           <folding>
             <element signature="e#1084#1622#0" expanded="false" />
