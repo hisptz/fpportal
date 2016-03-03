@@ -64,13 +64,13 @@
                                 <thead>
                                 <tr>
                                     <th></th>
-                                    <th ng-repeat="cats in chartObject.xAxis.categories">{{ cats }}</th>
+                                    <th ng-repeat="column in chartObject.series">{{ column.name }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr data-ng-repeat="column in chartObject.series">
-                                    <td>{{ column.name }}</td>
-                                    <td ng-repeat="nsf in column.data  track by $index">{{ nsf }}</td>
+                                <tr data-ng-repeat="cats in chartObject.xAxis.categories">
+                                    <td>{{ cats }}</td>
+                                    <td ng-repeat="column in chartObject.series">{{ column.data[$parent.$index] }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -119,13 +119,13 @@
                                 <thead>
                                 <tr>
                                     <th></th>
-                                    <th ng-repeat="cats in chartObject1.xAxis.categories">{{ cats }}</th>
+                                    <th ng-repeat="column in chartObject1.series">{{ column.name }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr data-ng-repeat="column in chartObject1.series">
-                                    <td>{{ column.name }}</td>
-                                    <td ng-repeat="nsf in column.data track by $index">{{ nsf }}</td>
+                                <tr data-ng-repeat="cats in chartObject1.xAxis.categories">
+                                    <td>{{ cats }}</td>
+                                    <td ng-repeat="column in chartObject1.series">{{ column.data[$parent.$index] }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -168,13 +168,13 @@
                                 <thead>
                                 <tr>
                                     <th></th>
-                                    <th ng-repeat="cats in chartObject2.xAxis.categories">{{ cats }}</th>
+                                    <th ng-repeat="column in chartObject2.series">{{ column.name }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr data-ng-repeat="column in chartObject2.series">
-                                    <td>{{ column.name }}</td>
-                                    <td ng-repeat="nsf in column.data track by $index">{{ nsf }}</td>
+                                <tr data-ng-repeat="cats in chartObject2.xAxis.categories">
+                                    <td>{{ cats }}</td>
+                                    <td ng-repeat="column in chartObject2.series">{{ column.data[$parent.$index] }}</td>
                                 </tr>
                                 </tbody>
                             </table>

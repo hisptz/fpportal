@@ -282,20 +282,6 @@ angular.module("hmisPortal")
             return headers;
         };
 
-        //prepare data for use in csv
-        $scope.prepareDataForCSV = function(arr){
-            var items = [];
-            angular.forEach(arr.xAxis.categories,function(value){
-                var obj = {name:value};
-                var i = 0;
-                angular.forEach(arr.series,function(val){
-                    obj[val.name] = val.data[i];
-                    i++;
-                })
-                items.push(obj);
-            })
-            return items;
-        };
 
         $scope.fpCards = [
 
@@ -501,7 +487,7 @@ angular.module("hmisPortal")
 
                                     });
                                     cardObject.chartObject.series = $scope.normalseries2;
-                                    cardObject.csvdata = $scope.prepareDataForCSV(cardObject.chartObject);
+                                    cardObject.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
 
                                 cardObject.chartObject.loading = false
                             }
@@ -567,7 +553,7 @@ angular.module("hmisPortal")
                             });
                             cardObject.chartObject.series = $scope.normalseries1;
                             $('#container11').highcharts(cardObject.chartObject);
-                            cardObject.csvdata = $scope.prepareDataForCSV(cardObject.chartObject);
+                            cardObject.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
 
                         }
 

@@ -252,38 +252,10 @@ angular.module("hmisPortal")
             }
         };
 
-        //prepare data for use in csv
-        $scope.prepareDataForCSV = function(arr){
-            var items = [];
-            angular.forEach(arr.xAxis.categories,function(value){
-                var obj = {name:value};
-                var i = 0;
-                angular.forEach(arr.series,function(val){
-                    obj[val.name] = val.data[i];
-                    i++;
-                })
-                items.push(obj);
-            })
-            return items;
-        };
+
 
         $scope.fpCards = [
-            //{
-            //    title:'Total Clients of [IMPLANTS]',
-            //    description:'Total Clients of [IMPLANTS]',
-            //    cardClass:"col s12 m12",
-            //    data:[{'name':'All Clients','id':'jvwTTzpWBD0'}],
-            //    data1:$scope.currentOrgUnit,
-            //    category:'zones',
-            //    category1:'zones',
-            //    icons:angular.copy(portalService.minimalIcons),
-            //    displayTable:false,
-            //    displayMap:false,
-            //    chart:'bar',
-            //    visible:'consumption by method',
-            //    chartObject:angular.copy(portalService.chartObject)
-            //
-            //},
+
     {
                 title:'Family Planning clients by Method through Routine Facility-Based Service Dec 2014' ,
                 description:'Total Clients Quarterly',
@@ -407,7 +379,7 @@ angular.module("hmisPortal")
                         });
                         cardObject.chartObject.series = $scope.normalseries1;
                         $('#container12').highcharts(cardObject.chartObject);
-                        cardObject.csvdata = $scope.prepareDataForCSV(cardObject.chartObject);
+                        cardObject.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
 
                     }
 
@@ -458,7 +430,7 @@ angular.module("hmisPortal")
                         });
                         cardObject.chartObject.series = $scope.normalseries1;
                         $('#container11').highcharts(cardObject.chartObject);
-                        cardObject.csvdata = $scope.prepareDataForCSV(cardObject.chartObject);
+                        cardObject.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
 
                     }
                     cardObject.chartObject.loading = false

@@ -66,21 +66,6 @@ angular.module("hmisPortal")
             }
         };
 
-        //prepare data for use in csv
-        $scope.prepareDataForCSV = function(arr){
-            var items = [];
-            angular.forEach(arr.xAxis.categories,function(value){
-                var obj = {name:value};
-                var i = 0;
-                angular.forEach(arr.series,function(val){
-                    obj[val.name] = val.data[i];
-                    i++;
-                })
-                items.push(obj);
-            })
-            return items;
-        };
-
         $scope.getSelectedValues = function(){
 
             if($scope.data.outOrganisationUnits.length === 0){
@@ -168,13 +153,13 @@ angular.module("hmisPortal")
 
                         $('#chart').highcharts(chartObject);
                         $scope.chartObject = chartObject;
-                        $scope.csvdata = $scope.prepareDataForCSV(chartObject);
+                        $scope.csvdata = portalService.prepareDataForCSV(chartObject);
                         $('#chart2').highcharts(chartObject1);
                         $scope.chartObject1 = chartObject1;
-                        $scope.csvdata1 = $scope.prepareDataForCSV(chartObject1);
+                        $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
                         $('#chart3').highcharts(chartObject2);
                         $scope.chartObject2 = chartObject2;
-                        $scope.csvdata2 = $scope.prepareDataForCSV(chartObject2);
+                        $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
 
                     });
                 });

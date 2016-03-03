@@ -76,6 +76,20 @@ angular.module("hmisPortal")
             series: []
         };
 
+        this.prepareDataForCSV = function(arr){
+            var items = [];
+            var i = 0;
+            angular.forEach(arr.xAxis.categories,function(value){
+                var obj = {name:value};
+                angular.forEach(arr.series,function(val){
+                    obj[val.name] = val.data[i];
+                });
+                i++;
+                items.push(obj);
+            });
+            return items;
+        };
+
         this.authenticateDHIS = function () {
             var deferred = $q.defer();
             $.post( self.base + "dhis-web-commons-security/login.action?authOnly=true", {
