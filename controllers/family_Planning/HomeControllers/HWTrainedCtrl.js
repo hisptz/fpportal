@@ -147,6 +147,7 @@ angular.module("hmisPortal")
                         var xAxisItems = $scope.prepareCategory('methods');
                         /////////////////////////// second chart ////////////////////////////////
                         cardObject.chartObject.xAxis.categories = [];
+                        cardObject.chartObject.xAxis.title= { enabled: false }
                         angular.forEach(yAxisItems, function (value) {
                             cardObject.chartObject.xAxis.categories.push(value.name);
                         });
