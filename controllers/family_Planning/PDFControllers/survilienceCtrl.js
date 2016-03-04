@@ -94,8 +94,13 @@ angular.module("hmisPortal")
                 chartObject.loading = true;
                 chartObject1.loading = true;
                 chartObject2.loading = true;
-
-                var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
+                var defn = [
+                    {id:'NOWyEruy9Ch',name:'Clients Adopting FP Following MVA or D+C(Numerator)' },
+                    {id:'MovYxmAwPZP',name:'Clients Adopting FP Following MVA or D+C(Denominator)' },
+                    {id:'OwAJT47sIgQ',name:'FP HIV testing rate among FP clients(Numerator)' },
+                    {id:'NaCPtfoUkpH',name:'FP HIV testing rate among FP clients(Denominator)' }
+                ]
+                var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
                 var base = portalService.base;
                 $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
@@ -136,9 +141,9 @@ angular.module("hmisPortal")
                             var chartSeries1 = [];
                             var chartSeries2 = [];
                             angular.forEach(periods,function(xAxis){
-                                var number = $scope.findValue(data.rows,yAxis.id,xAxis.id,'cWMJ2HsNTtr','percent');
-                                var number1 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'b6O7BaQ46R4','number');
-                                var number2 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'reywf66stpK','percent');
+                                var number = $scope.findValue(data.rows,yAxis.id,xAxis.id,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent');
+                                var number1 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'b6O7BaQ46R4','','','number');
+                                var number2 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent');
                                 chartSeries.push(parseFloat(number));
                                 chartSeries1.push(parseFloat(number1));
                                 chartSeries2.push(parseFloat(number2));
@@ -172,23 +177,12 @@ angular.module("hmisPortal")
             angular.forEach()
         };
 
-        $scope.findValue = function(arr,ou,pe,dx,type){
+        $scope.findValue = function(arr,ou,pe,dx,numerator,denominator,type){
 
             var amount = 0;
-            if(ou == 'm0frOspS7JY'){
-                var j =0;
-                $.each(arr,function(k,v){
-                    j++;
-                    if(v[2] == pe && v[0] == dx){
-                        amount += parseInt(v[3])
-                    }
-                });
-                if(type == 'percent'){
-                    amount = (amount != 0)?parseInt(amount/j):0;
-                }
-            }
+            var numeratorValue = 0
+            var denominatorValue = 0
             if((ou.indexOf(';') > -1)){
-
                 var orgArr = ou.split(";");
                 var i = 0;
                 $.each(orgArr,function(c,j){
@@ -199,12 +193,20 @@ angular.module("hmisPortal")
                                 if(v[1] == j ){
                                     amount += parseInt(v[3]);
                                 }
+                            }if(v[0] == numerator ){
+                                if(v[1] == j ){
+                                    numeratorValue += parseInt(v[3]);
+                                }
+                            }if(v[0] == denominator ){
+                                if(v[1] == j ){
+                                    denominatorValue += parseInt(v[3]);
+                                }
                             }
 
                         }
                     });
                     if(type == 'percent'){
-                        amount = (amount != 0)?parseInt(amount/i):0;
+                        amount = (denominatorValue != 0)?parseFloat((numeratorValue/denominatorValue )* 100).toFixed(2):0;
                     }
 
                 });
