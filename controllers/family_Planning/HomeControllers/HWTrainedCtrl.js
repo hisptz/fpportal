@@ -141,12 +141,10 @@ angular.module("hmisPortal")
 
                 $http.get($scope.url).success(function(data){
                     if(data.hasOwnProperty('metaData')){
-                        var xAxisItems = [];
-                        var yAxisItems = [];
+                        var yAxisItems = [{name:"Tanzania",id:'m0frOspS7JY'}];
                         $scope.titleToUse = "Nationally";
                         cardObject.chartObject.title.text = cardObject.title+' - '+ $scope.titleToUse;
-                        xAxisItems = $scope.prepareCategory('methods');
-                        yAxisItems = {name:"Tanzania",id:'m0frOspS7JY'}
+                        var xAxisItems = $scope.prepareCategory('methods');
                         /////////////////////////// second chart ////////////////////////////////
                         cardObject.chartObject.xAxis.categories = [];
                             angular.forEach(yAxisItems, function (value) {
