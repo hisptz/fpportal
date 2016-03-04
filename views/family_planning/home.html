@@ -1,0 +1,131 @@
+<style>
+    .collapsible-body p {
+        margin: 0;
+        padding: 5px;
+    }
+</style>
+
+<script>
+    var orgUnits=[{"id":"YtVMnut7Foe","name":"Arusha Region"},{"id":"acZHYslyJLt","name":"Dar Es Salaam Region"},{"id":"Cpd5l15XxwA","name":"Dodoma Region"},{"id":"MAL4cfZoFhJ","name":"Geita Region"},{"id":"sWOWPBvwNY2","name":"Iringa Region"},{"id":"Crkg9BoUo5w","name":"Kagera Region"},{"id":"DWSo42hunXH","name":"Katavi Region"},{"id":"RD96nI1JXVV","name":"Kigoma Region"},{"id":"lnOyHhoLzre","name":"Kilimanjaro Region"},{"id":"VMgrQWSVIYn","name":"Lindi Region"},{"id":"qg5ySBw9X5l","name":"Manyara Region"},{"id":"vYT08q7Wo33","name":"Mara Region"},{"id":"A3b5mw8DJYC","name":"Mbeya Region"},{"id":"Sj50oz9EHvD","name":"Morogoro Region"},{"id":"bN5q5k5DgLA","name":"Mtwara Region"},{"id":"hAFRrgDK0fy","name":"Mwanza Region"},{"id":"qarQhOt2OEh","name":"Njombe Region"},{"id":"yyW17iCz9As","name":"Pwani Region"},{"id":"vAtZ8a924Lx","name":"Rukwa Region"},{"id":"ZYYX8Q9SGoV","name":"Ruvuma Region"},{"id":"EO3Ps3ny0Nr","name":"Shinyanga Region"},{"id":"IgTAEKMqKRe","name":"Simiyu Region"},{"id":"LGTVRhKSn1V","name":"Singida Region"},{"id":"kZ6RlMnt2bp","name":"Tabora Region"},{"id":"vU0Qt1A5IDz","name":"Tanga Region"}];
+    var dropdown = "<select class='changeOrgUnit' ng-model='$root.selectedOrgUnit'  ng-change='$root.firstClick1()'>"
+    dropdown += "<option value='m0frOspS7JY'>MOH Tanzania</option>"
+    $.each(orgUnits,function(key,orgUnit){
+        dropdown += "<option value='"+orgUnit.id+"'> "+orgUnit.name+"</option>";
+    });
+    dropdown += "</select>";
+    $(".orgDropdown").html(dropdown);
+    $('select').material_select();
+</script>
+
+<div class="row" >
+    <div ng-include="'views/family_planning/fp_menu.html'"></div>
+
+    <div class="col s12 m12 l10" style="margin-top: 72px">
+        <!--first card for HW trained in Family Planning-->
+            <div class="{{ fpCards[0].cardClass }}" style="padding-left: 0px" ng-controller="HomeHWTrainedCtrl">
+                <div class="card z-depth-2 teal lighten-5 large">
+                    <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
+                        <div style="width: 100%">
+                            <!--<highchart ng-if="!fpCards[0].displayTable && !fpCards[0].displayMap" config="fpCards[0].chartObject"></highchart>-->
+                            <div ng-show="!displayTables.card1" id="container12" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+                        </div>
+                        <div style="width: 100%"  ng-if="displayTables.card1">
+                            <h5 class="center">{{ fpCards[0].chartObject.title.text }}</h5>
+                            <table class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-repeat="column in fpCards[0].chartObject.series">{{ column.name }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="cats in fpCards[0].chartObject.xAxis.categories">
+                                    <td>{{ cats }}</td>
+                                    <td ng-repeat="column in fpCards[0].chartObject.series">{{ column.data[$parent.$index] }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
+                        <p>
+                            <a ng-click="changeTable('card1','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeTable('card1','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                            <button class="waves-effect waves-light btn teal darken-2" ng-csv="csvdata" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
+
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                        <p class="flow-text"><b>Description:</b> View absolute number of providers trained in all methods to date</p>
+                        <p class="flow-text"><b>Indicator Type:</b> Number</p>
+                        <p class="flow-text"> <b>Numerator:</b> Number of health workers that have
+                            achieved training competencies
+                            in each method type (short-acting, implants, IUCDs, minilap, NSV)
+                            and selected geography in the given month
+                        </p>
+                        <p class="flow-text"> <b>Denominator:</b> 1</p>
+                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
+                    </div>
+                </div>
+            </div>
+
+        <!--second chart to display clients through routine and facility based data-->
+
+            <div class="{{ fpCards[1].cardClass }}" style="padding-left: 0px" ng-controller="HomeclientMethodsCtrl">
+                <div class="card z-depth-2 teal lighten-5 large">
+                    <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
+                        <div style="width: 100%">
+                            <!--<highchart ng-if="!fpCards[1].displayTable && !fpCards[1].displayMap" config="fpCards[1].chartObject"></highchart>-->
+                            <div ng-show="!displayTables.card2" id="container11" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+                        </div>
+                        <div style="width: 100%"  ng-if="displayTables.card2">
+                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+                            <h5 class="center">{{ fpCards[1].title }}</h5>
+                            <table class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-repeat="column in fpCards[1].chartObject.series">{{ column.name }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="cats in fpCards[1].chartObject.xAxis.categories">
+                                    <td>{{ cats }}</td>
+                                    <td ng-repeat="column in fpCards[1].chartObject.series">{{ column.data[$parent.$index] }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
+                        <p>
+                            <a ng-click="changeTable('card2','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeTable('card2','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                            <button class="waves-effect waves-light btn teal darken-2" ng-csv="fpCards[1].csvdata" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
+
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                        <p class="flow-text"><b>Description:</b> Compare the number of clients by method and greography over time</p>
+                        <p class="flow-text"><b>Indicator Type:</b> Number</p>
+                        <p class="flow-text"><b> Numerator:</b> For each family planning method:
+                            number of new, returning and other clients of any age receiving male condoms, female condoms, oral pills, injectables, implants, IUCDs, minilap, NSV, natural family planning,
+                            in a given facility
+                            among facilities given the FP Reporting Template
+                            in selected geographies in the given month</p>
+                        <p class="flow-text"> <b>Denominator:</b> 1</p>
+                        <p class="flow-text"><b>Data Source:</b> HMIS Data warehouse</p>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</div>

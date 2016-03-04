@@ -211,6 +211,11 @@ angular.module("hmisPortal")
             controller: 'survilienceCtrl'
         });
 
+        $routeProvider.when("/familyPlanningHome",{
+            templateUrl: 'views/family_planning/home.html',
+            controller: 'FPHomeController'
+        });
+
 
         //default route
         $routeProvider.otherwise({
