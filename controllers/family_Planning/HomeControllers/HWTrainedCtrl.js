@@ -135,7 +135,7 @@ angular.module("hmisPortal")
 
                 cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
-                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+$scope.currentYear+"&displayProperty=NAME";
+                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:m0frOspS7JY&dimension=pe:"+$scope.currentYear+"&displayProperty=NAME";
                 cardObject.chartObject.loading = true;
 
 
