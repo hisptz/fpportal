@@ -147,23 +147,23 @@ angular.module("hmisPortal")
                         var xAxisItems = $scope.prepareCategory('methods');
                         /////////////////////////// second chart ////////////////////////////////
                         cardObject.chartObject.xAxis.categories = [];
+                        angular.forEach(yAxisItems, function (value) {
+                            cardObject.chartObject.xAxis.categories.push(value.name);
+                        });
+                        $scope.normalseries1 = [];
+                        delete cardObject.chartObject.chart;
+                        angular.forEach(xAxisItems, function (val) {
+                            var serie = [];
                             angular.forEach(yAxisItems, function (value) {
-                                cardObject.chartObject.xAxis.categories.push(value.name);
+                                var number = $scope.getDataFromUrl(data.rows,value.id, $scope.currentYear, val.id);
+                                serie.push(number);
                             });
-                            $scope.normalseries1 = [];
-                                delete cardObject.chartObject.chart;
-                                angular.forEach(xAxisItems, function (val) {
-                                    var serie = [];
-                                    angular.forEach(yAxisItems, function (value) {
-                                        var number = $scope.getDataFromUrl(data.rows,value.id, $scope.currentYear, val.id);
-                                        serie.push(number);
-                                    });
-                                    $scope.normalseries1.push({type: 'column', name: val.name, data: serie})
-                                });
-                                cardObject.chartObject.series = $scope.normalseries1;
-                                $scope.chartObject = $scope.normalseries1;
-                                $scope.csvdata = portalService.prepareDataForCSV($scope.chartObject);
-                                $('#container12').highcharts(cardObject.chartObject);
+                            $scope.normalseries1.push({type: 'column', name: val.name, data: serie})
+                        });
+                        cardObject.chartObject.series = $scope.normalseries1;
+                        $scope.chartObject = $scope.normalseries1;
+                        $('#container12').highcharts(cardObject.chartObject);
+                        $scope.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
 
 
                         cardObject.chartObject.loading = false
