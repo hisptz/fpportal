@@ -175,47 +175,6 @@ angular.module("hmisPortal")
         };
 
 
-        $scope.downloadExcel = function(id){
-            var base = "https://dhis.moh.go.tz/";
-            $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
-                j_username: "portal", j_password: "Portal123"
-            },function(){
-                var url = "";
-                if($scope.selectedOrgUnit == "m0frOspS7JY"){
-                    url = "https://dhis.moh.go.tz/api/analytics.csv?dimension=dx:"+id+"&dimension=pe:"+$scope.selectedPeriod+"&dimension=ou:LEVEL-1;LEVEL-2;"+$scope.selectedOrgUnit+"&displayProperty=NAME&tableLayout=true&columns=dx&rows=pe;ou";
-                }else{
-
-                    url = "https://dhis.moh.go.tz/api/analytics.csv?dimension=dx:"+id+"&dimension=pe:"+$scope.selectedPeriod+"&dimension=ou:LEVEL-2;LEVEL-3;"+$scope.selectedOrgUnit+"&displayProperty=NAME&tableLayout=true&columns=dx&rows=pe;ou";
-                }
-                $http.get(url,{'Content-Type': 'application/csv;charset=UTF-8'}).success(function(data){
-                    var a = document.createElement('a');
-                    var blob = new Blob([data]);
-                    a.href = window.URL.createObjectURL(blob);
-                    a.download = "data.xls";
-                    a.click();
-                });
-            });
-        };
-
-        $scope.FPmethods = [
-            {'name':'Male Condoms','uid':'W74wyMy1mp0'},
-            {'name':'Female Condoms','uid':'p8cgxI3yPx8'},
-            {'name':'Oral Pills','uid':'aSJKs4oPZAf'},
-            {'name':'Injectables','uid':'LpkdcaLc4I9'},
-            {'name':'Implants','uid':'p14JdJaG2aC'},
-            {'name':'IUCDs','uid':'GvbkEo6sfSd'},
-            {'name':'Natural FP','uid':'QRCRjFreECE'},
-            {'name':'Eastern Zone','uid':'gb4r7CSrT7U'},
-            {'name':'Lake Zone','uid':'RRGOg1GyLsd'},
-            {'name':'Northern Zone','uid':'nvKJnetaMxk'},
-            {'name':'Southern Highlands Zone','uid':'kcE3vG4Eq3Q'},
-            {'name':'Southern Zone','uid':'hiqGDmNAFJz'},
-            {'name':'Western Zone','uid':'zITJeBfrJ4J'},
-            {'name':'Central Zone','uid':'gzWRK9qFFVp'},
-            {'name':'MOH Tanzania','uid':'m0frOspS7JY'}
-        ];
-
-
 
         $scope.displayMesage = true;
         $scope.displayshortMesage = true;
@@ -561,8 +520,20 @@ angular.module("hmisPortal")
                         cardObject.chartObject.loading = false
                     }
 
+                }).error(function(){
+                    $rootScope.showProgressMessage = true;
+                    $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
+                    $timeout(function(){
+                        $rootScope.showProgressMessage = false;
+                    },3000)
                 });
             }
+            },function(){
+                $rootScope.showProgressMessage = true;
+                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
+                $timeout(function(){
+                    $rootScope.showProgressMessage = false;
+                },3000)
             });
 
         };
