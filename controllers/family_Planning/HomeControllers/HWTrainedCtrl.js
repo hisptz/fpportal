@@ -172,7 +172,7 @@ angular.module("hmisPortal")
                         cardObject.chartObject.loading = false
                     }
 
-                    $rootScope.showProgressMessage = false;
+                    //$rootScope.showProgressMessage = false;
 
                 });
             });

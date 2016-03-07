@@ -244,6 +244,7 @@ angular.module("hmisPortal")
                 alert("no orgunit selected")
             }else
             {
+
                 $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function() {
