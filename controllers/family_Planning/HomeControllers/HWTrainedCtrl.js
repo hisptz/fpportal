@@ -174,19 +174,7 @@ angular.module("hmisPortal")
 
                     $rootScope.showProgressMessage = false;
 
-                }).error(function(){
-                    $rootScope.showProgressMessage = true;
-                    $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                    $timeout(function(){
-                        $rootScope.showProgressMessage = false;
-                    },3000);
                 });
-            },function(){
-                $rootScope.showProgressMessage = true;
-                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                $timeout(function(){
-                    $rootScope.showProgressMessage = false;
-                },3000)
             });
 
         };
@@ -527,19 +515,7 @@ angular.module("hmisPortal")
 
                     $rootScope.showProgressMessage = false;
 
-                }).error(function(){
-                    $rootScope.showProgressMessage = true;
-                    $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                    $timeout(function(){
-                        $rootScope.showProgressMessage = false;
-                    },3000)
                 });
-            },function(){
-                $rootScope.showProgressMessage = true;
-                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                $timeout(function(){
-                    $rootScope.showProgressMessage = false;
-                },3000)
             });
 
         };
