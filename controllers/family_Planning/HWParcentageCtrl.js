@@ -328,12 +328,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject = chartObject
                                 $scope.csvdata = portalService.prepareDataForCSV(chartObject);
                                 $scope.pchart = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                             $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Health Center&var=methods:'+method+'&var=year:2016').success(function(val1){
@@ -349,12 +343,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject1 = chartObject1
                                 $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
                                 $scope.pchart1 = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                             $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Dispensary&var=methods:'+method+'&var=year:2016').success(function(val1){
@@ -370,12 +358,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject2 = chartObject2;
                                 $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
                                 $scope.pchart2 = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                         }else{
@@ -393,12 +375,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject = chartObject
                                 $scope.csvdata = portalService.prepareDataForCSV(chartObject);
                                 $scope.pchart = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                             $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:2016').success(function(val1){
@@ -414,12 +390,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject1 = chartObject1
                                 $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
                                 $scope.pchart1 = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                             $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Dispensary&var=year:2016').success(function(val1){
@@ -435,29 +405,11 @@ angular.module("hmisPortal")
                                 $scope.chartObject2 = chartObject2
                                 $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
                                 $scope.pchart2 = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                         }
 
-                    }).error(function(){
-                        $rootScope.showProgressMessage = true;
-                        $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                        $timeout(function(){
-                            $rootScope.showProgressMessage = false;
-                        },3000)
                     });
-                },function(){
-                    $rootScope.showProgressMessage = true;
-                    $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                    $timeout(function(){
-                        $rootScope.showProgressMessage = false;
-                    },3000)
                 });
             }
 

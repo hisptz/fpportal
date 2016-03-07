@@ -166,20 +166,8 @@ angular.module("hmisPortal")
                         $scope.chartObject2 = chartObject2;
                         $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
 
-                    }).error(function(){
-                        $rootScope.showProgressMessage = true;
-                        $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                        $timeout(function(){
-                            $rootScope.showProgressMessage = false;
-                        },3000)
                     });
-                },function(){
-                        $rootScope.showProgressMessage = true;
-                        $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                        $timeout(function(){
-                            $rootScope.showProgressMessage = false;
-                        },3000)
-                    })
+                });
             }
         };
 

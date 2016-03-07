@@ -238,6 +238,8 @@ angular.module("hmisPortal")
         }
 
         $scope.getSelectedValues = function(){
+            $rootScope.progressMessage = "Fetching data please wait ...";
+            $rootScope.showProgressMessage = true;
             if($scope.data.outOrganisationUnits.length === 0){
                 alert("no orgunit selected")
             }else
@@ -335,12 +337,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject = chartObject
                                 $scope.csvdata = portalService.prepareDataForCSV(chartObject);
                                 $scope.pchart = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                             $http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
@@ -357,12 +353,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject1 = chartObject1;
                                 $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
                                 $scope.pchart1 = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                             $http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
@@ -380,12 +370,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject2 = chartObject2;
                                 $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
                                 $scope.pchart2 = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
                         }else{
 
@@ -403,12 +387,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject = chartObject;
                                 $scope.csvdata = portalService.prepareDataForCSV(chartObject);
                                 $scope.pchart = chartObject;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                             $http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
@@ -425,12 +403,6 @@ angular.module("hmisPortal")
                                 $scope.chartObject1 = chartObject1;
                                 $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
                                 $scope.pchart1 = chartObject1;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                             $http.get(portalService.base+'api/sqlViews/GgYRxB7qHaS/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
@@ -447,29 +419,11 @@ angular.module("hmisPortal")
                                 $scope.chartObject2 = chartObject2
                                 $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
                                 $scope.pchart2 = chartObject2;
-                            }).error(function(){
-                                $rootScope.showProgressMessage = true;
-                                $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                                $timeout(function(){
-                                    $rootScope.showProgressMessage = false;
-                                },3000)
                             });
 
                         }
-                    }).error(function(){
-                        $rootScope.showProgressMessage = true;
-                        $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                        $timeout(function(){
-                            $rootScope.showProgressMessage = false;
-                        },3000)
                     });
-                },function(){
-                        $rootScope.showProgressMessage = true;
-                        $rootScope.progressMessage = "Error Fetching Data Portal, Please try again. ...";
-                        $timeout(function(){
-                            $rootScope.showProgressMessage = false;
-                        },3000)
-                    });
+                });
             }
 
         };
