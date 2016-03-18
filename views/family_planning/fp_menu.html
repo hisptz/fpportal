@@ -63,6 +63,25 @@
                         <p  ng-class="{ active1: isActive('/service_intergration') }"><a href="./#service_intergration"  style="font-size: 12px">Service Integration</a> </p>
                     </div>
                 </li>
+                <li class="lighten-5" style="margin-right: 1px">
+                    <div class="collapsible-header" style="font-size: 12px"><i class="material-icons mdi-editor-format-align-justify"></i>Subscribe</div>
+                    <div class="collapsible-body">
+                        <p>Name *:<br><input type="text" placeholder="Name" ng-model="newUser.name"></p>
+                        <p>Email *:<input type="text" placeholder="Email Address" ng-model="newUser.email"></p>
+                        <p>Report Area *:
+                            <multi-select-tree
+                                    data-input-model="data.orgUnitTree"
+                                    multi-select="true"
+                                    data-output-model="data.outRegistrationOrganisationUnits"
+                                    data-default-label="Select Organization Unit"
+                                    data-callback="selectOnly1Or2(item, selectedItems)">
+                            </multi-select-tree>
+                        </p>
+                        <p>
+                            <button ng-if="newUser.name !== '' && newUser.email !== '' && data.outRegistrationOrganisationUnits.length !== 0" class="btn btn-info" ng-click="addSubscriber()">Subscribe</button>
+                        </p>
+                    </div>
+                </li>
             </ul>
 
             <script>

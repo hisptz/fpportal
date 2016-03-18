@@ -8,14 +8,14 @@
 <div class="row">
     <div class="z-depth-1  grey lighten-5" style="width:96.5%;position:fixed;top:70px;z-index:900;margin-left: 24px; margin-right: 24px">
         <div class="section grey lighten-5 " >
-            <div class="input-field col s3 grey lighten-5">
+            <div class="input-field col s2 grey lighten-5">
                 <select ng-model="selectedPeriod" ng-change="$root.firstClick1()">
-                    <option value="2014">2014</option>
+                    <option value="2014"></option>
                     <!--<option value="2015">2015</option>-->
                 </select>
                 <label>Period</label>
             </div>
-            <div class="input-field col s4 grey lighten-5">
+            <div class="input-field col s5 grey lighten-5">
                 <multi-select-tree
                         data-input-model="data.orgUnitTree"
                         multi-select="true"
@@ -25,25 +25,17 @@
                 </multi-select-tree>
             </div>
 
-            <div class="input-field col s3 grey lighten-5">
-                <select ng-model="selectedMethod" ng-change="changeMethod()" material-select watch>
-                    <option value="all">All Methods</option>
-                    <option value="JMmqv0tyVr7">Male Condoms</option>
-                    <option value="Nt8M08bJKXl">Female Condoms</option>
-                    <option value="IFxhP0O4k0W">Oral Pills</option>
-                    <option value="epPM7fO8CnH">Injectables</option>
-                    <option value="pqpVKzE951Y">Implants</option>
-                    <option value="OQpasUg1Tse">IUCDs</option>
-                    <option value="btKkJROB2gP">NSV</option>
-                    <option value="mlfh4fgiFhd">Mini Lap</option>
-                    <option value="GGpsoh0DX6T">Natural FP</option>
-
-                    <!--<option value="2015">2015</option>-->
-                </select>
-                <label>Methods</label>
+            <div class="input-field col s4 grey lighten-5">
+                <multi-select-tree
+                        data-input-model="data.menuMethods"
+                        multi-select="true"
+                        data-output-model="data.outMethods"
+                        data-default-label="Select Method"
+                        data-callback="selectOnly1Or3(item, selectedItems)">
+                </multi-select-tree>
             </div>
 
-            <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="getSelectedValues()">Update</div>
+            <div class="col s1 btn waves-effect waves-light" style="margin-top: 20px" ng-click="getSelectedValues()">Update</div>
         </div>
     </div>
 </div>
@@ -71,11 +63,53 @@
                 <div class="card z-depth-2 teal lighten-5 large">
                     <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                         <div style="width: 100%">
-                            <highchart  config="chart"></highchart>
+                            <!--<highchart  config="pchart"></highchart>-->
+                            <div ng-show="!displayTables.card1" id="pchart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                        <div style="width: 100%"  ng-if="displayTables.card1">
+                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+                            <h5 class="center">{{ chartObject.title.text }}</h5>
+                            <table class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-repeat="column in chartObject.series">{{ column.name }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="cats in chartObject.xAxis.categories">
+                                    <td>{{ cats }}</td>
+                                    <td ng-repeat="column in chartObject.series">{{ column.data[$parent.$index] }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="card-content">
-                        <!--<span class="card-title activator grey-text text-darken-4">Percent Hospitals with a Health Worker Trained in and Providing each method {{ getMethodName(selectedMethod) }} {{ selectedPeriod }}<i class="material-icons right"></i></span>-->
+                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
+                        <p>
+                            <a ng-click="changeTable('card1','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeTable('card1','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                            <button class="waves-effect waves-light btn teal darken-2" ng-csv="csvdata" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
+
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+
+                        <p class="flow-text"><b>Description:</b> View gaps in providers trained at hospitals by method type and geography, month to date</p>
+                        <p class="flow-text"><b>Indicator Type:</b> Percent</p>
+                        <p class="flow-text"> <b>Numerator:</b>  Number of hospitals
+                            given the FP Reporting Template
+                            with ≥ 2 health workers
+                            that have achieved training competencies
+                            in each method type (short-acting, implants, IUCDs, minilap, NSV)
+                            in the selected geographies to date in the given month
+                        </p>
+                        <p class="flow-text"> <b>Denominator:</b>  Number of hospitals
+                            given the FP Reporting Template
+                            in the selected geographies to date in the given month</p>
+                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
                     </div>
                 </div>
             </div>
@@ -85,11 +119,53 @@
                 <div class="card z-depth-2 teal lighten-5 large">
                     <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                         <div style="width: 100%">
-                            <highchart config="card.chartObject"></highchart>
+
+                            <!--<highchart  config="pchart"></highchart>-->
+                            <div  ng-show="!displayTables.card2" id="pchart1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                        <div style="width: 100%"  ng-if="displayTables.card2">
+                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+                            <h5 class="center">{{ chartObject1.title.text }}</h5>
+                            <table class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-repeat="column in chartObject1.series">{{ column.name }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="cats in chartObject1.xAxis.categories">
+                                    <td>{{ cats }}</td>
+                                    <td ng-repeat="column in chartObject1.series">{{ column.data[$parent.$index] }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="card-content">
-                        <!--<span class="card-title activator grey-text text-darken-4">Percent Health Centres with a Health Worker Trained in and Providing each method {{ period }}<i class="material-icons right"></i></span>-->
+                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
+                        <p>
+                            <a ng-click="changeTable('card2','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeTable('card2','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                            <button class="waves-effect waves-light btn teal darken-2" ng-csv="csvdata1" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
+
+                        </p>                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+
+                        <p class="flow-text"><b>Description:</b> View gaps in providers trained at health centres by method type and geography, month to date</p>
+                        <p class="flow-text"><b>Indicator Type:</b> Percent</p>
+                        <p class="flow-text"> <b>Numerator:</b>  Number of health centres
+                            given the FP Reporting Template
+                            with ≥ 2 health workers
+                            that have achieved training competencies
+                            in each method type (short-acting, implants, IUCDs, minilap, NSV)
+                            in the selected geographies to date in the given month
+                        </p>
+                        <p class="flow-text"> <b>Denominator:</b> Number of health centres
+                            given the FP Reporting Template
+                            in the selected geographies to date in the given month</p>
+                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
                     </div>
                 </div>
             </div>
@@ -98,11 +174,54 @@
                 <div class="card z-depth-2 teal lighten-5 large">
                     <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                         <div style="width: 100%">
-                            <highchart config="card.chartObject"></highchart>
+
+                            <!--<highchart  config="pchart"></highchart>-->
+                            <div ng-show="!displayTables.card3" id="pchart2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                        <div style="width: 100%"  ng-if="displayTables.card3">
+                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+                            <h5 class="center">{{ chartObject2.title.text }}</h5>
+                            <table class="bordered striped centered" id="jinsi">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ng-repeat="column in chartObject2.series">{{ column.name }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-ng-repeat="cats in chartObject2.xAxis.categories">
+                                    <td>{{ cats }}</td>
+                                    <td ng-repeat="column in chartObject2.series">{{ column.data[$parent.$index] }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="card-content">
-                        <!--<span class="card-title activator grey-text text-darken-4">Percent Dispensaries with a Health Worker Trained in and Providing each method {{ period }}<i class="material-icons right"></i></span>-->
+                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-navigation-more-vert right"></i></span>
+                        <p>
+                            <a ng-click="changeTable('card3','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeTable('card3','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                            <button class="waves-effect waves-light btn teal darken-2" ng-csv="csvdata2" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
+
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+
+                        <p class="flow-text"><b>Description:</b> View gaps in providers trained at dispensaries by method type and geography, month to date</p>
+                        <p class="flow-text"><b>Indicator Type:</b> Percent</p>
+                        <p class="flow-text"> <b>Numerator:</b>  Number of dispensaries
+                            given the FP Reporting Template
+                            with ≥ 2 health workers
+                            that have achieved training competencies
+                            in each method type (short-acting, implants, IUCDs)
+                            in the selected geographies to date in the given month
+                        </p>
+                        <p class="flow-text"> <b>Denominator:</b>  Number of dispensaries
+                            given the FP Reporting Template
+                            in the selected geographies to date in the given month</p>
+                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
                     </div>
                 </div>
             </div>

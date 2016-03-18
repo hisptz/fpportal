@@ -13,7 +13,63 @@ angular.module("hmisPortal")
         $scope.isActive = function (viewLocation) {
             var active = (viewLocation === $location.path());
             return active;
+
         };
+
+        $scope.geographicalZones = FPManager.zones;
+        $scope.updateTree1 = function(){
+            $scope.data.orgUnitTree1 = [];
+            $scope.data.orgUnitTree = [];
+            $scope.zoneRegions = [];
+            angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
+
+                angular.forEach(value.organisationUnits,function(regions){
+                    var regionDistricts = [];
+                    angular.forEach(regions.children,function(district){
+                        regionDistricts.push({name:district.name,id:district.id });
+                    });
+                    $scope.zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
+                });
+                //$scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions});
+            });
+            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.zoneRegions,selected:true });
+        };
+        $scope.updateTree1();
+
+        $scope.addSubscriber = function(){
+            $rootScope.progressMessage = "Adding you to the list of subscribers, Please wait ...";
+            $rootScope.showProgressMessage = true;
+            var userPayload = {
+                firstName: $scope.newUser.name,
+                surname: $scope.newUser.name,
+                email: $scope.newUser.email,
+                userCredentials: {
+                    username: $scope.newUser.name.replace(/ /g,''),
+                    password: "DHIS2016",
+                    userRoles: [ {
+                        id: "Euq3XfEIEbx"
+                    } ]
+                },
+                organisationUnits: [ {
+                    id: "ImspTQPwCqd"
+                } ],
+                userGroups: [ {
+                    id: "vAvEltyXGbD"
+                } ]
+            }
+            console.log(userPayload);
+            $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
+                j_username: "portal", j_password: "Portal123"
+            },function() {
+
+            },function(){
+                $rootScope.progressMessage = "Error occured during subscription process";
+                $rootScope.showProgressMessage = true;
+                $timeout(function(){
+                    $rootScope.showProgressMessage = false;
+                },2000)
+            })
+        }
 
 
 

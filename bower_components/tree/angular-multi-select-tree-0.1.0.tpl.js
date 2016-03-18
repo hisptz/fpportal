@@ -41,7 +41,7 @@ angular.module('multi-select-tree').run(['$templateCache', function($templateCac
     "<li>\n" +
     "    <div class=\"item-container\" ng-class=\"{active: item.isActive, selected: item.selected}\"\n" +
     "         ng-click=\"clickSelectItem(item, $event)\" ng-mouseover=\"onMouseOver(item, $event)\">\n" +
-    "        <span ng-if=\"showExpand(item)\" class=\"expand\" ng-class=\"{'expand-opened': item.isExpanded}\"\n" +
+    "        <span ng-if=\"showExpand(item)\"  ng-class=\"{'mdi-content-remove': item.isExpanded,'mdi-content-add':!item.isExpanded}\"\n" +
     "              ng-click=\"onExpandClicked(item, $event)\"></span>\n" +
     "\n" +
     "        <div class=\"item-details\"><input class=\"tree-checkbox\" type=\"checkbox\" ng-if=\"showCheckbox()\"\n" +
