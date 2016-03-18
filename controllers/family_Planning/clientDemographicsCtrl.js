@@ -18,9 +18,9 @@ angular.module("hmisPortal")
 
         $scope.geographicalZones = FPManager.zones;
         $scope.updateTree1 = function(){
-            $scope.data.orgUnitTree1 = [];
-            $scope.data.orgUnitTree = [];
-            $scope.zoneRegions = [];
+            $scope.data.orgUnitTree3 = [];
+            $scope.data.orgUnitTree4 = [];
+            $scope.zoneRegions1 = [];
             angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
 
                 angular.forEach(value.organisationUnits,function(regions){
@@ -28,11 +28,11 @@ angular.module("hmisPortal")
                     angular.forEach(regions.children,function(district){
                         regionDistricts.push({name:district.name,id:district.id });
                     });
-                    $scope.zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
+                    $scope.zoneRegions1.push({ name:regions.name,id:regions.id, children:regionDistricts });
                 });
                 //$scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions});
             });
-            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.zoneRegions,selected:true });
+            $scope.data.orgUnitTree4.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.zoneRegions1,selected:true });
         };
         $scope.updateTree1();
 
