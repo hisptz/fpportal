@@ -826,26 +826,33 @@ angular.module("hmisPortal")
 
 
 
-        $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,method){
+        $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,type,method){
             var count = 0;
             angular.forEach(arr,function(value){
-                angular.forEach(value.ancestors, function (val) {
-                    if ((ou.indexOf(';') > -1)) {
-                        var orgArr = ou.split(";");
-                        $.each(orgArr, function (c, j) {
-                            if (j == val.id) {
+                if ($scope.orgUnitType(value.organisationUnitGroups,type)) {
+                    angular.forEach(value.ancestors, function (val) {
+                        if ((ou.indexOf(';') > -1)) {
+                            var orgArr = ou.split(";");
+                            $.each(orgArr, function (c, j) {
+                                if (j == val.id) {
+                                    count++;
+                                }
+                            });
+                        } else {
+                            if (ou == val.id) {
                                 count++;
                             }
-                        });
-                    } else {
-                        if (ou == val.id) {
-                            count++;
                         }
-                    }
-                });
+                    });
+                }
             });
+
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
             var percent = (num/count)*100;
+            if(type == 'Dispensary'){
+                console.log(count);
+                console.log((num/count)*100);
+            }
             return percent.toFixed(2);
         };
 
@@ -1040,12 +1047,15 @@ angular.module("hmisPortal")
                 index = 7;
             }
 
-
+            var count = 0;
             var num = 0;
             if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
                     if(v[index] !== ""){
-                        num += parseInt(v[index]);
+                        if(v[2] == pe){
+                            num += parseInt(v[index]);
+                            count++;
+                        }
                     }
                 });
             }else{
@@ -1057,7 +1067,9 @@ angular.module("hmisPortal")
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[1] == j) {
                                 if(v[index] !== ""){
-                                    num += parseInt(v[index]);
+                                    if(v[2] == pe){
+                                        num += parseInt(v[index]);
+                                    }
                                 }
                             }
                         });
@@ -1066,7 +1078,9 @@ angular.module("hmisPortal")
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[1] == ou) {
                             if(v[index] !== ""){
-                                num += parseInt(v[index]);
+                                if(v[2] == pe){
+                                    num += parseInt(v[index]);
+                                }
                             }
                         }
                     });
@@ -1075,7 +1089,6 @@ angular.module("hmisPortal")
 
             return num;
         }
-
     })
     .controller("Homestockout1Ctrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
         //lidt of all facilities providing fp
