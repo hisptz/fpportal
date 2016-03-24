@@ -898,9 +898,9 @@ angular.module("hmisPortal")
                             angular.forEach(methodss, function (yAxis) {
                                 var serie = [];
                                 angular.forEach(periods, function (xAxis) {
-                                    serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,'m0frOspS7JY',val1.rows,xAxis.id,yAxis.name)));
+                                    serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,$scope.data.outOrganisationUnits[0].id,val1.rows,xAxis.id,yAxis.name)));
                                 });
-                                chartObject1.series.push({type: 'column', name: yAxis.name, data: serie})
+                                chartObject1.series.push({type: 'spline', name: yAxis.name, data: serie})
                             });
                             $('#pchart1').highcharts(chartObject1);
                             $scope.chartObject1 = chartObject1
