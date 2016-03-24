@@ -415,24 +415,7 @@ angular.module("hmisPortal")
 
 
 
-        $scope.fpCards = [
-
-            {
-                title:'Family Planning clients by Method through Routine Facility-Based Service Dec 2014' ,
-                description:'Total Clients Quarterly',
-                cardClass:"col s12 m12",
-                data:$scope.methods,
-                category:'other',
-                category1:'quarter',
-                icons:angular.copy(portalService.minimalIcons),
-                displayTable:false,
-                displayMap:false,
-                chart:'line',
-                yaxisTittle:'# client',
-                visible:'consumption by method',
-                chartObject:angular.copy(FPManager.defaultChartObject)
-
-            },
+        $scope.homefpCards = [
             {
                 title:'Family Planning clients by Method through Routine Facility-Based Service Jan 2014 to Dec 2014',
                 description:'Total Clients Monthly',
@@ -649,7 +632,7 @@ angular.module("hmisPortal")
             if($scope.data.outMethods.length === 0){
 
             }
-            angular.forEach($scope.fpCards,function(value){
+            angular.forEach($scope.homefpCards,function(value){
                 $scope.prepareSeries(value,value.chart);
             });
         };
