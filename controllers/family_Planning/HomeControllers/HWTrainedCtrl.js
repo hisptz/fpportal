@@ -1130,68 +1130,7 @@ angular.module("hmisPortal")
         };
         $scope.selectedMethod = 'EcP5Na7DO0r';
 
-        $scope.prepareCategory = function(type){
-            var data = [];
-            var per = $scope.selectedPeriod;
-            if(type == 'zones'){
-                angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
-                    var name = orgUnit.name;
-                    if(name.indexOf("Zone") > -1){
-                        var names = [];
-                        angular.forEach(orgUnit.children,function(regions){
-                            names.push(regions.id);
-                        });
-                        data.push({'name':orgUnit.name,'id':names.join(";")});
-                    }else{
-                        data.push({'name':orgUnit.name,'id':orgUnit.id});
 
-                    }
-                });
-            }if(type == 'quarter'){
-                data.push({'name':'Jan - Mar '+per,'id':per+'Q1'});
-                data.push({'name':'Apr - Jun '+per,'id':per+'Q2'});
-                data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
-                data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
-            }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
-            }if(type == 'methods'){
-                data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
-                    {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
-                    {'name':'Oral Pills','id':'aSJKs4oPZAf'},
-                    {'name':'Injectables','id':'LpkdcaLc4I9'},
-                    {'name':'Implants','id':'p14JdJaG2aC'},
-                    {'name':'IUCDs','id':'GvbkEo6sfSd'},
-                    {'name':'Natural FP','id':'QRCRjFreECE'});
-            }
-
-            return data;
-        };
-
-
-        $scope.FPmethods = [
-            {'name':'Male Condoms','uid':'JMmqv0tyVr7'},
-            {'name':'Female Condoms','uid':'Nt8M08bJKXl'},
-            {'name':'Oral Pills','uid':'IFxhP0O4k0W'},
-            {'name':'Injectables','uid':'epPM7fO8CnH'},
-            {'name':'Implants','uid':'pqpVKzE951Y'},
-            {'name':'IUCDs','uid':'OQpasUg1Tse'},
-            {'name':'NSV','uid':'btKkJROB2gP'},
-            {'name':'Mini Lap','uid':'mlfh4fgiFhd'},
-            {'name':'NSV','uid':'btKkJROB2gP'},
-            {'name':'All Clients','uid':'EcP5Na7DO0r'},
-            {'name':'Natural FP','uid':'GGpsoh0DX6T'}
-        ];
         $scope.updateMethod = function(){
             $scope.data.menuMethods = [];
             angular.forEach($scope.FPmethods,function(value){
@@ -1295,7 +1234,7 @@ angular.module("hmisPortal")
                                 });
                                 chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                             });
-                            $('#pchart').highcharts(chartObject);
+                            $('#pchart5').highcharts(chartObject);
                             $scope.pchart5 = chartObject;
                             $scope.chartObject5 = chartObject;
                             $scope.csvdata5 = portalService.prepareDataForCSV(chartObject);
