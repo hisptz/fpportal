@@ -799,25 +799,21 @@ angular.module("hmisPortal")
 
         $scope.getNumberPerOu = function(arr,ou,arr2,pe,type){
             var count = 0;
-            var item = {  name: type }
-
             angular.forEach(arr,function(value){
-                if ($scope.orgUnitType(value.organisationUnitGroups,type)) {
-                    angular.forEach(value.ancestors, function (val) {
-                        if ((ou.indexOf(';') > -1)) {
-                            var orgArr = ou.split(";");
-                            $.each(orgArr, function (c, j) {
-                                if (j == val.id) {
-                                    count++;
-                                }
-                            });
-                        } else {
-                            if (ou == val.id) {
+                angular.forEach(value.ancestors, function (val) {
+                    if ((ou.indexOf(';') > -1)) {
+                        var orgArr = ou.split(";");
+                        $.each(orgArr, function (c, j) {
+                            if (j == val.id) {
                                 count++;
                             }
+                        });
+                    } else {
+                        if (ou == val.id) {
+                            count++;
                         }
-                    });
-                }
+                    }
+                });
             });
             var num = $scope.getDataFromUrl(arr2,ou,pe);
             var percent = (num/count)*100;

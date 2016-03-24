@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js" afterPath="$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/client_by_methods.html" afterPath="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,18 +31,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="fp_menu.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/family_planning/fp_menu.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-52.88889" vertical-offset="0" max-vertical-offset="2142">
-              <caret line="68" column="83" selection-start-line="68" selection-start-column="83" selection-end-line="68" selection-end-column="83" />
-              <folding>
-                <element signature="n#style#0;n#h5#0;n#div#1;n#li#5;n#ul#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="stock_out2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/stock_out2.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -86,8 +76,40 @@
       <file leaf-file-name="HWTrainedCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6139955" vertical-offset="14378" max-vertical-offset="24516">
-              <caret line="831" column="23" selection-start-line="831" selection-start-column="23" selection-end-line="831" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.3859649" vertical-offset="14216" max-vertical-offset="24444">
+              <caret line="804" column="37" selection-start-line="804" selection-start-column="37" selection-end-line="804" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angular-multi-select-tree-0.1.0.tpl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1170">
+              <caret line="26" column="22" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="client_by_methods.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.666667" vertical-offset="216" max-vertical-offset="2610">
+              <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+              <folding>
+                <element signature="n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angular-multi-select-tree-0.1.0.min.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="108">
+              <caret line="0" column="1325" selection-start-line="0" selection-start-column="1325" selection-end-line="0" selection-end-column="1325" />
               <folding />
             </state>
           </provider>
@@ -97,7 +119,7 @@
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="3097" max-vertical-offset="11268">
-              <caret line="178" column="61" selection-start-line="178" selection-start-column="57" selection-end-line="178" selection-end-column="61" />
+              <caret line="181" column="76" selection-start-line="181" selection-start-column="76" selection-end-line="181" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -145,26 +167,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3174" max-vertical-offset="4194">
-              <caret line="205" column="38" selection-start-line="205" selection-start-column="38" selection-end-line="205" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stockoutCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/stockoutCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4176" max-vertical-offset="6876">
-              <caret line="232" column="42" selection-start-line="232" selection-start-column="42" selection-end-line="232" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -195,7 +197,6 @@
         <option value="$PROJECT_DIR$/FPFacilities.json" />
         <option value="$PROJECT_DIR$/services/familyPlanningService.js" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
-        <option value="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
         <option value="$PROJECT_DIR$/views/family_planning/coverage1.html" />
         <option value="$PROJECT_DIR$/views/family_planning/coverage2.html" />
         <option value="$PROJECT_DIR$/views/family_planning/coverage3.html" />
@@ -217,7 +218,6 @@
         <option value="$PROJECT_DIR$/controllers/family_Planning/clientMethodsCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js" />
-        <option value="$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js" />
         <option value="$PROJECT_DIR$/views/family_planning/coverage5.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HwandMethodParcentCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
@@ -228,6 +228,8 @@
         <option value="$PROJECT_DIR$/views/family_planning/fp_menu.html" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
         <option value="$PROJECT_DIR$/views/family_planning/home.html" />
+        <option value="$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js" />
+        <option value="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" />
       </list>
     </option>
@@ -343,7 +345,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="bower_components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -357,33 +359,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="bower_components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="family_Planning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fp_portal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fpportal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="family_Planning" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HomeControllers" />
+              <option name="myItemId" value="tree" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -505,10 +485,11 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23778501" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23778501" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24983211" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -520,7 +501,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -567,7 +547,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/views/family_planning/client_by_methods.html</url>
-          <line>64</line>
+          <line>63</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -582,7 +562,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js</url>
-          <line>1090</line>
+          <line>1086</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
@@ -747,16 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.962963" vertical-offset="1738" max-vertical-offset="2628">
-          <caret line="187" column="18" selection-start-line="137" selection-start-column="12" selection-end-line="187" selection-end-column="18" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/survilience.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.6666667" vertical-offset="1098" max-vertical-offset="2160">
@@ -793,24 +763,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="601">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="108">
           <caret line="0" column="4454" selection-start-line="0" selection-start-column="4454" selection-end-line="0" selection-end-column="4454" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="217" max-vertical-offset="1170">
-          <caret line="43" column="78" selection-start-line="43" selection-start-column="78" selection-end-line="43" selection-end-column="78" />
         </state>
       </provider>
     </entry>
@@ -999,18 +955,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="108">
+          <caret line="0" column="1325" selection-start-line="0" selection-start-column="1325" selection-end-line="0" selection-end-column="1325" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_methods.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.666667" vertical-offset="216" max-vertical-offset="2610">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#div#1;n#div#1;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1170">
+          <caret line="26" column="22" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3097" max-vertical-offset="11268">
-          <caret line="178" column="61" selection-start-line="178" selection-start-column="57" selection-end-line="178" selection-end-column="61" />
+          <caret line="181" column="76" selection-start-line="181" selection-start-column="76" selection-end-line="181" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6139955" vertical-offset="14378" max-vertical-offset="24516">
-          <caret line="831" column="23" selection-start-line="831" selection-start-column="23" selection-end-line="831" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.3859649" vertical-offset="14216" max-vertical-offset="24444">
+          <caret line="804" column="37" selection-start-line="804" selection-start-column="37" selection-end-line="804" selection-end-column="37" />
           <folding />
         </state>
       </provider>

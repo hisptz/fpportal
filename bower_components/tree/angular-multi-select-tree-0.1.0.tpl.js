@@ -21,7 +21,7 @@ angular.module('multi-select-tree').run(['$templateCache', function($templateCac
     "                 <button type=\"button\" ng-click=\"switchCurrentView($event);\" class=\"helper-button\">{{switchViewLabel}}</button>\n" +
     "             </div>\n" +
     "            <div class=\"line\">\n" +
-    "                <input placeholder=\"Search...\" type=\"text\" ng-model=\"filterKeyword\" ng-click=\"onFilterClicked($event)\"\n" +
+    "                <input placeholder=\"Search...\" type=\"text\" ng-model=\"filterKeyword\"\n" +
     "                       class=\"input-filter\">\n" +
     "                <span class=\"clear-button\" ng-click=\"clearFilter($event)\"><span class=\"item-close\"></span></span>\n" +
     "            </div>\n" +
