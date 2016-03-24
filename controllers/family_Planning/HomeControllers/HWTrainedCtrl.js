@@ -843,10 +843,6 @@ angular.module("hmisPortal")
 
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
             var percent = (num/count)*100;
-            if(type == 'Dispensary'){
-                console.log(count);
-                console.log((num/count)*100);
-            }
             return percent.toFixed(2);
         };
 

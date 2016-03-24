@@ -16,16 +16,6 @@ angular.module('multi-select-tree').run(['$templateCache', function($templateCac
     "        <!-- <input type=\"text\" class=\"blend-in\" /> -->\n" +
     "    </div>\n" +
     "    <div class=\"tree-view\" ng-show=\"showTree\">\n" +
-    "        <div class=\"helper-container\">\n" +
-    "             <div class=\"line\" data-ng-if=\"switchView\">\n" +
-    "                 <button type=\"button\" ng-click=\"switchCurrentView($event);\" class=\"helper-button\">{{switchViewLabel}}</button>\n" +
-    "             </div>\n" +
-    "            <div class=\"line\">\n" +
-    "                <input placeholder=\"Search...\" type=\"text\" ng-model=\"filterKeyword\"\n" +
-    "                       class=\"input-filter\">\n" +
-    "                <span class=\"clear-button\" ng-click=\"clearFilter($event)\"><span class=\"item-close\"></span></span>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
     "        <ul class=\"tree-container\">\n" +
     "            <tree-item class=\"top-level\" ng-repeat=\"item in inputModel\" item=\"item\" ng-show=\"!item.isFiltered\"\n" +
     "                       use-callback=\"useCallback\" can-select-item=\"canSelectItem\"\n" +
