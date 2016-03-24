@@ -887,7 +887,7 @@ angular.module("hmisPortal")
                     angular.forEach(orgUnits,function(value){
                         periods.push({name:value.name,id:value.id})
                     });
-                    chartObject1.title.text ="Percent of Health Centres  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
+                    chartObject1.title.text ="Percent of Health Facilities  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
 
                     angular.forEach(periods, function (val) {
                         chartObject1.xAxis.categories.push(val.name);
@@ -898,7 +898,7 @@ angular.module("hmisPortal")
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
 
 
-                        $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:2016').success(function(val1){
+                        $http.get(portalService.base+'api/sqlViews/ljFwFfVDIs1/data.json?var=year:2016').success(function(val1){
                             $rootScope.showProgressMessage = false;
                             angular.forEach(methodss, function (yAxis) {
                                 var serie = [];
