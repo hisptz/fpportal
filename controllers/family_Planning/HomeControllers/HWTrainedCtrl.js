@@ -878,15 +878,13 @@ angular.module("hmisPortal")
                     var periods = [];
 
                     $scope.titleToUse = "Nationally";
-                    angular.forEach(orgUnits,function(value){
-                        periods.push({name:value.name,id:value.id})
-                    });
-                    chartObject1.title.text ="Percent of facilities providing FP over time - "+$scope.titleToUse;
+                    var periods = $scope.prepareCategory('month');
 
                     angular.forEach(periods, function (val) {
                         chartObject1.xAxis.categories.push(val.name);
-                        chartObject1.xAxis.labels.style = { visibility: 'hidden' };
                     });
+
+                    chartObject1.title.text ="Percent of facilities providing FP over time - "+$scope.titleToUse;
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){

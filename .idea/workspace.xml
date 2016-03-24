@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js" afterPath="$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,18 +74,8 @@
       <file leaf-file-name="HWTrainedCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44912282" vertical-offset="14900" max-vertical-offset="24372">
-              <caret line="844" column="42" selection-start-line="844" selection-start-column="42" selection-end-line="844" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="angular-multi-select-tree-0.1.0.tpl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="990">
-              <caret line="17" column="60" selection-start-line="17" selection-start-column="60" selection-end-line="17" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.67017543" vertical-offset="15530" max-vertical-offset="24336">
+              <caret line="886" column="113" selection-start-line="886" selection-start-column="113" selection-end-line="886" selection-end-column="113" />
               <folding />
             </state>
           </provider>
@@ -117,8 +106,8 @@
       <file leaf-file-name="parcentageCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3097" max-vertical-offset="11268">
-              <caret line="181" column="76" selection-start-line="181" selection-start-column="76" selection-end-line="181" selection-end-column="76" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5311" max-vertical-offset="11268">
+              <caret line="316" column="23" selection-start-line="305" selection-start-column="20" selection-end-line="316" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -561,7 +550,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js</url>
-          <line>1082</line>
+          <line>1080</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
@@ -972,14 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3097" max-vertical-offset="11268">
-          <caret line="181" column="76" selection-start-line="181" selection-start-column="76" selection-end-line="181" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="990">
@@ -988,10 +969,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/parcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5311" max-vertical-offset="11268">
+          <caret line="316" column="23" selection-start-line="305" selection-start-column="20" selection-end-line="316" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44912282" vertical-offset="14900" max-vertical-offset="24372">
-          <caret line="844" column="42" selection-start-line="844" selection-start-column="42" selection-end-line="844" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.67017543" vertical-offset="15530" max-vertical-offset="24336">
+          <caret line="886" column="113" selection-start-line="886" selection-start-column="113" selection-end-line="886" selection-end-column="113" />
           <folding />
         </state>
       </provider>
