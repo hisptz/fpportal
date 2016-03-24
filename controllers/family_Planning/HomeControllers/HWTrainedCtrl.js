@@ -826,26 +826,24 @@ angular.module("hmisPortal")
 
 
 
-        $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,type,method){
+        $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,method){
             var item = {  name: type };
             var count = 0;
             angular.forEach(arr,function(value){
-                if ($scope.orgUnitType(value.organisationUnitGroups,type)) {
-                    angular.forEach(value.ancestors, function (val) {
-                        if ((ou.indexOf(';') > -1)) {
-                            var orgArr = ou.split(";");
-                            $.each(orgArr, function (c, j) {
-                                if (j == val.id) {
-                                    count++;
-                                }
-                            });
-                        } else {
-                            if (ou == val.id) {
+                angular.forEach(value.ancestors, function (val) {
+                    if ((ou.indexOf(';') > -1)) {
+                        var orgArr = ou.split(";");
+                        $.each(orgArr, function (c, j) {
+                            if (j == val.id) {
                                 count++;
                             }
+                        });
+                    } else {
+                        if (ou == val.id) {
+                            count++;
                         }
-                    });
-                }
+                    }
+                });
             });
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
             var percent = (num/count)*100;
@@ -887,7 +885,7 @@ angular.module("hmisPortal")
                     angular.forEach(orgUnits,function(value){
                         periods.push({name:value.name,id:value.id})
                     });
-                    chartObject1.title.text ="Percent of Health Facilities  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
+                    chartObject1.title.text ="Percent of facilities providing FP over time - "+$scope.titleToUse;
 
                     angular.forEach(periods, function (val) {
                         chartObject1.xAxis.categories.push(val.name);
@@ -896,14 +894,12 @@ angular.module("hmisPortal")
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
-
-
-                        $http.get(portalService.base+'api/sqlViews/ljFwFfVDIs1/data.json?var=year:2016').success(function(val1){
+                        $http.get(portalService.base+'api/sqlViews/eq83I34KW4K/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                             $rootScope.showProgressMessage = false;
                             angular.forEach(methodss, function (yAxis) {
                                 var serie = [];
                                 angular.forEach(periods, function (xAxis) {
-                                    serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,'m0frOspS7JY',val1.rows,xAxis.id,'Health Center',yAxis.name)));
+                                    serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,'m0frOspS7JY',val1.rows,xAxis.id,yAxis.name)));
                                 });
                                 chartObject1.series.push({type: 'column', name: yAxis.name, data: serie})
                             });
