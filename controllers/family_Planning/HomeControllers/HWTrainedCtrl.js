@@ -827,7 +827,6 @@ angular.module("hmisPortal")
 
 
         $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,method){
-            var item = {  name: type };
             var count = 0;
             angular.forEach(arr,function(value){
                 angular.forEach(value.ancestors, function (val) {
