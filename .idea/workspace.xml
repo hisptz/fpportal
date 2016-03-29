@@ -5,9 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/views/family_planning/fp_menu.html" line="55" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" />
-    </list>
+    <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="" />
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
