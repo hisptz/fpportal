@@ -71,19 +71,7 @@ angular.module("hmisPortal")
             if($scope.data.outOrganisationUnits.length === 0){
                 alert("no orgunit selected")
             }else{
-                var orgUnits = [];
-                angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
-                    var name = orgUnit.name;
-                    if(name.indexOf("Zone") > -1){
-                        var names = [];
-                        angular.forEach(orgUnit.children,function(regions){
-                            names.push(regions.id);
-                        });
-                        orgUnits.push({'name':orgUnit.name,'id':names.join(";")});
-                    }else{
-                        orgUnits.push({'name':orgUnit.name,'id':orgUnit.id});
-                    }
-                });
+
 
                 var period = $scope.selectedPeriod;
                 var method = "uid";
@@ -105,12 +93,13 @@ angular.module("hmisPortal")
                 $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function(){
-                $rootScope.progressMessage = "Fetching data please wait ...";
-                $rootScope.showProgressMessage = true;
+
+                    $rootScope.progressMessage = "Fetching data please wait ...";
+                    $rootScope.showProgressMessage = true;
                     $http.get(url).success(function(data){
-                        var period = "";
-                        var orgUnits = [{id:'m0frOspS7JY',name:'Tanzania'}];
-                        var periods = $scope.prepareCategory('month');
+                        var period = ""
+                        var orgUnits = [{'name':"Tanzania",'id':"m0frOspS7JY"}];
+                        var periods = $scope.prepareCategory('month')
                         $rootScope.showProgressMessage = false;
 
 
@@ -176,7 +165,6 @@ angular.module("hmisPortal")
         $scope.getMethodName = function(uid){
             angular.forEach()
         };
-
 
         $scope.findValue = function(arr,ou,pe,dx,numerator,denominator,type){
 
