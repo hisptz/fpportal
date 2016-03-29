@@ -232,7 +232,7 @@ angular.module("hmisPortal")
                                 });
                                 chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                             });
-                            $('#pchart').highcharts(chartObject);
+                            $('#stockoutchart').highcharts(chartObject);
                             $scope.pchart = chartObject;
                             $scope.chartObject = chartObject;
                             $scope.csvdata = portalService.prepareDataForCSV(chartObject);

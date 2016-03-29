@@ -177,6 +177,7 @@ angular.module("hmisPortal")
             angular.forEach()
         };
 
+
         $scope.findValue = function(arr,ou,pe,dx,numerator,denominator,type){
 
             var amount = 0;
