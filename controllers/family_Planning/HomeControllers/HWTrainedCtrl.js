@@ -1145,7 +1145,7 @@ angular.module("hmisPortal")
 
 
         //switching between tables and charts
-        $scope.displayTables = {card1:false}
+        $scope.displayTables = {card1:false};
         $scope.changeTable =function(card,value){
             if(value == "table"){
                 if(card == "card1"){$scope.displayTables.card1 = true}
