@@ -284,9 +284,10 @@ angular.module("hmisPortal")
                                     });
                                     $scope.normalseries1.push({type: 'column', name: val.name, data: serie})
                                 });
-                                $scope.chartObject = $scope.normalseries1;
-                                $scope.csvdata = portalService.prepareDataForCSV($scope.chartObject);
+                                cardObject.chartObject.series = $scope.normalseries1;
+                                $scope.chartObject = cardObject.chartObject;
                                 $('#container12').highcharts(cardObject.chartObject);
+                                $scope.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
 
 
                         //////////////////////////////first chart ///////////////////////////
