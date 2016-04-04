@@ -216,7 +216,6 @@ angular.module("hmisPortal")
             return methods.join(";");
         };
 
-        $scope.currentYear = '2016'
 
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
@@ -239,7 +238,7 @@ angular.module("hmisPortal")
                 cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
                 var peri = preparePeriod($scope.selectedPeriod);
-                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+$scope.currentYear+"&displayProperty=NAME";
+                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+FPManager.lastMonthWithData+"&displayProperty=NAME";
                 var area = [];
                 cardObject.chartObject.loading = true;
                 var datass = '';
