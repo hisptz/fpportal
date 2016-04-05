@@ -1,20 +1,25 @@
 <div class="row">
     <form class="col s12" name="messageForm" novalidate >
-        <div  class="col m6 offset-m3" style="margin-top: 10%">
+        <div  class="col m6 offset-m3 card" style="margin-top: 10%;padding-bottom: 30px">
             <div class="row" ng-if="messageSend">
                 <div class="card-panel amber-text center">Comments Saved</div>
             </div>
             <div class="progress" ng-if="showLoading">
                 <div class="indeterminate"></div>
             </div>
-            <div class="row"><h5 class="center">Your About to Un-subscribe for The email Notification </h5><hr></div>
+            <div class="row"><h5 class="center">You are about to unsubscribe from Family Planning monthly report emails. If you unsubscribe, you will no longer receive any monthly Family Planning Reports </h5><hr></div>
             <div class="row">
 
             </div>
-            <button ng-click="sendMessage(subject,textMessage,mail,phone)" style="margin-left: 40%"
-                    ng-disabled="messageForm.$invalid" id="modelClose" class="modal-action btn cyan waves-effect waves-light" ng-click="unsubscribe()" >Confirm
+            <div style="margin-left: 35%">
+            <button ng-click="sendMessage(subject,textMessage,mail,phone)" style="margin-left: 1%"
+                    ng-disabled="messageForm.$invalid" id="modelClose" class="modal-action btn brown waves-effect waves-light" ng-click="unsubscribe()" >Confirm
                 <i class="mdi-content-send right"></i>
             </button>
+            <button href="https://hmisportal.moh.go.tz/fpportal/#familyPlanningHome"
+                    class="modal-action btn cyan waves-effect waves-light left" ng-click="unsubscribe()" >Cancel
+            </button>
+            </div>
         </div>
         <div>
 
