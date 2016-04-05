@@ -1210,7 +1210,7 @@ angular.module("hmisPortal")
                     console.log('nimefika hapa')
                     var chartObject = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Pills";
+                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables";
                     chartObject.yAxis.title.text ="% of Facilities";
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = $scope.prepareCategory('month');

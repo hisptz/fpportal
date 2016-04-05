@@ -6,23 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/FPFacilities.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/FPFacilities1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/dataSample.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/facility.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/parcent201401.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/parcent201402.json" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage1.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage2.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage3.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage4.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage4.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage5.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/feedback.html" afterPath="$PROJECT_DIR$/views/feedback.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/jinsiCtrl.js" afterPath="$PROJECT_DIR$/controllers/jinsiCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/unsubscribe.html" afterPath="$PROJECT_DIR$/views/family_planning/unsubscribe.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,16 +30,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="client_by_demographics.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/family_planning/client_by_demographics.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0172415" vertical-offset="3043" max-vertical-offset="3564">
-              <caret line="182" column="36" selection-start-line="182" selection-start-column="36" selection-end-line="182" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="coverage5.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/coverage5.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -106,15 +80,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="unsubscribe.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="unsubscribe.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/unsubscribe.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.06521739" vertical-offset="0" max-vertical-offset="594">
+            <state vertical-scroll-proportion="-1.3333334" vertical-offset="0" max-vertical-offset="594">
               <caret line="2" column="87" selection-start-line="2" selection-start-column="87" selection-end-line="2" selection-end-column="87" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#4;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#4;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HWTrainedCtrl.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5595855" vertical-offset="2358" max-vertical-offset="5292">
+              <caret line="1212" column="151" selection-start-line="1212" selection-start-column="151" selection-end-line="1212" selection-end-column="151" />
+              <folding>
+                <element signature="e#496#9736#0" expanded="false" />
+                <element signature="e#9837#26260#0" expanded="false" />
+                <element signature="e#26403#43448#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -198,7 +186,6 @@
         <option value="$PROJECT_DIR$/controllers/family_Planning/HWTrainedCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/assets/js/routes.js" />
-        <option value="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/clientDemographicsCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/clientDemographicsCtrl.js" />
         <option value="$PROJECT_DIR$/views/family_planning/home.html" />
@@ -215,6 +202,7 @@
         <option value="$PROJECT_DIR$/views/family_planning/coverage2.html" />
         <option value="$PROJECT_DIR$/views/feedback.html" />
         <option value="$PROJECT_DIR$/views/family_planning/unsubscribe.html" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" />
       </list>
     </option>
   </component>
@@ -895,18 +883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="5292">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-          <folding>
-            <element signature="e#496#9736#0" expanded="false" />
-            <element signature="e#9837#26260#0" expanded="false" />
-            <element signature="e#26403#43448#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/clientDemographicsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2212" max-vertical-offset="11214">
@@ -1029,12 +1005,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/unsubscribe.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06521739" vertical-offset="0" max-vertical-offset="594">
+        <state vertical-scroll-proportion="-1.3333334" vertical-offset="0" max-vertical-offset="594">
           <caret line="2" column="87" selection-start-line="2" selection-start-column="87" selection-end-line="2" selection-end-column="87" />
           <folding>
             <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#4;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#4;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5595855" vertical-offset="2358" max-vertical-offset="5292">
+          <caret line="1212" column="151" selection-start-line="1212" selection-start-column="151" selection-end-line="1212" selection-end-column="151" />
+          <folding>
+            <element signature="e#496#9736#0" expanded="false" />
+            <element signature="e#9837#26260#0" expanded="false" />
+            <element signature="e#26403#43448#0" expanded="false" />
           </folding>
         </state>
       </provider>
