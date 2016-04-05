@@ -135,7 +135,7 @@ angular.module("hmisPortal")
 
                 cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
-                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:m0frOspS7JY&dimension=pe:"+$scope.currentYear+"&displayProperty=NAME";
+                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:m0frOspS7JY&dimension=pe:"+FPManager.lastMonthWithData+"&displayProperty=NAME";
                 cardObject.chartObject.loading = true;
 
 
@@ -1207,7 +1207,7 @@ angular.module("hmisPortal")
                     console.log('nimefika hapa')
                     var chartObject = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Pills or Injectables";
+                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Pills";
                     chartObject.yAxis.title.text ="% of Facilities";
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = $scope.prepareCategory('month');
