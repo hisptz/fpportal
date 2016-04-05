@@ -151,6 +151,10 @@ angular.module("hmisPortal")
             templateUrl: 'views/indicatorsView.html',
             controller: 'indicatorsCtrl'
         });
+        $routeProvider.when("/feedback",{
+            templateUrl: 'views/feedback.html',
+            controller: 'mainCtrl'
+        });
 
         /**
          * Family planning routes

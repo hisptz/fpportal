@@ -1,0 +1,45 @@
+<div class="row">
+    <form class="col s12" name="messageForm" novalidate >
+        <div  class="col m6 offset-m3" >
+            <div class="row" ng-if="messageSend">
+                <div class="card-panel amber-text center">Comments Saved</div>
+            </div>
+            <div class="progress" ng-if="showLoading">
+                <div class="indeterminate"></div>
+            </div>
+            <div class="row"><h5 class="center">Leave your Comments here..!</h5><hr></div>
+            <div class="row">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="" id="mail" ng-model="mail" type="text" phone="mail">
+                        <label for="mail">Email</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="" id="phone" type="text" ng-model="phone" name="phone">
+                        <label for="phone">Contacts phone</label>
+                    </div>
+                </div>
+                <div class="row"><strong>Option: Please provide contacts above for return feedback on the comment section</strong></div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="subject" type="text" name="subject" ng-model="subject" required>
+                        <label for="subject" class="center-align">Subject</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="textMessage" name="textMessage" class="materialize-textarea" ng-model="textMessage" required ></textarea>
+                        <label for="textMessage">Message</label>
+                    </div>
+                </div>
+            </div>
+            <button ng-click="sendMessage(subject,textMessage,mail,phone)"
+                    ng-disabled="messageForm.$invalid" id="modelClose" class="modal-action btn cyan waves-effect waves-light right" type="submit" >Submit
+                <i class="mdi-content-send right"></i>
+            </button>
+        </div>
+        <div>
+
+        </div>
+    </form>
+</div>
