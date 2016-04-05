@@ -196,7 +196,7 @@ angular.module("hmisPortal")
                 }
             });
         };
-        
+
         $scope.updateMethod();
 
         $scope.selectOnly1Or3 = function(item, selectedItems) {
