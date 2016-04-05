@@ -220,6 +220,11 @@ angular.module("hmisPortal")
             controller: 'FPHomeController'
         });
 
+        $routeProvider.when("/unsubscribe",{
+            templateUrl: 'views/family_planning/unsubscribe.html',
+            controller: 'FPHomeController'
+        });
+
 
         //default route
         $routeProvider.otherwise({

@@ -11,8 +11,11 @@
 angular.module("hmisPortal")
     .config(function($httpProvider) {
 
-    }).controller("FPHomeController",function ($rootScope,$scope,$http,portalService,FPManager) {
+    }).controller("FPHomeController",function ($rootScope,$scope,$http,portalService,FPManager,$location) {
+        console.log($location.search());
+        $scope.unsubscribe = function(){
 
+        }
     })
     .controller("HomeHWTrainedCtrl",function ($rootScope,$scope,$http,portalService,FPManager) {
 

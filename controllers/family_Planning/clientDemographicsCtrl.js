@@ -76,18 +76,13 @@ angular.module("hmisPortal")
     })
     .controller("clientDemographicsCtrl",function ($rootScope,$scope,$http,portalService,FPManager,$location) {
 
-        var url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:GGpsoh0DX6T;IFxhP0O4k0W;JMmqv0tyVr7;Nt8M08bJKXl;OQpasUg1Tse;btKkJROB2gP;epPM7fO8CnH;mlfh4fgiFhd;pqpVKzE951Y&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:201501;201502;201503;201504;201505;201506;201507;201508;201509;201510;201511;201512;2015Q1;2015Q2;2015Q3;2015Q4&displayProperty=NAME";
-        var geoZonesUrl = "https://dhis.moh.go.tz/api/organisationUnitGroupSets/eVyUn5tE93t.json?fields=id,name,organisationUnitGroups[id,name,organisationUnits[id,name]]";
+        //var geoZonesUrl = "https://dhis.moh.go.tz/api/organisationUnitGroupSets/eVyUn5tE93t.json?fields=id,name,organisationUnitGroups[id,name,organisationUnits[id,name]]";
 
         $rootScope.showProgressMessage = false;
         $scope.geographicalZones = FPManager.zones;
         $scope.geoToUse = [];
         $scope.zones = "";
-        angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
-//            console.log(value.name)
-            $scope.zones += value.id+";";
-            $scope.geoToUse.push({name:value.name,id:value.id, ticked: true });
-        });
+
         $scope.data = {};
         $scope.updateTree = function(){
             $scope.data.orgUnitTree1 = [];
@@ -181,57 +176,6 @@ angular.module("hmisPortal")
 
         }, true);
 
-
-        $scope.changeMethod = function(){
-//            $scope.currentOrgUnit = "m0frOspS7JY";
-//            angular.forEach($scope.geoToUse,function(value){
-//                value.ticked = true;
-//            });
-//            $('#orgunitss option[value="m0frOspS7JY"]').prop('selected', true);
-            // $scope.firstClick();
-//            console.log(FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits));
-            //console.log($scope.prepareCategory('zones'));
-            //FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits);
-        };
-
-        $scope.changeZone = function(){
-            $scope.zones = "";
-            angular.forEach($scope.selectedRegions,function(value){
-                $scope.zones += value.id+";";
-            });
-            $scope.firstClick();
-        };
-        $scope.selectedMethod = 'all';
-        $scope.selectedPeriod = '2014';
-        $scope.data.chartType = 'column';
-        $scope.displayTable = false;
-        $scope.currentOrgUnit = "m0frOspS7JY";
-        $scope.changeChart = function(type,card){
-            card.displayTable = false;
-
-            $scope.showReport = true;
-            if(type == 'table'){
-                card.displayTable = true;
-                card.displayMap = false;
-                card.chart = 'table';
-                $scope.data.chartType = 'table';
-            }else if(type == 'map'){
-                card.displayMap = true;
-                card.displayTable = false;
-                card.chart = 'map';
-                $scope.data.chartType = 'map';
-            }
-            else{
-                card.displayMap = false;
-                card.displayTable = false;
-                card.chart = type;
-                $scope.data.chartType = type;
-            }
-            $scope.prepareSeries(card,$scope.data.chartType);
-        };
-
-
-
         $scope.displayMesage = true;
         $scope.displayshortMesage = true;
 
@@ -251,7 +195,8 @@ angular.module("hmisPortal")
                     $scope.displayshortMesage = true;
                 }
             });
-        }
+        };
+        
         $scope.updateMethod();
 
         $scope.selectOnly1Or3 = function(item, selectedItems) {

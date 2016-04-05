@@ -1,0 +1,23 @@
+<div class="row">
+    <form class="col s12" name="messageForm" novalidate >
+        <div  class="col m6 offset-m3" style="margin-top: 10%">
+            <div class="row" ng-if="messageSend">
+                <div class="card-panel amber-text center">Comments Saved</div>
+            </div>
+            <div class="progress" ng-if="showLoading">
+                <div class="indeterminate"></div>
+            </div>
+            <div class="row"><h5 class="center">Your About to Un-subscribe for The email Notification </h5><hr></div>
+            <div class="row">
+
+            </div>
+            <button ng-click="sendMessage(subject,textMessage,mail,phone)" style="margin-left: 40%"
+                    ng-disabled="messageForm.$invalid" id="modelClose" class="modal-action btn cyan waves-effect waves-light" ng-click="unsubscribe()" >Confirm
+                <i class="mdi-content-send right"></i>
+            </button>
+        </div>
+        <div>
+
+        </div>
+    </form>
+</div>
