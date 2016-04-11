@@ -1207,7 +1207,6 @@ angular.module("hmisPortal")
                 $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function() {
-                    console.log('nimefika hapa')
                     var chartObject = angular.copy(portalService.chartObject);
 
                     chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables";
