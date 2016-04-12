@@ -10,7 +10,7 @@ angular.module("hmisPortal")
 
     })
     .controller("clientDemographicsCtrl",function ($rootScope,$scope,$http,portalService,FPManager,$location) {
-
+        $scope.districtUid = $location.search().uid;
         $rootScope.showProgressMessage = false;
         $scope.geographicalZones = FPManager.zones;
         $scope.geoToUse = [];
@@ -112,19 +112,6 @@ angular.module("hmisPortal")
             }
 
         }, true);
-
-
-        $scope.changeMethod = function(){
-//            $scope.currentOrgUnit = "m0frOspS7JY";
-//            angular.forEach($scope.geoToUse,function(value){
-//                value.ticked = true;
-//            });
-//            $('#orgunitss option[value="m0frOspS7JY"]').prop('selected', true);
-            // $scope.firstClick();
-//            console.log(FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits));
-            //console.log($scope.prepareCategory('zones'));
-            //FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits);
-        };
 
         $scope.changeZone = function(){
             $scope.zones = "";

@@ -19,7 +19,7 @@ angular.module("hmisPortal")
 
     })
     .controller("clientDemographicsCtrl",function ($rootScope,$scope,$http,portalService,FPManager,$location) {
-
+        $scope.regionUid = $location.search().uid;
         $rootScope.showProgressMessage = false;
         $scope.geographicalZones = FPManager.zones;
         $scope.geoToUse = [];
@@ -123,6 +123,18 @@ angular.module("hmisPortal")
         }, true);
 
 
+        $scope.changeMethod = function(){
+//            $scope.currentOrgUnit = "m0frOspS7JY";
+//            angular.forEach($scope.geoToUse,function(value){
+//                value.ticked = true;
+//            });
+//            $('#orgunitss option[value="m0frOspS7JY"]').prop('selected', true);
+            // $scope.firstClick();
+//            console.log(FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits));
+            //console.log($scope.prepareCategory('zones'));
+            //FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits);
+        };
+
         $scope.changeZone = function(){
             $scope.zones = "";
             angular.forEach($scope.selectedRegions,function(value){
@@ -157,6 +169,29 @@ angular.module("hmisPortal")
                 $scope.data.chartType = type;
             }
             $scope.prepareSeries(card,$scope.data.chartType);
+        };
+
+
+        $scope.downloadExcel = function(id){
+            var base = "https://dhis.moh.go.tz/";
+            $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
+                j_username: "portal", j_password: "Portal123"
+            },function(){
+                var url = "";
+                if($scope.selectedOrgUnit == "m0frOspS7JY"){
+                    url = "https://dhis.moh.go.tz/api/analytics.csv?dimension=dx:"+id+"&dimension=pe:"+$scope.selectedPeriod+"&dimension=ou:LEVEL-1;LEVEL-2;"+$scope.selectedOrgUnit+"&displayProperty=NAME&tableLayout=true&columns=dx&rows=pe;ou";
+                }else{
+
+                    url = "https://dhis.moh.go.tz/api/analytics.csv?dimension=dx:"+id+"&dimension=pe:"+$scope.selectedPeriod+"&dimension=ou:LEVEL-2;LEVEL-3;"+$scope.selectedOrgUnit+"&displayProperty=NAME&tableLayout=true&columns=dx&rows=pe;ou";
+                }
+                $http.get(url,{'Content-Type': 'application/csv;charset=UTF-8'}).success(function(data){
+                    var a = document.createElement('a');
+                    var blob = new Blob([data]);
+                    a.href = window.URL.createObjectURL(blob);
+                    a.download = "data.xls";
+                    a.click();
+                });
+            });
         };
 
         $scope.FPmethods = [
@@ -308,99 +343,99 @@ angular.module("hmisPortal")
             $rootScope.progressMessage = "Fetching data please wait ...";
             $rootScope.showProgressMessage = true;
 
+            var base = "https://dhis.moh.go.tz/";
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                 j_username: "portal", j_password: "Portal123"
             },function() {
-                if($scope.data.menuMethods.length == 1){
-                    $scope.titleToUse = $scope.data.menuMethods[0].name;
-                }else{
-                    $scope.titleToUse = "Nationally";
-                }
-                if (chart == 'table') {
-                    cardObject.displayTable = true;
-                    cardObject.displayMap = false;
-                }
-                else {
-                    cardObject.displayMap = false;
-                    cardObject.displayTable = false;
-                }
-                cardObject.chartObject.title.text = cardObject.title + " - " +$scope.titleToUse;
-                cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
+                $http.get(portalService.base + "api/organisationUnits/" + $scope.regionUid + ".json?fields=name").success(function (region) {
+                    if($scope.data.menuMethods.length == 1){
+                        $scope.titleToUse = $scope.data.menuMethods[0].name;
+                    }else{
+                        $scope.titleToUse = "Nationally";
+                    }
+                    if (chart == 'table') {
+                        cardObject.displayTable = true;
+                        cardObject.displayMap = false;
+                    }
+                    else {
+                        cardObject.displayMap = false;
+                        cardObject.displayTable = false;
+                    }
+                    cardObject.chartObject.title.text = cardObject.title + " - " +$scope.titleToUse;
+                    cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
-                var peri = preparePeriod($scope.selectedPeriod);
-                //$scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412;2014Q1;2014Q2;2014Q3;2014Q4&displayProperty=NAME";
-                var area = [];
-                cardObject.chartObject.loading = true;
-                var datass = '';
+                    var peri = preparePeriod($scope.selectedPeriod);
+                    //$scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412;2014Q1;2014Q2;2014Q3;2014Q4&displayProperty=NAME";
+                    var area = [];
+                    cardObject.chartObject.loading = true;
+                    var datass = '';
 
-                if ($scope.selectedMethod == 1) {
-                    if (cardObject.category1 == "month") {
-                        cardObject.category = 'month';
-                        cardObject.data = $scope.methods;
-                    }
-                    if (cardObject.category1 == 'zones') {
-                        cardObject.data = [{'name': 'All Clients', 'id': 'jvwTTzpWBD0'}];
-                    }
-                    if (cardObject.category1 == 'routineFacility') {
-                        cardObject.data = $scope.prepareCategory('routineOutreachMethod')
-                    }
-                } else {
-                    if (cardObject.category1 == "month") {
-                        cardObject.category = 'month';
-                        cardObject.data = $scope.prepareCategory('zones');
-                    }
-                    if (cardObject.category1 == 'zones') {
-                        cardObject.data = $scope.getSingleMethods($scope.selectedMethod);
-                    }
-                }
-
-                $scope.url1 = portalService.base + "api/analytics.json?dimension=dx:lMFKZN3UaYp;ZnTi99UdGCS;UjGebiXNg0t;RfSsrHPGBXV;JSmtnnW6WrR;xhcaH3H3pdK;xip1SDutimh;chmWn8ksICz&dimension=ou:m0frOspS7JY&dimension=pe:201412;&displayProperty=NAME";
-                $scope.url = portalService.base + "api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:m0frOspS7JY&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
-
-                ////////////////////////////data for <20/////////////////////////////////////////////
-                    $scope.updateDisplayShortMessage($scope.data.outMethods);
-                $http.get($scope.url).success(function (data) {
-                    if (data.hasOwnProperty('metaData')) {
-                        var xAxisItems = [];
-                        var yAxisItems = [];
-                        var methodId = [];
-                        if($scope.data.menuMethods.length == 1){
-                            xAxisItems = [{'name':"MOH Tanzania",'id':'m0frOspS7JY'}];
-                            console.log("xaxis items are :"+xAxisItems);
-                            yAxisItems = $scope.prepareCategory('month');
-                            console.log("yaxis items are :"+yAxisItems);
-                        }else{
-                            xAxisItems = $scope.prepareCategory('methods');
-                            console.log("xaxis items are :"+xAxisItems);
-                            yAxisItems = $scope.prepareCategory('month');
-                            console.log("yaxis items are :"+yAxisItems);
+                    if ($scope.selectedMethod == 1) {
+                        if (cardObject.category1 == "month") {
+                            cardObject.category = 'month';
+                            cardObject.data = $scope.methods;
                         }
-                        cardObject.chartObject.xAxis.categories = [];
-                        angular.forEach(yAxisItems, function (value) {
-                            cardObject.chartObject.xAxis.categories.push(value.name);
-                        });
-                        $scope.normalseries1 = [];
-                        delete cardObject.chartObject.chart;
-                        console.log(xAxisItems)
-                        angular.forEach(xAxisItems, function (val) {
-                            var serie = [];
-                            angular.forEach(yAxisItems, function (value) {
-                                var number = $scope.getDataForFirstChart(data.rows,'m0frOspS7JY', value.id, val.id);
-                                serie.push(number);
-                            });
-                            $scope.normalseries1.push({type: 'spline', name: val.name, data: serie})
-                        });
-                        cardObject.chartObject.series = $scope.normalseries1;
-
-                        $('#container11').highcharts(cardObject.chartObject);
-                        cardObject.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
-
-
+                        if (cardObject.category1 == 'zones') {
+                            cardObject.data = [{'name': 'All Clients', 'id': 'jvwTTzpWBD0'}];
+                        }
+                        if (cardObject.category1 == 'routineFacility') {
+                            cardObject.data = $scope.prepareCategory('routineOutreachMethod')
+                        }
                     } else {
-                        cardObject.chartObject.loading = false
+                        if (cardObject.category1 == "month") {
+                            cardObject.category = 'month';
+                            cardObject.data = $scope.prepareCategory('zones');
+                        }
+                        if (cardObject.category1 == 'zones') {
+                            cardObject.data = $scope.getSingleMethods($scope.selectedMethod);
+                        }
                     }
+                    $scope.url1 = portalService.base + "api/analytics.json?dimension=dx:lMFKZN3UaYp;ZnTi99UdGCS;UjGebiXNg0t;RfSsrHPGBXV;JSmtnnW6WrR;xhcaH3H3pdK;xip1SDutimh;chmWn8ksICz&dimension=ou:m0frOspS7JY&dimension=pe:201412;&displayProperty=NAME";
+                    $scope.url = portalService.base + "api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:m0frOspS7JY&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
 
+                    ////////////////////////////data for <20/////////////////////////////////////////////
+                    $scope.updateDisplayShortMessage($scope.data.outMethods);
+                    $http.get($scope.url).success(function (data) {
+                        if (data.hasOwnProperty('metaData')) {
+                            var xAxisItems = [];
+                            var yAxisItems = [];
+                            var methodId = [];
+                            if($scope.data.menuMethods.length == 1){
+                                xAxisItems = [{'name':"MOH Tanzania",'id':'m0frOspS7JY'}];
+                                console.log("xaxis items are :"+xAxisItems);
+                                yAxisItems = $scope.prepareCategory('month');
+                                console.log("yaxis items are :"+yAxisItems);
+                            }else{
+                                xAxisItems = $scope.prepareCategory('methods');
+                                console.log("xaxis items are :"+xAxisItems);
+                                yAxisItems = $scope.prepareCategory('month');
+                                console.log("yaxis items are :"+yAxisItems);
+                            }
+                            cardObject.chartObject.xAxis.categories = [];
+                            angular.forEach(yAxisItems, function (value) {
+                                cardObject.chartObject.xAxis.categories.push(value.name);
+                            });
+                            $scope.normalseries1 = [];
+                            delete cardObject.chartObject.chart;
+                            console.log(xAxisItems)
+                            angular.forEach(xAxisItems, function (val) {
+                                var serie = [];
+                                angular.forEach(yAxisItems, function (value) {
+                                    var number = $scope.getDataForFirstChart(data.rows,'m0frOspS7JY', value.id, val.id);
+                                    serie.push(number);
+                                });
+                                $scope.normalseries1.push({type: 'spline', name: val.name, data: serie})
+                            });
+                            cardObject.chartObject.series = $scope.normalseries1;
+                            $('#container11').highcharts(cardObject.chartObject);
+                            cardObject.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
+                        } else {
+                            cardObject.chartObject.loading = false
+                        }
+
+                    });
                 });
+
             });
 
         };

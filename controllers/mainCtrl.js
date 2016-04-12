@@ -120,7 +120,15 @@ angular.module("hmisPortal")
             $scope.linkValue = linkValue;
             alert(linkValue);
         }
-     });
+     }).directive('portalCard', function() {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'directives/portalData.html'
+        };
+    });
+
+
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

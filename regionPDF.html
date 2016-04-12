@@ -1,230 +1,208 @@
 <!DOCTYPE html>
-<html ng-app="hmisPortal" ng-controller="mainCtrl">
+<html ng-app="hmisPortal" ng-controller="mainCtrl" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>HMIS Web Portal</title>
 
     <link type="text/css" rel="stylesheet" href="assets/libs/materialize/css/materialize.min.css"  media="screen,projection"/>
-
+    <style>
+        h4{
+            font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+        }
+        h6{
+            font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 <!--headers-->
-<div style="width: 1120px;">
+<div style="width: 1080px;margin: 20px">
     <table>
         <tr>
-            <td style="width: 80%"><h4>Tanzania Family Planning Dashboard Report National Report for Dec 2014</h4></td>
-            <td><img style="width: 180px;height: 180px" src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Coat_of_arms_of_Tanzania.svg/100px-Coat_of_arms_of_Tanzania.svg.png'/></td>
+            <td style="width: 80%"><h4  ng-controller="clientMethodsCtrl">Tanzania Family Planning Dashboard Report <br> {{ regionaName }} Report for Dec 2014</h4></td>
+            <td><img style="width: 180px;height: 160px" src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Coat_of_arms_of_Tanzania.svg/100px-Coat_of_arms_of_Tanzania.svg.png'/></td>
         </tr>
     </table>
-
-    <!--Coverage-->
-    <table>
-        <tr>
-            <td style="width: 50%" ng-controller="HWParcentageCtrl">
-                <div id="pchart1" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
-            </td>
-            <td style="width: 50%">
-                <table class="bordered striped centered" id="jinsi">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th ng-repeat="column in chartObject1.series">{{ column.name }}</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr data-ng-repeat="cats in chartObject1.xAxis.categories">
-                        <td>{{ cats }}</td>
-                        <td ng-repeat="column in chartObject1.series">{{ column.data[$parent.$index] }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td style="width: 49%; margin-top: 5px; " >
-                <h6 style=" padding: 8px; border: solid 1px deepskyblue; color:cornflowerblue;">
-                    This graph shows the national trends in percentage of facilities with
-                    two or more health workers (HWs) trained in each FP method.
-                    <br><b>ACTION:</b> these trend lines should be increasing. Use the FP dashboard
-                    to investigate any unexplained decreases
-                </h6>
-            </td>
-            <td style=" width: 49%; margin-top: 5px;" >
-                <h6 style=" padding: 8px; border: solid 1px deepskyblue; color:cornflowerblue;">
-                    This graph shows the national trends in percentage of facilities with
-                    two or more health workers (HWs) trained in each FP method.
-                    <br><b>ACTION:</b> these trend lines should be increasing. Use the FP dashboard
-                    to investigate any unexplained decreases
-                </h6>
-            </td>
-        </tr>
-    </table>
-
+    <hr>
     <!--CLients-->
-    <table>
-        <tr>
-            <td style="width: 60%" ng-controller="clientDemographicsCtrl">
-                <div id="container11" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-            </td>
-            <td style="width: 40%">
-                <h6 class="text-info" style=" padding: 8px; color:cornflowerblue;border: 1px solid deepskyblue">
-                    The graph to the left shows the national trend in the number of routine, facility-based FP clients under the age of 20.
-                    Note that permanent methods are not listed here as these methods are not applicable to clients in this age group.
-                    <br><b>ACTION:</b>  Monitor FP clients  trends over time;  investigate any unexplained sharp decreases.
-                </h6>
-            </td>
-        </tr>
-    </table>
+    <fieldset>
+        <legend style="font-size: 1.67em">Clients Jan 2014 to Dec 2014:</legend>
+        <table>
+            <tr>
+                <td style="width: 70%" ng-controller="clientMethodsCtrl">
+                    <div id="container12" style="border:groove 1px #000000; min-width: 350px; height: 450px; margin: 0 auto"></div>
+                </td>
+                <td style="width: 30%; vertical-align: top">
+                    <h6 class="text-info" style="margin-top: 0px; padding: 8px; color:#6498D9;border: 1px solid deepskyblue; line-height: 30px">
+                        Note: for more information  on other FP methods not displayed here, (permanent methods and male and female condoms)
+                        refer to the FP Dashboard.
+                        <br><br><b>ACTION:</b>  Monitor FP clients  trends over time;  investigate any unexplained sharp decreases.
+                    </h6>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <!--Coverage-->
+    <fieldset>
+        <legend style="font-size: 1.67em">Coverage:</legend>
+        <table>
+            <tr>
+                <td style="width: 520px;" ng-controller="HWParcentageCtrl">
+                    <div id="HWParcentage" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                </td>
+                <td style="width: 520px;" ng-controller="parcentageCtrl">
+                    <div id="facilityParcent" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td style="width: 520px;; margin-top: 5px; " >
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        <b>ACTION:</b> Identify FP methods and facility types with largest gap in
+                        trained providers. If possible, resources for FP trainings should be
+                        directed to the districts listed in the table below, for each FP method.
+                    </h6>
+                </td>
+                <td style=" width: 520px;; margin-top: 5px;" >
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        <b>ACTION:</b> these trend lines should be increasing with time. Use the
+                        FP dashboard to investigate any unexplained decreases in
+                        percentage of facilities providing each FP method
+                    </h6>
+                </td>
+            </tr>
+        </table>
 
-    <table>
-        <tr>
-            <td style="width: 40%">
-                <h6 class="text-info" style=" padding: 8px; color:cornflowerblue;border: 1px solid deepskyblue">
-                    The chart to  the right shows the national trend
-                    in the number of routine, facility-based of FP
-                    clients. For more information on other FP
-                    methods not displayed here, please refer to the
-                    FP Dashboard.
-                    <br><b>ACTION:</b>  Monitor FP clients  trends over time;
-                    investigate any unexplained sharp decreases
-                </h6>
-            </td>
-            <td style="width: 60%" ng-controller="clientMethodsCtrl">
-                <div id="container12" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
-            </td>
+        <table style="margin: 10px; width: 1040px" ng-controller="HWParcentageCtrl">
+            <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
+                <th colspan="4" style="font-size: 18px;">Regions with lowest percentage of facilities with 2 or more Health Workers trained in FP methods</th></tr>
+            <tr style="border: solid 1px #6498D9" ng-repeat="orgs in orgunitsWithLowTraining" >
+                <td>{{ orgs.name }}</td>
+                <td>{{ orgs.region1 }}</td>
+                <td>{{ orgs.region2 }}</td>
+                <td>{{ orgs.region3 }}</td>
+            </tr>
 
-        </tr>
-    </table>
+            </tr>
+        </table>
+    </fieldset>
+
 
     <!--Stock Outs-->
-    <table>
-        <tr>
-            <td style="width: 50%" ng-controller="stockoutCtrl">
-                <div id="pchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
-                <h6 class="text-info" style=" padding: 8px; color:cornflowerblue;border: 1px solid deepskyblue">
-                    This graph shows the national trend in percent of facilities
-                    which were stocked out of either pills or injectables for at least
-                    7 days in the month.
-                    <br><b>ACTION:</b> This trend should be decreasing. Monitor the trend
-                    and use the FP Dashboard to investigate any unexplained
-                    increases.
-                </h6>
-            </td>
-            <td style="width: 22%">
-                <table border="1px">
-                    <tr style="background-color: #0059bc;color: white">
-                        <th >Regions with highest
-                            percentage of facilities
-                            experiencing  Stock Out of
-                            Pills/Injectables</th></tr>
-                    <tr><td>Region 1 (% facilities)</td></tr>
-                    <tr><td>Region 2 (% facilities)</td></tr>
-                    <tr><td>Region 3 (% facilities)</td></tr>
-                    </tr>
-                </table>
-                <h6 class="text-info" style=" padding: 8px; color:cornflowerblue;border: 1px solid deepskyblue">
-                    This table lists regions with
-                    the highest percentage of
-                    facilities reporting a stock out
-                    of pills and injectables, for at
-                    least seven consecutive days
-                    during the past month.
-                    <br><b>ACTION:</b> Investigate regions
-                    with high stock out rates,
-                    check distribution and stock
-                    provision
-                </h6>
-            </td>
-            <td style="width: 26%">
-                <h6 class="text-info" style=" padding: 8px; color:cornflowerblue;border: 1px solid deepskyblue">
-                    This month the national reporting
-                    rate  was  x% of facilities,  as
-                    compared to x% last month. The
-                    table below lists  3 regions with
-                    lowest and highest reporting rates
-                    .
-                    <br><b>ACTION:</b> alert regional
-                    coordinators; provide positive
-                    feedback to best performing
-                    regions and support to low
-                    performing regions.
-                </h6>
+    <fieldset>
+        <legend style="font-size: 1.67em">Stock Outs:</legend>
+        <table>
+            <tr>
+                <td style="width: 50%" ng-controller="stockoutCtrl">
+                    <div id="stockoutchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
+                </td>
+                <td style="width: 50%">
+                    <table border="1px">
+                        <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
+                            <th >Regions with highest
+                                percentage of facilities
+                                experiencing  Stock Out of
+                                Pills/Injectables</th></tr>
+                        <tr style="border: solid 1px #6498D9"><td>Region 1 (% facilities)</td></tr>
+                        <tr style="border: solid 1px #6498D9"><td>Region 2 (% facilities)</td></tr>
+                        <tr style="border: solid 1px #6498D9"><td>Region 3 (% facilities)</td></tr>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td style="width: 50%">
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        <b>ACTION:</b> This trend should be decreasing. Monitor the trend and
+                        use the FP Dashboard to investigate any unexplained increases.
+                    </h6>
+                </td>
+                <td style="width: 50%">
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        <b>ACTION:</b>Investigate regions with high stock out rates, check
+                        distribution and stock provision
+                    </h6>
+                </td>
+            </tr>
+        </table>
 
-                <table border="1px">
-                    <tr style="background-color: #0059bc;color: white">
-                        <th >Highest Reporting rate</th>
-                        <th >Lowest reporting rate</th>
-                    </tr>
-                    <tr>
-                        <td>Region 1 (% facilities)</td>
-                        <td>Region 1 (% facilities)</td>
-                    </tr>
-                    <tr>
-                        <td>Region 1 (% facilities)</td>
-                        <td>Region 1 (% facilities)</td>
-                    </tr>
-                    <tr>
-                        <td>Region 1 (% facilities)</td>
-                        <td>Region 1 (% facilities)</td>
-                    </tr>
-                    <tr>
-
-                </table>
-            </td>
-        </tr>
-    </table>
-
+    </fieldset>
     <!--survilience-->
-    <table>
-        <tr>
-            <td style="width: 28%">
-                <h6 class="text-info" style=" padding: 8px; color:cornflowerblue;border: 1px solid deepskyblue">
-                    The graph below on the left depicts the
-                    three regions with the lowest percent of
-                    clients adopting FP following Post
-                    Abortion Care (PAC), compared with the
-                    national average ; the graph below and
-                    on the right depicts the three regions
-                    with the lowest percent of FP clients
-                    (who are not already known HIV-
-                    positive) adopting HIV testing and
-                    counselling (HTC), compared with the
-                    national average.
+    <fieldset>
+        <legend style="font-size: 1.67em">Stock Outs:</legend>
+        <table>
+            <tr>
+                <td style="width: 520px;" ng-controller="survilienceCtrl">
+                    <div id="survilience1" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                </td>
+                <td style="width: 520px;" ng-controller="survilienceCtrl">
+                    <div id="survilience3" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                </td>
 
-                    <br><b>ACTION:</b>  investigate regions with lowest
-                    percentages for each indicator. Monitor
-                    national trend and use the FP dashboard
-                    to investigate any unexplained
-                    decreases.
-                </h6>
-            </td>
-            <td style="width: 20%">
-                <h6 class="text-info" style=" padding: 8px; color:cornflowerblue;border: 1px solid deepskyblue">
-                    This graph to the right depicts the National trend in clients adopting FP post partum, for the
-                    past year.
-                    <br><b>ACTION:</b> Monitor national trend and investigate any unexplained
-                    decreases. Note that this line might fluctuate according to number of live
-                    births per month, but should be generally increasing.
-                </h6>
-            </td>
-            <td style="width: 60%" ng-controller="survilienceCtrl">
-                <div id="chart2" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
-            </td>
+            </tr>
+        </table>
 
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td style="width: 60%" ng-controller="survilienceCtrl">
-                <div id="chart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
-            </td>
-            <td style="width: 60%" ng-controller="survilienceCtrl">
-                <div id="chart3" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
-            </td>
+        <table>
+            <tr>
+                <td style="width: 100%; padding-left: 0px; padding-right: 0px">
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        The graph on the right displays percent of FP clients who are not already known HIV-positive adopting HIV testing and counselling (HTC)
+                        <b>ACTION:</b> investigate regions with lowest percentages for each indicator. Monitor national trend and use the FP dashboard to investigate any
+                        unexplained decreases.
+                    </h6>
+                </td>
+            </tr>
+        </table>
 
-        </tr>
-    </table>
+        <table>
+            <tr>
+                <td style="width: 520px;" ng-controller="survilienceCtrl">
+                    <div id="survilience2" style="min-width: 100%; height: 400px; margin: 0 auto;border:groove 1px #000000;"></div>
+                </td>
+                <td style="width: 520px;">
+                    <div style="border:groove 1px #000000; height: 400px">
+                        <h5 style="text-align: center">Reporting Rates</h5>
+                        <table border="1px" ng-controller="survilienceCtrl">
+                            <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
+                                <th >Highest Reporting rate</th>
+                                <th >Lowest reporting rate</th>
+                            </tr>
+                            <tr style="border: solid 1px #6498D9" ng-repeat="org in OrgunitInReportingRate">
+                                <td>{{ org.high }}</td>
+                                <td>{{ org.low }}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </td>
+
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <td style="width: 49%; margin-top: 5px; " >
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        <b>ACTION:</b> Monitor national trend and investigate any unexplained
+                        decreases. Note that this line might fluctuate according to number of
+                        live births per month, but should be generally increasing.
+                    </h6>
+                </td>
+                <td style=" width: 49%; margin-top: 5px;" >
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        This month the national reporting rate was x% of
+                        facilities, as compared to x% last month..
+                        <b>ACTION:</b> alert regional coordinators; provide positive
+                        feedback to best performing regions and support to low
+                        performing regions.
+                    </h6>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
 </div>
 
 <!--import pace for visualization-->
@@ -265,13 +243,14 @@
 <script src="controllers/jinsiCtrl.js"></script>
 <script src="controllers/morbidityCtrl.js"></script>
 <script src="controllers/familyPlanningCtrl.js"></script>
-<script src="controllers/family_Planning/PDFControllers/clientDemographicsCtrl.js"></script>
-<script src="controllers/family_Planning/PDFControllers/clientMethodsCtrl.js"></script>
-<script src="controllers/family_Planning/PDFControllers/survilienceCtrl.js"></script>
+<script src="controllers/family_Planning/RegionalPDFController/clientDemographicsCtrl.js"></script>
+<script src="controllers/family_Planning/RegionalPDFController/clientMethodsCtrl.js"></script>
+<script src="controllers/family_Planning/RegionalPDFController/survilienceCtrl.js"></script>
 <script src="controllers/family_Planning/parcentageCtrl.js"></script>
 <script src="controllers/family_Planning/parcentage1Ctrl.js"></script>
-<script src="controllers/family_Planning/PDFControllers/stockoutCtrl.js"></script>
-<script src="controllers/family_Planning/PDFControllers/HWParcentageCtrl.js"></script>
+<script src="controllers/family_Planning/RegionalPDFController/stockoutCtrl.js"></script>
+<script src="controllers/family_Planning/RegionalPDFController/HWParcentageCtrl.js"></script>
+<script src="controllers/family_Planning/RegionalPDFController/parcentageCtrl.js"></script>
 <script src="controllers/family_Planning/HWTrainedCtrl.js"></script>
 
 </body>

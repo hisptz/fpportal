@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="hmisPortal" ng-controller="mainCtrl">
+<html ng-app="hmisPortal" ng-controller="mainCtrl" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>HMIS Web Portal</title>
 
@@ -25,15 +25,15 @@
 </table>
     <hr>
     <!--CLients-->
-    <div style="border: groove 2px #877070">
-        <h5 style="text-align: center">Clients Jan 2014 to Dec 2014</h5>
+    <fieldset>
+        <legend style="font-size: 1.67em">Clients Jan 2014 to Dec 2014:</legend>
     <table>
         <tr>
             <td style="width: 70%" ng-controller="clientMethodsCtrl">
                 <div id="container12" style="border:groove 1px #000000; min-width: 350px; height: 450px; margin: 0 auto"></div>
             </td>
-            <td style="width: 30%">
-                <h6 class="text-info" style=" padding: 8px; color:#6498D9;border: 1px solid deepskyblue; line-height: 30px">
+            <td style="width: 30%;vertical-align: top">
+                <h6 class="text-info" style="margin-top: 0px; padding: 8px; color:#6498D9;border: 1px solid deepskyblue; line-height: 30px">
                     Note: for more information  on other FP methods not displayed here, (permanent methods and male and female condoms)
                     refer to the FP Dashboard.
                     <br><br><b>ACTION:</b>  Monitor FP clients  trends over time;  investigate any unexplained sharp decreases.
@@ -41,57 +41,57 @@
             </td>
         </tr>
     </table>
-    </div>
+    </fieldset>
 <!--Coverage-->
-    <div style="border: solid 2px #877070; margin-top: 20px">
-        <h5 style="text-align: center">Coverage</h5>
+    <fieldset>
+        <legend style="font-size: 1.67em">Coverage:</legend>
 <table>
     <tr>
-        <td style="width: 50%" ng-controller="HWParcentageCtrl">
-            <div id="pchart1" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+        <td style="width: 520px;" ng-controller="HWParcentageCtrl">
+            <div id="HWParcentage" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
         </td>
-        <td style="width: 50%" ng-controller="HWParcentageCtrl">
-            <div id="pchart2" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+        <td style="width: 520px;" ng-controller="parcentageCtrl">
+            <div id="facilityParcent" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
         </td>
     </tr>
     </table>
 <table>
     <tr>
-        <td style="width: 49%; margin-top: 5px; " >
+        <td style="width: 520px;; margin-top: 5px; " >
             <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                This graph shows the national trends in percentage of facilities with
-                two or more health workers (HWs) trained in each FP method.
-                <br><b>ACTION:</b> these trend lines should be increasing. Use the FP dashboard
-                to investigate any unexplained decreases
+                <b>ACTION:</b> Identify FP methods and facility types with largest gap in
+                trained providers. If possible, resources for FP trainings should be
+                directed to the districts listed in the table below, for each FP method.
             </h6>
         </td>
-        <td style=" width: 49%; margin-top: 5px;" >
+        <td style=" width: 520px;; margin-top: 5px;" >
             <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                This graph shows the national trends in percentage of facilities with
-                two or more health workers (HWs) trained in each FP method.
-                <br><b>ACTION:</b> these trend lines should be increasing. Use the FP dashboard
-                to investigate any unexplained decreases
+                <b>ACTION:</b> these trend lines should be increasing with time. Use the
+                FP dashboard to investigate any unexplained decreases in
+                percentage of facilities providing each FP method
             </h6>
         </td>
     </tr>
 </table>
 
-        <table style="margin: 10px; width: 1060px">
+        <table style="margin: 10px; width: 1060px" ng-controller="HWParcentageCtrl">
             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
                 <th colspan="4" style="font-size: 18px;">Regions with lowest percentage of facilities with 2 or more Health Workers trained in FP methods</th></tr>
-            <tr style="border: solid 1px #6498D9" ><td>Short Acting</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td></tr>
-            <tr style="border: solid 1px #6498D9" ><td>IUCD</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td></tr>
-            <tr style="border: solid 1px #6498D9" ><td>Implant</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td></tr>
-            <tr style="border: solid 1px #6498D9" ><td>Mini-lap</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td></tr>
-            <tr style="border: solid 1px #6498D9" ><td>NSV</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td><td>Region 1 (% facilities)</td></tr>
+            <tr style="border: solid 1px #6498D9" ng-repeat="orgs in orgunitsWithLowTraining" >
+                <td>{{ orgs.name }}</td>
+                <td>{{ orgs.region1 }}</td>
+                <td>{{ orgs.region2 }}</td>
+                <td>{{ orgs.region3 }}</td>
+            </tr>
+
             </tr>
         </table>
-        </div>
+       </fieldset>
 
 
 <!--Stock Outs-->
-    <div style="border: solid 2px #877070; margin-top: 20px">
-        <h5 style="text-align: center">Stock Outs</h5>
+    <fieldset>
+        <legend style="font-size: 1.67em">Stock Outs:</legend>
 <table>
     <tr>
         <td style="width: 50%" ng-controller="stockoutCtrl">
@@ -129,17 +129,17 @@
         </tr>
     </table>
 
-</div>
+</fieldset>
     <!--survilience-->
-    <div style="border: solid 2px #877070; margin-top: 20px">
-        <h5 style="text-align: center">Service Integration Jan 2014 to Dec 2014</h5>
+<fieldset>
+    <legend style="font-size: 1.67em">Stock Outs:</legend>
     <table>
         <tr>
             <td style="width: 520px;" ng-controller="survilienceCtrl">
-                <div id="chart" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                <div id="survilience1" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
             </td>
             <td style="width: 520px;" ng-controller="survilienceCtrl">
-                <div id="chart3" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                <div id="survilience3" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
             </td>
 
         </tr>
@@ -160,30 +160,20 @@
     <table>
         <tr>
             <td style="width: 520px;" ng-controller="survilienceCtrl">
-                <div id="chart2" style="min-width: 100%; height: 400px; margin: 0 auto;border:groove 1px #000000;"></div>
+                <div id="survilience2" style="min-width: 100%; height: 400px; margin: 0 auto;border:groove 1px #000000;"></div>
             </td>
             <td style="width: 520px;">
                 <div style="border:groove 1px #000000; height: 400px">
                     <h5 style="text-align: center">Reporting Rates</h5>
-                    <table border="1px">
+                    <table border="1px" ng-controller="survilienceCtrl">
                         <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
                             <th >Highest Reporting rate</th>
                             <th >Lowest reporting rate</th>
                         </tr>
-                        <tr style="border: solid 1px #6498D9">
-                            <td>Region 1 (% facilities)</td>
-                            <td>Region 1 (% facilities)</td>
+                        <tr style="border: solid 1px #6498D9" ng-repeat="org in OrgunitInReportingRate">
+                            <td>{{ org.high }}</td>
+                            <td>{{ org.low }}</td>
                         </tr>
-                        <tr style="border: solid 1px #6498D9">
-                            <td>Region 1 (% facilities)</td>
-                            <td>Region 1 (% facilities)</td>
-                        </tr>
-                        <tr style="border: solid 1px #6498D9">
-                            <td>Region 1 (% facilities)</td>
-                            <td>Region 1 (% facilities)</td>
-                        </tr>
-                        <tr>
-
                     </table>
                 </div>
 
@@ -212,7 +202,7 @@
                 </td>
             </tr>
         </table>
-</div>
+</fieldset>
 </div>
 
 <!--import pace for visualization-->
@@ -260,6 +250,7 @@
 <script src="controllers/family_Planning/parcentage1Ctrl.js"></script>
 <script src="controllers/family_Planning/PDFControllers/stockoutCtrl.js"></script>
 <script src="controllers/family_Planning/PDFControllers/HWParcentageCtrl.js"></script>
+<script src="controllers/family_Planning/PDFControllers/parcentageCtrl.js"></script>
 <script src="controllers/family_Planning/HWTrainedCtrl.js"></script>
 
 </body>
