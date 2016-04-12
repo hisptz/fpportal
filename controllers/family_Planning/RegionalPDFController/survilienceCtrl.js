@@ -126,9 +126,9 @@ angular.module("hmisPortal")
                             $rootScope.showProgressMessage = false;
 
 
-                            chartObject.title.text ="Percent Clients Adopting Family Planning following comprehensive Post Abortion Care (cPAC) Jan 2014 to Dec 2014";
-                            chartObject1.title.text ="Clients Adopting Family Planing in the Postpartum Period  Jan 2014 to Dec 2014";
-                            chartObject2.title.text ="Family Planning clients Adopting HIV testing and Counseling   Jan 2014 to Dec 2014";
+                            chartObject.title.text ="Districts with lowest percentage of Clients Adopting FP following cPAC compared with region average";
+                            chartObject1.title.text ="Region trend in number of clients Adopting FP in the Postpartum Period";
+                            chartObject2.title.text ="Districts with lowest percentage of Family Planning Clients Adopting HTC compared with region average";
                             chartObject.yAxis.title.text ="%  of Clients";
                             chartObject.yAxis.labels = {
                                 formatter: function () {
