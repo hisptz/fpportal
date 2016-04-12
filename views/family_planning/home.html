@@ -20,9 +20,9 @@
 <div class="row" >
     <div ng-include="'views/family_planning/fp_menu.html'"></div>
 
-    <div class="col s12 m12 l10" style="margin-top: 72px">
+    <div class="col s12 m10 l10" style="margin-top: 72px">
         <!--First chart to display clients through routine and facility based data-->
-        <div class="{{ homefpCards[0].cardClass }}" style="padding-left: 0px" ng-controller="HomeclientMethodsCtrl">
+        <div class="col s6 m6" style="padding-left: 0px" ng-controller="HomeclientMethodsCtrl">
             <div class="card z-depth-2 teal lighten-5 large">
                 <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                     <div style="width: 100%">
@@ -77,7 +77,7 @@
         <!--</div>-->
 
         <!--Second card for HW trained in Family Planning-->
-            <div class="{{ fpCards[0].cardClass }}" style="padding-left: 0px" ng-controller="HomeHWTrainedCtrl">
+            <div class="col s6 m6" style="padding-left: 0px" ng-controller="HomeHWTrainedCtrl">
                 <div class="card z-depth-2 teal lighten-5 large">
                     <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                         <div style="width: 100%">
@@ -126,7 +126,7 @@
                 </div>
             </div>
 
-        <div class="col s12 m12" style="padding-left: 0px" ng-controller="HomeHWParcentageCtrl">
+        <div class="col s6 m6" style="padding-left: 0px" ng-controller="HomeHWParcentageCtrl">
             <div class="card z-depth-2 teal lighten-5 large">
                 <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                     <div style="width: 100%">
@@ -176,7 +176,7 @@
         </div>
 
 
-        <div class="col s12 m12" style="padding-left: 0px" ng-controller="Homestockout1Ctrl">
+        <div class="col s6 m6" style="padding-left: 0px" ng-controller="Homestockout1Ctrl">
             <div class="card z-depth-2 teal lighten-5 large">
                 <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
                     <div style="width: 100%">
