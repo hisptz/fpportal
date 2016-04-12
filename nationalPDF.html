@@ -92,26 +92,24 @@
 <!--Stock Outs-->
     <fieldset>
         <legend style="font-size: 1.67em">Stock Outs:</legend>
-<table>
-    <tr>
-        <td style="width: 50%" ng-controller="stockoutCtrl">
-            <div id="stockoutchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
-        </td>
-        <td style="width: 50%">
-            <table border="1px">
-                <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                    <th >Regions with highest
-                        percentage of facilities
-                        experiencing  Stock Out of
-                        Pills/Injectables</th></tr>
-                <tr style="border: solid 1px #6498D9"><td>Region 1 (% facilities)</td></tr>
-                <tr style="border: solid 1px #6498D9"><td>Region 2 (% facilities)</td></tr>
-                <tr style="border: solid 1px #6498D9"><td>Region 3 (% facilities)</td></tr>
-                </tr>
-            </table>
-        </td>
-        </tr>
-    </table>
+        <table  ng-controller="stockoutCtrl">
+            <tr>
+                <td style="width: 50%">
+                    <div id="stockoutchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
+                </td>
+                <td style="width: 50%">
+                    <table border="1px" >
+                        <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
+                            <th colspan="2"> Regions with highest percentage of facilities experiencing  Stock Out Pills or Injectable </th></tr>
+                        <tr style="border: solid 1px #6498D9" ng-repeat="dis in stockOutData">
+                            <td>{{ dis.oral }}</td>
+                            <td>{{ dis.injectable }}</td>
+                        </tr>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     <table>
         <tr>
             <td style="width: 50%">

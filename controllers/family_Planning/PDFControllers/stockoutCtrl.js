@@ -6,7 +6,7 @@ angular.module("hmisPortal")
     .config(function($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     })
-    .controller("stockoutCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
+    .controller("stockoutCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager,$filter) {
         //lidt of all facilities providing fp
         //https://hmisportal.moh.go.tz/dhis/api/dataSets/TfoI3vTGv1f.json?fields=id,name,organisationUnits[id,name]
         $rootScope.showProgressMessage = false;
@@ -184,6 +184,29 @@ angular.module("hmisPortal")
             return percent.toFixed(2);
         };
 
+        $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,type){
+            var count = 0;
+            angular.forEach(arr,function(value){
+                angular.forEach(value.ancestors,function(val){
+                    if ((ou.indexOf(';') > -1)) {
+                        var orgArr = ou.split(";");
+                        $.each(orgArr, function (c, j) {
+                            if(j == val.id){
+                                count++;
+                            }
+                        });
+                    } else {
+                        if(ou == val.id){
+                            count++;
+                        }
+                    }
+                });
+            });
+            var num = $scope.getDataFromUrl1(arr2,ou,pe,type);
+            var percent = (num/count)*100;
+            return percent.toFixed(2);
+        };
+
 
         $scope.getSelectedValues = function(){
             if($scope.data.outOrganisationUnits.length === 0){
@@ -222,6 +245,39 @@ angular.module("hmisPortal")
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,ancestors[id]]').success(function(data){
+                        //stockout Tables
+                        //$http.get(portalService.base+'api/sqlViews/qRvLgLYOjS2/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(facilities){
+                        $http.get(portalService.base+'api/sqlViews/vj6E3KoFP28/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(facilities){
+                            var injecatbleRegions = {};
+                            var oralRegions = {};
+                            var injecatbleData = [];
+                            var oralData = [];
+                            angular.forEach(facilities.rows,function(data){
+                                    injecatbleRegions[data[2]] = data[0];
+                                    oralRegions[data[2]] = data[0];
+                            });
+                            var orderBy = $filter('orderBy');
+                            angular.forEach(injecatbleRegions, function(value, key) {  injecatbleData.push({name:key ,value:parseFloat($scope.getNumberPerOu1(data.organisationUnits, value, facilities.rows,FPManager.lastMonthWithOtherData,'Injectable'))} ) });
+                            angular.forEach(oralRegions, function(value, key) { oralData.push({name:key ,value:parseFloat($scope.getNumberPerOu1(data.organisationUnits, value, facilities.rows,FPManager.lastMonthWithOtherData,'Oral'))} ) });
+
+                            injecatbleData = orderBy(injecatbleData,'value',true);
+                            oralData = orderBy(oralData,'value',true);
+                            console.log(injecatbleData);
+                            console.log(oralData);
+                            $scope.stockOutData = [
+                                {oral:'Pills',injectable:'Injectable'},
+                                {oral:oralData[0].name+"( "+oralData[0].value +"% )",injectable:injecatbleData[0].name+"( "+injecatbleData[0].value +"% )"},
+                                {oral:oralData[1].name+"( "+oralData[1].value +"% )",injectable:injecatbleData[1].name+"( "+injecatbleData[1].value +"% )"},
+                                {oral:oralData[2].name+"( "+oralData[2].value +"% )",injectable:injecatbleData[2].name+"( "+injecatbleData[2].value +"% )"},
+                            ];
+                            //$scope.orgunitsWithLowTraining = [
+                            //    {name:'Short Acting',region1:shortActingData[0].name+"( "+shortActingData[0].value +"% )",region2:shortActingData[1].name+"( "+shortActingData[1].value +"% )",region3:shortActingData[2].name+"( "+shortActingData[2].value +"% )"},
+                            //    {name:'IUCD',region1:iucdData[0].name+"( "+iucdData[0].value +"% )",region2:iucdData[1].name+"( "+iucdData[1].value +"% )",region3:iucdData[2].name+"( "+iucdData[2].value +"% )"},
+                            //];
+
+                        });
+
+
                         $http.get(portalService.base+'api/sqlViews/Fvxf4sjmWxC/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                         //$http.get(portalService.base+'api/sqlViews/hVn2bu4Pz0K/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                             $rootScope.showProgressMessage = false;
@@ -355,6 +411,55 @@ angular.module("hmisPortal")
                         if (v[0] == ou || v[1] == ou) {
                             if(v[3] == pe){
                                 num += parseInt(v[2]);
+                            }
+
+                        }
+                    });
+                }
+            }
+            return num;
+        }
+
+        $scope.getDataFromUrl1  = function(arr,ou,pe,type){
+            var index = 0;
+            if(type == "Injectable"){
+                index = 5
+            }if(type == "Oral"){
+                index = 6
+            }
+            var num = 0;
+            if(ou == "m0frOspS7JY" ){
+                $.each(arr, function (k, v) {
+                    if(v[4] == pe){
+                        if(v[index] !== ""){
+                            num += parseInt(v[index]);
+                        }
+                    }
+                });
+            }else{
+                if (ou.indexOf(';') > -1) {
+                    var orgArr = ou.split(";");
+                    var i = 0;
+                    $.each(orgArr, function (c, j) {
+                        i++;
+                        $.each(arr, function (k, v) {
+                            if (v[0] == j || v[1] == j) {
+                                if(v[4] == pe){
+                                    if(v[index] !== ""){
+                                        num += parseInt(v[index]);
+                                    }
+                                }
+                            }
+                        });
+                    });
+                } else {
+                    $.each(arr, function (k, v) {
+                        if (v[0] == ou || v[1] == ou) {
+                            if(v[4] == pe){
+                                if(v[index] !== ""){
+                                    num += parseInt(v[index]);
+                                }
+
                             }
 
                         }

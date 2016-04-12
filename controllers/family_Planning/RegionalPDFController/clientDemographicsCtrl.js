@@ -351,7 +351,7 @@ angular.module("hmisPortal")
                     if($scope.data.menuMethods.length == 1){
                         $scope.titleToUse = $scope.data.menuMethods[0].name;
                     }else{
-                        $scope.titleToUse = "Nationally";
+                        $scope.titleToUse = region.name;
                     }
                     if (chart == 'table') {
                         cardObject.displayTable = true;

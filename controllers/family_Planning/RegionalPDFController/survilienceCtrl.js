@@ -116,7 +116,6 @@ angular.module("hmisPortal")
                         $rootScope.progressMessage = "Fetching data please wait ...";
                         $rootScope.showProgressMessage = true;
                         $http.get(url).success(function(data){
-                            var period = "";
                             var orderBy = $filter('orderBy');
                             var orderedOrgunits1 = orderBy($scope.getThreeRegions(data,'cWMJ2HsNTtr'), 'value', false);
                             var orderedOrgunits3 = orderBy($scope.getThreeRegions(data,'reywf66stpK'), 'value', false);

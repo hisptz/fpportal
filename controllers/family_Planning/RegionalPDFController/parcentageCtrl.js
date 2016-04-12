@@ -244,7 +244,7 @@ angular.module("hmisPortal")
 
                         var periods = [];
 
-                        $scope.titleToUse = "Nationally";
+                        $scope.titleToUse = region.name;
                         var periods = $scope.prepareCategory('month');
 
                         angular.forEach(periods, function (val) {

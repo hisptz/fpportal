@@ -290,7 +290,7 @@ angular.module("hmisPortal")
                             var methodId = [];
                             var methodId1 = [];
 
-                            $scope.titleToUse = "Nationally";
+                            $scope.titleToUse = region.name;
                             cardObject.chartObject.title.text = cardObject.title  + " - " +$scope.titleToUse;
                             cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 

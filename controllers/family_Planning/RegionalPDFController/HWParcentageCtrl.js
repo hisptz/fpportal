@@ -261,7 +261,7 @@ angular.module("hmisPortal")
 
                         var periods = [];
 
-                        $scope.titleToUse = "Nationally";
+                        $scope.titleToUse = region.name;
                         angular.forEach(orgUnits,function(value){
                             periods.push({name:value.name,id:value.id})
                         });
@@ -319,6 +319,8 @@ angular.module("hmisPortal")
                                 ];
 
                             });
+
+                            //charts
                             $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Hospital&var=year:2016').success(function(hosptal){
                                 $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:2016').success(function(hcenter){
                                     $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Dispensary&var=year:2016').success(function(dispensary){

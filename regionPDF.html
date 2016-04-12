@@ -76,7 +76,7 @@
 
         <table style="margin: 10px; width: 1040px" ng-controller="HWParcentageCtrl">
             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                <th colspan="4" style="font-size: 18px;">Regions with lowest percentage of facilities with 2 or more Health Workers trained in FP methods</th></tr>
+                <th colspan="4" style="font-size: 18px;">Districts with lowest percentage of facilities with 2 or more Health Workers trained in FP methods</th></tr>
             <tr style="border: solid 1px #6498D9" ng-repeat="orgs in orgunitsWithLowTraining" >
                 <td>{{ orgs.name }}</td>
                 <td>{{ orgs.region1 }}</td>
@@ -92,21 +92,19 @@
     <!--Stock Outs-->
     <fieldset>
         <legend style="font-size: 1.67em">Stock Outs:</legend>
-        <table>
+        <table  ng-controller="stockoutCtrl">
             <tr>
-                <td style="width: 50%" ng-controller="stockoutCtrl">
+                <td style="width: 50%">
                     <div id="stockoutchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
                 </td>
                 <td style="width: 50%">
-                    <table border="1px">
+                    <table border="1px" >
                         <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                            <th >Regions with highest
-                                percentage of facilities
-                                experiencing  Stock Out of
-                                Pills/Injectables</th></tr>
-                        <tr style="border: solid 1px #6498D9"><td>Region 1 (% facilities)</td></tr>
-                        <tr style="border: solid 1px #6498D9"><td>Region 2 (% facilities)</td></tr>
-                        <tr style="border: solid 1px #6498D9"><td>Region 3 (% facilities)</td></tr>
+                            <th colspan="2"> Districts with highest percentage of facilities experiencing  Stock Out Pills or Injectable </th></tr>
+                        <tr style="border: solid 1px #6498D9" ng-repeat="dis in stockOutData">
+                            <td>{{ dis.oral }}</td>
+                            <td>{{ dis.injectable }}</td>
+                        </tr>
                         </tr>
                     </table>
                 </td>
@@ -122,7 +120,7 @@
                 </td>
                 <td style="width: 50%">
                     <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        <b>ACTION:</b>Investigate regions with high stock out rates, check
+                        <b>ACTION:</b>Investigate districts with high stock out rates, check
                         distribution and stock provision
                     </h6>
                 </td>
@@ -150,7 +148,7 @@
                 <td style="width: 100%; padding-left: 0px; padding-right: 0px">
                     <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                         The graph on the right displays percent of FP clients who are not already known HIV-positive adopting HIV testing and counselling (HTC)
-                        <b>ACTION:</b> investigate regions with lowest percentages for each indicator. Monitor national trend and use the FP dashboard to investigate any
+                        <b>ACTION:</b> investigate districts with lowest percentages for each indicator. Monitor national trend and use the FP dashboard to investigate any
                         unexplained decreases.
                     </h6>
                 </td>
@@ -196,8 +194,8 @@
                         This month the national reporting rate was x% of
                         facilities, as compared to x% last month..
                         <b>ACTION:</b> alert regional coordinators; provide positive
-                        feedback to best performing regions and support to low
-                        performing regions.
+                        feedback to best performing districts and support to low
+                        performing districts.
                     </h6>
                 </td>
             </tr>
