@@ -117,8 +117,8 @@ angular.module("hmisPortal")
                         $rootScope.showProgressMessage = true;
                         $http.get(url).success(function(data){
                             var orderBy = $filter('orderBy');
-                            var orderedOrgunits1 = orderBy($scope.getThreeRegions(data,'cWMJ2HsNTtr'), 'value', false);
-                            var orderedOrgunits3 = orderBy($scope.getThreeRegions(data,'reywf66stpK'), 'value', false);
+                            var orderedOrgunits1 = orderBy($scope.getThreeRegions(data,'cWMJ2HsNTtr',FPManager.lastMonthWithOtherData), 'value', false);
+                            var orderedOrgunits3 = orderBy($scope.getThreeRegions(data,'reywf66stpK',FPManager.lastMonthWithOtherData), 'value', false);
                             var orgUnits2 = [{'name':region.name,'id':$scope.regionUid}];
                             var orgUnits1 = [{'name':region.name,'id':$scope.regionUid},{name:orderedOrgunits1[0].name,id:orderedOrgunits1[0].id},{name:orderedOrgunits1[1].name,id:orderedOrgunits1[1].id},{name:orderedOrgunits1[2].name,id:orderedOrgunits1[2].id}];
                             var orgUnits3 = [{'name':region.name,'id':$scope.regionUid},{name:orderedOrgunits3[0].name,id:orderedOrgunits3[0].id},{name:orderedOrgunits3[1].name,id:orderedOrgunits3[1].id},{name:orderedOrgunits3[2].name,id:orderedOrgunits3[2].id}];
@@ -192,14 +192,16 @@ angular.module("hmisPortal")
             }
         };
 
-        $scope.getThreeRegions = function(arr,dx){
+        $scope.getThreeRegions = function(arr,dx,pe){
             var regions = [];
             angular.forEach(arr.metaData.ou,function(val){
                 var count = 0;
                 if(val !== "m0frOspS7JY"){
                     angular.forEach(arr.rows,function(v){
                         if(v[1] == val && v[0] == dx){
-                            count+= parseInt(v[3])
+                            if(v[2] == pe){
+                                count+= parseInt(v[3])
+                            }
                         }
                     });
                 regions.push({name:arr.metaData.names[val],value:count,id:val})
