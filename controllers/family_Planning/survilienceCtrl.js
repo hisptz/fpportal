@@ -114,9 +114,9 @@ angular.module("hmisPortal")
                         $rootScope.showProgressMessage = false;
 
 
-                        chartObject.title.text ="Percent Clients Adopting Family Planning following comprehensive Post Abortion Care (cPAC) Jan 2014 to Dec 2014";
-                        chartObject1.title.text ="Clients Adopting Family Planing in the Postpartum Period  Jan 2014 to Dec 2014";
-                        chartObject2.title.text ="Family Planning clients Adopting HIV testing and Counseling   Jan 2014 to Dec 2014";
+                        chartObject.title.text ="Percent Clients Adopting Family Planning post abortion or miscarriage Jan 2014 to Dec 2014";
+                        chartObject1.title.text ="Clients Adopting Family Planing in the Postpartum Period Jan 2014 to Dec 2014";
+                        chartObject2.title.text ="Percent Family Planning Clients Adopting HIV Testing and Counselling (HTC) Jan 2014 to Dec 2014";
                         chartObject.yAxis.title.text ="%  of Clients";
                         chartObject.yAxis.labels = {
                             formatter: function () {
