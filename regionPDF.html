@@ -129,14 +129,14 @@
 
     </fieldset>
     <!--survilience-->
-    <fieldset>
+    <fieldset  ng-controller="survilienceCtrl">
         <legend style="font-size: 1.67em">Service Integration:</legend>
         <table>
             <tr>
-                <td style="width: 520px;" ng-controller="survilienceCtrl">
+                <td style="width: 520px;">
                     <div id="survilience1" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
                 </td>
-                <td style="width: 520px;" ng-controller="survilienceCtrl">
+                <td style="width: 520px;">
                     <div id="survilience3" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
                 </td>
 
@@ -157,13 +157,13 @@
 
         <table>
             <tr>
-                <td style="width: 520px;" ng-controller="survilienceCtrl">
+                <td style="width: 520px;">
                     <div id="survilience2" style="min-width: 100%; height: 400px; margin: 0 auto;border:groove 1px #000000;"></div>
                 </td>
                 <td style="width: 520px;">
                     <div style="border:groove 1px #000000; height: 400px">
                         <h5 style="text-align: center">Reporting Rates</h5>
-                        <table border="1px" ng-controller="survilienceCtrl">
+                        <table border="1px">
                             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
                                 <th >Highest Reporting rate</th>
                                 <th >Lowest reporting rate</th>
@@ -191,9 +191,9 @@
                 </td>
                 <td style=" width: 49%; margin-top: 5px;" >
                     <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        This month the national reporting rate was x% of
-                        facilities, as compared to x% last month..
-                        <b>ACTION:</b> alert regional coordinators; provide positive
+                        This month the {{ name }} reporting rate was <b style="color: #000000">{{ thisMonthCompletenes }}%</b>  of
+                        facilities, as compared to <b style="color: #000000">{{ lastMonthCompletenes }}%</b> last month..<br>
+                        <b>ACTION:</b> alert district coordinators; provide positive
                         feedback to best performing districts and support to low
                         performing districts.
                     </h6>

@@ -93,8 +93,8 @@ angular.module("hmisPortal")
 
         $scope.fpCards = [
             {
-                title:'Total Health Workers Trained as of March 2016' ,
-                description:'Total Health Workers Trained as of March 2016',
+                title:'Total Health Workers Trained' ,
+                description:'Total Health Workers Trained',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
                 category:'month',
@@ -117,7 +117,7 @@ angular.module("hmisPortal")
             return methods.join(";");
         };
 
-        $scope.currentYear = '2016'
+        $scope.currentYear = '2016';
 
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;

@@ -10,16 +10,7 @@ angular.module("hmisPortal")
 
     })
     .controller("clientMethodsCtrl",function ($rootScope,$scope,$http,portalService,FPManager,$location) {
-        $scope.districtUid = $location.search().uid;
-        $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
-            j_username: "portal", j_password: "Portal123"
-        },function() {
-            var url = portalService.base+"api/organisationUnits/"+$scope.districtUid+".json?fields=name,id,children[id,name]";
-            $http.get(url).success(function (district) {
-                $scope.districtName = district.name;
-            });
-
-        });
+        $scope.regionUid = $location.search().uid;
         $rootScope.showProgressMessage = false;
         $scope.geographicalZones = FPManager.zones;
         $scope.geoToUse = [];
@@ -134,14 +125,14 @@ angular.module("hmisPortal")
             {'name':'Mini Lap','uid':'mlfh4fgiFhd'}
         ];
         $scope.detailedMethod =[
-            {'name':'Male Condoms','total':'JMmqv0tyVr7','new':'i1Zz36jwvdx','returning':'q7IbPTlyMFT','total1':''},
-            {'name':'Female Condoms','total':'Nt8M08bJKXl','new':'Ze7MDBFPyhx','returning':'cPWMtdCw1Z4','total1':''},
+            //{'name':'Male Condoms','total':'JMmqv0tyVr7','new':'i1Zz36jwvdx','returning':'q7IbPTlyMFT','total1':''},
+            //{'name':'Female Condoms','total':'Nt8M08bJKXl','new':'Ze7MDBFPyhx','returning':'cPWMtdCw1Z4','total1':''},
             {'name':'Oral Pills','total':'IFxhP0O4k0W','new':'RAGwynaw4MI','returning':'vrqwn4dNqQY','total1':''},
             {'name':'Injectables','total':'epPM7fO8CnH','new':'sN2NtkZjVyJ','returning':'LmbDl4YdYAn','total1':''},
             {'name':'Implants','total':'lMFKZN3UaYp','new':'','returning':'','total1':'lMFKZN3UaYp'},
-            {'name':'IUCDs','total':'UjGebiXNg0t','new':'','returning':'','total1':'UjGebiXNg0t'},
-            {'name':'NSV','total':'JSmtnnW6WrR','new':'','returning':'','total1':'JSmtnnW6WrR'},
-            {'name':'Mini Lap','total':'xhcaH3H3pdK','new':'','returning':'','total1':'xhcaH3H3pdK'}
+            {'name':'IUCDs','total':'UjGebiXNg0t','new':'','returning':'','total1':'UjGebiXNg0t'}
+            //{'name':'NSV','total':'JSmtnnW6WrR','new':'','returning':'','total1':'JSmtnnW6WrR'},
+            //{'name':'Mini Lap','total':'xhcaH3H3pdK','new':'','returning':'','total1':'xhcaH3H3pdK'}
         ];
 
         $scope.updateMethod = function(){
@@ -264,18 +255,16 @@ angular.module("hmisPortal")
         };
         $scope.getAllMethods();
 
-        $scope.prepareSeries = function(cardObject,chart) {
+        $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
             var base = "https://dhis.moh.go.tz/";
             $rootScope.progressMessage = "Fetching data please wait ...";
             $rootScope.showProgressMessage = true;
-            $.post(portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
-                j_username: "portal", j_password: "Portal123"
-            }, function () {
-                var url = portalService.base + "api/organisationUnits/" + $scope.districtUid + ".json?fields=name";
-                $http.get(url).success(function (district) {
-                    $scope.districtName = district.name;
-
+            $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
+            j_username: "portal", j_password: "Portal123"
+            },function() {
+                $http.get(portalService.base + "api/organisationUnits/" + $scope.regionUid + ".json?fields=name").success(function (region ) {
+                    $scope.regionaName = region.name;
                     if (chart == 'table') {
                         cardObject.displayTable = true;
                         cardObject.displayMap = false;
@@ -286,30 +275,30 @@ angular.module("hmisPortal")
                     }
 
                     var peri = preparePeriod($scope.selectedPeriod);
-                    $scope.url = portalService.base + "api/analytics.json?dimension=dx:" + $scope.getAllMethods() + "&dimension=ou:" + $scope.districtUid + "&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
+                    $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+$scope.regionUid+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
                     var area = [];
                     cardObject.chartObject.loading = true;
                     var datass = '';
 
 
-                    $http.get($scope.url).success(function (data) {
-                        if (data.hasOwnProperty('metaData')) {
+                    $http.get($scope.url).success(function(data){
+                        if(data.hasOwnProperty('metaData')){
                             //var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
-                            var yAxisItems = ['new', 'returning', 'total'];
+                            var yAxisItems = ['new','returning','total'];
                             var xAxisItems = [];
                             var methodId = [];
                             var methodId1 = [];
 
-                            $scope.titleToUse = $scope.districtName;
-                            cardObject.chartObject.title.text = cardObject.title + " - " + $scope.titleToUse;
+                            $scope.titleToUse = region.name;
+                            cardObject.chartObject.title.text = cardObject.title  + " - " +$scope.titleToUse;
                             cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
 
-                            angular.forEach($scope.data.menuMethods, function (value) {
+                            angular.forEach($scope.data.menuMethods,function(value){
                                 xAxisItems.push(value);
                             });
                             /////////////////////////// second chart ////////////////////////////////
                             cardObject.chartObject.xAxis.categories = [];
-                            if (cardObject.category == 'month') {
+                            if(cardObject.category == 'month'){
                                 angular.forEach($scope.prepareCategory('month'), function (value) {
                                     cardObject.chartObject.xAxis.categories.push(value.name);
                                 });
@@ -318,7 +307,7 @@ angular.module("hmisPortal")
                                 angular.forEach(xAxisItems, function (val) {
                                     var serie = [];
                                     angular.forEach($scope.prepareCategory('month'), function (value) {
-                                        var number = $scope.getDataFromUrl(data.rows, 'none', value.id, val.id);
+                                        var number = $scope.getDataFromUrl(data.rows,'none', value.id, val.id);
                                         serie.push(number);
                                     });
                                     $scope.normalseries1.push({type: 'spline', name: val.name, data: serie})
@@ -330,15 +319,16 @@ angular.module("hmisPortal")
                             }
 
                             cardObject.chartObject.loading = false
-                        } else {
+                        }else{
                             cardObject.chartObject.loading = false
                         }
 
                         $rootScope.showProgressMessage = false;
 
                     });
+
                 });
-        });
+            });
 
         };
 

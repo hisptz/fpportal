@@ -6,9 +6,8 @@ angular.module("hmisPortal")
     .config(function($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     })
-    .controller("HWParcentageCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
-        //lidt of all facilities providing fp
-        //https://hmisportal.moh.go.tz/dhis/api/dataSets/TfoI3vTGv1f.json?fields=id,name,organisationUnits[id,name]
+    .controller("HWParcentageCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager,$filter) {
+        $scope.regionUid = $location.search().uid;
         $rootScope.showProgressMessage = false;
         $scope.geographicalZones = FPManager.zones;
         $scope.geoToUse = [];
@@ -195,7 +194,6 @@ angular.module("hmisPortal")
 
 
         $scope.getNumberPerOu1 = function(arr,ou,arr2,pe,type,method){
-            var item = {  name: type };
             var count = 0;
             angular.forEach(arr,function(value){
                 if ($scope.orgUnitType(value.organisationUnitGroups,type)) {
@@ -220,6 +218,20 @@ angular.module("hmisPortal")
             return percent.toFixed(2);
         };
 
+        $scope.getNumberPerOu2 = function(arr,ou,arr2,pe,method){
+            var count = 0;
+            angular.forEach(arr,function(value){
+                    angular.forEach(value.ancestors, function (val) {
+                        if (ou == val.id) {
+                            count++;
+                        }
+                    });
+            });
+            var num = $scope.getDataFromUrl2(arr2,ou,pe,method);
+            var percent = (num/count)*100;
+            return percent.toFixed(2);
+        };
+
 
         $scope.getSelectedValues = function(){
             if($scope.data.outOrganisationUnits.length === 0){
@@ -229,111 +241,111 @@ angular.module("hmisPortal")
                 $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function() {
+                    $http.get(portalService.base + "api/organisationUnits/" + $scope.regionUid + ".json?fields=name").success(function (region) {
+                        var orgUnits = [{name:'Hospital'},{name:'Health Center'},{name:'Dispensary'}];
 
-                    var orgUnits = [{id:'m0frOspS7JY',name:'Tanzania'}];
+                        var methodss = [];
+                        angular.forEach($scope.data.menuMethods,function(method){
+                            methodss.push({'name':method.name,'id':method.id});
+                        });
 
-                    var methodss = [];
-                    angular.forEach($scope.data.menuMethods,function(method){
-                        methodss.push({'name':method.name,'id':method.id});
-                    });
+                        var chartObject = angular.copy(portalService.chartObject);
 
-                    var chartObject = angular.copy(portalService.chartObject);
-                    var chartObject1 = angular.copy(portalService.chartObject);
-                    var chartObject2 = angular.copy(portalService.chartObject);
+                        chartObject.yAxis.title.text ="% of Facilities";
 
+                        chartObject.yAxis.labels = {
+                            formatter: function () {
+                                return this.value + '%';
+                            }
+                        };
 
-                    chartObject.yAxis.title.text ="% of Facilities";
-                    chartObject1.yAxis.title.text ="% of Facilities";
-                    chartObject2.yAxis.title.text ="% of Facilities";
+                        var periods = [];
 
-                    chartObject.yAxis.labels = {
-                        formatter: function () {
-                            return this.value + '%';
-                        }
-                    };
-                    chartObject1.yAxis.labels = {
-                        formatter: function () {
-                            return this.value + '%';
-                        }
-                    };
-                    chartObject2.yAxis.labels = {
-                        formatter: function () {
-                            return this.value + '%';
-                        }
-                    };
+                        $scope.titleToUse = region.name;
+                        angular.forEach(orgUnits,function(value){
+                            periods.push({name:value.name,id:value.id})
+                        });
+                        chartObject.title.text ="Percent of Facilities with 2 or more Health Workers Trained in - "+$scope.titleToUse;
+                        angular.forEach(methodss, function (val) {
+                            chartObject.xAxis.categories.push(val.name);
+                        });
 
-                    var periods = [];
+                        chartObject.loading = true;
+                        $rootScope.progressMessage = "Fetching data please wait ...";
+                        $rootScope.showProgressMessage = true;
+                        $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
 
-                    $scope.titleToUse = "Nationally";
-                    angular.forEach(orgUnits,function(value){
-                        periods.push({name:value.name,id:value.id})
-                    });
-                    chartObject.title.text ="Percent of Hospitals with 2 or more Health Workers Trained in - "+$scope.titleToUse;
-                    chartObject1.title.text ="Percent of Health Centres  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
-                    chartObject2.title.text ="Percent of Dispensaries  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
-                    angular.forEach(periods, function (val) {
-                        chartObject.xAxis.categories.push(val.name);
-                        chartObject.xAxis.labels.style = { visibility: 'hidden' };
-                    });
-                    angular.forEach(periods, function (val) {
-                        chartObject1.xAxis.categories.push(val.name);
-                        chartObject1.xAxis.labels.style = { visibility: 'hidden' };
-                    });
-                    angular.forEach(periods, function (val) {
-                        chartObject2.xAxis.categories.push(val.name);
-                        chartObject2.xAxis.labels.style = { visibility: 'hidden' };
-                    });
+                            //training table
+                            //$http.get(portalService.base+'api/sqlViews/AajDPSTPpzr/data.json?var=year:2016').success(function(facilities){
+                            $http.get(portalService.base+'api/sqlViews/ahVxVlhDa82/data.json?var=year:2016').success(function(facilities){
+                                var shortActingRegions = {};
+                                var iucdRegions = {};
+                                var implantRegions = {};
+                                var miniLapRegions = {};
+                                var nsvRegions = {};
+                                var nsvData = [];
+                                var miniLapData = [];
+                                var iucdData = [];
+                                var shortActingData = [];
+                                var implantData = [];
+                                angular.forEach(facilities.rows,function(data){
+                                    if(data[0] == $scope.regionUid){
+                                        shortActingRegions[data[9]] = data[2];
+                                        iucdRegions[data[9]] = data[2];
+                                        implantRegions[data[9]] = data[2];
+                                        miniLapRegions[data[9]] = data[2];
+                                        nsvRegions[data[9]] = data[2];
+                                    }
 
-
-                    chartObject.loading = true;
-                    $rootScope.progressMessage = "Fetching data please wait ...";
-                    $rootScope.showProgressMessage = true;
-                    $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
-                         $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Hospital&var=year:2016').success(function(val1){
-                                $rootScope.showProgressMessage = false;
-                                angular.forEach(methodss, function (yAxis) {
-                                    var serie = [];
-                                    angular.forEach(periods, function (xAxis) {
-                                        serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,'m0frOspS7JY',val1.rows,xAxis.id,'Hospital',yAxis.name)));
-                                    });
-                                    chartObject.series.push({type: 'column', name: yAxis.name, data: serie})
                                 });
-                                $('#pchart').highcharts(chartObject);
-                                $scope.chartObject = chartObject
-                                $scope.csvdata = portalService.prepareDataForCSV(chartObject);
-                                $scope.pchart = chartObject;
+                                var orderBy = $filter('orderBy');
+                                angular.forEach(nsvRegions, function(value, key) {  nsvData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'NSV'))} ) });
+                                angular.forEach(miniLapRegions, function(value, key) { miniLapData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'Mini Lap'))} ) });
+                                angular.forEach(iucdRegions, function(value, key) { iucdData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'IUCDs'))} ) });
+                                angular.forEach(shortActingRegions, function(value, key) { shortActingData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'Short Acting'))} ) });
+                                angular.forEach(implantRegions, function(value, key) { implantData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'Implants'))} ) });
+
+                                nsvData = orderBy(nsvData,'value',false);
+                                miniLapData = orderBy(miniLapData,'value',false);
+                                iucdData = orderBy(iucdData,'value',false);
+                                shortActingData = orderBy(shortActingData,'value',false);
+                                implantData = orderBy(implantData,'value',false);
+                                $scope.orgunitsWithLowTraining = [
+                                    {name:'Short Acting',region1:shortActingData[0].name+"( "+shortActingData[0].value +"% )",region2:shortActingData[1].name+"( "+shortActingData[1].value +"% )",region3:shortActingData[2].name+"( "+shortActingData[2].value +"% )"},
+                                    {name:'IUCD',region1:iucdData[0].name+"( "+iucdData[0].value +"% )",region2:iucdData[1].name+"( "+iucdData[1].value +"% )",region3:iucdData[2].name+"( "+iucdData[2].value +"% )"},
+                                    {name:'Implant',region1:implantData[0].name+"( "+implantData[0].value +"% )",region2:implantData[1].name+"( "+implantData[1].value +"% )",region3:implantData[2].name+"( "+implantData[2].value +"% )"},
+                                    {name:'Mini-lap',region1:miniLapData[0].name+"( "+miniLapData[0].value +"% )",region2:miniLapData[1].name+"( "+miniLapData[1].value +"% )",region3:miniLapData[2].name+"( "+miniLapData[2].value +"% )"},
+                                    {name:'NSV',region1:nsvData[0].name+"( "+nsvData[0].value +"% )",region2:nsvData[1].name+"( "+nsvData[1].value +"% )",region3:nsvData[2].name+"( "+nsvData[2].value +"% )"}
+                                ];
+
                             });
 
-                            $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:2016').success(function(val1){
-                                $rootScope.showProgressMessage = false;
-                                angular.forEach(methodss, function (yAxis) {
-                                    var serie = [];
-                                    angular.forEach(periods, function (xAxis) {
-                                        serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,'m0frOspS7JY',val1.rows,xAxis.id,'Health Center',yAxis.name)));
+                            //charts
+                            $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Hospital&var=year:2016').success(function(hosptal){
+                                $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:2016').success(function(hcenter){
+                                    $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Dispensary&var=year:2016').success(function(dispensary){
+                                        angular.forEach(orgUnits, function (xAxis) {
+                                            var serie = [];
+                                            angular.forEach(methodss, function (yAxis) {
+                                                if(xAxis.name == "Hospital"){
+                                                    serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, yAxis.name)));
+                                                }if(xAxis.name == "Health Center"){
+                                                    serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, yAxis.name)));
+                                                }if(xAxis.name == "Dispensary"){
+                                                    serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, yAxis.name)));
+                                                }
+                                            });
+                                            chartObject.series.push({type: 'column', name: xAxis.name, data: serie})
+                                        });
+                                        $('#HWParcentage').highcharts(chartObject);
+                                        $scope.csvdata = portalService.prepareDataForCSV(chartObject);
+                                        $scope.pchart = chartObject;
                                     });
-                                    chartObject1.series.push({type: 'column', name: yAxis.name, data: serie})
                                 });
-                                $('#pchart1').highcharts(chartObject1);
-                                $scope.chartObject1 = chartObject1
-                                $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
-                                $scope.pchart1 = chartObject;
+
                             });
 
-                            $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Dispensary&var=year:2016').success(function(val1){
-                                $rootScope.showProgressMessage = false;
-                                angular.forEach(methodss, function (yAxis) {
-                                    var serie = [];
-                                    angular.forEach(periods, function (xAxis) {
-                                        serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,'m0frOspS7JY',val1.rows,xAxis.id,'Dispensary',yAxis.name)));
-                                    });
-                                    chartObject2.series.push({type: 'column', name: yAxis.name, data: serie})
-                                });
-                                $('#pchart2').highcharts(chartObject2);
-                                $scope.chartObject2 = chartObject2
-                                $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
-                                $scope.pchart2 = chartObject;
-                            });
-
+                        });
 
                     });
                 });
@@ -342,9 +354,6 @@ angular.module("hmisPortal")
         };
         $scope.data.outOrganisationUnits = [{name:'Tanzania',id:'m0frOspS7JY'}];
         $scope.getSelectedValues();
-
-
-
 
 
         $scope.selectedMethod = 'all';
@@ -450,7 +459,7 @@ angular.module("hmisPortal")
                 }
             }
             return num;
-        }
+        };
         $scope.getDataFromUrl1  = function(arr,ou,pe,method){
 
             var index = 0;
@@ -500,7 +509,33 @@ angular.module("hmisPortal")
             }
 
             return num;
+        };
+        $scope.getDataFromUrl2  = function(arr,ou,pe,method){
+
+            var index = 0;
+            if(method == 'Short Acting'){
+                index = 4;
+            }if(method == 'Implants'){
+                index = 5;
+            }if(method == 'IUCDs'){
+                index = 6;
+            }if(method == 'NSV'){
+                index = 7;
+            }if(method == 'Mini Lap'){
+                index = 8;
+            }
+            var num = 0;
+                $.each(arr, function (k, v) {
+                    if (v[0] == ou || v[2] == ou) {
+                        console.log(ou)
+                        if(v[index] !== ""){
+                            num += parseInt(v[index]);
+                        }
+                    }
+                });
+            return num;
         }
+
 
     });
 
