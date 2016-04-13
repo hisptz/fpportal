@@ -290,7 +290,7 @@ angular.module("hmisPortal")
                             var methodId1 = [];
 
                             $scope.titleToUse = region.name;
-                            cardObject.chartObject.title.text = cardObject.title  + " - " +$scope.titleToUse;
+                            cardObject.chartObject.title.text = region.name+ " Number of FP clients through Routine Facility-Based Service"
                             cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
                             cardObject.chartObject.legend = {
                                 align: 'right',

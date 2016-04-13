@@ -30,7 +30,9 @@
         <table>
             <tr>
                 <td style="width: 70%" ng-controller="clientMethodsCtrl">
-                    <div id="container12" style="border:groove 1px #000000; min-width: 350px; height: 450px; margin: 0 auto"></div>
+                    <div style="border:groove 1px #000000;">
+                        <div id="container12" style="min-width: 350px; height: 450px; margin: 0 auto"></div>
+                    </div>
                 </td>
                 <td style="width: 30%; vertical-align: top">
                     <h6 class="text-info" style="margin-top: 0px; padding: 8px; color:#6498D9;border: 1px solid deepskyblue; line-height: 30px">
@@ -80,7 +82,9 @@
                     </table>
                 </td>
                 <td style="width: 50%">
-                    <div id="stockoutchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
+                    <div  style="border:groove 1px #000000;">
+                        <div id="stockoutchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
+                    </div>
                 </td>
 
             </tr>
@@ -134,45 +138,68 @@
     </fieldset>
 
 
-    <fieldset>
+    <fieldset ng-controller="HWParcentageCtrl">
         <legend style="font-size: 1.37em;;font-weight: bold">Coverage:</legend>
+        <p style="text-align: center">Percent Facilities with a HWs trained in an FP methods but NOT providing the FP service in {{ name }}</p>
         <table>
             <tr>
-                <td style="width: 1060px;" ng-controller="HWParcentageCtrl">
-                    <div id="HWParcentage" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                <td style="width: 19%;">
+                    <div id="parChar1" style="min-width: 100%; height: 350px; margin: 0 auto;"></div>
+                </td><td style="width: 17%;" >
+                    <div id="parChar2" style="min-width: 100%; height: 350px; margin: 0 auto;"></div>
+                </td>
+                <td style="width: 17%;" >
+                    <div id="parChar3" style="min-width: 100%; height: 350px; margin: 0 auto; "></div>
+                </td>
+                <td style="width: 17%;" >
+                    <div id="parChar4" style="min-width: 100%; height: 350px; margin: 0 auto;"></div>
+                </td>
+                <td style="width: 30%;" >
+                    <div id="parChar5" style="min-width: 100%; height: 350px; margin: 0 auto;"></div>
                 </td>
             </tr>
         </table>
         <table>
             <tr>
-                <td style="width: 520px;; margin-top: 5px; " >
+                <td style="width: 1060px;; margin-top: 5px; " >
                     <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        <b>ACTION:</b> Identify FP methods and facility types with largest gap in
-                        trained providers. If possible, resources for FP trainings should be
-                        directed to the districts listed in the table below, for each FP method.
-                    </h6>
-                </td>
-                <td style=" width: 520px;; margin-top: 5px;" >
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        <b>ACTION:</b> these trend lines should be increasing with time. Use the
-                        FP dashboard to investigate any unexplained decreases in
-                        percentage of facilities providing each FP method
+                         Note: the graphs above show the percentage of facilities that should be providing each method of FP services (because they have at least one HW
+                        trained HW in that method) but are NOT providing.
+                        <br><b>ACTION:</b> This number should be very low. Identify FP methods where the number is high and use FP dashboard and Train Tracker to investigate .
                     </h6>
                 </td>
             </tr>
         </table>
 
-        <table style="margin: 10px; width: 1040px" ng-controller="HWParcentageCtrl">
+        <table style="margin: 10px; width: 1040px" >
             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                <th colspan="4" style="font-size: 18px;">Districts with lowest percentage of facilities with 2 or more Health Workers trained in FP methods</th></tr>
-            <tr style="border: solid 1px #6498D9" ng-repeat="orgs in orgunitsWithLowTraining" >
-                <td>{{ orgs.name }}</td>
-                <td>{{ orgs.region1 }}</td>
-                <td>{{ orgs.region2 }}</td>
-                <td>{{ orgs.region3 }}</td>
+                <th colspan="5" style="font-size: 18px; text-align: center">Facilities trained in but not providing FP services in [X District]</th></tr>
+            <tr>
+               <th>NSV</th>
+               <th>Mini Lap</th>
+               <th>Short-acting</th>
+               <th>IUCD</th>
+               <th>Implants</th>
+            </tr>
+            <tr style="border: solid 1px #6498D9" >
+                <td>{{ nsvData[0] }}</td> <td>{{ miniLapData[0] }}</td><td>{{ shortActingData[0] }}</td> <td>{{ iucdData[0] }}</td><td>{{ implantData[0] }}</td>
+            </tr>
+            <tr style="border: solid 1px #6498D9" >
+                <td>{{ nsvData[1] }}</td> <td>{{ miniLapData[1] }}</td><td>{{ shortActingData[1] }}</td> <td>{{ iucdData[1] }}</td><td>{{ implantData[1] }}</td>
+            </tr>
+            <tr style="border: solid 1px #6498D9" >
+                <td>{{ nsvData[2] }}</td> <td>{{ miniLapData[2] }}</td><td>{{ shortActingData[2] }}</td> <td>{{ iucdData[2] }}</td><td>{{ implantData[2] }}</td>
+            </tr>
+            <tr style="border: solid 1px #6498D9" >
+                <td>{{ nsvData[3] }}</td> <td>{{ miniLapData[3] }}</td><td>{{ shortActingData[3] }}</td> <td>{{ iucdData[3] }}</td><td>{{ implantData[3] }}</td>
+            </tr>
+            <tr style="border: solid 1px #6498D9" >
+                <td>{{ nsvData[4] }}</td> <td>{{ miniLapData[4] }}</td><td>{{ shortActingData[4] }}</td> <td>{{ iucdData[4] }}</td><td>{{ implantData[4] }}</td>
+            </tr>
+            <tr style="border: solid 1px #6498D9" >
+                <td>{{ nsvData[5] }}</td> <td>{{ miniLapData[5] }}</td><td>{{ shortActingData[5] }}</td> <td>{{ iucdData[5] }}</td><td>{{ implantData[5] }}</td>
             </tr>
 
-            </tr>
         </table>
     </fieldset>
 
@@ -182,7 +209,9 @@
         <table>
             <tr>
                 <td style="width: 520px;" >
-                    <div id="survilience1" style="min-width: 100%; height: 400px; margin: 0 auto;border:groove 1px #000000;"></div>
+                    <div style="border:groove 1px #000000;">
+                        <div id="survilience1" style="min-width: 100%; height: 400px; margin: 0 auto;"></div>
+                    </div>
                 </td>
                 <td style="width: 520px;">
                     <div style="border:groove 1px #000000; height: 400px">
@@ -211,10 +240,12 @@
                             <tr style="border: solid 1px #6498D9">
                                 <td style="padding: 7px">{{ HTCfacilitieParcent[0].name }}</td>
                                 <td style="padding: 7px">{{ HTCfacilitieParcent[1].name }}</td>
-                            </tr><tr style="border: solid 1px #6498D9">
+                            </tr>
+                            <tr style="border: solid 1px #6498D9">
                                 <td style="padding: 7px">{{ HTCfacilitieParcent[2].name }}</td>
                                 <td style="padding: 7px">{{ HTCfacilitieParcent[3].name }}</td>
-                            </tr><tr style="border: solid 1px #6498D9">
+                            </tr>
+                            <tr style="border: solid 1px #6498D9">
                                 <td style="padding: 7px">{{ HTCfacilitieParcent[4].name }}</td>
                                 <td style="padding: 7px">{{ HTCfacilitieParcent[5].name }}</td>
                             </tr>
@@ -239,7 +270,7 @@
                     <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9; font-size: 1em">
                         <b>ACTION:</b> call the listed facilities and investigate why the percentages
                         are low for each indicator. There may be HR shortages or stock-issues
-                        affecting these facilities’ performance. Where possible, conduct
+                        affecting these facilities' performance. Where possible, conduct
                         supportive supervisions.
                     </h6>
                 </td>

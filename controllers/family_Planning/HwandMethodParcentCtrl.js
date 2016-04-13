@@ -314,8 +314,11 @@ angular.module("hmisPortal")
                     var method = $scope.data.outMethods[0].id;
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
                         if($scope.data.outMethods.length  == 1){
+                            //charts local uid = KIuvtXj2Dt2
+                            //work from here
+                            //$http.get(portalService.base+'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Hospital&var=month:'+FPManager.lastMonthWithOtherData ).success(function(hosptal){
 
-                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Hospital&var=methods:'+method+'&var=year:2016').success(function(val1){
+                                $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Hospital&var=methods:'+method+'&var=year:2016').success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
                                     var serie = [];
