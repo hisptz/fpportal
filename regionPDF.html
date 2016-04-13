@@ -13,6 +13,54 @@
             font-size: 20px;
         }
     </style>
+    <!--import pace for visualization-->
+    <script src='assets/libs/pace/pace.min.js'></script>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="assets/libs/materialize/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="assets/libs/jqueryui/js/jquery-ui-1.10.4.custom.js"></script>
+    <script type="text/javascript" src="assets/libs/materialize/js/materialize.min.js"></script>
+    <script type="text/javascript" src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/angular-route.js"></script>
+    <script type="text/javascript" src="assets/js/angular-resource.js"></script>
+    <script type="text/javascript" src="Highcharts/js/highcharts.src.js"></script>
+    <script type="text/javascript" src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
+    <script type="text/javascript" src="assets/js/ng-csv.js"></script>
+    <script type="text/javascript" src="bower_components/angular-materialize/src/angular-materialize.js"></script>
+    <script src="services/dhis-highchart-angular-service.js"></script>
+    <!--<script src="https://maps.google.com/maps/api/js?sensor=false"></script>-->
+    <script src="bower_components/openlayers3/build/ol.js"></script>
+    <script src="bower_components/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
+    <script src="bower_components/tree/angular-multi-select-tree-0.1.0.min.js"></script>
+    <script src="bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js"></script>
+
+    <script>
+        var mainModule = angular.module('hmisPortal', ["ngRoute",'ngResource','ngAnimate',"datatables",'ngSanitize','highcharts-ng','openlayers-directive','ui.materialize','dhisHighchartAngularService','multi-select-tree','ngCsv']);
+    </script>
+    <script src="assets/js/routes.js"></script>
+    <script src="services/mapService.js"></script>
+    <script src="services/portalService.js"></script>
+    <script src="services/familyPlanningService.js"></script>
+    <script src="controllers/mainCtrl.js"></script>
+    <script src="controllers/indicatorsCtrl.js"></script>
+    <script src="controllers/dataCtrl.js"></script>
+    <script src="controllers/dashboardCtrl.js"></script>
+    <script src="controllers/jinsiCtrl.js"></script>
+    <script src="controllers/morbidityCtrl.js"></script>
+    <script src="controllers/familyPlanningCtrl.js"></script>
+    <script src="controllers/family_Planning/RegionalPDFController/clientDemographicsCtrl.js"></script>
+    <script src="controllers/family_Planning/RegionalPDFController/clientMethodsCtrl.js"></script>
+    <script src="controllers/family_Planning/RegionalPDFController/survilienceCtrl.js"></script>
+    <script src="controllers/family_Planning/parcentageCtrl.js"></script>
+    <script src="controllers/family_Planning/parcentage1Ctrl.js"></script>
+    <script src="controllers/family_Planning/RegionalPDFController/stockoutCtrl.js"></script>
+    <script src="controllers/family_Planning/RegionalPDFController/HWParcentageCtrl.js"></script>
+    <script src="controllers/family_Planning/RegionalPDFController/parcentageCtrl.js"></script>
+    <script src="controllers/family_Planning/HWTrainedCtrl.js"></script>
+
 </head>
 <body>
 <!--headers-->
@@ -29,7 +77,7 @@
         <legend style="font-size: 1.67em">Clients Jan 2014 to Dec 2014:</legend>
         <table>
             <tr>
-                <td style="width: 70%" ng-controller="clientMethodsCtrl">
+                <td style="width: 70%;height: 455px" ng-controller="clientMethodsCtrl">
                     <div id="container12" style="border:groove 1px #000000; min-width: 350px; height: 450px; margin: 0 auto"></div>
                 </td>
                 <td style="width: 30%; vertical-align: top">
@@ -47,11 +95,11 @@
         <legend style="font-size: 1.67em">Coverage:</legend>
         <table>
             <tr>
-                <td style="width: 520px;" ng-controller="HWParcentageCtrl">
-                    <div id="HWParcentage" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                <td style="width: 520px;height: 400px" ng-controller="HWParcentageCtrl">
+                    <div id="HWParcentage" style="min-width: 100%; height: 390px; margin: 0 auto; border:groove 1px #000000;"></div>
                 </td>
-                <td style="width: 520px;" ng-controller="parcentageCtrl">
-                    <div id="facilityParcent" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                <td style="width: 520px;height: 400px" ng-controller="parcentageCtrl">
+                    <div id="facilityParcent" style="min-width: 100%; height: 390px; margin: 0 auto; border:groove 1px #000000;"></div>
                 </td>
             </tr>
         </table>
@@ -94,8 +142,8 @@
         <legend style="font-size: 1.67em">Stock Outs:</legend>
         <table  ng-controller="stockoutCtrl">
             <tr>
-                <td style="width: 50%">
-                    <div id="stockoutchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
+                <td style="width: 50%;height: 400px">
+                    <div id="stockoutchart" style="min-width: 100%; height: 390px; margin: 0 auto;border:groove 1px #000000;"></div>
                 </td>
                 <td style="width: 50%">
                     <table border="1px" >
@@ -133,11 +181,11 @@
         <legend style="font-size: 1.67em">Service Integration:</legend>
         <table>
             <tr>
-                <td style="width: 520px;">
-                    <div id="survilience1" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                <td style="width: 520px;height: 400px">
+                    <div id="survilience1" style="min-width: 100%; height: 390px; margin: 0 auto; border:groove 1px #000000;"></div>
                 </td>
-                <td style="width: 520px;">
-                    <div id="survilience3" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
+                <td style="width: 520px;height: 400px">
+                    <div id="survilience3" style="min-width: 100%; height: 390px; margin: 0 auto; border:groove 1px #000000;"></div>
                 </td>
 
             </tr>
@@ -157,11 +205,11 @@
 
         <table>
             <tr>
-                <td style="width: 520px;">
-                    <div id="survilience2" style="min-width: 100%; height: 400px; margin: 0 auto;border:groove 1px #000000;"></div>
+                <td style="width: 520px;height: 400px">
+                    <div id="survilience2" style="min-width: 100%; height: 390px; margin: 0 auto;border:groove 1px #000000;"></div>
                 </td>
                 <td style="width: 520px;">
-                    <div style="border:groove 1px #000000; height: 400px">
+                    <div style="border:groove 1px #000000; height: 390px">
                         <h5 style="text-align: center">Reporting Rates</h5>
                         <table border="1px">
                             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
@@ -203,53 +251,6 @@
     </fieldset>
 </div>
 
-<!--import pace for visualization-->
-<script src='assets/libs/pace/pace.min.js'></script>
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="assets/libs/materialize/js/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="assets/libs/jqueryui/js/jquery-ui-1.10.4.custom.js"></script>
-<script type="text/javascript" src="assets/libs/materialize/js/materialize.min.js"></script>
-<script type="text/javascript" src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-<script type="text/javascript" src="assets/js/angular-route.js"></script>
-<script type="text/javascript" src="assets/js/angular-resource.js"></script>
-<script type="text/javascript" src="Highcharts/js/highcharts.src.js"></script>
-<script type="text/javascript" src="bower_components/highcharts-ng/src/highcharts-ng.js"></script>
-<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
-<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script type="text/javascript" src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
-<script type="text/javascript" src="assets/js/ng-csv.js"></script>
-<script type="text/javascript" src="bower_components/angular-materialize/src/angular-materialize.js"></script>
-<script src="services/dhis-highchart-angular-service.js"></script>
-<!--<script src="https://maps.google.com/maps/api/js?sensor=false"></script>-->
-<script src="bower_components/openlayers3/build/ol.js"></script>
-<script src="bower_components/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
-<script src="bower_components/tree/angular-multi-select-tree-0.1.0.min.js"></script>
-<script src="bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js"></script>
-
-<script>
-    var mainModule = angular.module('hmisPortal', ["ngRoute",'ngResource','ngAnimate',"datatables",'ngSanitize','highcharts-ng','openlayers-directive','ui.materialize','dhisHighchartAngularService','multi-select-tree','ngCsv']);
-</script>
-<script src="assets/js/routes.js"></script>
-<script src="services/mapService.js"></script>
-<script src="services/portalService.js"></script>
-<script src="services/familyPlanningService.js"></script>
-<script src="controllers/mainCtrl.js"></script>
-<script src="controllers/indicatorsCtrl.js"></script>
-<script src="controllers/dataCtrl.js"></script>
-<script src="controllers/dashboardCtrl.js"></script>
-<script src="controllers/jinsiCtrl.js"></script>
-<script src="controllers/morbidityCtrl.js"></script>
-<script src="controllers/familyPlanningCtrl.js"></script>
-<script src="controllers/family_Planning/RegionalPDFController/clientDemographicsCtrl.js"></script>
-<script src="controllers/family_Planning/RegionalPDFController/clientMethodsCtrl.js"></script>
-<script src="controllers/family_Planning/RegionalPDFController/survilienceCtrl.js"></script>
-<script src="controllers/family_Planning/parcentageCtrl.js"></script>
-<script src="controllers/family_Planning/parcentage1Ctrl.js"></script>
-<script src="controllers/family_Planning/RegionalPDFController/stockoutCtrl.js"></script>
-<script src="controllers/family_Planning/RegionalPDFController/HWParcentageCtrl.js"></script>
-<script src="controllers/family_Planning/RegionalPDFController/parcentageCtrl.js"></script>
-<script src="controllers/family_Planning/HWTrainedCtrl.js"></script>
 
 </body>
 </html>

@@ -292,6 +292,15 @@ angular.module("hmisPortal")
                             $scope.titleToUse = region.name;
                             cardObject.chartObject.title.text = cardObject.title  + " - " +$scope.titleToUse;
                             cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
+                            cardObject.chartObject.legend = {
+                                align: 'right',
+                                verticalAlign: 'top',
+                                layout: 'vertical',
+                                x: 0,
+                                y: 100,
+                                itemMarginTop: 10,
+                                itemMarginBottom: 10
+                            };
 
                             angular.forEach($scope.data.menuMethods,function(value){
                                 xAxisItems.push(value);
