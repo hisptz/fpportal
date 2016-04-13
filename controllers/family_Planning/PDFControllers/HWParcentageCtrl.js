@@ -275,7 +275,7 @@ angular.module("hmisPortal")
                     angular.forEach(orgUnits,function(value){
                         periods.push({name:value.name,id:value.id})
                     });
-                    chartObject.title.text ="Percent of Facilities with 2 or more Health Workers Trained in - "+$scope.titleToUse;
+                    chartObject.title.text ="National Percent of facilities with 2 or more HWs Trained in each FP method";
                     angular.forEach(methodss, function (val) {
                         chartObject.xAxis.categories.push(val.name);
                     });

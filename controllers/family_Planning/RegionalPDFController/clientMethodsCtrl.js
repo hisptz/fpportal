@@ -228,7 +228,7 @@ angular.module("hmisPortal")
 
             },
             {
-                title:'Family Planning clients by Method through Routine Facility-Based Service Jan 2014 to Dec 2014',
+                title:'[X Region] Number of FP clients through Routine Facility-Based Service',
                 description:'Total Clients Monthly',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
@@ -291,7 +291,7 @@ angular.module("hmisPortal")
                             var methodId1 = [];
 
                             $scope.titleToUse = region.name;
-                            cardObject.chartObject.title.text = cardObject.title  + " - " +$scope.titleToUse;
+                            cardObject.chartObject.title.text = region.name + " Number of FP clients through Routine Facility-Based Service";
                             cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
                             cardObject.chartObject.legend = {
                                 align: 'right',

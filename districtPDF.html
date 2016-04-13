@@ -26,7 +26,7 @@
     <hr>
     <!--CLients-->
     <fieldset>
-        <legend style="font-size: 1.67em">Clients Jan 2014 to Dec 2014:</legend>
+        <legend style="font-size: 1.37em;;font-weight: bold">Clients Jan 2014 to Dec 2014:</legend>
         <table>
             <tr>
                 <td style="width: 70%" ng-controller="clientMethodsCtrl">
@@ -42,46 +42,104 @@
             </tr>
         </table>
     </fieldset>
-    <!--Coverage-->
-    <fieldset>
-        <legend style="font-size: 1.67em">Coverage:</legend>
 
+    <!--Stock Outs-->
+    <fieldset>
+        <legend style="font-size: 1.37em;;font-weight: bold">Stock Outs:</legend>
+        <table  ng-controller="stockoutCtrl">
+            <tr>
+                <td style="width: 50%">
+                    <table border="1px" >
+                        <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
+                            <th colspan="3"> Facilities stocked out of pills and or injectables for any number of
+                                days during the past month in {{ name }} </th></tr>
+                        <tr>
+                            <th>Stocked out of pills and injectable</th>
+                            <th>Stocked out of pills only</th>
+                            <th>Stocked out of injectables only</th>
+                        </tr>
+                        <tr style="border: solid 1px #6498D9">
+                            <td>{{ AllstockOutData[0] }}</td> <td>{{ PillstockOutData[0] }}</td><td>{{ InjectablestockOutData[0] }}</td>
+                        </tr>
+                        <tr style="border: solid 1px #6498D9">
+                            <td>{{ AllstockOutData[1] }}</td> <td>{{ PillstockOutData[1] }}</td><td>{{ InjectablestockOutData[1] }}</td>
+                        </tr>
+                        <tr style="border: solid 1px #6498D9">
+                            <td>{{ AllstockOutData[2] }}</td> <td>{{ PillstockOutData[2] }}</td><td>{{ InjectablestockOutData[2] }}</td>
+                        </tr>
+                        <tr style="border: solid 1px #6498D9">
+                            <td>{{ AllstockOutData[3] }}</td> <td>{{ PillstockOutData[3] }}</td><td>{{ InjectablestockOutData[3] }}</td>
+                        </tr>
+                        <tr style="border: solid 1px #6498D9">
+                            <td>{{ AllstockOutData[4] }}</td> <td>{{ PillstockOutData[4] }}</td><td>{{ InjectablestockOutData[4] }}</td>
+                        </tr>
+                        <tr style="border: solid 1px #6498D9">
+                            <td>{{ AllstockOutData[5] }}</td> <td>{{ PillstockOutData[5] }}</td><td>{{ InjectablestockOutData[5] }}</td>
+                        </tr>
+                        </tr>
+                    </table>
+                </td>
+                <td style="width: 50%">
+                    <div id="stockoutchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
+                </td>
+
+            </tr>
+        </table>
         <table>
             <tr>
-                <td style="width: 1060px;; margin-top: 5px; " >
+                <td style="width: 50%">
                     <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        This month the reporting rate in [X District] was x% of facilities, as compared to x% last month. The national average this month was x%.
-                        The table below lists the 5 facilities in [X District] with lowest and highest reporting rates .
-                        ACTION: provide positive feedback to best performing districts and support to low performing districts..
+                        <b>ACTION:</b> This trend should be decreasing. Monitor the trend and
+                        use the FP Dashboard to investigate any unexplained increases.
+                    </h6>
+                </td>
+                <td style="width: 50%">
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        <b>ACTION:</b>Investigate districts with high stock out rates, check
+                        distribution and stock provision
                     </h6>
                 </td>
             </tr>
         </table>
 
-        <table style="margin: 10px; width: 1040px" ng-controller="survilienceCtrl">
-            <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                <th colspan="4" style="font-size: 18px;">Districts with lowest percentage of facilities with 2 or more Health Workers trained in FP methods</th></tr>
-            <tr style="border: solid 1px #6498D9" ng-repeat="orgs in orgunitsWithLowTraining" >
-                <td>{{ orgs.name }}</td>
-                <td>{{ orgs.region1 }}</td>
-                <td>{{ orgs.region2 }}</td>
-                <td>{{ orgs.region3 }}</td>
-            </tr>
+    </fieldset>
 
+    <!--completeness-->
+    <fieldset ng-controller="survilienceCtrl">
+        <legend style="font-size: 1.37em;;font-weight: bold">Reporting Rate:</legend>
+
+        <table>
+            <tr>
+                <td style="width: 1060px;; margin: 0px; padding-bottom: 0px " >
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        This month the reporting rate in {{ name }} was <b>{{ lastMonthCompletenes }}</b> of facilities, as compared to
+                        <b>{{ thisMonthCompletenes }}</b> last month. The national average this month was <b>{{ nationalAverage }}</b>.
+                        The table below lists the 5 facilities in {{ name }} with lowest and highest reporting rates .<br>
+                        <b>ACTION:</b> provide positive feedback to best performing districts and support to low performing districts..
+                    </h6>
+                </td>
+            </tr>
+        </table>
+
+        <table style="margin: 10px; width: 1060px;margin: 0px;margin-left: 5px">
+            <tr style="border: solid 2px #6498D9" >
+                <td style="font-size: 0.7em;border: solid 1px #6498D9">Highest reporting rate</td>
+                <td  ng-repeat="orgs in orgUnitsCompletenes" style="font-size: 0.7em;border: solid 1px #6498D9">{{ orgs.name }} ( {{ orgs.value }}% )</td>
+            </tr>
+            <tr style="border: solid 2px #6498D9" >
+                <td style="font-size: 0.7em;border: solid 1px #6498D9">Lowest reporting rate</td>
+                <td style="font-size: 0.7em;border: solid 1px #6498D9" ng-repeat="orgs in orgUnitsCompletenes1">{{ orgs.name }} ( {{ orgs.value }}% )</td>
             </tr>
         </table>
     </fieldset>
 
 
     <fieldset>
-        <legend style="font-size: 1.67em">Coverage:</legend>
+        <legend style="font-size: 1.37em;;font-weight: bold">Coverage:</legend>
         <table>
             <tr>
-                <td style="width: 520px;" ng-controller="HWParcentageCtrl">
+                <td style="width: 1060px;" ng-controller="HWParcentageCtrl">
                     <div id="HWParcentage" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
-                </td>
-                <td style="width: 520px;" ng-controller="parcentageCtrl">
-                    <div id="facilityParcent" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
                 </td>
             </tr>
         </table>
@@ -117,88 +175,48 @@
             </tr>
         </table>
     </fieldset>
-    <!--Stock Outs-->
-    <fieldset>
-        <legend style="font-size: 1.67em">Stock Outs:</legend>
-        <table  ng-controller="stockoutCtrl">
-            <tr>
-                <td style="width: 50%">
-                    <div id="stockoutchart" style="min-width: 100%; height: 400px; margin: 0 auto"></div>
-                </td>
-                <td style="width: 50%">
-                    <table border="1px" >
-                        <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                            <th colspan="2"> Districts with highest percentage of facilities experiencing  Stock Out Pills or Injectable </th></tr>
-                        <tr style="border: solid 1px #6498D9" ng-repeat="dis in stockOutData">
-                            <td>{{ dis.oral }}</td>
-                            <td>{{ dis.injectable }}</td>
-                        </tr>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td style="width: 50%">
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        <b>ACTION:</b> This trend should be decreasing. Monitor the trend and
-                        use the FP Dashboard to investigate any unexplained increases.
-                    </h6>
-                </td>
-                <td style="width: 50%">
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        <b>ACTION:</b>Investigate districts with high stock out rates, check
-                        distribution and stock provision
-                    </h6>
-                </td>
-            </tr>
-        </table>
 
-    </fieldset>
     <!--survilience-->
-    <fieldset>
-        <legend style="font-size: 1.67em">Service Integration:</legend>
+    <fieldset ng-controller="survilienceCtrl">
+        <legend style="font-size: 1.37em;;font-weight: bold">Service Integration:</legend>
         <table>
             <tr>
-                <td style="width: 520px;" ng-controller="survilienceCtrl">
-                    <div id="survilience1" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
-                </td>
-                <td style="width: 520px;" ng-controller="survilienceCtrl">
-                    <div id="survilience3" style="min-width: 100%; height: 400px; margin: 0 auto; border:groove 1px #000000;"></div>
-                </td>
-
-            </tr>
-        </table>
-
-        <table>
-            <tr>
-                <td style="width: 100%; padding-left: 0px; padding-right: 0px">
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        The graph on the right displays percent of FP clients who are not already known HIV-positive adopting HIV testing and counselling (HTC)
-                        <b>ACTION:</b> investigate districts with lowest percentages for each indicator. Monitor national trend and use the FP dashboard to investigate any
-                        unexplained decreases.
-                    </h6>
-                </td>
-            </tr>
-        </table>
-
-        <table>
-            <tr>
-                <td style="width: 520px;" ng-controller="survilienceCtrl">
-                    <div id="survilience2" style="min-width: 100%; height: 400px; margin: 0 auto;border:groove 1px #000000;"></div>
+                <td style="width: 520px;" >
+                    <div id="survilience1" style="min-width: 100%; height: 400px; margin: 0 auto;border:groove 1px #000000;"></div>
                 </td>
                 <td style="width: 520px;">
                     <div style="border:groove 1px #000000; height: 400px">
-                        <h5 style="text-align: center">Reporting Rates</h5>
-                        <table border="1px" ng-controller="survilienceCtrl">
+                        <table border="1px">
                             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                                <th >Highest Reporting rate</th>
-                                <th >Lowest reporting rate</th>
+                                <th colspan="2">Facilities with the lowest % of Clients Adopting FP following cPAC in
+                                    {{ name }}</th>
                             </tr>
-                            <tr style="border: solid 1px #6498D9" ng-repeat="org in OrgunitInReportingRate">
-                                <td>{{ org.high }}</td>
-                                <td>{{ org.low }}</td>
+                            <tr style="border: solid 1px #6498D9">
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[0].name }}</td>
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[1].name }}</td>
+                            </tr><tr style="border: solid 1px #6498D9">
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[2].name }}</td>
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[3].name }}</td>
+                            </tr><tr style="border: solid 1px #6498D9">
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[4].name }}</td>
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[5].name }}</td>
+                            </tr>
+                        </table>
+
+                        <table border="1px">
+                            <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
+                                <th colspan="2">Facilities with the lowest % of FP clients adopting HTC in
+                                    {{ name }}</th>
+                            </tr>
+                            <tr style="border: solid 1px #6498D9">
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[0].name }}</td>
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[1].name }}</td>
+                            </tr><tr style="border: solid 1px #6498D9">
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[2].name }}</td>
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[3].name }}</td>
+                            </tr><tr style="border: solid 1px #6498D9">
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[4].name }}</td>
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[5].name }}</td>
                             </tr>
                         </table>
                     </div>
@@ -211,19 +229,18 @@
         <table>
             <tr>
                 <td style="width: 49%; margin-top: 5px; " >
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9; font-size: 1.1em">
                         <b>ACTION:</b> Monitor national trend and investigate any unexplained
                         decreases. Note that this line might fluctuate according to number of
                         live births per month, but should be generally increasing.
                     </h6>
                 </td>
                 <td style=" width: 49%; margin-top: 5px;" >
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        This month the national reporting rate was x% of
-                        facilities, as compared to x% last month..
-                        <b>ACTION:</b> alert regional coordinators; provide positive
-                        feedback to best performing districts and support to low
-                        performing districts.
+                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9; font-size: 1em">
+                        <b>ACTION:</b> call the listed facilities and investigate why the percentages
+                        are low for each indicator. There may be HR shortages or stock-issues
+                        affecting these facilities’ performance. Where possible, conduct
+                        supportive supervisions.
                     </h6>
                 </td>
             </tr>
@@ -276,7 +293,6 @@
 <script src="controllers/family_Planning/parcentage1Ctrl.js"></script>
 <script src="controllers/family_Planning/DistrictPDFController/stockoutCtrl.js"></script>
 <script src="controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js"></script>
-<script src="controllers/family_Planning/DistrictPDFController/parcentageCtrl.js"></script>
 <script src="controllers/family_Planning/HWTrainedCtrl.js"></script>
 
 </body>

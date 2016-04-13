@@ -74,7 +74,7 @@
     <hr>
     <!--CLients-->
     <fieldset>
-        <legend style="font-size: 1.67em">Clients Jan 2014 to Dec 2014:</legend>
+        <legend style="font-size: 1.37em;;font-weight: bold">Clients Jan 2014 to Dec 2014:</legend>
         <table>
             <tr>
                 <td style="width: 70%;height: 455px" ng-controller="clientMethodsCtrl">
@@ -92,7 +92,7 @@
     </fieldset>
     <!--Coverage-->
     <fieldset>
-        <legend style="font-size: 1.67em">Coverage:</legend>
+        <legend style="font-size: 1.37em;;font-weight: bold">Coverage:</legend>
         <table>
             <tr>
                 <td style="width: 520px;height: 400px" ng-controller="HWParcentageCtrl">
@@ -139,7 +139,7 @@
 
     <!--Stock Outs-->
     <fieldset>
-        <legend style="font-size: 1.67em">Stock Outs:</legend>
+        <legend style="font-size: 1.37em;;font-weight: bold">Stock Outs:</legend>
         <table  ng-controller="stockoutCtrl">
             <tr>
                 <td style="width: 50%;height: 400px">
@@ -178,7 +178,7 @@
     </fieldset>
     <!--survilience-->
     <fieldset  ng-controller="survilienceCtrl">
-        <legend style="font-size: 1.67em">Service Integration:</legend>
+        <legend style="font-size: 1.37em;;font-weight: bold">Service Integration:</legend>
         <table>
             <tr>
                 <td style="width: 520px;height: 400px">
@@ -239,8 +239,8 @@
                 </td>
                 <td style=" width: 49%; margin-top: 5px;" >
                     <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        This month the {{ name }} reporting rate was <b style="color: #000000">{{ thisMonthCompletenes }}%</b>  of
-                        facilities, as compared to <b style="color: #000000">{{ lastMonthCompletenes }}%</b> last month..<br>
+                        This month the {{ name }} reporting rate was <b>{{ thisMonthCompletenes }}%</b>  of
+                        facilities, as compared to <b>{{ lastMonthCompletenes }}%</b> last month..<br>
                         <b>ACTION:</b> alert district coordinators; provide positive
                         feedback to best performing districts and support to low
                         performing districts.

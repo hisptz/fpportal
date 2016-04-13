@@ -251,7 +251,7 @@ angular.module("hmisPortal")
                             chartObject1.xAxis.categories.push(val.name);
                         });
 
-                        chartObject1.title.text ="Percent of facilities providing FP over time - "+$scope.titleToUse;
+                        chartObject1.title.text = region.name+ " Percent of facilities providing each FP method Jan 2014 to Dec 2014";
                         $rootScope.progressMessage = "Fetching data please wait ...";
                         $rootScope.showProgressMessage = true;
                         $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){

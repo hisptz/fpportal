@@ -90,35 +90,47 @@ angular.module("hmisPortal")
                     {id:'OwAJT47sIgQ',name:'FP HIV testing rate among FP clients(Numerator)' },
                     {id:'NaCPtfoUkpH',name:'FP HIV testing rate among FP clients(Denominator)' }
                 ];
-                var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:LEVEL-3;LEVEL-2;"+$scope.regionUid+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
+                var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:LEVEL-3;LEVEL-4;"+$scope.regionUid+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
                 var base = portalService.base;
                 $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function(){
                     $http.get(portalService.base + "api/organisationUnits/" + $scope.regionUid + ".json?fields=name").success(function (region) {
                         //load the completeness data and handle the comparison
+                        $scope.name = region.name;
                         var lastMonth = parseInt(FPManager.lastMonthWithOtherData) - 1;
+                        $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:m0frOspS7JY&dimension=pe:'+FPManager.lastMonthWithOtherData+'&displayProperty=NAME').success(function(data){
+                            angular.forEach(data.rows,function(v){
+                                if(v[1] == "m0frOspS7JY" && v[2] == FPManager.lastMonthWithOtherData){
+                                    $scope.nationalAverage = v[3];
+                                }
+                            });
+
+                        });
+
                         $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-3;LEVEL-4;'+$scope.regionUid+'&dimension=pe:'+FPManager.lastMonthWithOtherData+';'+lastMonth+'&displayProperty=NAME').success(function(data){
                             var orgUnitsCompletenes = [];
+                            angular.forEach(data.metaData.ou,function(orgs){
+                                var value = 0;
+                                angular.forEach(data.rows,function(v){
+                                    if(v[1] !== $scope.regionUid && v[1] == orgs && v[2] == FPManager.lastMonthWithOtherData){
+                                        value = v[3];
+                                    }
+                                });
+                                orgUnitsCompletenes.push({name:data.metaData.names[orgs],value:value})
+                            });
                             angular.forEach(data.rows,function(v){
-                                if(v[1] !== 'm0frOspS7JY' && v[2] == FPManager.lastMonthWithOtherData){
-                                    orgUnitsCompletenes.push({name:data.metaData.names[v[1]],value:v[3]})
-                                }
-                                if(v[1] == 'm0frOspS7JY' && v[2] == FPManager.lastMonthWithOtherData){
+                                if(v[1] == $scope.regionUid && v[2] == FPManager.lastMonthWithOtherData){
                                     $scope.thisMonthCompletenes = v[3];
-                                }if(v[1] == 'm0frOspS7JY' && v[2] == lastMonth){
+                                }if(v[1] == $scope.regionUid && v[2] == lastMonth){
                                     $scope.lastMonthCompletenes = v[3];
                                 }
 
                             });
                             var orderBy = $filter('orderBy');
-                            $scope.orgUnitsCompletenes = orderBy(orgUnitsCompletenes, 'value', false);
-                            $scope.orgUnitsCompletenes1 = orderBy(orgUnitsCompletenes, 'value', true);
-                            $scope.OrgunitInReportingRate = [
-                                {high:$scope.orgUnitsCompletenes1[0].name+'( '+$scope.orgUnitsCompletenes1[0].value+' % )',low:$scope.orgUnitsCompletenes[0].name+'( '+$scope.orgUnitsCompletenes[0].value+' % )'},
-                                {high:$scope.orgUnitsCompletenes1[1].name+'( '+$scope.orgUnitsCompletenes1[1].value+' % )',low:$scope.orgUnitsCompletenes[1].name+'( '+$scope.orgUnitsCompletenes[1].value+' % )'},
-                                {high:$scope.orgUnitsCompletenes1[2].name+'( '+$scope.orgUnitsCompletenes1[2].value+' % )',low:$scope.orgUnitsCompletenes[2].name+'( '+$scope.orgUnitsCompletenes[2].value+' % )'}
-                            ];
+                            $scope.orgUnitsCompletenes = $filter('limitTo')(orderBy(orgUnitsCompletenes, 'value', false), 5, 0);
+                            $scope.orgUnitsCompletenes1 = $filter('limitTo')(orderBy(orgUnitsCompletenes, 'value', true), 5, 0);
+
                         });
 
 
@@ -126,75 +138,54 @@ angular.module("hmisPortal")
                         $rootScope.showProgressMessage = true;
                         $http.get(url).success(function(data){
                             var orderBy = $filter('orderBy');
-                            var orderedOrgunits1 = orderBy($scope.getThreeRegions(data,'cWMJ2HsNTtr',FPManager.lastMonthWithOtherData), 'value', false);
-                            var orderedOrgunits3 = orderBy($scope.getThreeRegions(data,'reywf66stpK',FPManager.lastMonthWithOtherData), 'value', false);
-                            var orgUnits2 = [{'name':region.name,'id':$scope.regionUid}];
-                            var orgUnits1 = [{'name':region.name,'id':$scope.regionUid},{name:orderedOrgunits1[0].name,id:orderedOrgunits1[0].id},{name:orderedOrgunits1[1].name,id:orderedOrgunits1[1].id},{name:orderedOrgunits1[2].name,id:orderedOrgunits1[2].id}];
-                            var orgUnits3 = [{'name':region.name,'id':$scope.regionUid},{name:orderedOrgunits3[0].name,id:orderedOrgunits3[0].id},{name:orderedOrgunits3[1].name,id:orderedOrgunits3[1].id},{name:orderedOrgunits3[2].name,id:orderedOrgunits3[2].id}];
+                            var CPACfacilitieParcent = [];
+                            var HTCfacilitieParcent = [];
+                            angular.forEach(data.metaData.ou,function(orgunit){
+                                if(orgunit !== $scope.regionUid){
+                                    CPACfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent')+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent')});
+                                    HTCfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent')+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent')});
+                                }
+                            });
+
+                            $scope.CPACfacilitieParcent = $filter('limitTo')(orderBy(CPACfacilitieParcent, 'value', false), 6, 0);
+                            $scope.HTCfacilitieParcent = $filter('limitTo')(orderBy(HTCfacilitieParcent, 'value', false), 6, 0);
+
+                            var orgUnits2 = [{'name':'% Clients Adopting FP following cPAC'},{'name':'% FP clients adopting HTC'}];
                             var periods = $scope.prepareCategory('month')
                             $rootScope.showProgressMessage = false;
 
 
-                            chartObject.title.text ="Districts with lowest percentage of Clients Adopting FP following cPAC compared with region average";
-                            chartObject1.title.text ="Region trend in number of clients Adopting FP in the Postpartum Period";
-                            chartObject2.title.text ="Districts with lowest percentage of Family Planning Clients Adopting HTC compared with region average";
+                            chartObject.title.text =region.name +" Service integration jan 2014 to Dec 2014";
+                            chartObject.legend = {
+                                layout: 'vertical',
+                                itemMarginTop: 10,
+                                itemMarginBottom: 10
+                            };
                             chartObject.yAxis.title.text ="%  of Clients";
                             chartObject.yAxis.labels = {
                                 formatter: function () {
                                     return this.value + '%';
                                 }
                             };
-                            chartObject1.yAxis.title.text ="# of Clients";
-                            chartObject2.yAxis.title.text ="%  of Clients";
-                            chartObject2.yAxis.labels = {
-                                formatter: function () {
-                                    return this.value + '%';
-                                }
-                            };
                             angular.forEach(periods, function (val) {
                                 chartObject.xAxis.categories.push(val.name);
-                                chartObject1.xAxis.categories.push(val.name);
-                                chartObject2.xAxis.categories.push(val.name);
                             });
 
-                            angular.forEach(orgUnits1,function(yAxis){
+                            angular.forEach(orgUnits2,function(yAxis){
                                 var chartSeries = [];
                                 angular.forEach(periods,function(xAxis){
-                                    var number = $scope.findValue(data.rows,yAxis.id,xAxis.id,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent');
-                                    chartSeries.push(parseFloat(number));
+                                    if(yAxis.name == "% Clients Adopting FP following cPAC"){
+                                        var number = $scope.findValue(data.rows,$scope.regionUid,xAxis.id,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent');
+                                        chartSeries.push(parseFloat(number));
+                                    }if(yAxis.name == "% FP clients adopting HTC"){
+                                        var number2 = $scope.findValue(data.rows,$scope.regionUid,xAxis.id,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent');
+                                        chartSeries.push(parseFloat(number2));
+                                    }
                                 });
                                 chartObject.series.push({type: 'spline', name: yAxis.name, data: chartSeries});
                             });
-                            angular.forEach(orgUnits2,function(yAxis){
-                                var chartSeries1 = [];
-                                angular.forEach(periods,function(xAxis){
-                                    var number1 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'b6O7BaQ46R4','','','number');
-                                    chartSeries1.push(parseFloat(number1));
-                                });
-                                chartObject1.series.push({type: 'spline', name: yAxis.name, data: chartSeries1});
-                            });
-                            angular.forEach(orgUnits3,function(yAxis){
-                                var chartSeries2 = [];
-                                angular.forEach(periods,function(xAxis){
-                                    var number2 = $scope.findValue(data.rows,yAxis.id,xAxis.id,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent');
-                                    chartSeries2.push(parseFloat(number2));
-                                });
-                                chartObject2.series.push({type: 'spline', name: yAxis.name, data: chartSeries2});
-                            });
                             chartObject.loading = false;
-                            chartObject1.loading = false;
-                            chartObject2.loading = false;
-
                             $('#survilience1').highcharts(chartObject);
-                            $scope.chartObject = chartObject;
-                            $scope.csvdata = portalService.prepareDataForCSV(chartObject);
-                            $('#survilience2').highcharts(chartObject1);
-                            $scope.chartObject1 = chartObject1;
-                            $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
-                            $('#survilience3').highcharts(chartObject2);
-                            $scope.chartObject2 = chartObject2;
-                            $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
-
                         });
                     });
                 });
@@ -227,51 +218,25 @@ angular.module("hmisPortal")
         };
 
         $scope.findValue = function(arr,ou,pe,dx,numerator,denominator,type){
-
             var amount = 0;
-            var numeratorValue = 0;
-            var denominatorValue = 0;
-            if((ou.indexOf(';') > -1)){
-                var orgArr = ou.split(";");
-                var i = 0;
-                $.each(orgArr,function(c,j){
-                    i++;
-                    $.each(arr,function(k,v){
-                        if( v[2] == pe){
-                            if(v[0] == dx ){
-                                if(v[1] == j ){
-                                    amount += parseInt(v[3]);
-                                }
-                            }if(v[0] == numerator ){
-                                if(v[1] == j ){
-                                    numeratorValue += parseInt(v[3]);
-                                }
-                            }if(v[0] == denominator ){
-                                if(v[1] == j ){
-                                    denominatorValue += parseInt(v[3]);
-                                }
-                            }
-
-                        }
-                    });
-                    if(type == 'percent'){
-                        amount = (denominatorValue != 0)?parseFloat((numeratorValue/denominatorValue )* 100).toFixed(2):0;
-                    }
-
-                });
-            }else{
-
-                $.each(arr,function(k,v){
-                    if(v[0] == dx && v[1] == ou && v[2] == pe){
-
-                        amount = v[3];
-                    }
-                });
-            }
-
+            $.each(arr,function(k,v){
+                if(v[0] == dx && v[1] == ou && v[2] == pe){
+                    amount = v[3];
+                }
+            });
 
             return amount;
-        }
+        };
+        $scope.findValue1 = function(arr,ou,pe,dx,numerator,denominator,type){
+            var amount = 0;
+            $.each(arr,function(k,v){
+                if(v[0] == dx && v[1] == ou && v[2] == pe){
+                    amount = v[3];
+                }
+            });
+
+            return amount;
+        };
 
         $scope.selectedMethod = 'all';
         $scope.selectedPeriod = '2014';
