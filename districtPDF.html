@@ -55,28 +55,28 @@
                         <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
                             <th colspan="3"> Facilities stocked out of pills and or injectables for any number of
                                 days during the past month in {{ name }} </th></tr>
-                        <tr>
+                        <tr style="border: solid 1px #6498D9">
                             <th>Stocked out of pills and injectable</th>
                             <th>Stocked out of pills only</th>
                             <th>Stocked out of injectables only</th>
                         </tr>
                         <tr style="border: solid 1px #6498D9">
-                            <td>{{ AllstockOutData[0] }}</td> <td>{{ PillstockOutData[0] }}</td><td>{{ InjectablestockOutData[0] }}</td>
+                            <td style="padding: 7px">{{ AllstockOutData[0] || "-" }}</td> <td style="padding: 7px">{{ PillstockOutData[0] || "-"  }}</td><td style="padding: 7px">{{ InjectablestockOutData[0] || "-"  }}</td>
                         </tr>
                         <tr style="border: solid 1px #6498D9">
-                            <td>{{ AllstockOutData[1] }}</td> <td>{{ PillstockOutData[1] }}</td><td>{{ InjectablestockOutData[1] }}</td>
+                            <td style="padding: 7px">{{ AllstockOutData[1] || "-" }}</td> <td style="padding: 7px">{{ PillstockOutData[1] || "-"  }}</td><td style="padding: 7px">{{ InjectablestockOutData[1] || "-"  }}</td>
                         </tr>
                         <tr style="border: solid 1px #6498D9">
-                            <td>{{ AllstockOutData[2] }}</td> <td>{{ PillstockOutData[2] }}</td><td>{{ InjectablestockOutData[2] }}</td>
+                            <td style="padding: 7px">{{ AllstockOutData[2] || "-" }}</td> <td style="padding: 7px">{{ PillstockOutData[2] || "-"  }}</td><td style="padding: 7px">{{ InjectablestockOutData[2] || "-"  }}</td>
                         </tr>
                         <tr style="border: solid 1px #6498D9">
-                            <td>{{ AllstockOutData[3] }}</td> <td>{{ PillstockOutData[3] }}</td><td>{{ InjectablestockOutData[3] }}</td>
+                            <td style="padding: 7px">{{ AllstockOutData[3] || "-" }}</td> <td style="padding: 7px">{{ PillstockOutData[3] || "-"  }}</td><td style="padding: 7px">{{ InjectablestockOutData[3] || "-"  }}</td>
                         </tr>
                         <tr style="border: solid 1px #6498D9">
-                            <td>{{ AllstockOutData[4] }}</td> <td>{{ PillstockOutData[4] }}</td><td>{{ InjectablestockOutData[4] }}</td>
+                            <td style="padding: 7px">{{ AllstockOutData[4] || "-" }}</td> <td style="padding: 7px">{{ PillstockOutData[4] || "-"  }}</td><td style="padding: 7px">{{ InjectablestockOutData[4] || "-"  }}</td>
                         </tr>
                         <tr style="border: solid 1px #6498D9">
-                            <td>{{ AllstockOutData[5] }}</td> <td>{{ PillstockOutData[5] }}</td><td>{{ InjectablestockOutData[5] }}</td>
+                            <td style="padding: 7px">{{ AllstockOutData[5] || "-" }}</td> <td style="padding: 7px">{{ PillstockOutData[5] || "-"  }}</td><td style="padding: 7px">{{ InjectablestockOutData[5] || "-"  }}</td>
                         </tr>
                         </tr>
                     </table>

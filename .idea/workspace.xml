@@ -7,7 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/fp_menu.html" afterPath="$PROJECT_DIR$/views/family_planning/fp_menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/districtPDF.html" afterPath="$PROJECT_DIR$/districtPDF.html" />
     </list>
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,10 +41,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fp_menu.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fp_menu.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/fp_menu.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63595504" vertical-offset="1090" max-vertical-offset="1980">
+            <state vertical-scroll-proportion="-20.962963" vertical-offset="1090" max-vertical-offset="1980">
               <caret line="92" column="173" selection-start-line="92" selection-start-column="173" selection-end-line="92" selection-end-column="173" />
               <folding />
             </state>
@@ -148,11 +148,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="districtPDF.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="districtPDF.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/districtPDF.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.333333" vertical-offset="4536" max-vertical-offset="6048">
-              <caret line="272" column="51" selection-start-line="272" selection-start-column="51" selection-end-line="272" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.45393258" vertical-offset="622" max-vertical-offset="6048">
+              <caret line="57" column="61" selection-start-line="57" selection-start-column="61" selection-end-line="57" selection-end-column="61" />
               <folding>
                 <element signature="n#style#0;n#legend#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -161,12 +161,31 @@
                 <element signature="n#style#0;n#legend#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#1;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#tr#3;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#3;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#3;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#3;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#tr#4;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#4;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#4;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#4;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#tr#5;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#5;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#5;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#5;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#tr#6;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#6;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#6;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#6;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#tr#7;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#7;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#7;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#7;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -313,11 +332,11 @@
         <option value="$PROJECT_DIR$/nationalPDF.html" />
         <option value="$PROJECT_DIR$/regionPDF.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/clientMethodsCtrl.js" />
-        <option value="$PROJECT_DIR$/districtPDF.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/HwandMethodParcentCtrl.js" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
         <option value="$PROJECT_DIR$/views/family_planning/fp_menu.html" />
+        <option value="$PROJECT_DIR$/districtPDF.html" />
       </list>
     </option>
   </component>
@@ -948,7 +967,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="2538" max-vertical-offset="10728">
           <caret line="165" column="49" selection-start-line="165" selection-start-column="38" selection-end-line="165" selection-end-column="49" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1021,10 +1040,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/clientMethodsCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4752" max-vertical-offset="8820">
+          <caret line="292" column="77" selection-start-line="292" selection-start-column="77" selection-end-line="292" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5764" max-vertical-offset="8721">
+          <caret line="348" column="31" selection-start-line="346" selection-start-column="28" selection-end-line="348" selection-end-column="31" />
+          <folding>
+            <element signature="e#20347#21115#0" expanded="false" />
+            <element signature="e#21164#23230#0" expanded="false" />
+            <element signature="e#23285#24231#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HwandMethodParcentCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5364" max-vertical-offset="10746">
+          <caret line="317" column="44" selection-start-line="317" selection-start-column="44" selection-end-line="317" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/portalService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5004">
+          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/fp_menu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.962963" vertical-offset="1090" max-vertical-offset="1980">
+          <caret line="92" column="173" selection-start-line="92" selection-start-column="173" selection-end-line="92" selection-end-column="173" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/districtPDF.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333" vertical-offset="4536" max-vertical-offset="6048">
-          <caret line="272" column="51" selection-start-line="272" selection-start-column="51" selection-end-line="272" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.45393258" vertical-offset="622" max-vertical-offset="6048">
+          <caret line="57" column="61" selection-start-line="57" selection-start-column="61" selection-end-line="57" selection-end-column="61" />
           <folding>
             <element signature="n#style#0;n#legend#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#fieldset#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1033,12 +1096,31 @@
             <element signature="n#style#0;n#legend#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#1;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#2;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#3;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#3;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#3;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#3;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#4;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#4;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#4;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#4;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#5;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#5;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#5;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#5;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#6;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#6;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#6;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#6;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#7;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#7;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#7;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#7;n#table#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#1;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#td#1;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1108,50 +1190,6 @@
             <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#1;n#fieldset#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h6#0;n#td#1;n#tr#0;n#table#1;n#fieldset#4;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/clientMethodsCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4752" max-vertical-offset="8820">
-          <caret line="292" column="77" selection-start-line="292" selection-start-column="77" selection-end-line="292" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5764" max-vertical-offset="8721">
-          <caret line="348" column="31" selection-start-line="346" selection-start-column="28" selection-end-line="348" selection-end-column="31" />
-          <folding>
-            <element signature="e#20347#21115#0" expanded="false" />
-            <element signature="e#21164#23230#0" expanded="false" />
-            <element signature="e#23285#24231#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HwandMethodParcentCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5364" max-vertical-offset="10746">
-          <caret line="317" column="44" selection-start-line="317" selection-start-column="44" selection-end-line="317" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/portalService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5004">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/fp_menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63595504" vertical-offset="1090" max-vertical-offset="1980">
-          <caret line="92" column="173" selection-start-line="92" selection-start-column="173" selection-end-line="92" selection-end-column="173" />
-          <folding />
         </state>
       </provider>
     </entry>
