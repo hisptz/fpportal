@@ -276,8 +276,8 @@ angular.module("hmisPortal")
                         $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
 
                             //training table
-                            $http.get(portalService.base+'api/sqlViews/AajDPSTPpzr/data.json?var=year:2016').success(function(facilities){
-                            //$http.get(portalService.base+'api/sqlViews/ahVxVlhDa82/data.json?var=year:2016').success(function(facilities){
+                            //$http.get(portalService.base+'api/sqlViews/AajDPSTPpzr/data.json?var=year:2016').success(function(facilities){
+                            $http.get(portalService.base+'api/sqlViews/ahVxVlhDa82/data.json?var=year:2016').success(function(facilities){
                                 var shortActingRegions = {};
                                 var iucdRegions = {};
                                 var implantRegions = {};
