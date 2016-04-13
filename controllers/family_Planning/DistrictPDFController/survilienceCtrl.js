@@ -97,10 +97,19 @@ angular.module("hmisPortal")
                 },function(){
                     $http.get(portalService.base + "api/organisationUnits/" + $scope.regionUid + ".json?fields=name").success(function (region) {
                         //load the completeness data and handle the comparison
-                        $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-3;'+$scope.regionUid+'&filter=pe:201412&displayProperty=NAME').success(function(data){
+                        var lastMonth = parseInt(FPManager.lastMonthWithOtherData) - 1;
+                        $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-3;LEVEL-4;'+$scope.regionUid+'&dimension=pe:'+FPManager.lastMonthWithOtherData+';'+lastMonth+'&displayProperty=NAME').success(function(data){
                             var orgUnitsCompletenes = [];
                             angular.forEach(data.rows,function(v){
-                                orgUnitsCompletenes.push({name:data.metaData.names[v[1]],value:v[2]})
+                                if(v[1] !== 'm0frOspS7JY' && v[2] == FPManager.lastMonthWithOtherData){
+                                    orgUnitsCompletenes.push({name:data.metaData.names[v[1]],value:v[3]})
+                                }
+                                if(v[1] == 'm0frOspS7JY' && v[2] == FPManager.lastMonthWithOtherData){
+                                    $scope.thisMonthCompletenes = v[3];
+                                }if(v[1] == 'm0frOspS7JY' && v[2] == lastMonth){
+                                    $scope.lastMonthCompletenes = v[3];
+                                }
+
                             });
                             var orderBy = $filter('orderBy');
                             $scope.orgUnitsCompletenes = orderBy(orgUnitsCompletenes, 'value', false);
