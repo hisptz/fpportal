@@ -52,42 +52,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clientMethodsCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/clientMethodsCtrl.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4806" max-vertical-offset="8820">
-              <caret line="302" column="30" selection-start-line="302" selection-start-column="30" selection-end-line="302" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="survilienceCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/survilienceCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1620" max-vertical-offset="6660">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1674" max-vertical-offset="6660">
               <caret line="8" column="32" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="districtPDF.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/districtPDF.html">
+      <file leaf-file-name="parcentageCtrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/parcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.962963" vertical-offset="730" max-vertical-offset="4428">
-              <caret line="60" column="81" selection-start-line="60" selection-start-column="81" selection-end-line="60" selection-end-column="81" />
-              <folding>
-                <element signature="n#style#0;n#legend#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h6#0;n#td#0;n#tr#0;n#table#0;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#1;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#0;n#table#1;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#th#0;n#tr#0;n#table#1;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#1;n#table#1;n#fieldset#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#fieldset#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#tr#0;n#table#2;n#fieldset#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-9.5161295" vertical-offset="4331" max-vertical-offset="8370">
+              <caret line="257" column="126" selection-start-line="257" selection-start-column="123" selection-end-line="257" selection-end-column="126" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stockoutCtrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/stockoutCtrl.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.483871" vertical-offset="3973" max-vertical-offset="8604">
+              <caret line="225" column="5" selection-start-line="225" selection-start-column="5" selection-end-line="225" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,8 +85,8 @@
       <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5022" max-vertical-offset="9990">
-              <caret line="279" column="59" selection-start-line="279" selection-start-column="59" selection-end-line="279" selection-end-column="59" />
+            <state vertical-scroll-proportion="-8.935484" vertical-offset="4871" max-vertical-offset="9990">
+              <caret line="286" column="43" selection-start-line="283" selection-start-column="53" selection-end-line="286" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -105,8 +95,8 @@
       <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/HWParcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4933" max-vertical-offset="10494">
-              <caret line="290" column="57" selection-start-line="290" selection-start-column="57" selection-end-line="290" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5527" max-vertical-offset="10494">
+              <caret line="330" column="157" selection-start-line="330" selection-start-column="157" selection-end-line="330" selection-end-column="157" />
               <folding />
             </state>
           </provider>
@@ -125,18 +115,18 @@
       <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/RegionalPDFController/HWParcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4655" max-vertical-offset="9990">
-              <caret line="279" column="131" selection-start-line="279" selection-start-column="131" selection-end-line="279" selection-end-column="131" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5411" max-vertical-offset="9990">
+              <caret line="325" column="160" selection-start-line="325" selection-start-column="160" selection-end-line="325" selection-end-column="160" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="survilienceCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/survilienceCtrl.js">
+      <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1711" max-vertical-offset="6660">
-              <caret line="98" column="20" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="83" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5411" max-vertical-offset="10692">
+              <caret line="368" column="54" selection-start-line="368" selection-start-column="54" selection-end-line="368" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -204,8 +194,8 @@
         <option value="$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/survilienceCtrl.js" />
         <option value="$PROJECT_DIR$/districtPDF.html" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js" />
-        <option value="$PROJECT_DIR$/controllers/family_Planning/RegionalPDFController/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/controllers/family_Planning/PDFControllers/HWParcentageCtrl.js" />
+        <option value="$PROJECT_DIR$/controllers/family_Planning/RegionalPDFController/HWParcentageCtrl.js" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
       </list>
     </option>
@@ -583,13 +573,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/controllers/dashboardCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.387097" vertical-offset="31" max-vertical-offset="10224">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/indicatorsCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0" vertical-offset="31" max-vertical-offset="4680">
@@ -764,13 +747,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5411" max-vertical-offset="10692">
-          <caret line="368" column="54" selection-start-line="368" selection-start-column="54" selection-end-line="368" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/familyPlanningService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4914">
@@ -882,13 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/stockoutCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3942" max-vertical-offset="8604">
-          <caret line="272" column="49" selection-start-line="272" selection-start-column="49" selection-end-line="272" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/RegionalPDFController/survilienceCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1685" max-vertical-offset="6678">
@@ -974,26 +943,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/survilienceCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1620" max-vertical-offset="6660">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nationalPDF.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-51.814816" vertical-offset="1229" max-vertical-offset="4716">
           <caret line="146" column="124" selection-start-line="146" selection-start-column="124" selection-end-line="146" selection-end-column="124" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4536" max-vertical-offset="9990">
-          <caret line="279" column="59" selection-start-line="279" selection-start-column="59" selection-end-line="279" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -1006,18 +959,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/RegionalPDFController/HWParcentageCtrl.js">
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/survilienceCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4655" max-vertical-offset="9990">
-          <caret line="279" column="131" selection-start-line="279" selection-start-column="131" selection-end-line="279" selection-end-column="131" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1674" max-vertical-offset="6660">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/stockoutCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.483871" vertical-offset="3973" max-vertical-offset="8604">
+          <caret line="225" column="5" selection-start-line="225" selection-start-column="5" selection-end-line="225" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/parcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.5161295" vertical-offset="4331" max-vertical-offset="8370">
+          <caret line="257" column="126" selection-start-line="257" selection-start-column="123" selection-end-line="257" selection-end-column="126" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.935484" vertical-offset="4871" max-vertical-offset="9990">
+          <caret line="286" column="43" selection-start-line="283" selection-start-column="53" selection-end-line="286" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/PDFControllers/HWParcentageCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4933" max-vertical-offset="10494">
-          <caret line="290" column="57" selection-start-line="290" selection-start-column="57" selection-end-line="290" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="5527" max-vertical-offset="10494">
+          <caret line="330" column="157" selection-start-line="330" selection-start-column="157" selection-end-line="330" selection-end-column="157" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/RegionalPDFController/HWParcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5411" max-vertical-offset="9990">
+          <caret line="325" column="160" selection-start-line="325" selection-start-column="160" selection-end-line="325" selection-end-column="160" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5411" max-vertical-offset="10692">
+          <caret line="368" column="54" selection-start-line="368" selection-start-column="54" selection-end-line="368" selection-end-column="54" />
           <folding />
         </state>
       </provider>

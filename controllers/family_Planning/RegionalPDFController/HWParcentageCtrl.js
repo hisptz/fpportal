@@ -321,9 +321,9 @@ angular.module("hmisPortal")
                             });
 
                             //charts
-                            $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Hospital&var=year:2016').success(function(hosptal){
-                                $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:2016').success(function(hcenter){
-                                    $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Dispensary&var=year:2016').success(function(dispensary){
+                            $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Hospital&var=year:'+FPManager.lastMonthWithData).success(function(hosptal){
+                                $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:'+FPManager.lastMonthWithData).success(function(hcenter){
+                                    $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Dispensary&var=year:'+FPManager.lastMonthWithData).success(function(dispensary){
                                         angular.forEach(orgUnits, function (xAxis) {
                                             var serie = [];
                                             angular.forEach(methodss, function (yAxis) {
