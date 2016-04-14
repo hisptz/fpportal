@@ -6,12 +6,7 @@
     <bookmark url="file://$PROJECT_DIR$/regionPDF.html" line="188" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/HWTrainedCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/HWTrainedCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" afterPath="$PROJECT_DIR$/controllers/family_Planning/HomeControllers/HWTrainedCtrl.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/familyPlanningService.js" afterPath="$PROJECT_DIR$/services/familyPlanningService.js" />
-    </list>
+    <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="" />
     <ignored path="fp_portal.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,10 +29,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="portalService.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="portalService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/portalService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35332605" vertical-offset="0" max-vertical-offset="5004">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5004">
               <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
               <folding />
             </state>
@@ -112,10 +107,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5634" max-vertical-offset="9000">
+            <state vertical-scroll-proportion="1.7862595" vertical-offset="5148" max-vertical-offset="9000">
               <caret line="377" column="27" selection-start-line="377" selection-start-column="27" selection-end-line="377" selection-end-column="27" />
               <folding>
                 <element signature="e#19199#19967#0" expanded="false" />
@@ -1135,18 +1130,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5634" max-vertical-offset="9000">
-          <caret line="377" column="27" selection-start-line="377" selection-start-column="27" selection-end-line="377" selection-end-column="27" />
-          <folding>
-            <element signature="e#19199#19967#0" expanded="false" />
-            <element signature="e#20016#22082#0" expanded="false" />
-            <element signature="e#22137#23083#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/family_Planning/HWParcentageCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="5033" max-vertical-offset="10692">
@@ -1185,9 +1168,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/services/portalService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35332605" vertical-offset="0" max-vertical-offset="5004">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5004">
           <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/HWParcentageCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7862595" vertical-offset="5148" max-vertical-offset="9000">
+          <caret line="377" column="27" selection-start-line="377" selection-start-column="27" selection-end-line="377" selection-end-column="27" />
+          <folding>
+            <element signature="e#19199#19967#0" expanded="false" />
+            <element signature="e#20016#22082#0" expanded="false" />
+            <element signature="e#22137#23083#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
