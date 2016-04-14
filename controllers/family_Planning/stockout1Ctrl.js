@@ -161,26 +161,10 @@ angular.module("hmisPortal")
             return amount;
         };
 
-        $scope.getNumberPerOu = function(arr,ou,arr2,pe){
-            var count = 0;
-            angular.forEach(arr,function(value){
-                angular.forEach(value.ancestors,function(val){
-                    if ((ou.indexOf(';') > -1)) {
-                        var orgArr = ou.split(";");
-                        $.each(orgArr, function (c, j) {
-                            if(j == val.id){
-                                count++;
-                            }
-                        });
-                    } else {
-                        if(ou == val.id){
-                            count++;
-                        }
-                    }
-                });
-            });
+        $scope.getNumberPerOu = function(ou,arr2,pe){
             var num = $scope.getDataFromUrl(arr2,ou,pe);
-            var percent = (num/count)*100;
+            console.log(JSON.stringify(num) +"---"+pe);
+            var percent = (num.trained == 0)?0:(num.trainedAndstockOut/num.trained)*100;
             return percent.toFixed(2);
         };
 
@@ -221,22 +205,20 @@ angular.module("hmisPortal")
                     chartObject.loading = true;
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
-                    $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,ancestors[id]]').success(function(data){
-                        $http.get(portalService.base+'api/sqlViews/Fvxf4sjmWxC/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                            //$http.get(portalService.base+'api/sqlViews/Skg2digJF1h/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                            $rootScope.showProgressMessage = false;
-                            angular.forEach(orgUnits, function (yAxis) {
-                                var serie = [];
-                                angular.forEach(periods, function (xAxis) {
-                                    serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id)));
-                                });
-                                chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
+                    //$http.get(portalService.base+'api/sqlViews/dLJMOOQYLZS/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                    $http.get(portalService.base+'api/sqlViews/N9UEcr3rwUv/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                        $rootScope.showProgressMessage = false;
+                        angular.forEach(orgUnits, function (yAxis) {
+                            var serie = [];
+                            angular.forEach(periods, function (xAxis) {
+                                serie.push(parseFloat($scope.getNumberPerOu(yAxis.id,val1.rows,xAxis.id)));
                             });
-                            $('#pchart').highcharts(chartObject);
-                            $scope.pchart = chartObject;
-                            $scope.chartObject = chartObject;
-                            $scope.csvdata = portalService.prepareDataForCSV(chartObject);
+                            chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                         });
+                        $('#pchart').highcharts(chartObject);
+                        $scope.pchart = chartObject;
+                        $scope.chartObject = chartObject;
+                        $scope.csvdata = portalService.prepareDataForCSV(chartObject);
                     });
                 });
             }
@@ -328,12 +310,17 @@ angular.module("hmisPortal")
         };
 
         $scope.getDataFromUrl  = function(arr,ou,pe){
-
-            var num = 0;
+           //console.log(ou+"---"+pe);
+            var num = 0; var num1 = 0;
             if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
                     if(v[3] == pe){
-                        num += parseInt(v[2]);
+                        if(v[4] == "1" && v[5] == "1"){
+                            num ++;
+                        }
+                        if(v[5] == "1"){
+                            num1 ++;
+                        }
                     }
                 });
             }else{
@@ -345,7 +332,12 @@ angular.module("hmisPortal")
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[1] == j) {
                                 if(v[3] == pe){
-                                    num += parseInt(v[2]);
+                                    if(v[4] == "1" && v[5] == "1"){
+                                        num ++;
+                                    }
+                                    if(v[5] == "1"){
+                                        num1 ++;
+                                    }
                                 }
                             }
                         });
@@ -354,14 +346,19 @@ angular.module("hmisPortal")
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[1] == ou) {
                             if(v[3] == pe){
-                                num += parseInt(v[2]);
+                                if(v[4] == "1" && v[5] == "1"){
+                                    num ++;
+                                }
+                                if(v[5] == "1"){
+                                    num1 ++;
+                                }
                             }
 
                         }
                     });
                 }
             }
-            return num;
+            return {trainedAndstockOut:num,trained:num1};
         }
 
     });
