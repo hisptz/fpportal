@@ -93,8 +93,8 @@ angular.module("hmisPortal")
 
         $scope.fpCards = [
             {
-                title:'Total Health Workers Trained' ,
-                description:'Total Health Workers Trained',
+                title:'Total Health Workers Trained as of '+FPManager.lastMonthWithDataName ,
+                description:'Total Health Workers Trained as of'+FPManager.lastMonthWithDataName,
                 cardClass:"col s12 m12",
                 data:$scope.methods,
                 category:'month',
