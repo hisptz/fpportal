@@ -341,23 +341,23 @@ angular.module("hmisPortal")
 
                                         var serie1 = [];serie2 = [];serie3 = [];serie4 = [];serie5 = [];
                                         if(xAxis.name == "Hospital"){
-                                            serie1.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'NSV')));
-                                            serie2.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
-                                            serie3.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
-                                            serie4.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
-                                            serie5.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Implants')));
+                                            serie1.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'NSV')));
+                                            serie2.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
+                                            serie3.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
+                                            serie4.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
+                                            serie5.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Implants')));
                                         }if(xAxis.name == "Health Center"){
-                                            serie1.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'NSV')));
-                                            serie2.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
-                                            serie3.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
-                                            serie4.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
-                                            serie5.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Implants')));
+                                            serie1.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'NSV')));
+                                            serie2.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
+                                            serie3.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
+                                            serie4.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
+                                            serie5.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Implants')));
                                         }if(xAxis.name == "Dispensary"){
-                                            serie1.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'NSV')));
-                                            serie2.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
-                                            serie3.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
-                                            serie4.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
-                                            serie5.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits, $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Implants')));
+                                            serie1.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'NSV')));
+                                            serie2.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
+                                            serie3.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
+                                            serie4.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
+                                            serie5.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Implants')));
                                         }
                                         chart1.series.push({type: 'column', name: xAxis.name, data: serie1});
                                         chart2.series.push({type: 'column', name: xAxis.name, data: serie2});
