@@ -244,9 +244,11 @@ angular.module("hmisPortal")
                     chartObject.loading = true;
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
+                    render.addRequest();
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,ancestors[id]]').success(function(data){
                         //stockout Tables
                         //$http.get(portalService.base+'api/sqlViews/qRvLgLYOjS2/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(facilities){
+                        render.addRequest();
                         $http.get(portalService.base+'api/sqlViews/vj6E3KoFP28/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(facilities){
                             var injecatbleRegions = {};
                             var oralRegions = {};
@@ -274,10 +276,10 @@ angular.module("hmisPortal")
                             //    {name:'Short Acting',region1:shortActingData[0].name+"( "+shortActingData[0].value +"% )",region2:shortActingData[1].name+"( "+shortActingData[1].value +"% )",region3:shortActingData[2].name+"( "+shortActingData[2].value +"% )"},
                             //    {name:'IUCD',region1:iucdData[0].name+"( "+iucdData[0].value +"% )",region2:iucdData[1].name+"( "+iucdData[1].value +"% )",region3:iucdData[2].name+"( "+iucdData[2].value +"% )"},
                             //];
-
+                            render.finishRequest();
                         });
 
-
+                        render.addRequest();
                         $http.get(portalService.base+'api/sqlViews/Fvxf4sjmWxC/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                         //$http.get(portalService.base+'api/sqlViews/hVn2bu4Pz0K/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                             $rootScope.showProgressMessage = false;
@@ -292,7 +294,9 @@ angular.module("hmisPortal")
                             $scope.pchart = chartObject;
                             $scope.chartObject = chartObject;
                             $scope.csvdata = portalService.prepareDataForCSV(chartObject);
+                            render.finishRequest();
                         });
+                        render.finishRequest();
                     });
                 });
             }

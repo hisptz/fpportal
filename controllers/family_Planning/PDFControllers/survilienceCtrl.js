@@ -94,7 +94,7 @@ angular.module("hmisPortal")
                 $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function(){
-
+                    render.addRequest();
                     //load the completeness data and handle the comparison
                     var lastMonth = parseInt(FPManager.lastMonthWithOtherData) - 1;
                     $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-1;LEVEL-2;m0frOspS7JY&dimension=pe:'+FPManager.lastMonthWithOtherData+';'+lastMonth+'&displayProperty=NAME').success(function(data){
@@ -118,11 +118,13 @@ angular.module("hmisPortal")
                             {high:$scope.orgUnitsCompletenes1[1].name+'( '+$scope.orgUnitsCompletenes1[1].value+' % )',low:$scope.orgUnitsCompletenes[1].name+'( '+$scope.orgUnitsCompletenes[1].value+' % )'},
                             {high:$scope.orgUnitsCompletenes1[2].name+'( '+$scope.orgUnitsCompletenes1[2].value+' % )',low:$scope.orgUnitsCompletenes[2].name+'( '+$scope.orgUnitsCompletenes[2].value+' % )'}
                         ];
+                        render.finishRequest();
                     });
 
 
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
+                    render.addRequest();
                     $http.get(url).success(function(data){
                         var period = "";
                         var orderBy = $filter('orderBy');
@@ -194,7 +196,7 @@ angular.module("hmisPortal")
                         $('#survilience3').highcharts(chartObject2);
                         $scope.chartObject2 = chartObject2;
                         $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
-
+                        render.finishRequest();
                     });
                 });
             }

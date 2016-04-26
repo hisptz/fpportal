@@ -278,8 +278,7 @@ angular.module("hmisPortal")
             var area = [];
             cardObject.chartObject.loading = true;
             var datass = '';
-
-
+                render.addRequest();
             $http.get($scope.url).success(function(data){
                 if(data.hasOwnProperty('metaData')){
                     //var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
@@ -332,7 +331,7 @@ angular.module("hmisPortal")
                 }
 
                 $rootScope.showProgressMessage = false;
-
+                render.finishRequest();
             });
             });
 

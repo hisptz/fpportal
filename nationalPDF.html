@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="hmisPortal" ng-controller="mainCtrl" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>HMIS Web Portal</title>
+    <title>HMIS Web Portal - Loading</title>
 
     <link type="text/css" rel="stylesheet" href="assets/libs/materialize/css/materialize.min.css"  media="screen,projection"/>
     <style>
@@ -40,6 +40,21 @@
 
     <script>
         var mainModule = angular.module('hmisPortal', ["ngRoute",'ngResource','ngAnimate',"datatables",'ngSanitize','highcharts-ng','openlayers-directive','ui.materialize','dhisHighchartAngularService','multi-select-tree','ngCsv']);
+    </script>
+    <script>
+        var render = {
+            requests:0,
+            addRequest : function(){
+                this.requests++;
+            },
+            finishRequest : function(){
+                this.requests--;
+                if(this.request == 0){
+                    document.title = 'HMIS Web Portal';
+                    alert("Reached header.");
+                }
+            }
+        }
     </script>
     <script src="assets/js/routes.js"></script>
     <script src="services/mapService.js"></script>
