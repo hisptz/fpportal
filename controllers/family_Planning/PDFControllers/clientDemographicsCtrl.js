@@ -359,6 +359,7 @@ angular.module("hmisPortal")
 
                 ////////////////////////////data for <20/////////////////////////////////////////////
                     $scope.updateDisplayShortMessage($scope.data.outMethods);
+                render.addRequest();
                 $http.get($scope.url).success(function (data) {
                     if (data.hasOwnProperty('metaData')) {
                         var xAxisItems = [];
@@ -399,7 +400,7 @@ angular.module("hmisPortal")
                     } else {
                         cardObject.chartObject.loading = false
                     }
-
+                    render.finishRequest();
                 });
             });
 
