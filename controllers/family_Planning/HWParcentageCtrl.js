@@ -291,9 +291,9 @@ angular.module("hmisPortal")
                             periods.push({name:value.name,id:value.id})
                         });
                     }
-                    chartObject.title.text ="Percent of Hospitals with 2 or more Health Workers Trained in - "+$scope.titleToUse;
-                    chartObject1.title.text ="Percent of Health Centres  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
-                    chartObject2.title.text ="Percent of Dispensaries  with 2 or more Health Workers Trained in - "+$scope.titleToUse;
+                    chartObject.title.text ="Percent of Hospitals with 2 or more Health Workers Trained in - "+$scope.titleToUse+" "+FPManager.lastMonthWithDataName;
+                    chartObject1.title.text ="Percent of Health Centres  with 2 or more Health Workers Trained in - "+$scope.titleToUse+" "+FPManager.lastMonthWithDataName;
+                    chartObject2.title.text ="Percent of Dispensaries  with 2 or more Health Workers Trained in - "+$scope.titleToUse+" "+FPManager.lastMonthWithDataName;
                     angular.forEach(periods, function (val) {
                         chartObject.xAxis.categories.push(val.name);
                         chartObject.xAxis.labels.style = { visibility: 'hidden' };
