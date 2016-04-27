@@ -283,12 +283,10 @@ angular.module("hmisPortal")
                     chartObject.loading = true;
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
-                    render.addRequest();
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
 
                         //training table
                         //$http.get(portalService.base+'api/sqlViews/AajDPSTPpzr/data.json?var=year:'+FPManager.lastMonthWithData).success(function(facilities){
-                        render.addRequest();
                         $http.get(portalService.base+'api/sqlViews/ahVxVlhDa82/data.json?var=year:'+FPManager.lastMonthWithData).success(function(facilities){
                              var shortActingRegions = {};
                              var iucdRegions = {};
@@ -326,10 +324,8 @@ angular.module("hmisPortal")
                                  {name:'Mini-lap',region1:miniLapData[0].name+"( "+miniLapData[0].value +"% )",region2:miniLapData[1].name+"( "+miniLapData[1].value +"% )",region3:miniLapData[2].name+"( "+miniLapData[2].value +"% )"},
                                  {name:'NSV',region1:nsvData[0].name+"( "+nsvData[0].value +"% )",region2:nsvData[1].name+"( "+nsvData[1].value +"% )",region3:nsvData[2].name+"( "+nsvData[2].value +"% )"}
                              ];
-                            render.finishRequest();
 
                          });
-                        render.addRequest();
                          $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Hospital&var=year:'+FPManager.lastMonthWithData).success(function(hosptal){
                              $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Health Center&var=year:'+FPManager.lastMonthWithData).success(function(hcenter){
                                  $http.get(portalService.base+'api/sqlViews/c7WkP7lk9cr/data.json?var=types:Dispensary&var=year:'+FPManager.lastMonthWithData).success(function(dispensary){
@@ -349,13 +345,10 @@ angular.module("hmisPortal")
                                      $('#HWParcentage').highcharts(chartObject);
                                      $scope.csvdata = portalService.prepareDataForCSV(chartObject);
                                      $scope.pchart = chartObject;
-                                     render.finishRequest();
                                  });
                              });
 
                         });
-                        render.finishRequest();
-
                     });
                 });
             }
