@@ -6,7 +6,7 @@
 </style>
 
 <div class="row">
-    <div class="z-depth-1  grey lighten-5" style="width:96.5%;position:fixed;top:70px;z-index:900;margin-left: 24px; margin-right: 24px">
+    <div class="z-depth-1  grey lighten-5" style="width:96.5%;position:fixed;top:70px;z-index:900;margin-left: 24px; margin-right: 0px">
         <div class="section grey lighten-5 " >
             <div class="col s2"><label>Period</label></div>
             <div class="col s5"><label>Geography</label></div>
@@ -101,20 +101,24 @@
                         <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
 
                         <p class="flow-text"><b>Description:</b>This charts displays the percentage of hospitals that have at least one provider trained in selected FP method/s AND provided selected FP method/s (as a proportion of all hospitals that are eligible to provide FP services) in the selected geographies, in the indicated 12 month period</p>
-                        <p class="flow-text"><b>Interpretation of Data:</b>  </p>
-                        <p class="flow-text"><b>Display options:</b> One FP method, multiple geographies</p>
+                        <p class="flow-text"><b>Interpretation of Data:</b><p>
+                        <p class="flow-text"><u>Display option 1:</u> One FP method, multiple geographies</p>
+                        <p class="flow-text">If you select one FP method (eg short-acting) and multiple geographies (eg 4 regions within a zone) you can compare the percentage of hospitals that have at least one health worker trained in providing short-acting methods AND provided at least one short-acting method across the 4 selected regions, over the indicated 12 month period. This allows you to monitor changes over time in provision of the selected FP method, among facilities with trained providers, in the selected regions.</p>
+                        <p class="flow-text"><u>Display option 2:</u> One Geography, multiple FP methods</p>
+                        <p class="flow-text">If you select one geography (eg 'Kigoma Region') and multiple FP methods, you can compare the percentage of hospitals that have at least one health worker trained in providing the selected FP method/s AND provided at least one of the selected FP method/s,  within the Kigoma Region. This allows you to monitor changes over time in service provision across FP method types, among facilities with trained providers</p>
                         <p class="flow-text"><b>Indicator Type:</b> Percentage</p>
-                        <p class="flow-text"> <b>Numerator:</b>  Number of hospitals
-                            given the FP Reporting Template
-                            with ≥ 2 health workers
-                            that have achieved training competencies
-                            in each method type (short-acting, implants, IUCDs, minilap, NSV)
-                            in the selected geographies to date in the given month
+                        <p class="flow-text"> <b>Numerator:</b>  Total number of hospitals that are:
+                            <br>(i) eligible to provide FP services AND
+                            <br>(ii) have one or more healthworkers that have achieved training competency  in the selected FP method/s (short-acting, implants, IUCDs, minilap, NSV)
+                            AND
+                            <br>(iii) have recorded at least one client (of any age, new or returning) through routine/facility-based services, for selected FP method/s (short-acting, implants, IUCDs, minilap, NSV)
+                            In the selected geography for each month in the indicated 12 month period.
                         </p>
-                        <p class="flow-text"> <b>Denominator:</b>  Number of hospitals
-                            given the FP Reporting Template
-                            in the selected geographies to date in the given month</p>
-                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
+                        <p class="flow-text"> <b>Denominator:</b>  Total number of hospitals that are:
+                            <br>(i) eligible to provide FP services AND
+                            <br>(ii) have one or more healthworkers that have achieved training competency  in the selected FP method/s (short-acting, implants, IUCDs, minilap, NSV)
+                            In the selected geography for each month in the indicated 12 month period.</p>
+                        <p class="flow-text"><b>Data Source:</b>TrainTracker and DHIS-2 FP reporting Tool</p>
                     </div>
                 </div>
             </div>
@@ -158,21 +162,25 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
 
-                        <p class="flow-text"><b>Description:</b> View gaps in providers trained at health centres by method type and geography, month to date</p>
-                        <p class="flow-text"><b>Interpretation of Data:</b>  </p>
-                        <p class="flow-text"><b>Display options:</b> One FP method, multiple geographies</p>
+                        <p class="flow-text"><b>Description:</b> This charts displays the percentage of health centres that have at least one provider trained in selected FP method/s AND provided selected FP method/s (as a proportion of all health centres that are eligible to provide FP services) in the selected geographies, in the indicated 12 month period</p>
+                        <p class="flow-text"><b>Interpretation of Data:</b><p>
+                        <p class="flow-text"><u>Display option 1:</u> One FP method, multiple geographies</p>
+                        <p class="flow-text">If you select one FP method (eg short-acting) and multiple geographies (eg 4 regions within a zone) you can compare the percentage of health centres that have at least one health worker trained in providing short-acting methods AND provided at least one short-acting method across the 4 selected regions, over the indicated 12 month period. This allows you to monitor changes over time in provision of the selected FP method, among facilities with trained providers, in the selected regions.</p>
+                        <p class="flow-text"><u>Display option 2:</u> One Geography, multiple FP methods</p>
+                        <p class="flow-text">If you select one geography (eg 'Kigoma Region') and multiple FP methods, you can compare the percentage of health centres that have at least one health worker trained in providing  the selected FP method/s AND provided at least one of the selected FP method/s,  within the Kigoma Region. This allows you to monitor changes over time in service provision across FP method types, among facilities with trained providers</p>
                         <p class="flow-text"><b>Indicator Type:</b> Percentage</p>
-                        <p class="flow-text"> <b>Numerator:</b>  Number of health centres
-                            given the FP Reporting Template
-                            with ≥ 2 health workers
-                            that have achieved training competencies
-                            in each method type (short-acting, implants, IUCDs, minilap, NSV)
-                            in the selected geographies to date in the given month
+                        <p class="flow-text"> <b>Numerator:</b>  Total number of health centres that are:
+                            <br>(i) eligible to provide FP services AND
+                            <br>(ii) have one or more healthworkers that have achieved training competency  in the selected FP method/s (short-acting, implants, IUCDs, minilap, NSV)
+                            AND
+                            <br>(iii) have recorded at least one client (of any age, new or returning) through routine/facility-based services, for selected FP method/s (short-acting, implants, IUCDs, minilap, NSV)
+                            In the selected geography for each month in the indicated 12 month period.
                         </p>
-                        <p class="flow-text"> <b>Denominator:</b> Number of health centres
-                            given the FP Reporting Template
-                            in the selected geographies to date in the given month</p>
-                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
+                        <p class="flow-text"> <b>Denominator:</b> Total number of health centres that are:
+                            <br>(i) eligible to provide FP services AND
+                            <br>(ii) have one or more healthworkers that have achieved training competency  in the selected FP method/s (short-acting, implants, IUCDs, minilap, NSV)
+                            In the selected geography for each month in the indicated 12 month period.</p>
+                        <p class="flow-text"><b>Data Source:</b>TrainTracker and DHIS-2 FP reporting Tool</p>
                     </div>
                 </div>
             </div>
@@ -216,21 +224,25 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
 
-                        <p class="flow-text"><b>Description:</b> View gaps in providers trained at dispensaries by method type and geography, month to date</p>
-                        <p class="flow-text"><b>Interpretation of Data:</b>  </p>
-                        <p class="flow-text"><b>Display options:</b> One FP method, multiple geographies</p>
+                        <p class="flow-text"><b>Description:</b> This charts displays the percentage of dispensaries that have at least one provider trained in selected FP method/s AND provided selected FP method/s (as a proportion of all dispensaries that are eligible to provide FP services) in the selected geographies, in the indicated 12 month period</p>
+                        <p class="flow-text"><b>Interpretation of Data:</b><p>
+                        <p class="flow-text"><u>Display option 1:</u> One FP method, multiple geographies</p>
+                        <p class="flow-text">If you select one FP method (eg short-acting) and multiple geographies (eg 4 regions within a zone) you can compare the percentage of dispensaries that have at least one health worker trained in providing short-acting methods AND provided at least one short-acting method across the 4 selected regions, over the indicated 12 month period. This allows you to monitor changes over time in provision of the selected FP method, among facilities with trained providers, in the selected regions.</p>
+                        <p class="flow-text"><u>Display option 2:</u> One Geography, multiple FP methods</p>
+                        <p class="flow-text">If you select one geography (eg 'Kigoma Region') and multiple FP methods, you can compare the percentage of dispensaries that have at least one health worker trained in providing the selected FP method/s AND provided at least one of the selected FP method/s,  within the Kigoma Region. This allows you to monitor changes over time in service provision across FP method types, among facilities with trained providers</p>
                         <p class="flow-text"><b>Indicator Type:</b> Percentage</p>
-                        <p class="flow-text"> <b>Numerator:</b>  Number of dispensaries
-                            given the FP Reporting Template
-                            with ≥ 2 health workers
-                            that have achieved training competencies
-                            in each method type (short-acting, implants, IUCDs)
-                            in the selected geographies to date in the given month
+                        <p class="flow-text"> <b>Numerator:</b> Total number of dispensaries that are:
+                            <br>(i) eligible to provide FP services AND
+                            <br>(ii) have one or more healthworkers that have achieved training competency  in the selected FP method/s (short-acting, implants, IUCDs, minilap, NSV)
+                            AND
+                            <br>(iii) have recorded at least one client (of any age, new or returning) through routine/facility-based services, for selected FP method/s (short-acting, implants, IUCDs, minilap, NSV)
+                            In the selected geography for each month in the indicated 12 month period.
                         </p>
-                        <p class="flow-text"> <b>Denominator:</b>  Number of dispensaries
-                            given the FP Reporting Template
-                            in the selected geographies to date in the given month</p>
-                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
+                        <p class="flow-text"> <b>Denominator:</b>   Total number of dispensaries that are:
+                            <br>(i) eligible to provide FP services AND
+                            <br>(ii) have one or more healthworkers that have achieved training competency  in the selected FP method/s (short-acting, implants, IUCDs, minilap, NSV)
+                            In the selected geography for each month in the indicated 12 month period.</p>
+                        <p class="flow-text"><b>Data Source:</b> TrainTracker and DHIS-2 FP reporting Tool</p>
                     </div>
                 </div>
             </div>

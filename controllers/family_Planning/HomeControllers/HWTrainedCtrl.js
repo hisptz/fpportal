@@ -420,7 +420,7 @@ angular.module("hmisPortal")
 
         $scope.homefpCards = [
             {
-                title:'Family Planning clients by Method through Routine Facility-Based Service Jan 2014 to Dec 2014',
+                title:'Family Planning clients by Method through Routine Facility-Based Service '+FPManager.lastTwelveMonthName,
                 description:'Total Clients Monthly',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
@@ -887,7 +887,7 @@ angular.module("hmisPortal")
                         chartObject1.xAxis.categories.push(val.name);
                     });
 
-                    chartObject1.title.text ="Percent of facilities providing FP over time - "+$scope.titleToUse;
+                    chartObject1.title.text ="Percent of facilities providing FP over time - "+$scope.titleToUse+" "+FPManager.lastTwelveMonthName;
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
@@ -1209,7 +1209,7 @@ angular.module("hmisPortal")
                 },function() {
                     var chartObject = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables";
+                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables "+FPManager.lastTwelveMonthName;
                     chartObject.yAxis.title.text ="% of Facilities";
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = $scope.prepareCategory('month');

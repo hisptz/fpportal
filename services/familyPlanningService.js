@@ -5,6 +5,7 @@ FPServices.factory('FPManager',function($http,$q){
         lastMonthWithData :'201512',
         lastMonthWithDataName :'Dec 2015',
         lastMonthWithOtherData :'201412',
+        lastTwelveMonthName :'Jan 2014 to Dec 2014',
         defaultChartObject: {
             chart: {
                 type: 'column'
