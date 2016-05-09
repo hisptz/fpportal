@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="12edb769-97a6-439b-ad5a-320ccac6eea3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage2.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage2.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/family_planning/coverage3.html" afterPath="$PROJECT_DIR$/views/family_planning/coverage3.html" />
     </list>
     <ignored path="fp_portal.iws" />
@@ -61,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coverage3.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="coverage3.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/family_planning/coverage3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78876406" vertical-offset="3168" max-vertical-offset="4122">
-              <caret line="215" column="420" selection-start-line="215" selection-start-column="420" selection-end-line="215" selection-end-column="420" />
+            <state vertical-scroll-proportion="-8.666667" vertical-offset="1710" max-vertical-offset="4122">
+              <caret line="108" column="412" selection-start-line="108" selection-start-column="410" selection-end-line="108" selection-end-column="412" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -73,12 +74,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HWParcentageCtrl.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controllers/family_Planning/RegionalPDFController/HWParcentageCtrl.js">
+      <file leaf-file-name="coverage2.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/family_planning/coverage2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4709" max-vertical-offset="9990">
-              <caret line="267" column="60" selection-start-line="267" selection-start-column="60" selection-end-line="267" selection-end-column="60" />
-              <folding />
+            <state vertical-scroll-proportion="0.6966292" vertical-offset="3376" max-vertical-offset="4266">
+              <caret line="222" column="332" selection-start-line="222" selection-start-column="332" selection-end-line="222" selection-end-column="332" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -189,7 +192,6 @@
         <option value="$PROJECT_DIR$/views/family_planning/home.html" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_demographics.html" />
         <option value="$PROJECT_DIR$/views/family_planning/client_by_methods.html" />
-        <option value="$PROJECT_DIR$/views/family_planning/coverage2.html" />
         <option value="$PROJECT_DIR$/views/family_planning/coverage4.html" />
         <option value="$PROJECT_DIR$/views/family_planning/coverage5.html" />
         <option value="$PROJECT_DIR$/views/family_planning/stock_out1.html" />
@@ -217,6 +219,7 @@
         <option value="$PROJECT_DIR$/controllers/family_Planning/DistrictPDFController/stockoutCtrl.js" />
         <option value="$PROJECT_DIR$/services/portalService.js" />
         <option value="$PROJECT_DIR$/views/family_planning/coverage3.html" />
+        <option value="$PROJECT_DIR$/views/family_planning/coverage2.html" />
       </list>
     </option>
   </component>
@@ -683,13 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4827585" vertical-offset="0" max-vertical-offset="4266">
-          <caret line="8" column="132" selection-start-line="8" selection-start-column="132" selection-end-line="8" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/coverage4.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.4827585" vertical-offset="0" max-vertical-offset="1980">
@@ -1026,8 +1022,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/family_planning/coverage3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78876406" vertical-offset="3168" max-vertical-offset="4122">
-          <caret line="215" column="420" selection-start-line="215" selection-start-column="420" selection-end-line="215" selection-end-column="420" />
+        <state vertical-scroll-proportion="-8.666667" vertical-offset="1710" max-vertical-offset="4122">
+          <caret line="108" column="412" selection-start-line="108" selection-start-column="410" selection-end-line="108" selection-end-column="412" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/family_planning/coverage2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6966292" vertical-offset="3376" max-vertical-offset="4266">
+          <caret line="222" column="332" selection-start-line="222" selection-start-column="332" selection-end-line="222" selection-end-column="332" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
