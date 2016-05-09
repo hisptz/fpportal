@@ -107,31 +107,43 @@ angular.module("hmisPortal")
                             });
 
                         });
-
-                        $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-3;LEVEL-4;'+$scope.regionUid+'&dimension=pe:'+FPManager.lastMonthWithOtherData+';'+lastMonth+'&displayProperty=NAME').success(function(data){
-                            var orgUnitsCompletenes = [];
-                            angular.forEach(data.metaData.ou,function(orgs){
-                                var value = 0;
-                                angular.forEach(data.rows,function(v){
-                                    if(v[1] !== $scope.regionUid && v[1] == orgs && v[2] == FPManager.lastMonthWithOtherData){
-                                        value = v[3];
+                        $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[id]').success(function(orgUni) {
+                            $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-3;LEVEL-4;'+$scope.regionUid+'&dimension=pe:'+FPManager.lastMonthWithOtherData+';'+lastMonth+'&displayProperty=NAME').success(function(data){
+                                var orgUnitsCompletenes = [];
+                                angular.forEach(orgUni.organisationUnits,function(orgUnit){
+                                    if(data.metaData.ou.indexOf(orgUnit.id) > -1){
+                                        var value = 0;
+                                        angular.forEach(data.rows,function(v){
+                                            if(v[1] !== $scope.regionUid && v[1] == orgUnit.id && v[2] == FPManager.lastMonthWithOtherData){
+                                                value = v[3];
+                                            }
+                                        });
+                                        (value == 0)?orgUnitsCompletenes.push({name:data.metaData.names[orgUnit.id],value:value}):"";
                                     }
                                 });
-                                orgUnitsCompletenes.push({name:data.metaData.names[orgs],value:value})
-                            });
-                            angular.forEach(data.rows,function(v){
-                                if(v[1] == $scope.regionUid && v[2] == FPManager.lastMonthWithOtherData){
-                                    $scope.thisMonthCompletenes = v[3];
-                                }if(v[1] == $scope.regionUid && v[2] == lastMonth){
-                                    $scope.lastMonthCompletenes = v[3];
+
+                                for(var i=0;i<50;i++){
+                                    if(orgUnitsCompletenes[i]){
+
+                                    }else{
+                                        orgUnitsCompletenes[i] = {value:i}
+                                    }
                                 }
+                                angular.forEach(data.rows,function(v){
+                                    if(v[1] == $scope.regionUid && v[2] == FPManager.lastMonthWithOtherData){
+                                        $scope.thisMonthCompletenes = v[3];
+                                    }if(v[1] == $scope.regionUid && v[2] == lastMonth){
+                                        $scope.lastMonthCompletenes = v[3];
+                                    }
+
+                                });
+                                var orderBy = $filter('orderBy');
+                                $scope.orgUnitsCompletenes1 = $filter('limitTo')(orderBy(orgUnitsCompletenes, 'value', false), 50, 0);
 
                             });
-                            var orderBy = $filter('orderBy');
-                            $scope.orgUnitsCompletenes = $filter('limitTo')(orderBy(orgUnitsCompletenes, 'value', false), 5, 0);
-                            $scope.orgUnitsCompletenes1 = $filter('limitTo')(orderBy(orgUnitsCompletenes, 'value', true), 5, 0);
 
                         });
+
 
 
                         $rootScope.progressMessage = "Fetching data please wait ...";

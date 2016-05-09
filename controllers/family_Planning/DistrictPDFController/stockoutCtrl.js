@@ -392,8 +392,8 @@ angular.module("hmisPortal")
         $scope.getDataFromUrl  = function(arr,ou,pe){
             //console.log(ou+"---"+pe);
             var num = 0; var num1 = 0;
-            if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
+                if (v[0] == ou || v[1] == ou) {
                     if(v[3] == pe){
                         if(v[4] == "1" && v[5] == "1"){
                             num ++;
@@ -402,42 +402,9 @@ angular.module("hmisPortal")
                             num1 ++;
                         }
                     }
-                });
-            }else{
-                if (ou.indexOf(';') > -1) {
-                    var orgArr = ou.split(";");
-                    var i = 0;
-                    $.each(orgArr, function (c, j) {
-                        i++;
-                        $.each(arr, function (k, v) {
-                            if (v[0] == j || v[1] == j) {
-                                if(v[3] == pe){
-                                    if(v[4] == "1" && v[5] == "1"){
-                                        num ++;
-                                    }
-                                    if(v[5] == "1"){
-                                        num1 ++;
-                                    }
-                                }
-                            }
-                        });
-                    });
-                } else {
-                    $.each(arr, function (k, v) {
-                        if (v[0] == ou || v[1] == ou) {
-                            if(v[3] == pe){
-                                if(v[4] == "1" && v[5] == "1"){
-                                    num ++;
-                                }
-                                if(v[5] == "1"){
-                                    num1 ++;
-                                }
-                            }
 
-                        }
-                    });
                 }
-            }
+                });
             return {trainedAndstockOut:num,trained:num1};
         }
 

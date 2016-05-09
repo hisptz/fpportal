@@ -129,14 +129,16 @@
         </table>
 
         <table style="margin: 10px; width: 1060px;margin: 0px;margin-left: 5px">
-            <tr style="border: solid 2px #6498D9" >
-                <td style="font-size: 0.7em;border: solid 1px #6498D9">Highest reporting rate</td>
-                <td  ng-repeat="orgs in orgUnitsCompletenes1" style="font-size: 0.7em;border: solid 1px #6498D9">{{ orgs.name }} ( {{ orgs.value }}% )</td>
+            <tr style="border: solid 2px #6498D9;padding: 0px;height: 45px" >
+                <td  ng-repeat="orgs in orgUnitsCompletenes1 | limitTo : 8 : 0" style="font-size: 0.7em;border: solid 1px #6498D9;padding: 0px;width:12.5%">{{ orgs.name || "-" }}</td>
             </tr>
-            <tr style="border: solid 2px #6498D9" >
-                <td style="font-size: 0.7em;border: solid 1px #6498D9">Lowest reporting rate</td>
-                <td style="font-size: 0.7em;border: solid 1px #6498D9" ng-repeat="orgs in orgUnitsCompletenes">{{ orgs.name }} ( {{ orgs.value }}% )</td>
+            <tr style="border: solid 2px #6498D9;padding: 0px;height: 45px" >
+                <td  ng-repeat="orgs in orgUnitsCompletenes1 | limitTo : 8 : 8" style="font-size: 0.7em;border: solid 1px #6498D9;padding: 0px;width:12.5%">{{ orgs.name || "-" }}</td>
             </tr>
+            <tr style="border: solid 2px #6498D9;padding: 0px;height: 45px" >
+                <td  ng-repeat="orgs in orgUnitsCompletenes1 | limitTo : 8 : 16" style="font-size: 0.7em;border: solid 1px #6498D9;padding: 0px;width:12.5%">{{ orgs.name || "-" }}</td>
+            </tr>
+
         </table>
     </fieldset>
 
