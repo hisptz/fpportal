@@ -289,6 +289,7 @@ angular.module("hmisPortal")
                         //training table
                         //$http.get(portalService.base+'api/sqlViews/AajDPSTPpzr/data.json?var=year:'+FPManager.lastMonthWithData).success(function(facilities){
                         render.addRequest();
+                        //$http.get(portalService.base+'api/sqlViews/AajDPSTPpzr/data.json?var=year:'+FPManager.lastMonthWithData).success(function(facilities){
                         $http.get(portalService.base+'api/sqlViews/ahVxVlhDa82/data.json?var=year:'+FPManager.lastMonthWithData).success(function(facilities){
                              var shortActingRegions = {};
                              var iucdRegions = {};

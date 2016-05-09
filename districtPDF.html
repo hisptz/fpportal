@@ -116,8 +116,8 @@
             <tr>
                 <td style="width: 1060px;; margin: 0px; padding-bottom: 0px " >
                     <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        This month the reporting rate in {{ name }} was <b>{{ lastMonthCompletenes }}</b> of facilities, as compared to
-                        <b>{{ thisMonthCompletenes }}</b> last month. The national average this month was <b>{{ nationalAverage }}</b>.
+                        This month the reporting rate in {{ name }} was <b>{{ thisMonthCompletenes }}</b> of facilities, as compared to
+                        <b>{{ lastMonthCompletenes }}</b> last month. The national average this month was <b>{{ nationalAverage }}</b>.
                         The table below lists the 5 facilities in {{ name }} with lowest and highest reporting rates .<br>
                         <b>ACTION:</b> provide positive feedback to best performing districts and support to low performing districts..
                     </h6>
@@ -128,11 +128,11 @@
         <table style="margin: 10px; width: 1060px;margin: 0px;margin-left: 5px">
             <tr style="border: solid 2px #6498D9" >
                 <td style="font-size: 0.7em;border: solid 1px #6498D9">Highest reporting rate</td>
-                <td  ng-repeat="orgs in orgUnitsCompletenes" style="font-size: 0.7em;border: solid 1px #6498D9">{{ orgs.name }} ( {{ orgs.value }}% )</td>
+                <td  ng-repeat="orgs in orgUnitsCompletenes1" style="font-size: 0.7em;border: solid 1px #6498D9">{{ orgs.name }} ( {{ orgs.value }}% )</td>
             </tr>
             <tr style="border: solid 2px #6498D9" >
                 <td style="font-size: 0.7em;border: solid 1px #6498D9">Lowest reporting rate</td>
-                <td style="font-size: 0.7em;border: solid 1px #6498D9" ng-repeat="orgs in orgUnitsCompletenes1">{{ orgs.name }} ( {{ orgs.value }}% )</td>
+                <td style="font-size: 0.7em;border: solid 1px #6498D9" ng-repeat="orgs in orgUnitsCompletenes">{{ orgs.name }} ( {{ orgs.value }}% )</td>
             </tr>
         </table>
     </fieldset>

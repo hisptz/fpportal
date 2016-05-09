@@ -246,7 +246,7 @@ angular.module("hmisPortal")
                             itemMarginTop: 10,
                             itemMarginBottom: 10
                         };
-                        var orgUnits = [{name:'District'},{name:'Hospital'},{name:'Health Center'},{name:'Dispensary'}];
+                        var orgUnits = [{name:'Facilities'}];
                         var periods = $scope.prepareCategory('month');
 
                         angular.forEach(periods, function (val) {
@@ -259,7 +259,7 @@ angular.module("hmisPortal")
                         $http.get(portalService.base + 'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function (data) {
                             //stockout list table
                             //$http.get(portalService.base+'api/sqlViews/yE42I0DBMVt/data.json?var=type:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(facilities){
-                            $http.get(portalService.base+'api/analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=ou:LEVEL-4;zHa2ohFrpPM&filter=pe:'+FPManager.lastMonthWithOtherData+'&displayProperty=NAME').success(function(facilities){
+                            $http.get(portalService.base+'api/analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=ou:LEVEL-4;'+$scope.regionUid+'&filter=pe:'+FPManager.lastMonthWithOtherData+'&displayProperty=NAME').success(function(facilities){
                                 $scope.AllstockOutData = [];
                                 $scope.PillstockOutData = [];
                                 $scope.InjectablestockOutData = [];
@@ -288,26 +288,26 @@ angular.module("hmisPortal")
 
 
                                 //$http.get(portalService.base+'api/sqlViews/yE42I0DBMVt/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(healthCenter){
-                                $http.get(portalService.base+'api/sqlViews/h7KbQnXjcmz/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(healthCenter){
-                                    $http.get(portalService.base+'api/sqlViews/h7KbQnXjcmz/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(hosptal){
-                                        $http.get(portalService.base+'api/sqlViews/h7KbQnXjcmz/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(dispensary){
+                                //$http.get(portalService.base+'api/sqlViews/h7KbQnXjcmz/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(healthCenter){
+                                //    $http.get(portalService.base+'api/sqlViews/h7KbQnXjcmz/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(hosptal){
+                                //        $http.get(portalService.base+'api/sqlViews/h7KbQnXjcmz/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(dispensary){
                                             $http.get(portalService.base+'api/sqlViews/Fvxf4sjmWxC/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1) {
                                                 $rootScope.showProgressMessage = false;
                                                 angular.forEach(orgUnits, function (yAxis) {
                                                     var serie = [];
                                                     angular.forEach(periods, function (xAxis) {
-                                                        if (yAxis.name == "District") {
+                                                        if (yAxis.name == "Facilities") {
                                                             serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits, $scope.regionUid, val1.rows, xAxis.id)));
                                                         }
-                                                        if (yAxis.name == "Hospital") {
-                                                            serie.push(parseFloat($scope.getNumberPerOu2(data.organisationUnits, $scope.regionUid, hosptal.rows, xAxis.id,'Hospital' )));
-                                                        }
-                                                        if (yAxis.name == "Health Center") {
-                                                            serie.push(parseFloat($scope.getNumberPerOu2(data.organisationUnits, $scope.regionUid, healthCenter.rows, xAxis.id,'Health Cente' )));
-                                                        }
-                                                        if (yAxis.name == "Dispensary") {
-                                                            serie.push(parseFloat($scope.getNumberPerOu2(data.organisationUnits, $scope.regionUid, dispensary.rows, xAxis.id,'Dispensary' )));
-                                                        }
+                                                        //if (yAxis.name == "Hospital") {
+                                                        //    serie.push(parseFloat($scope.getNumberPerOu2(data.organisationUnits, $scope.regionUid, hosptal.rows, xAxis.id,'Hospital' )));
+                                                        //}
+                                                        //if (yAxis.name == "Health Center") {
+                                                        //    serie.push(parseFloat($scope.getNumberPerOu2(data.organisationUnits, $scope.regionUid, healthCenter.rows, xAxis.id,'Health Cente' )));
+                                                        //}
+                                                        //if (yAxis.name == "Dispensary") {
+                                                        //    serie.push(parseFloat($scope.getNumberPerOu2(data.organisationUnits, $scope.regionUid, dispensary.rows, xAxis.id,'Dispensary' )));
+                                                        //}
                                                     });
                                                     chartObject.series.push({
                                                         type: 'spline',
@@ -320,9 +320,9 @@ angular.module("hmisPortal")
                                                 $scope.chartObject = chartObject;
                                                 $scope.csvdata = portalService.prepareDataForCSV(chartObject);
                                             });
-                                    });
-                                });
-                            });
+                                    //});
+                                //});
+                            //});
                         });
                     });
                 });

@@ -85,11 +85,15 @@ angular.module("hmisPortal")
             $scope.firstClick();
         };
 
+
         $scope.selectedMethod = 'all';
-        $scope.selectedPeriod = '2014';
+        $scope.selectedPeriod = '2015';
+        $scope.selectedMonth = FPManager.lastMonthWithData;
         $scope.data.chartType = 'column';
         $scope.displayTable = false;
         $scope.currentOrgUnit = "m0frOspS7JY";
+        $scope.currentMonthperiod = FPManager.getMonthYear($scope.selectedPeriod);
+
         $scope.changeChart = function(type,card){
             card.displayTable = false;
 
