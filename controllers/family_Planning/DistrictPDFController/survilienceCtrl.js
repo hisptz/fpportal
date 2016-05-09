@@ -142,20 +142,24 @@ angular.module("hmisPortal")
                             var HTCfacilitieParcent = [];
                             angular.forEach(data.metaData.ou,function(orgunit){
                                 if(orgunit !== $scope.regionUid){
-                                    CPACfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent')+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent')});
-                                    HTCfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent')+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent')});
+                                    if($scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent').available){
+                                        CPACfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent').amount+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent').amount});
+                                    }
+                                    if($scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent').available){
+                                        HTCfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent').amount+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent').amount});
+                                    }
                                 }
                             });
 
                             $scope.CPACfacilitieParcent = $filter('limitTo')(orderBy(CPACfacilitieParcent, 'value', false), 6, 0);
                             $scope.HTCfacilitieParcent = $filter('limitTo')(orderBy(HTCfacilitieParcent, 'value', false), 6, 0);
 
-                            var orgUnits2 = [{'name':'% Clients Adopting FP following cPAC'},{'name':'% FP clients adopting HTC'}];
+                            var orgUnits2 = [{'name':'% Clients Adopting FP following abortion or miscarriage'},{'name':'% FP clients adopting HTC'}];
                             var periods = $scope.prepareCategory('month')
                             $rootScope.showProgressMessage = false;
 
 
-                            chartObject.title.text =region.name +" Service integration jan 2014 to Dec 2014";
+                            chartObject.title.text =region.name +" Service integration "+FPManager.lastTwelveMonthName;
                             chartObject.legend = {
                                 layout: 'vertical',
                                 itemMarginTop: 10,
@@ -229,13 +233,15 @@ angular.module("hmisPortal")
         };
         $scope.findValue1 = function(arr,ou,pe,dx,numerator,denominator,type){
             var amount = 0;
+            var checkAvailabity = false;
             $.each(arr,function(k,v){
                 if(v[0] == dx && v[1] == ou && v[2] == pe){
+                    checkAvailabity = true;
                     amount = v[3];
                 }
             });
 
-            return amount;
+            return {amount:amount,available:checkAvailabity};
         };
 
         $scope.selectedMethod = 'all';

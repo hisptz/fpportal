@@ -257,16 +257,12 @@ angular.module("hmisPortal")
                             $scope.titleToUse = $scope.data.outMethods[0].name;
                             cardObject.chartObject.title.text = cardObject.title+' - '+ $scope.titleToUse;
                                 xAxisItems = $scope.prepareCategory('zones');
-                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('methods');
-                            console.log("yaxis items are :"+yAxisItems);
                         }else{
                             $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
                             cardObject.chartObject.title.text = cardObject.title+' - '+ $scope.titleToUse;
                             xAxisItems = $scope.prepareCategory('methods');
-                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('zones');
-                            console.log("yaxis items are :"+yAxisItems);
                         }
                         /////////////////////////// second chart ////////////////////////////////
                         cardObject.chartObject.xAxis.categories = [];

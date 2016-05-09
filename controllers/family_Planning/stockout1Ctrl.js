@@ -163,7 +163,6 @@ angular.module("hmisPortal")
 
         $scope.getNumberPerOu = function(ou,arr2,pe){
             var num = $scope.getDataFromUrl(arr2,ou,pe);
-            console.log(JSON.stringify(num) +"---"+pe);
             var percent = (num.trained == 0)?0:(num.trainedAndstockOut/num.trained)*100;
             return percent.toFixed(2);
         };
@@ -193,7 +192,7 @@ angular.module("hmisPortal")
 
                     var chartObject = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables";
+                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables "+FPManager.lastTwelveMonthName;
                     chartObject.yAxis.title.text ="% of Facilities";
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = $scope.prepareCategory('month');

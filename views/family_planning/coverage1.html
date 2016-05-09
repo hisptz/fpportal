@@ -12,22 +12,21 @@
             <div class="col s5"><label>Geography</label></div>
             <div class="col s3"><label>Methods</label></div>
             <div class="col s2">&nbsp;</div>
-            <div class="input-field col s1 grey lighten-5">
+            <div class="input-field col s2 grey lighten-5">
                 <select class="" ng-model="selectedPeriod" material-select watch>
-                    <option value="2015">2015</option>
-                    <option value="2014">2014</option>
+                    <option value="2015">Dec 2015</option>
                     <!--<option value="2015">2015</option>-->
                 </select>
                 <!--<label>Period</label>-->
             </div>
-            <div class="input-field col s1 grey lighten-5">
+            <!--<div class="input-field col s1 grey lighten-5">-->
                 <!--<select class="" ng-model="selectedMonth"  material-select watch >-->
                     <!--<option value="{{ months.iso }}" >{{ months.name }}</option>-->
                 <!--</select>-->
-                <select class="" ng-model="selectedMonth" material-select watch>
-                    <option ng-repeat="months in currentMonthperiod" value="{{ months.uid }}">{{ months.name }}</option>
-                </select>
-            </div>
+                <!--<select class="" ng-model="selectedMonth" material-select watch>-->
+                    <!--<option ng-repeat="months in currentMonthperiod" value="{{ months.uid }}">{{ months.name }}</option>-->
+                <!--</select>-->
+            <!--</div>-->
             <div class="input-field col s5 grey lighten-5">
                 <multi-select-tree
                         data-input-model="data.orgUnitTree"

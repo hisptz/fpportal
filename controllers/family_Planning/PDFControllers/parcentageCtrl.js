@@ -266,7 +266,7 @@ angular.module("hmisPortal")
                                 chartObject1.series.push({type: 'spline', name: yAxis.name, data: serie})
                             });
                             $('#facilityParcent').highcharts(chartObject1);
-                            $scope.chartObject1 = chartObject1
+                            $scope.chartObject1 = chartObject1;
                             $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
                             $scope.pchart1 = chartObject1;
                         });

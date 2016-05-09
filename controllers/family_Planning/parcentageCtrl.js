@@ -199,10 +199,7 @@ angular.module("hmisPortal")
 
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
             var percent = (num/count)*100;
-            if(type == 'Dispensary'){
-                console.log(count);
-                console.log((num/count)*100);
-            }
+
             return percent.toFixed(2);
         };
 
@@ -225,7 +222,6 @@ angular.module("hmisPortal")
                             DispensaryCount++;
 
                 }else{
-                    console.log(value.name+"  "+JSON.stringify(value.organisationUnitGroups))
                     OtherCount++
                 }
             });
@@ -362,7 +358,6 @@ angular.module("hmisPortal")
                                 angular.forEach(orgUnits, function (yAxis) {
                                     var serie = [];
                                     angular.forEach(periods, function (xAxis) {
-                                        console.log(parseFloat($scope.getNumberPerOu1(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Dispensary',$scope.data.outMethods[0].name)));
                                         serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,yAxis.id,val1.rows,xAxis.id,'Dispensary',$scope.data.outMethods[0].name)));
                                     });
                                     chartObject2.series.push({type: 'spline', name: yAxis.name, data: serie})

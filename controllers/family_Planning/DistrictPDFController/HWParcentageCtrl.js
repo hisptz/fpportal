@@ -240,8 +240,8 @@ angular.module("hmisPortal")
             });
             $.each(hcenter, function (k, v) {
                 if (v[0] == $scope.regionUid || v[1] == $scope.regionUid) {
-                    if(v[index] == "" && v[checkIndex] == "1"){
-                        if(arr.indexOf(v[4]) == -1){
+                    if (v[index] == "" && v[checkIndex] == "1") {
+                        if (arr.indexOf(v[4]) == -1) {
                             arr.push(v[4])
                         }
 
@@ -316,68 +316,81 @@ angular.module("hmisPortal")
 
                         //define xaxis
                         chart1.xAxis.categories.push('NSV');
+                        chart1.credits= { enabled: false  };
                         chart2.xAxis.categories.push('Min Lap');
+                        chart2.credits= { enabled: false  };
                         chart3.xAxis.categories.push('Short Acting Methods');
+                        chart3.credits= { enabled: false  };
                         chart4.xAxis.categories.push('IUCD');
+                        chart4.credits= { enabled: false  };
                         chart5.xAxis.categories.push('Implants');
 
                         chartObject.loading = true;
                         $rootScope.progressMessage = "Fetching data please wait ...";
                         $rootScope.showProgressMessage = true;
 
-                        //charts local uid = KIuvtXj2Dt2
-                        $http.get(portalService.base+'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Hospital&var=month:'+FPManager.lastMonthWithOtherData ).success(function(hosptal){
-                            $http.get(portalService.base+'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Health Center&var=month:'+FPManager.lastMonthWithOtherData ).success(function(hcenter){
-                                $http.get(portalService.base+'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Dispensary&var=month:'+FPManager.lastMonthWithOtherData ).success(function(dispensary){
+                        //charts local uid = KIuvtXj2Dt2, online uid = Aj6aLkjr7dk
+                       // $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name]').success(function(data) {
 
-                                    $scope.nsvData = $scope.getFacilityForMethod('NSV',hosptal.rows,hcenter.rows,dispensary.rows);
-                                    $scope.miniLapData = $scope.getFacilityForMethod('Mini Lap',hosptal.rows,hcenter.rows,dispensary.rows);
-                                    $scope.iucdData = $scope.getFacilityForMethod('IUCDs',hosptal.rows,hcenter.rows,dispensary.rows);
-                                    $scope.implantData = $scope.getFacilityForMethod('Implants',hosptal.rows,hcenter.rows,dispensary.rows);
-                                    $scope.shortActingData = $scope.getFacilityForMethod('Short Acting',hosptal.rows,hcenter.rows,dispensary.rows);
+                            $http.get(portalService.base + 'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Hospital&var=month:' + FPManager.lastMonthWithOtherData).success(function (hosptal) {
+                                $http.get(portalService.base + 'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Health Center&var=month:' + FPManager.lastMonthWithOtherData).success(function (hcenter) {
+                                    $http.get(portalService.base + 'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Dispensary&var=month:' + FPManager.lastMonthWithOtherData).success(function (dispensary) {
 
-                                    angular.forEach(orgUnits, function (xAxis) {
+                                        $scope.nsvData = $scope.getFacilityForMethod('NSV', hosptal.rows, hcenter.rows, dispensary.rows);
+                                        $scope.miniLapData = $scope.getFacilityForMethod('Mini Lap', hosptal.rows, hcenter.rows, dispensary.rows);
+                                        $scope.iucdData = $scope.getFacilityForMethod('IUCDs', hosptal.rows, hcenter.rows, dispensary.rows);
+                                        $scope.implantData = $scope.getFacilityForMethod('Implants', hosptal.rows, hcenter.rows, dispensary.rows);
+                                        $scope.shortActingData = $scope.getFacilityForMethod('Short Acting', hosptal.rows, hcenter.rows, dispensary.rows);
+
+                                        angular.forEach(orgUnits, function (xAxis) {
 
 
-                                        var serie1 = [];serie2 = [];serie3 = [];serie4 = [];serie5 = [];
-                                        if(xAxis.name == "Hospital"){
-                                            serie1.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'NSV')));
-                                            serie2.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
-                                            serie3.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
-                                            serie4.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
-                                            serie5.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Implants')));
-                                        }if(xAxis.name == "Health Center"){
-                                            serie1.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'NSV')));
-                                            serie2.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
-                                            serie3.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
-                                            serie4.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
-                                            serie5.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Implants')));
-                                        }if(xAxis.name == "Dispensary"){
-                                            serie1.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'NSV')));
-                                            serie2.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
-                                            serie3.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
-                                            serie4.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
-                                            serie5.push(parseFloat($scope.getNumberPerOu1( $scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Implants')));
-                                        }
-                                        chart1.series.push({type: 'column', name: xAxis.name, data: serie1});
-                                        chart2.series.push({type: 'column', name: xAxis.name, data: serie2});
-                                        chart3.series.push({type: 'column', name: xAxis.name, data: serie3});
-                                        chart4.series.push({type: 'column', name: xAxis.name, data: serie4});
-                                        chart5.series.push({type: 'column', name: xAxis.name, data: serie5});
+                                            var serie1 = [];
+                                            serie2 = [];
+                                            serie3 = [];
+                                            serie4 = [];
+                                            serie5 = [];
+                                            if (xAxis.name == "Hospital") {
+                                                serie1.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'NSV')));
+                                                serie2.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
+                                                serie3.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
+                                                serie4.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
+                                                serie5.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hosptal.rows, $scope.regionUid, xAxis.name, 'Implants')));
+                                            }
+                                            if (xAxis.name == "Health Center") {
+                                                serie1.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'NSV')));
+                                                serie2.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
+                                                serie3.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
+                                                serie4.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
+                                                serie5.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, hcenter.rows, $scope.regionUid, xAxis.name, 'Implants')));
+                                            }
+                                            if (xAxis.name == "Dispensary") {
+                                                serie1.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'NSV')));
+                                                serie2.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Mini Lap')));
+                                                serie3.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Short Acting')));
+                                                serie4.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'IUCDs')));
+                                                serie5.push(parseFloat($scope.getNumberPerOu1($scope.regionUid, dispensary.rows, $scope.regionUid, xAxis.name, 'Implants')));
+                                            }
+                                            chart1.series.push({type: 'column', name: xAxis.name, data: serie1});
+                                            chart2.series.push({type: 'column', name: xAxis.name, data: serie2});
+                                            chart3.series.push({type: 'column', name: xAxis.name, data: serie3});
+                                            chart4.series.push({type: 'column', name: xAxis.name, data: serie4});
+                                            chart5.series.push({type: 'column', name: xAxis.name, data: serie5});
+                                        });
+                                        $('#parChar1').highcharts(chart1);
+                                        $('#parChar2').highcharts(chart2);
+                                        $('#parChar3').highcharts(chart3);
+                                        $('#parChar4').highcharts(chart4);
+                                        $('#parChar5').highcharts(chart5);
+                                        $scope.csvdata = portalService.prepareDataForCSV(chartObject);
+                                        $scope.pchart = chartObject;
                                     });
-                                    $('#parChar1').highcharts(chart1);
-                                    $('#parChar2').highcharts(chart2);
-                                    $('#parChar3').highcharts(chart3);
-                                    $('#parChar4').highcharts(chart4);
-                                    $('#parChar5').highcharts(chart5);
-                                    $scope.csvdata = portalService.prepareDataForCSV(chartObject);
-                                    $scope.pchart = chartObject;
                                 });
-                            });
 
+                            });
                         });
-                    });
-                });
+                        });
+                //});
             }
 
         };
@@ -565,7 +578,6 @@ angular.module("hmisPortal")
             var num = 0;
                 $.each(arr, function (k, v) {
                     if (v[0] == ou || v[2] == ou) {
-                        console.log(ou)
                         if(v[index] !== ""){
                             num += parseInt(v[index]);
                         }

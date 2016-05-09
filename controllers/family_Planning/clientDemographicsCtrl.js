@@ -16,6 +16,14 @@ angular.module("hmisPortal")
 
         };
 
+        $scope.selectOnly1Or2 = function(item, selectedItems) {
+            if (selectedItems  !== undefined && selectedItems.length >= 7) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+
         $scope.geographicalZones = FPManager.zones;
         $scope.updateTree1 = function(){
             $scope.data.orgUnitTree3 = [];
@@ -57,7 +65,6 @@ angular.module("hmisPortal")
                     id: "vAvEltyXGbD"
                 } ]
             }
-            console.log(userPayload);
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                 j_username: "portal", j_password: "Portal123"
             },function() {
@@ -218,7 +225,6 @@ angular.module("hmisPortal")
                     method += value.name+", ";
                 });
             }
-            console.log(method);
             return method;
 
         };
@@ -401,14 +407,11 @@ angular.module("hmisPortal")
                                     angular.forEach(cats, function (val) {
                                         var serie = [];
                                         angular.forEach(subcats, function (value) {
-                                            console.log('subcats:');console.log(subcats);
                                             if (val == "Routine") {
                                                 var number = parseInt($scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', value.facility));
-                                                console.log("rows "+value.facility)
                                             }
                                             if (val == "Outreach") {
                                                 var number =  parseInt($scope.getDataFromUrl(data.rows, orgUnits[0].id, 'methods', value.outreach));
-                                                console.log("Outreach number "+value.outreach)
                                             }
                                             serie.push(number);
                                         });
@@ -422,13 +425,11 @@ angular.module("hmisPortal")
                             //if the single method has been selected
                             else if($scope.data.outMethods.length == 1){
                                 var orgunits = $scope.prepareCategory('zones');
-                                console.log(orgunits);
                                 var singleMethod = $scope.prepareCategory('routineOutreachMethod');
                                 cardObject.chartObject.xAxis.categories = [];
                                 angular.forEach(orgunits, function (value) {
                                     cardObject.chartObject.xAxis.categories.push(value.name);
                                 });
-                                console.log(cardObject.chartObject.xAxis);
                                 $scope.normalseries2 = [];
 
                                     delete cardObject.chartObject.chart;
@@ -466,14 +467,10 @@ angular.module("hmisPortal")
                         var methodId = [];
                         if($scope.data.outMethods.length == 1){
                             xAxisItems = $scope.prepareCategory('zones');
-                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('month');
-                            console.log("yaxis items are :"+yAxisItems);
                         }else{
                             xAxisItems = $scope.prepareCategory('methods');
-                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('month');
-                            console.log("yaxis items are :"+yAxisItems);
                         }
                         cardObject.chartObject.xAxis.categories = [];
                         angular.forEach(yAxisItems, function (value) {
