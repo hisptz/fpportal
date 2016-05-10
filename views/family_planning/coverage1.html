@@ -13,12 +13,20 @@
             <div class="col s3"><label>Methods</label></div>
             <div class="col s2">&nbsp;</div>
             <div class="input-field col s2 grey lighten-5">
-                <select ng-model="selectedPeriod" ng-change="$root.firstClick1()">
-                    <option value="2014"></option>
+                <select class="" ng-model="selectedPeriod" material-select watch>
+                    <option value="2015">Dec 2015</option>
                     <!--<option value="2015">2015</option>-->
                 </select>
                 <!--<label>Period</label>-->
             </div>
+            <!--<div class="input-field col s1 grey lighten-5">-->
+                <!--<select class="" ng-model="selectedMonth"  material-select watch >-->
+                    <!--<option value="{{ months.iso }}" >{{ months.name }}</option>-->
+                <!--</select>-->
+                <!--<select class="" ng-model="selectedMonth" material-select watch>-->
+                    <!--<option ng-repeat="months in currentMonthperiod" value="{{ months.uid }}">{{ months.name }}</option>-->
+                <!--</select>-->
+            <!--</div>-->
             <div class="input-field col s5 grey lighten-5">
                 <multi-select-tree
                         data-input-model="data.orgUnitTree"
@@ -37,21 +45,6 @@
                         data-default-label="Select Method"
                         data-callback="selectOnly1Or3(item, selectedItems)">
                 </multi-select-tree>
-                <!--<select ng-model="selectedMethod" ng-change="changeMethod()" material-select watch>-->
-                <!--<option value="all">All Methods</option>-->
-                <!--<option value="JMmqv0tyVr7">Male Condoms</option>-->
-                <!--<option value="Nt8M08bJKXl">Female Condoms</option>-->
-                <!--<option value="IFxhP0O4k0W">Oral Pills</option>-->
-                <!--<option value="epPM7fO8CnH">Injectables</option>-->
-                <!--<option value="pqpVKzE951Y">Implants</option>-->
-                <!--<option value="OQpasUg1Tse">IUCDs</option>-->
-                <!--<option value="btKkJROB2gP">NSV</option>-->
-                <!--<option value="mlfh4fgiFhd">Mini Lap</option>-->
-                <!--<option value="GGpsoh0DX6T">Natural FP</option>-->
-
-                <!--&lt;!&ndash;<option value="2015">2015</option>&ndash;&gt;-->
-                <!--</select>-->
-                <!--<label>Methods</label>-->
             </div>
 
             <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="firstClick()">Update</div>
@@ -59,18 +52,6 @@
     </div>
 </div>
 
-
-<script>
-    var orgUnits=[{"id":"YtVMnut7Foe","name":"Arusha Region"},{"id":"acZHYslyJLt","name":"Dar Es Salaam Region"},{"id":"Cpd5l15XxwA","name":"Dodoma Region"},{"id":"MAL4cfZoFhJ","name":"Geita Region"},{"id":"sWOWPBvwNY2","name":"Iringa Region"},{"id":"Crkg9BoUo5w","name":"Kagera Region"},{"id":"DWSo42hunXH","name":"Katavi Region"},{"id":"RD96nI1JXVV","name":"Kigoma Region"},{"id":"lnOyHhoLzre","name":"Kilimanjaro Region"},{"id":"VMgrQWSVIYn","name":"Lindi Region"},{"id":"qg5ySBw9X5l","name":"Manyara Region"},{"id":"vYT08q7Wo33","name":"Mara Region"},{"id":"A3b5mw8DJYC","name":"Mbeya Region"},{"id":"Sj50oz9EHvD","name":"Morogoro Region"},{"id":"bN5q5k5DgLA","name":"Mtwara Region"},{"id":"hAFRrgDK0fy","name":"Mwanza Region"},{"id":"qarQhOt2OEh","name":"Njombe Region"},{"id":"yyW17iCz9As","name":"Pwani Region"},{"id":"vAtZ8a924Lx","name":"Rukwa Region"},{"id":"ZYYX8Q9SGoV","name":"Ruvuma Region"},{"id":"EO3Ps3ny0Nr","name":"Shinyanga Region"},{"id":"IgTAEKMqKRe","name":"Simiyu Region"},{"id":"LGTVRhKSn1V","name":"Singida Region"},{"id":"kZ6RlMnt2bp","name":"Tabora Region"},{"id":"vU0Qt1A5IDz","name":"Tanga Region"}];
-    var dropdown = "<select class='changeOrgUnit' ng-model='$root.selectedOrgUnit'  ng-change='$root.firstClick1()'>"
-    dropdown += "<option value='m0frOspS7JY'>MOH Tanzania</option>"
-    $.each(orgUnits,function(key,orgUnit){
-        dropdown += "<option value='"+orgUnit.id+"'> "+orgUnit.name+"</option>";
-    });
-    dropdown += "</select>";
-    $(".orgDropdown").html(dropdown);
-    $('select').material_select();
-</script>
 
 <div class="row" >
     <div ng-include="'views/family_planning/fp_menu.html'"></div>

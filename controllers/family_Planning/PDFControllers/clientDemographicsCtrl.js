@@ -25,7 +25,6 @@ angular.module("hmisPortal")
         $scope.geoToUse = [];
         $scope.zones = "";
         angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
-//            console.log(value.name)
             $scope.zones += value.id+";";
             $scope.geoToUse.push({name:value.name,id:value.id, ticked: true });
         });
@@ -220,7 +219,6 @@ angular.module("hmisPortal")
                     method += value.name+", ";
                 });
             }
-            console.log(method);
             return method;
 
         };
@@ -366,14 +364,10 @@ angular.module("hmisPortal")
                         var methodId = [];
                         if($scope.data.menuMethods.length == 1){
                             xAxisItems = [{'name':"MOH Tanzania",'id':'m0frOspS7JY'}];
-                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('month');
-                            console.log("yaxis items are :"+yAxisItems);
                         }else{
                             xAxisItems = $scope.prepareCategory('methods');
-                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('month');
-                            console.log("yaxis items are :"+yAxisItems);
                         }
                         cardObject.chartObject.xAxis.categories = [];
                         angular.forEach(yAxisItems, function (value) {
@@ -381,7 +375,6 @@ angular.module("hmisPortal")
                         });
                         $scope.normalseries1 = [];
                         delete cardObject.chartObject.chart;
-                        console.log(xAxisItems)
                         angular.forEach(xAxisItems, function (val) {
                             var serie = [];
                             angular.forEach(yAxisItems, function (value) {

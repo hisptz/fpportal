@@ -202,7 +202,6 @@ angular.module("hmisPortal")
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
 
             var percent = (num.trained == 0)?0:(parseInt(num.trainedAndprovide)/parseInt(num.trained))*100;
-            console.log(percent);
             return percent.toFixed(2);
         };
 
@@ -273,9 +272,9 @@ angular.module("hmisPortal")
                             periods.push({name:value.name,id:value.id})
                         });
                     }
-                    chartObject.title.text ="Percent Hospitals with a Health Worker Trained in and Providing - "+$scope.titleToUse;
-                    chartObject1.title.text ="Percent of Health Centres  with Health Workers Trained in and Providing - "+$scope.titleToUse;
-                    chartObject2.title.text ="Percent Dispensaries with a Health Worker Trained in and Providing - "+$scope.titleToUse;
+                    chartObject.title.text ="Percent Hospitals with a Health Worker Trained in and Providing - "+$scope.titleToUse +" "+FPManager.lastMonthWithOtherDataName;
+                    chartObject1.title.text ="Percent of Health Centres  with Health Workers Trained in and Providing - "+$scope.titleToUse +" "+FPManager.lastMonthWithOtherDataName;
+                    chartObject2.title.text ="Percent Dispensaries with a Health Worker Trained in and Providing - "+$scope.titleToUse +" "+FPManager.lastMonthWithOtherDataName;
                     angular.forEach(periods, function (val) {
                         chartObject.xAxis.categories.push(val.name);
                         chartObject.xAxis.labels.style = { visibility: 'hidden' };

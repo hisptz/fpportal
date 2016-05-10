@@ -5,7 +5,10 @@ FPServices.factory('FPManager',function($http,$q){
         lastMonthWithData :'201512',
         lastMonthWithDataName :'Dec 2015',
         lastMonthWithOtherData :'201412',
+        lastMonthWithOtherDataName :'Dec 2014',
         lastTwelveMonthName :'Jan 2014 to Dec 2014',
+
+
         defaultChartObject: {
             chart: {
                 type: 'column'
@@ -69,6 +72,25 @@ FPServices.factory('FPManager',function($http,$q){
             },
             series: []
         },
+
+        getMonthYear: function(year){
+          return[
+              {uid: year+''+'01',name:'Jan '+year},
+              {uid: year+''+'02',name:'Feb '+year},
+              {uid: year+''+'03',name:'Mar '+year},
+              {uid: year+''+'04',name:'Apr '+year},
+              {uid: year+''+'05',name:'May '+year},
+              {uid: year+''+'06',name:'Jun '+year},
+              {uid: year+''+'07',name:'Jul '+year},
+              {uid: year+''+'08',name:'Aug '+year},
+              {uid: year+''+'09',name:'Sep '+year},
+              {uid: year+''+'10',name:'Oct '+year},
+              {uid: year+''+'11',name:'Nov '+year},
+              {uid: year+''+' 12',name:'Dec '+year}
+          ]
+
+        },
+
         //determine the position of metadata using prefix [dx,de,co,pe,ou]
         getTitleIndex: function(analyticsObjectHeaders,name){
             var index = 0;

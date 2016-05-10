@@ -38,11 +38,11 @@
                     </div>
                 </td>
                 <td style="width: 30%; vertical-align: top">
-                    <h6 class="text-info" style="margin-top: 0px; padding: 8px; color:#6498D9;border: 1px solid deepskyblue; line-height: 30px">
+                    <p class="text-info" style="margin-top: 0px; padding: 8px; color:#6498D9;border: 1px solid deepskyblue; line-height: 30px">
                         Note: for more information  on other FP methods not displayed here, (permanent methods and male and female condoms)
                         refer to the FP Dashboard.
                         <br><br><b>ACTION:</b>  Monitor FP clients  trends over time;  investigate any unexplained sharp decreases.
-                    </h6>
+                    </p>
                 </td>
             </tr>
         </table>
@@ -95,16 +95,16 @@
         <table>
             <tr>
                 <td style="width: 50%">
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                         <b>ACTION:</b> This trend should be decreasing. Monitor the trend and
                         use the FP Dashboard to investigate any unexplained increases.
-                    </h6>
+                    </p>
                 </td>
                 <td style="width: 50%">
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                         <b>ACTION:</b>Investigate districts with high stock out rates, check
                         distribution and stock provision
-                    </h6>
+                    </p>
                 </td>
             </tr>
         </table>
@@ -118,25 +118,27 @@
         <table>
             <tr>
                 <td style="width: 1060px;; margin: 0px; padding-bottom: 0px " >
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        This month the reporting rate in {{ name }} was <b>{{ lastMonthCompletenes }}</b> of facilities, as compared to
-                        <b>{{ thisMonthCompletenes }}</b> last month. The national average this month was <b>{{ nationalAverage }}</b>.
+                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        This month the reporting rate in {{ name }} was <b>{{ thisMonthCompletenes }}</b> of facilities, as compared to
+                        <b>{{ lastMonthCompletenes }}</b> last month. The national average this month was <b>{{ nationalAverage }}</b>.
                         The table below lists the 5 facilities in {{ name }} with lowest and highest reporting rates .<br>
                         <b>ACTION:</b> provide positive feedback to best performing districts and support to low performing districts..
-                    </h6>
+                    </p>
                 </td>
             </tr>
         </table>
 
         <table style="margin: 10px; width: 1060px;margin: 0px;margin-left: 5px">
-            <tr style="border: solid 2px #6498D9" >
-                <td style="font-size: 0.7em;border: solid 1px #6498D9">Highest reporting rate</td>
-                <td  ng-repeat="orgs in orgUnitsCompletenes" style="font-size: 0.7em;border: solid 1px #6498D9">{{ orgs.name }} ( {{ orgs.value }}% )</td>
+            <tr style="border: solid 2px #6498D9;padding: 0px;height: 45px" >
+                <td  ng-repeat="orgs in orgUnitsCompletenes1 | limitTo : 8 : 0" style="font-size: 0.7em;border: solid 1px #6498D9;padding: 0px;width:12.5%">{{ orgs.name || "-" }}</td>
             </tr>
-            <tr style="border: solid 2px #6498D9" >
-                <td style="font-size: 0.7em;border: solid 1px #6498D9">Lowest reporting rate</td>
-                <td style="font-size: 0.7em;border: solid 1px #6498D9" ng-repeat="orgs in orgUnitsCompletenes1">{{ orgs.name }} ( {{ orgs.value }}% )</td>
+            <tr style="border: solid 2px #6498D9;padding: 0px;height: 45px" >
+                <td  ng-repeat="orgs in orgUnitsCompletenes1 | limitTo : 8 : 8" style="font-size: 0.7em;border: solid 1px #6498D9;padding: 0px;width:12.5%">{{ orgs.name || "-" }}</td>
             </tr>
+            <tr style="border: solid 2px #6498D9;padding: 0px;height: 45px" >
+                <td  ng-repeat="orgs in orgUnitsCompletenes1 | limitTo : 8 : 16" style="font-size: 0.7em;border: solid 1px #6498D9;padding: 0px;width:12.5%">{{ orgs.name || "-" }}</td>
+            </tr>
+
         </table>
     </fieldset>
 
@@ -166,18 +168,18 @@
         <table>
             <tr>
                 <td style="width: 1060px;; margin-top: 5px; " >
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                          Note: the graphs above show the percentage of facilities that should be providing each method of FP services (because they have at least one HW
                         trained HW in that method) but are NOT providing.
                         <br><b>ACTION:</b> This number should be very low. Identify FP methods where the number is high and use FP dashboard and Train Tracker to investigate .
-                    </h6>
+                    </p>
                 </td>
             </tr>
         </table>
 
         <table style="margin: 10px; width: 1040px" >
             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                <th colspan="5" style="font-size: 18px; text-align: center">Facilities trained in but not providing FP services in [X District]</th></tr>
+                <th colspan="5" style="font-size: 18px; text-align: center">Facilities trained in but not providing FP services in {{ name }}</th></tr>
             <tr>
                <th>NSV</th>
                <th>Mini Lap</th>
@@ -186,25 +188,39 @@
                <th>Implants</th>
             </tr>
             <tr style="border: solid 1px #6498D9" >
-                <td>{{ nsvData[0] }}</td> <td>{{ miniLapData[0] }}</td><td>{{ shortActingData[0] }}</td> <td>{{ iucdData[0] }}</td><td>{{ implantData[0] }}</td>
+                <td>{{ nsvData[0]  || "-"}}</td> <td>{{ miniLapData[0] || "-" }}</td><td>{{ shortActingData[0] || "-" }}</td> <td>{{ iucdData[0] || "-" }}</td><td>{{ implantData[0] || "-" }}</td>
             </tr>
             <tr style="border: solid 1px #6498D9" >
-                <td>{{ nsvData[1] }}</td> <td>{{ miniLapData[1] }}</td><td>{{ shortActingData[1] }}</td> <td>{{ iucdData[1] }}</td><td>{{ implantData[1] }}</td>
+                <td>{{ nsvData[1]  || "-"}}</td> <td>{{ miniLapData[1] || "-" }}</td><td>{{ shortActingData[1] || "-" }}</td> <td>{{ iucdData[1] || "-" }}</td><td>{{ implantData[1] || "-" }}</td>
             </tr>
             <tr style="border: solid 1px #6498D9" >
-                <td>{{ nsvData[2] }}</td> <td>{{ miniLapData[2] }}</td><td>{{ shortActingData[2] }}</td> <td>{{ iucdData[2] }}</td><td>{{ implantData[2] }}</td>
+                <td>{{ nsvData[2] || "-" }}</td> <td>{{ miniLapData[2] || "-" }}</td><td>{{ shortActingData[2] || "-" }}</td> <td>{{ iucdData[2] || "-" }}</td><td>{{ implantData[2] || "-" }}</td>
             </tr>
             <tr style="border: solid 1px #6498D9" >
-                <td>{{ nsvData[3] }}</td> <td>{{ miniLapData[3] }}</td><td>{{ shortActingData[3] }}</td> <td>{{ iucdData[3] }}</td><td>{{ implantData[3] }}</td>
+                <td>{{ nsvData[3] || "-" }}</td> <td>{{ miniLapData[3] || "-" }}</td><td>{{ shortActingData[3] || "-" }}</td> <td>{{ iucdData[3] || "-" }}</td><td>{{ implantData[3] || "-" }}</td>
             </tr>
             <tr style="border: solid 1px #6498D9" >
-                <td>{{ nsvData[4] }}</td> <td>{{ miniLapData[4] }}</td><td>{{ shortActingData[4] }}</td> <td>{{ iucdData[4] }}</td><td>{{ implantData[4] }}</td>
+                <td>{{ nsvData[4] || "-" }}</td> <td>{{ miniLapData[4] || "-" }}</td><td>{{ shortActingData[4] || "-" }}</td> <td>{{ iucdData[4] || "-" }}</td><td>{{ implantData[4] || "-" }}</td>
             </tr>
             <tr style="border: solid 1px #6498D9" >
-                <td>{{ nsvData[5] }}</td> <td>{{ miniLapData[5] }}</td><td>{{ shortActingData[5] }}</td> <td>{{ iucdData[5] }}</td><td>{{ implantData[5] }}</td>
+                <td>{{ nsvData[5] || "-" }}</td> <td>{{ miniLapData[5] || "-" }}</td><td>{{ shortActingData[5] || "-" }}</td> <td>{{ iucdData[5] || "-" }}</td><td>{{ implantData[5] || "-" }}</td>
             </tr>
 
         </table>
+        <table>
+            <tr>
+                <td style="width: 1060px;; margin-top: 5px; " >
+                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        The table above lists 5 facilities for each FP method who should be providing FP services (because they have at least one HW trained in that method)
+                        but are NOT. The facilities listed have the largest patient volumes.
+                        <br><b>ACTION:</b>There may be several reasons why the facilities are not providing FP e.g. they may be stocked out. Call these facilities to find out whether
+                        they are stocked out, require additional mentoring, or are facing another barrier to service provision.
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+
     </fieldset>
 
     <!--survilience-->
@@ -219,39 +235,39 @@
                 </td>
                 <td style="width: 520px;">
                     <div style="border:groove 1px #000000; height: 400px">
-                        <table border="1px">
+                        <table border="1px" style="font-size: 0.9em">
                             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
                                 <th colspan="2">Facilities with the lowest % of Clients Adopting FP following cPAC in
                                     {{ name }}</th>
                             </tr>
                             <tr style="border: solid 1px #6498D9">
-                                <td style="padding: 7px">{{ CPACfacilitieParcent[0].name }}</td>
-                                <td style="padding: 7px">{{ CPACfacilitieParcent[1].name }}</td>
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[0].name  || "-"}}</td>
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[1].name  || "-"}}</td>
                             </tr><tr style="border: solid 1px #6498D9">
-                                <td style="padding: 7px">{{ CPACfacilitieParcent[2].name }}</td>
-                                <td style="padding: 7px">{{ CPACfacilitieParcent[3].name }}</td>
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[2].name  || "-"}}</td>
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[3].name  || "-"}}</td>
                             </tr><tr style="border: solid 1px #6498D9">
-                                <td style="padding: 7px">{{ CPACfacilitieParcent[4].name }}</td>
-                                <td style="padding: 7px">{{ CPACfacilitieParcent[5].name }}</td>
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[4].name  || "-"}}</td>
+                                <td style="padding: 7px">{{ CPACfacilitieParcent[5].name  || "-"}}</td>
                             </tr>
                         </table>
 
-                        <table border="1px">
+                        <table border="1px" style="font-size: 0.9em">
                             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
                                 <th colspan="2">Facilities with the lowest % of FP clients adopting HTC in
                                     {{ name }}</th>
                             </tr>
                             <tr style="border: solid 1px #6498D9">
-                                <td style="padding: 7px">{{ HTCfacilitieParcent[0].name }}</td>
-                                <td style="padding: 7px">{{ HTCfacilitieParcent[1].name }}</td>
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[0].name  || "-"}}</td>
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[1].name  || "-"}}</td>
                             </tr>
                             <tr style="border: solid 1px #6498D9">
-                                <td style="padding: 7px">{{ HTCfacilitieParcent[2].name }}</td>
-                                <td style="padding: 7px">{{ HTCfacilitieParcent[3].name }}</td>
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[2].name  || "-"}}</td>
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[3].name  || "-"}}</td>
                             </tr>
                             <tr style="border: solid 1px #6498D9">
-                                <td style="padding: 7px">{{ HTCfacilitieParcent[4].name }}</td>
-                                <td style="padding: 7px">{{ HTCfacilitieParcent[5].name }}</td>
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[4].name  || "-"}}</td>
+                                <td style="padding: 7px">{{ HTCfacilitieParcent[5].name  || "-"}}</td>
                             </tr>
                         </table>
                     </div>
@@ -264,23 +280,26 @@
         <table>
             <tr>
                 <td style="width: 49%; margin-top: 5px; " >
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9; font-size: 1.1em">
-                        <b>ACTION:</b> Monitor national trend and investigate any unexplained
-                        decreases. Note that this line might fluctuate according to number of
-                        live births per month, but should be generally increasing.
-                    </h6>
+                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9; font-size: 1.1em">
+                        <b>ACTION:</b>  Monitor the trend for these two indicators in {{ name }} and
+                        investigated any sharp decreases
+                    </p>
                 </td>
                 <td style=" width: 49%; margin-top: 5px;" >
-                    <h6 style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9; font-size: 1em">
+                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9; font-size: 1em">
                         <b>ACTION:</b> call the listed facilities and investigate why the percentages
                         are low for each indicator. There may be HR shortages or stock-issues
-                        affecting these facilities' performance. Where possible, conduct
-                        supportive supervisions.
-                    </h6>
+                        affecting these facilities’ performance. Where possible, conduct
+                        supportive supervisions
+                    </p>
                 </td>
             </tr>
         </table>
     </fieldset>
+    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9; font-size: 1em">
+        <sup>**</sup>Note: dashes indicate that there was no data applicable to this indicator
+    </p>
+
 </div>
 
 <!--import pace for visualization-->

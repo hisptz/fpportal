@@ -85,11 +85,15 @@ angular.module("hmisPortal")
             $scope.firstClick();
         };
 
+
         $scope.selectedMethod = 'all';
-        $scope.selectedPeriod = '2014';
+        $scope.selectedPeriod = '2015';
+        $scope.selectedMonth = FPManager.lastMonthWithData;
         $scope.data.chartType = 'column';
         $scope.displayTable = false;
         $scope.currentOrgUnit = "m0frOspS7JY";
+        $scope.currentMonthperiod = FPManager.getMonthYear($scope.selectedPeriod);
+
         $scope.changeChart = function(type,card){
             card.displayTable = false;
 
@@ -253,16 +257,12 @@ angular.module("hmisPortal")
                             $scope.titleToUse = $scope.data.outMethods[0].name;
                             cardObject.chartObject.title.text = cardObject.title+' - '+ $scope.titleToUse;
                                 xAxisItems = $scope.prepareCategory('zones');
-                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('methods');
-                            console.log("yaxis items are :"+yAxisItems);
                         }else{
                             $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
                             cardObject.chartObject.title.text = cardObject.title+' - '+ $scope.titleToUse;
                             xAxisItems = $scope.prepareCategory('methods');
-                            console.log("xaxis items are :"+xAxisItems);
                             yAxisItems = $scope.prepareCategory('zones');
-                            console.log("yaxis items are :"+yAxisItems);
                         }
                         /////////////////////////// second chart ////////////////////////////////
                         cardObject.chartObject.xAxis.categories = [];
