@@ -173,6 +173,24 @@ angular.module("hmisPortal")
                 alert("no orgunit selected")
             }else
             {
+                $scope.StockOutObject = {
+                    showLoader:true,
+                    loadingMessage: "",
+                    description:'This charts displays changes over time in the percentage of facilities that have a trained health worker in short-acting methods AND reported stock-out of either pills or injectables (as a proportion of all facilities that are eligible to provide FP services), in the selected geographies, in the indicated 12 month period',
+                    display_option_1:'You can select the geographical areas of interest to you (eg national; zones; regions; districts).This chart allows you to monitor changes over time in percentage of facilities that have at least on health worker trained in short-acting methods AND were stocked out of pills or injectables, in the selected geographies. This chart helps to identify lower performing zones/regions/district and to monitor unusual variations in the trend over time.',
+                    display_option_2:'',
+                    option_2:false,
+                    indicator_type:'Percentage',
+                    numerator:'Total number of facilities that:<br> (i) are eligible to provide FP services AND<br> (ii) report in the tracer-medicines reporting tool AND<br> (iii) have one or more healthworkers that have achieved training competency  in short-acting FP methods AND<br> (iv) Reported a stock out of pills OR injectables for any  number of days<br> In the selected geography, for each month in the indicated 12 month period',
+                    denominator:'Denominator: Total number of facilities that:<br> (i) are eligible to provide FP services AND<br> (ii) report in the tracer-medicines reporting tool AND<br> (iii) have one or more healthworkers that have achieved training competency  in short-acting FP methods<br> In the selected geography, for each month in the indicated 12 month period',
+                    data_source:'TrainTracker and DHIS-2 Tracer Commodity Tool'
+                };
+
+                $scope.StockOutObject.loadingMessage = "Authenticating portal...";
+                $scope.StockOutObject.chartObject = angular.copy(FPManager.chartObject)
+                $scope.StockOutObject.chartObject.options.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables "+FPManager.lastTwelveMonthName;
+                $scope.StockOutObject.chartObject.options.yAxis.title.text ="% of Facilities";
+                $scope.StockOutObject.chartObject.loading = true;
                 $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function() {
@@ -190,21 +208,14 @@ angular.module("hmisPortal")
                         }
                     });
 
-                    var chartObject = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables "+FPManager.lastTwelveMonthName;
-                    chartObject.yAxis.title.text ="% of Facilities";
                     var orgUnits = $scope.prepareCategory('zones');
                     var periods = $scope.prepareCategory('month');
 
                     angular.forEach(periods, function (val) {
-                        chartObject.xAxis.categories.push(val.name);
+                        $scope.StockOutObject.chartObject.options.xAxis.categories.push(val.name);
                     });
-
-                    chartObject.loading = true;
-                    $rootScope.progressMessage = "Fetching data please wait ...";
-                    $rootScope.showProgressMessage = true;
-                    //$http.get(portalService.base+'api/sqlViews/dLJMOOQYLZS/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                    $scope.StockOutObject.loadingMessage = "Fetching Stock Out and Training Data...";
                     $http.get(portalService.base+'api/sqlViews/N9UEcr3rwUv/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                         $rootScope.showProgressMessage = false;
                         angular.forEach(orgUnits, function (yAxis) {
@@ -212,12 +223,11 @@ angular.module("hmisPortal")
                             angular.forEach(periods, function (xAxis) {
                                 serie.push(parseFloat($scope.getNumberPerOu(yAxis.id,val1.rows,xAxis.id)));
                             });
-                            chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
+                            $scope.StockOutObject.chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                         });
-                        $('#pchart').highcharts(chartObject);
-                        $scope.pchart = chartObject;
-                        $scope.chartObject = chartObject;
-                        $scope.csvdata = portalService.prepareDataForCSV(chartObject);
+                        $scope.StockOutObject.csvdata = FPManager.prepareDataForCSV($scope.StockOutObject.chartObject);
+                        $scope.StockOutObject.showLoader = false;
+                        $scope.StockOutObject.chartObject.loading = false;
                     });
                 });
             }

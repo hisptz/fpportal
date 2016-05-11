@@ -104,7 +104,17 @@ angular.module("hmisPortal")
                 chart:'column',
                 yaxisTittle:'# Health Workers Trained',
                 visible:'consumption by method',
-                chartObject:angular.copy(portalService.chartObject)
+                chartObject:angular.copy(FPManager.chartObject),
+                showLoader:true,
+                loadingMessage: "",
+                description:'This charts displays the current total number of health workers trained in each FP method, nationally, in the indicated month',
+                display_option_1:'You can use this chart to compare the total number of health workers trained in each FP method, at a National level. This provides a high-level overview of which FP methods have larger gaps in number of health workers trained, nationally.',
+                display_option_2:'',
+                option_2:false,
+                indicator_type:'Number',
+                numerator:'Total number of health workers that have achieved training competency in each FP method (short-acting, implants, IUCDs, minilap, NSV), Nationally, in the indicated month.',
+                denominator:'N/A',
+                data_source:' Train Tracker'
             }];
 
 
@@ -120,8 +130,7 @@ angular.module("hmisPortal")
 
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
-            $rootScope.progressMessage = "Fetching data please wait ...";
-            $rootScope.showProgressMessage = true;
+            cardObject.loadingMessage = "Authenticating portal..."
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                 j_username: "portal", j_password: "Portal123"
             },function() {
@@ -135,23 +144,23 @@ angular.module("hmisPortal")
                     cardObject.displayTable = false;
                 }
 
-                cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
+                cardObject.chartObject.options.yAxis.title.text = cardObject.yaxisTittle;
 
                 $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:m0frOspS7JY&dimension=pe:"+FPManager.lastMonthWithData+"&displayProperty=NAME";
                 cardObject.chartObject.loading = true;
 
-
+                cardObject.loadingMessage = "Fetching Health Workers Trained Data...";
                 $http.get($scope.url).success(function(data){
                     if(data.hasOwnProperty('metaData')){
                         var yAxisItems = [{name:"Tanzania",id:'m0frOspS7JY'}];
                         $scope.titleToUse = "Nationally";
-                        cardObject.chartObject.title.text = cardObject.title+' - '+ $scope.titleToUse;
+                        cardObject.chartObject.options.title.text = cardObject.title+' - '+ $scope.titleToUse;
                         var xAxisItems = $scope.prepareCategory('methods');
                         /////////////////////////// second chart ////////////////////////////////
-                        cardObject.chartObject.xAxis.categories = [];
-                        cardObject.chartObject.xAxis.title= { enabled: false }
+                        cardObject.chartObject.options.xAxis.categories = [];
+                        cardObject.chartObject.options.xAxis.title= { enabled: false }
                         angular.forEach(yAxisItems, function (value) {
-                            cardObject.chartObject.xAxis.categories.push(value.name);
+                            cardObject.chartObject.options.xAxis.categories.push(value.name);
                         });
                         $scope.normalseries1 = [];
                         delete cardObject.chartObject.chart;
@@ -166,12 +175,14 @@ angular.module("hmisPortal")
                         cardObject.chartObject.series = $scope.normalseries1;
                         $scope.chartObject = $scope.normalseries1;
                         $('#container12').highcharts(cardObject.chartObject);
-                        $scope.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
+                        $scope.csvdata = FPManager.prepareDataForCSV(cardObject.chartObject);
 
 
                         cardObject.chartObject.loading = false
+                        cardObject.showLoader = false
                     }else{
-                        cardObject.chartObject.loading = false
+                        cardObject.chartObject.loading = false;
+                        cardObject.showLoader = false
                     }
 
                     //$rootScope.showProgressMessage = false;
@@ -344,8 +355,6 @@ angular.module("hmisPortal")
             {'name':'Implants','uid':'pqpVKzE951Y'},
             {'name':'IUCDs','uid':'OQpasUg1Tse'},
             {'name':'NSV','uid':'btKkJROB2gP'},
-            {'name':'Mini Lap','uid':'mlfh4fgiFhd'},
-            {'name':'NSV','uid':'btKkJROB2gP'},
             {'name':'Mini Lap','uid':'mlfh4fgiFhd'}
         ];
         $scope.detailedMethod =[
@@ -419,7 +428,7 @@ angular.module("hmisPortal")
 
         $scope.homefpCards = [
             {
-                title:'Family Planning clients by Method through Routine Facility-Based Service '+FPManager.lastTwelveMonthNamef,
+                title:'Family Planning clients by Method through Routine Facility-Based Service '+FPManager.lastTwelveMonthName,
                 description:'Total Clients Monthly',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
@@ -431,7 +440,17 @@ angular.module("hmisPortal")
                 chart:'line',
                 yaxisTittle:'# client',
                 visible:'consumption by method',
-                chartObject:angular.copy(portalService.chartObject)
+                chartObject:angular.copy(FPManager.chartObject),
+                showLoader:true,
+                loadingMessage: "",
+                description:'This charts displays changes over time in total number of routine facility-based FP clients for each FP method, nationally, in the indicated 12 month period',
+                display_option_1:'You can use this chart to compare the total number of clients in each FP method, Nationally, over time. This allows you to compare National-level difference between FP methods in the number of clients served and can help identify unusual variations in the trend over time.',
+                display_option_2:'If you select one geography (eg"Kigoma Region") and multiple FP methods, you can compare the total number of clients in each selected FP method, within Kigoma Region, over time. This allows you to compare difference between FP methods in the number of clients served (in a given geography) and can help identify unusual variations in the trend over time.',
+                option_2:false,
+                indicator_type:'Number',
+                numerator:'Total number of clients recorded by each facility for the selected FP method/s (oral pills, male condoms, female condoms, injectables, implants, IUCDs, minilap, NSV) in the selected geography, for each month in the indicated 12 month period',
+                denominator:'N/A',
+                data_source:'DHIS-2 FP reporting Tool'
 
             }];
 
@@ -449,14 +468,13 @@ angular.module("hmisPortal")
 
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
-            $rootScope.progressMessage = "Fetching data please wait ...";
-            $rootScope.showProgressMessage = true;
+            cardObject.loadingMessage = "Authenticating portal..."
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                 j_username: "portal", j_password: "Portal123"
             },function() {
                 $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:m0frOspS7JY&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
                 cardObject.chartObject.loading = true;
-
+                cardObject.loadingMessage = "Fetching Family Planning clients Data..."
                 $http.get($scope.url).success(function(data){
                     if(data.hasOwnProperty('metaData')){
                         var yAxisItems = ['new','returning','total'];
@@ -465,17 +483,17 @@ angular.module("hmisPortal")
                         var methodId1 = [];
 
                         $scope.titleToUse = "Nationally";
-                        cardObject.chartObject.title.text = cardObject.title  + " - " +$scope.titleToUse;
-                        cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
+                        cardObject.chartObject.options.title.text = cardObject.title  + " - " +$scope.titleToUse;
+                        cardObject.chartObject.options.yAxis.title.text = cardObject.yaxisTittle;
 
                         angular.forEach($scope.data.menuMethods,function(value){
                             xAxisItems.push(value);
                         });
                         /////////////////////////// second chart ////////////////////////////////
-                        cardObject.chartObject.xAxis.categories = [];
+                        cardObject.chartObject.options.xAxis.categories = [];
                         if(cardObject.category == 'month'){
                             angular.forEach($scope.prepareCategory('month'), function (value) {
-                                cardObject.chartObject.xAxis.categories.push(value.name);
+                                cardObject.chartObject.options.xAxis.categories.push(value.name);
                             });
                             $scope.normalseries1 = [];
                             //delete cardObject.chartObject.chart;
@@ -489,16 +507,18 @@ angular.module("hmisPortal")
                             });
                             cardObject.chartObject.series = $scope.normalseries1;
                             $('#container11').highcharts(cardObject.chartObject);
-                            cardObject.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
+                            cardObject.csvdata = FPManager.prepareDataForCSV(cardObject.chartObject);
 
                         }
 
-                        cardObject.chartObject.loading = false
+                        cardObject.chartObject.loading = false;
+                        cardObject.showLoader = false;
                     }else{
-                        cardObject.chartObject.loading = false
+                        cardObject.chartObject.loading = false;
+                        cardObject.showLoader = false;
                     }
 
-                    $rootScope.showProgressMessage = false;
+                    cardObject.showLoader = false;
 
                 });
             });
@@ -854,6 +874,22 @@ angular.module("hmisPortal")
                 alert("no orgunit selected")
             }else
             {
+                $scope.HWcardObject = {
+                    showLoader:true,
+                    loadingMessage: "",
+                    description:'This charts displays the percentage of all facilities, nationally, that provided each FP method (as a proportion of all facilities that are eligible to provide FP services), in the indicated 12 month period',
+                    display_option_1:'You can use this chart to compare the percentage of all facilities that provided each FP method over the indicated 12 month-period, nationally. This allows you to monitor high-level changes over time in service provision across FP method types.',
+                    display_option_2:'',
+                    option_2:false,
+                    indicator_type:'Percentage',
+                    numerator:'Total number of all facilities nationally, that are eligible to provide FP services and that recorded at least one client (of any age, new or returning) through routine/facility-based services, for each FP method  (oral pills, male condoms, female condoms, injectables, implants, IUCDs, minilap, NSV), for each month in the indicated 12 month period .',
+                    denominator:'Total number of facilities, nationally, that are eligible to provide FP services, for each month in the indicated 12 month period',
+                    data_source:'DHIS-2 FP reporting Tool'
+                };
+                $scope.HWcardObject.chartObject = angular.copy(FPManager.chartObject);
+                $scope.HWcardObject.chartObject.loading = true;
+
+                $scope.HWcardObject.loadingMessage = "Authenticating portal..."
                 $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function() {
@@ -865,13 +901,14 @@ angular.module("hmisPortal")
                         methodss.push({'name':method.name,'id':method.id});
                     });
 
-                    var chartObject1 = angular.copy(portalService.chartObject);
 
 
-                    chartObject1.yAxis.title.text ="% of Facilities";
 
 
-                    chartObject1.yAxis.labels = {
+                    $scope.HWcardObject.chartObject.options.yAxis.title.text ="% of Facilities";
+
+
+                    $scope.HWcardObject.chartObject.options.yAxis.labels = {
                         formatter: function () {
                             return this.value + '%';
                         }
@@ -883,13 +920,15 @@ angular.module("hmisPortal")
                     var periods = $scope.prepareCategory('month');
 
                     angular.forEach(periods, function (val) {
-                        chartObject1.xAxis.categories.push(val.name);
+                        $scope.HWcardObject.chartObject.options.xAxis.categories.push(val.name);
                     });
 
-                    chartObject1.title.text ="Percent of facilities providing FP over time - "+$scope.titleToUse+" "+FPManager.lastTwelveMonthName;
+                    $scope.HWcardObject.chartObject.options.title.text ="Percent of facilities providing FP over time - "+$scope.titleToUse+" "+FPManager.lastTwelveMonthName;
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
-                    $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
+                    $scope.HWcardObject.loadingMessage = "Getting Facility List...";
+                    FPManager.getFPFacilityList().then(function(data){
+                        $scope.HWcardObject.loadingMessage = "Fetching Facilities Data...";
                         $http.get(portalService.base+'api/sqlViews/eq83I34KW4K/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                             $rootScope.showProgressMessage = false;
                             angular.forEach(methodss, function (yAxis) {
@@ -897,15 +936,17 @@ angular.module("hmisPortal")
                                 angular.forEach(periods, function (xAxis) {
                                     serie.push(parseFloat($scope.getNumberPerOu1(data.organisationUnits,$scope.data.outOrganisationUnits[0].id,val1.rows,xAxis.id,yAxis.name)));
                                 });
-                                chartObject1.series.push({type: 'spline', name: yAxis.name, data: serie})
+                                $scope.HWcardObject.chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                             });
-                            $('#pchart1').highcharts(chartObject1);
-                            $scope.chartObject1 = chartObject1
-                            $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
-                            $scope.pchart1 = chartObject1;
+                            $scope.HWcardObject.csvdata = FPManager.prepareDataForCSV($scope.HWcardObject.chartObject);
+                            $scope.HWcardObject.showLoader = false
+                            $scope.HWcardObject.chartObject.loading = false;
                         });
 
 
+                    },function(){
+                        console.log("Error getting data");
+                        $scope.HWcardObject.showLoader = false
                     });
                 });
             }
@@ -1247,6 +1288,21 @@ angular.module("hmisPortal")
                 alert("no orgunit selected")
             }else
             {
+                $scope.StockOutCard = {
+                    showLoader:true,
+                    loadingMessage: "",
+                    description:'This charts displays changes over time in the percentage of facilities, nationally, that have a trained health worker in short-acting methods AND reported stock-out of either pills or injectables (as a proportion of all facilities that are eligible to provide FP services), in the indicated 12 month period',
+                    display_option_1:'You can use this chart to monitor changes over time (an unusual variations in trends) of percentage of facilities that have at least on health worker trained in short-acting methods AND were stocked out of pills or injectables, Nationally. ',
+                    display_option_2:'',
+                    option_2:false,
+                    indicator_type:'Percentage',
+                    numerator:'Number of all facilities (given the FP Reporting Template that reported management of contraceptive pills or injectables in the Tracer Medicines Reporting Form for the given month and that experienced a stock out of contraceptive pills or injectables for either < 1 week, 1-4 weeks or > 4 weeks in the given month in the selected geographies to date in the given month for each month over the preceeding 12 month period',
+                    denominator:'Number of all facilities given the FP Reporting Template that reported management of contraceptive pills or injectables in the Tracer Medicines Reporting Form for the given month in the selected geographies to date in the given month for each month over the preceeding 12 month period',
+                    data_source:' TrainTracker and DHIS-2 Tracer Commodity Tool'
+                };
+                $scope.StockOutCard.chartObject = angular.copy(FPManager.chartObject);
+                $scope.StockOutCard.chartObject.loading = true;
+                $scope.StockOutCard.loadingMessage = "Authenticating portal...";
                 $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function() {
@@ -1264,34 +1320,33 @@ angular.module("hmisPortal")
                         }
                     });
 
-                    var chartObject = angular.copy(portalService.chartObject);
 
-                    chartObject.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables "+FPManager.lastTwelveMonthName;
-                    chartObject.yAxis.title.text ="% of Facilities";
+                    $scope.StockOutCard.chartObject.options.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables "+FPManager.lastTwelveMonthName;
+                    $scope.StockOutCard.chartObject.options.yAxis.title.text ="% of Facilities";
                     var orgUnits = [{name:'Tanzania',id:'m0frOspS7JY'}];
                     var periods = $scope.prepareCategory('month');
 
                     angular.forEach(periods, function (val) {
-                        chartObject.xAxis.categories.push(val.name);
+                        $scope.StockOutCard.chartObject.options.xAxis.categories.push(val.name);
                     });
 
-                    chartObject.loading = true;
+
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
-                    $http.get(portalService.base+'api/sqlViews/dLJMOOQYLZS/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                    //$http.get(portalService.base+'api/sqlViews/N9UEcr3rwUv/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                    $scope.StockOutCard.loadingMessage = "Fetching Stock out Information ..."
+                    //$http.get(portalService.base+'api/sqlViews/dLJMOOQYLZS/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                    $http.get(portalService.base+'api/sqlViews/N9UEcr3rwUv/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
                         $rootScope.showProgressMessage = false;
                         angular.forEach(orgUnits, function (yAxis) {
                             var serie = [];
                             angular.forEach(periods, function (xAxis) {
                                 serie.push(parseFloat($scope.getNumberPerOu(yAxis.id,val1.rows,xAxis.id)));
                             });
-                            chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
+                            $scope.StockOutCard.chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                         });
-                        $('#pchart5').highcharts(chartObject);
-                        $scope.pchart = chartObject;
-                        $scope.chartObject = chartObject;
-                        $scope.csvdata = portalService.prepareDataForCSV(chartObject);
+                        $scope.StockOutCard.csvdata = FPManager.prepareDataForCSV($scope.StockOutCard.chartObject);
+                        $scope.StockOutCard.showLoader = false;
+                        $scope.StockOutCard.chartObject.loading = false;
                     });
                 });
             }

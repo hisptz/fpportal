@@ -123,8 +123,23 @@ angular.module("hmisPortal")
      }).directive('portalCard', function() {
         return {
             restrict: 'AE',
-            replace: 'true',
-            templateUrl: 'directives/portalData.html'
+            replace: false,
+            scope: {
+                dataobject : "="
+            },
+            controller: function () {
+                this.showTabale = false;
+                var ctrl = this;
+                this.changeTable = function (type) {
+                    ctrl.showTable = (type == "table")?true:false;
+                }
+            },
+            controllerAs: 'cardCtrl',
+            bindToController: true,
+            templateUrl: 'directives/portalCard.html',
+            link: function (scope, element, attrs) {
+
+            }
         };
     });
 

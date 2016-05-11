@@ -223,7 +223,7 @@ angular.module("hmisPortal")
                 chart:'line',
                 yaxisTittle:'# client',
                 visible:'consumption by method',
-                chartObject:angular.copy(FPManager.defaultChartObject)
+                chartObject:angular.copy(portalService.chartObject)
 
             },
             {
@@ -287,7 +287,7 @@ angular.module("hmisPortal")
                     var methodId1 = [];
 
                     $scope.titleToUse = "Nationally";
-                    cardObject.chartObject.title.text = cardObject.title  + " - " +$scope.titleToUse;
+                    cardObject.chartObject.title = {text:cardObject.title  + " - " +$scope.titleToUse};
                     cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
                     cardObject.chartObject.legend = {
                         align: 'right',

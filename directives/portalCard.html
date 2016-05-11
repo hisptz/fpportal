@@ -1,0 +1,53 @@
+<div class="card z-depth-2 teal lighten-5 large">
+    <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
+
+        <div style="width: 100%">
+            <highchart ng-show="!cardCtrl.showTable"  config="cardCtrl.dataobject.chartObject"></highchart>
+            <!--<div id="container12" style="min-width: 310px; height: 400px; margin: 0 auto"></div>-->
+
+        </div>
+
+        <div style="width: 100%"  ng-if="cardCtrl.showTable">
+            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+            <h5 class="center">{{ cardCtrl.dataobject.chartObject.options.title.text }}</h5>
+            <table class="bordered striped centered" id="jinsi">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th ng-repeat="column in cardCtrl.dataobject.chartObject.series">{{ column.name }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="cats in cardCtrl.dataobject.chartObject.options.xAxis.categories">
+                    <td>{{ cats }}</td>
+                    <td ng-repeat="column in cardCtrl.dataobject.chartObject.series">{{ column.data[$parent.$index] }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-action-info-outline right" style="font-size: 34px;color: #0059bc"></i></span>
+        <p>
+            <a ng-click="cardCtrl.changeTable('table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+            <a ng-click="cardCtrl.changeTable('chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+            <button class="waves-effect waves-light btn teal darken-2" ng-csv="cardCtrl.dataobject.csvdata" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
+            <span style="" ng-if="cardCtrl.dataobject.showLoader">Please Wait, {{ cardCtrl.dataobject.loadingMessage }}</span>
+        </p>
+    </div>
+    <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+        <p class="flow-text"><b>Description:</b> {{ cardCtrl.dataobject.description }}</p>
+        <p class="flow-text"><b>Interpretation of Data:</b><p>
+        <p class="flow-text" ng-if="cardCtrl.dataobject.option_2"><u>Display option 1:</u> One FP method, multiple geographies</p>
+        <p class="flow-text" ng-if="!cardCtrl.dataobject.option_2"><u>Display option 1:</u> Geography selection only</p>
+        <p class="flow-text">{{ cardCtrl.dataobject.display_option_1 }}</p>
+        <p class="flow-text"><u>Display option 2:</u> One Geography, multiple FP methods</p>
+        <p class="flow-text"> {{ cardCtrl.dataobject.display_option_2 }}</p>
+        <p class="flow-text"><b>Indicator Type:</b> {{ cardCtrl.dataobject.indicator_type }}</p>
+        <p class="flow-text"><b> Numerator:</b> {{ cardCtrl.dataobject.numerator }}</p>
+        <p class="flow-text"> <b>Denominator:</b> {{ cardCtrl.dataobject.denominator }}</p>
+        <p class="flow-text"><b>Data Source:</b>{{ cardCtrl.dataobject.data_source }}</p>
+    </div>
+</div>
