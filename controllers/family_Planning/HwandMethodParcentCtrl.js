@@ -199,12 +199,11 @@ angular.module("hmisPortal")
 
 
         $scope.getNumberPerOu1 = function(ou,arr2,pe,type,method){
-            var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
+            var num = $scope.getDataFromUrl1(arr2,ou,pe,method,type);
 
             var percent = (num.trained == 0)?0:(parseInt(num.trainedAndprovide)/parseInt(num.trained))*100;
-            console.log("method: ",method)
-            console.log("trained: ",num.trained);
-            console.log('trained and Provide, ',num.trainedAndprovide)
+
+
             return percent.toFixed(2);
         };
 
@@ -550,7 +549,7 @@ angular.module("hmisPortal")
             return num;
         };
 
-        $scope.getDataFromUrl1  = function(arr,ou,pe,method){
+        $scope.getDataFromUrl1  = function(arr,ou,pe,method,type){
 
             var index = 0; var checkIndex = 0;
             if(method == 'Short Acting'){
@@ -585,6 +584,11 @@ angular.module("hmisPortal")
                         i++;
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[1] == j) {
+                                if(type == "Hospital"){
+                                    console.log("method: ",method)
+                                    console.log("trained: ",v[index]);
+                                    console.log('trained and Provide, ',v[checkIndex])
+                                }
                                 if(v[index] == "1" && v[checkIndex] == "1"){
                                     num ++;
                                 }
@@ -606,6 +610,11 @@ angular.module("hmisPortal")
                         }
                     });
                 }
+            }
+            if(type == "Hospital"){
+                console.log("method: ",method)
+                console.log("trained: ",num1);
+                console.log('trained and Provide, ',num)
             }
 
             return {trainedAndprovide:num,trained:num1};
