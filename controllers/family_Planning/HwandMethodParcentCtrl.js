@@ -202,6 +202,9 @@ angular.module("hmisPortal")
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
 
             var percent = (num.trained == 0)?0:(parseInt(num.trainedAndprovide)/parseInt(num.trained))*100;
+            console.log("method: ",method)
+            console.log("trained: ",num.trained);
+            console.log('trained and Provide, ',num.trainedAndprovide)
             return percent.toFixed(2);
         };
 
@@ -582,7 +585,7 @@ angular.module("hmisPortal")
                         i++;
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[1] == j) {
-                                if(v[index] == "" && v[checkIndex] == "1"){
+                                if(v[index] == "1" && v[checkIndex] == "1"){
                                     num ++;
                                 }
                                 if(v[checkIndex] == "1"){
@@ -594,7 +597,7 @@ angular.module("hmisPortal")
                 } else {
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[1] == ou) {
-                            if(v[index] == "" && v[checkIndex] == "1"){
+                            if(v[index] == "1" && v[checkIndex] == "1"){
                                 num ++;
                             }
                             if(v[checkIndex] == "1"){

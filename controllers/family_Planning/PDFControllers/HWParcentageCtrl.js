@@ -219,7 +219,7 @@ angular.module("hmisPortal")
             return percent.toFixed(2);
         };
 
-        $scope.getNumberPerOu2 = function(arr,ou,arr2,pe,method){
+        $scope.getNumberPerOu2 = function(arr,ou,arr2,pe,method,name){
             var count = 0;
             angular.forEach(arr,function(value){
                     angular.forEach(value.ancestors, function (val) {
@@ -238,8 +238,13 @@ angular.module("hmisPortal")
                     });
             });
             var num = $scope.getDataFromUrl2(arr2,ou,pe,method);
+
             var percent = (num/count)*100;
+            if(name){
+                console.log(name+": "+count+"parcent is: "+percent);
+            }
             return percent.toFixed(2);
+
         };
 
 
@@ -309,7 +314,7 @@ angular.module("hmisPortal")
                                  nsvRegions[data[1]] = data[0];
                              });
                              var orderBy = $filter('orderBy');
-                             angular.forEach(nsvRegions, function(value, key) { nsvData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'NSV'))} ) });
+                             angular.forEach(nsvRegions, function(value, key) { nsvData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'NSV',key))} ) });
                              angular.forEach(miniLapRegions, function(value, key) { miniLapData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'Mini Lap'))} ) });
                              angular.forEach(iucdRegions, function(value, key) { iucdData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'IUCDs'))} ) });
                              angular.forEach(shortActingRegions, function(value, key) { shortActingData.push({name:key ,value:parseFloat($scope.getNumberPerOu2(data.organisationUnits,value , facilities.rows, value, 'Short Acting'))} ) });
