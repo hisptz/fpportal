@@ -92,7 +92,7 @@
     <hr>
     <!--CLients-->
     <fieldset>
-        <legend style="font-size: 1.37em;font-weight: bold">Clients Jan 2014 to Dec 2014:</legend>
+        <legend style="font-size: 1.37em;font-weight: bold">Clients:</legend>
     <table>
         <tr>
             <td style="width: 750px;height: 350px" ng-controller="clientMethodsCtrl">
@@ -133,7 +133,7 @@
             <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                 <b>ACTION:</b> Use the graph above to identify FP methods and facility
                 types with largest gap in trained providers. If possible, resources for
-                FP trainings should be directed to the districts listed in the table
+                FP trainings should be directed to the regions listed in the table
                 below, for each FP method
             </p>
         </td>
@@ -229,14 +229,15 @@
         <tr>
             <td style="width: 100%; padding-left: 0px; padding-right: 0px">
                 <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                    The graph on the right displays percent of FP clients who are not already known HIV-positive adopting HIV testing and counselling (HTC)
                     <b>ACTION:</b> investigate regions with lowest percentages for each indicator. Monitor national trend and use the FP dashboard to investigate any
-                    unexplained decreases.
+                    unexplained decreases.<br />
+                    Note: The graph on the right displays percent of FP clients who are not already known HIV-positive adopting HIV testing and counselling (HTC)
+
                 </p>
             </td>
         </tr>
     </table>
-
+</fieldset>
     <table>
         <tr>
             <td style="width: 520px;height: 300px">
@@ -246,6 +247,11 @@
                     <div id="survilience2" style="min-width: 100%; height: 340px; margin: 0 auto;"></div>
 
                 </div>
+                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                        <b>ACTION:</b> Monitor national trend and investigate any unexplained
+                        decreases. Note that this line might fluctuate according to number of
+                        live births per month, but should be generally increasing.
+                    </p>
                 </fieldset>
             </td>
             <td style="width: 520px;">
@@ -263,22 +269,6 @@
                         </tr>
                     </table>
                 </div>
-                </fieldset>
-            </td>
-
-        </tr>
-        </table>
-
-        <table>
-            <tr>
-                <td style="width: 49%; margin-top: 5px; " >
-                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
-                        <b>ACTION:</b> Monitor national trend and investigate any unexplained
-                        decreases. Note that this line might fluctuate according to number of
-                        live births per month, but should be generally increasing.
-                    </p>
-                </td>
-                <td style=" width: 49%; margin-top: 5px;" >
                     <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                         This month the national reporting rate was <b>{{ thisMonthCompletenes }}%</b>  of
                         facilities, as compared to <b>{{ lastMonthCompletenes }}%</b> last month.
@@ -286,10 +276,11 @@
                         feedback to best performing regions and support to low
                         performing regions.
                     </p>
-                </td>
-            </tr>
+                </fieldset>
+            </td>
+
+        </tr>
         </table>
-</fieldset>
 </div>
 
 </body>
