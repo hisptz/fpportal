@@ -107,7 +107,7 @@ angular.module("hmisPortal")
                             });
 
                         });
-                        $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[id]').success(function(orgUni) {
+                        FPManager.getFPFacilityList().then(function(orgUni) {
                             $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-3;LEVEL-4;'+$scope.regionUid+'&dimension=pe:'+FPManager.lastMonthWithOtherData+';'+lastMonth+'&displayProperty=NAME').success(function(data){
                                 var orgUnitsCompletenes = [];
                                 angular.forEach(orgUni.organisationUnits,function(orgUnit){
@@ -144,10 +144,6 @@ angular.module("hmisPortal")
 
                         });
 
-
-
-                        $rootScope.progressMessage = "Fetching data please wait ...";
-                        $rootScope.showProgressMessage = true;
                         $http.get(url).success(function(data){
                             var orderBy = $filter('orderBy');
                             var CPACfacilitieParcent = [];
@@ -186,20 +182,25 @@ angular.module("hmisPortal")
                             angular.forEach(periods, function (val) {
                                 chartObject.xAxis.categories.push(val.name);
                             });
-
+                            var chartSeries = [];
+                            var chartSeries1 = [];
                             angular.forEach(orgUnits2,function(yAxis){
-                                var chartSeries = [];
+
                                 angular.forEach(periods,function(xAxis){
-                                    if(yAxis.name == "% Clients Adopting FP following cPAC"){
+                                    if(yAxis.name == "% Clients Adopting FP following abortion or miscarriage"){
                                         var number = $scope.findValue(data.rows,$scope.regionUid,xAxis.id,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent');
+                                        console.log()
                                         chartSeries.push(parseFloat(number));
                                     }if(yAxis.name == "% FP clients adopting HTC"){
                                         var number2 = $scope.findValue(data.rows,$scope.regionUid,xAxis.id,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent');
-                                        chartSeries.push(parseFloat(number2));
+                                        chartSeries1.push(parseFloat(number2));
                                     }
                                 });
-                                chartObject.series.push({type: 'spline', name: yAxis.name, data: chartSeries});
                             });
+                            console.log(chartSeries);
+                            chartObject.series.push({type: 'spline', name: "% Clients Adopting FP following cPAC", data: chartSeries});
+                            chartObject.series.push({type: 'spline', name: "% FP clients adopting HTC", data: chartSeries1});
+
                             chartObject.loading = false;
                             $('#survilience1').highcharts(chartObject);
                         });

@@ -298,7 +298,7 @@ angular.module("hmisPortal")
                                         var serie = [];
                                         angular.forEach(periods, function (xAxis) {
                                             if (yAxis.name == "Facilities") {
-                                                serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,yAxis.id,val1.rows,xAxis.id)));
+                                                serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,$scope.regionUid,val1.rows,xAxis.id)));
                                             }
 
                                         });
