@@ -315,7 +315,7 @@ angular.module("hmisPortal")
                     $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
                         if($scope.data.outMethods.length  == 1){
 
-                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Hospital&var=methods:'+method+'&var=year:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Hospital&var=methods:'+method+'&var=year:'+FPManager.lastMonthWithData).success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
                                     var serie = [];
@@ -330,7 +330,7 @@ angular.module("hmisPortal")
                                 $scope.pchart = chartObject;
                             });
 
-                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Health Center&var=methods:'+method+'&var=year:21412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Health Center&var=methods:'+method+'&var=year:'+FPManager.lastMonthWithData).success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
                                     var serie = [];
@@ -345,7 +345,7 @@ angular.module("hmisPortal")
                                 $scope.pchart1 = chartObject;
                             });
 
-                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Dispensary&var=methods:'+method+'&var=year:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/YsaDLZ51aQA/data.json?var=types:Dispensary&var=methods:'+method+'&var=year:'+FPManager.lastMonthWithData).success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(orgUnits, function (yAxis) {
                                     var serie = [];
