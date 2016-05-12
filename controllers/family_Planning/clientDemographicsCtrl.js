@@ -252,7 +252,7 @@ angular.module("hmisPortal")
         $scope.fpCards = [
 
             {
-                title:'New Family Planning clients < 20 Years of Age through Routine Facility-Based Service and Community Based Distribution Jan 2014 to Dec 2014',
+                title:'New Family Planning clients < 20 Years of Age through Routine Facility-Based Service and Community Based Distribution '+FPManager.lastTwelveMonthName,
                 description:'Total Clients Monthly',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
@@ -264,11 +264,21 @@ angular.module("hmisPortal")
                 chart:'line',
                 yaxisTittle:"# of Clients",
                 visible:'consumption by demographic',
-                chartObject:angular.copy(portalService.chartObject)
+                chartObject:angular.copy(FPManager.chartObject),
+                showLoader:true,
+                loadingMessage: "",
+                description:'This charts displays changes over time in total number of new routine facility-based FP clients under the age of 20, for the selected FP method/s, in the selected geographies, in the indicated 12 month period',
+                display_option_1:'If you select one FP method (eg  injectables) and multiple geographies (eg 6 regions within a zone) you can compare the total number of new injectable clients aged <20 across the 6 selected regions, over time. This allows you to compare geographic differences in the number of new clients aged <20  (for a given FP method) and identify unusual variations in the trends over time.',
+                display_option_2:'If you select one geography (eg "Lake Zone") and multiple FP methods, you can compare the total number of clients in each selected FP method, within Lake Zone, over time. This allows you to compare difference between FP methods in the number of clients served (in a given geography) and can help identify unusual variations in the trend over time.',
+                option_2:true,
+                indicator_type:'Number',
+                numerator:'Total number of new clients aged below 20 recorded by each facility as having received the selected FP method/s (oral pills, male condoms, female condoms, injectables, implants, IUCDs, minilap, NSV) either through CBD or routine-facility based service, in the selected geography, for each month in the indicated 12 month period',
+                denominator:'N/A',
+                data_source:'DHIS-2 FP reporting Tool'
 
         }, {
-                title:'Family Planning clients through Routine Facility-Based and Outreach-Based Service December 2014',
-                description:'Family Planning clients through Routine Facility-Based and Outreach-Based Service December 2014',
+                title:'Family Planning clients through Routine Facility-Based and Outreach-Based Service '+FPManager.lastMonthWithOtherDataName,
+                description:'Family Planning clients through Routine Facility-Based and Outreach-Based Service '+FPManager.lastMonthWithOtherDataName,
                 cardClass:"col s12 m12",
                 data:$scope.methods,
                 category:'quarter',
@@ -279,7 +289,17 @@ angular.module("hmisPortal")
                 chart:'line',
                 yaxisTittle:"# of Clients",
                 visible:'consumption by demographic',
-                chartObject:angular.copy(portalService.chartObject)
+                chartObject:angular.copy(FPManager.chartObject),
+                showLoader:true,
+                loadingMessage: "",
+                description:'This charts displays the total number of long-acting and/or permanent method FP clients through outreach vs routine service modalities, in the selected geographies, for the indicated month',
+                display_option_1:'If you select one long acting  or permanent FP method (eg implants) and multiple geographies (eg 6 districts within your region) you can compare the total number of implant clients by outreach vs routine service modality, across the 6 selected districts. This allows you to compare the number of clients and the service modality across geographic areas, in a given month.',
+                display_option_2:'If you select one geography (eg "Morogoro District Council") and multiple long acting and/or permanent FP methods, you can compare the total number of clients in each selected FP method, within Morogoro DC. This allows you to compare the total number of clients and the service modality between different FP methods, in a given geography, in a given month.',
+                option_2:true,
+                indicator_type:'Number',
+                numerator:'Series 1: ("Routine Facility-Based Services"):<br> Total number of clients recorded by each facility as having received the selected permanent or long acting FP method/s (implants, IUCDs, minilap, NSV) through routine facility-based service modality, in the selected geography, for the indicated month <br> Series 2: ("Outreach-Based Services) <br> Total number of clients recorded by each facility as having received the selected permanent or long acting FP method/s (implants, IUCDs, minilap, NSV) through outreach-based service modality, in the selected geography, for the indicated month',
+                denominator:'N/A',
+                data_source:'DHIS-2 FP reporting Tool'
 
             }];
         $scope.getSingleMethods = function(uid){
@@ -309,10 +329,7 @@ angular.module("hmisPortal")
         };
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
-            $rootScope.progressMessage = "Fetching data please wait ...";
-            $rootScope.showProgressMessage = true;
-
-            var base = "https://dhis.moh.go.tz/";
+            cardObject.loadingMessage = "Authenticating portal...";
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                 j_username: "portal", j_password: "Portal123"
             },function() {
@@ -329,8 +346,8 @@ angular.module("hmisPortal")
                     cardObject.displayMap = false;
                     cardObject.displayTable = false;
                 }
-                cardObject.chartObject.title.text = cardObject.title + " - " +$scope.titleToUse;
-                cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
+                cardObject.chartObject.options.title.text = cardObject.title + " - " +$scope.titleToUse;
+                cardObject.chartObject.options.yAxis.title.text = cardObject.yaxisTittle;
 
                 var peri = preparePeriod($scope.selectedPeriod);
                 //$scope.url = "https://dhis.moh.go.tz/api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412;2014Q1;2014Q2;2014Q3;2014Q4&displayProperty=NAME";
@@ -363,6 +380,7 @@ angular.module("hmisPortal")
                 $scope.url = portalService.base + "api/analytics.json?dimension=dx:W74wyMy1mp0;p8cgxI3yPx8;aSJKs4oPZAf;LpkdcaLc4I9;p14JdJaG2aC;GvbkEo6sfSd;QRCRjFreECE&dimension=ou:" + FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits) + "&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
 
                 //data for routine facility
+                cardObject.loadingMessage = "Fetching Data...";
                 if (cardObject.category1 == 'routineFacility') {
                     $http.get($scope.url1).success(function (data) {
 
@@ -426,13 +444,12 @@ angular.module("hmisPortal")
                             else if($scope.data.outMethods.length == 1){
                                 var orgunits = $scope.prepareCategory('zones');
                                 var singleMethod = $scope.prepareCategory('routineOutreachMethod');
-                                cardObject.chartObject.xAxis.categories = [];
+                                cardObject.chartObject.options.xAxis.categories = [];
                                 angular.forEach(orgunits, function (value) {
-                                    cardObject.chartObject.xAxis.categories.push(value.name);
+                                    cardObject.chartObject.options.xAxis.categories.push(value.name);
                                 });
                                 $scope.normalseries2 = [];
 
-                                    delete cardObject.chartObject.chart;
                                     angular.forEach(cats, function (val) {
                                         var serie = [];
                                         angular.forEach(orgunits, function (value) {
@@ -448,9 +465,10 @@ angular.module("hmisPortal")
 
                                     });
                                     cardObject.chartObject.series = $scope.normalseries2;
-                                    cardObject.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
+                                    cardObject.csvdata = FPManager.prepareDataForCSV(cardObject.chartObject);
 
-                                cardObject.chartObject.loading = false
+                                cardObject.chartObject.loading = false;
+                                cardObject.showLoader = false;
                             }
 
                         }
@@ -472,9 +490,9 @@ angular.module("hmisPortal")
                             xAxisItems = $scope.prepareCategory('methods');
                             yAxisItems = $scope.prepareCategory('month');
                         }
-                        cardObject.chartObject.xAxis.categories = [];
+                        cardObject.chartObject.options.xAxis.categories = [];
                         angular.forEach(yAxisItems, function (value) {
-                            cardObject.chartObject.xAxis.categories.push(value.name);
+                            cardObject.chartObject.options.xAxis.categories.push(value.name);
                         });
                         $scope.normalseries1 = [];
                         if (chart == 'table') {
@@ -509,13 +527,15 @@ angular.module("hmisPortal")
                                 $scope.normalseries1.push({type: 'spline', name: val.name, data: serie})
                             });
                             cardObject.chartObject.series = $scope.normalseries1;
-                            $('#container11').highcharts(cardObject.chartObject);
-                            cardObject.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
+                            cardObject.csvdata = FPManager.prepareDataForCSV(cardObject.chartObject);
+                            cardObject.showLoader = false;
+                            cardObject.chartObject.loading = false;
 
                         }
 
                     } else {
-                        cardObject.chartObject.loading = false
+                        cardObject.chartObject.loading = false;
+                        cardObject.showLoader = false;
                     }
 
                 });

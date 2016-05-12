@@ -59,59 +59,7 @@
     <div class="col s12 m12 l10" style="margin-top: 82px">
         <div class="section">
             <div class="{{ fpCards[0].cardClass }}" style="padding-left: 0px">
-                <div class="card z-depth-2 teal lighten-5 large">
-                    <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
-                        <div style="width: 100%">
-                            <!--<highchart ng-if="!fpCards[0].displayTable && !fpCards[0].displayMap" config="fpCards[0].chartObject"></highchart>-->
-                            <div ng-show="!displayTables.card1" id="container12" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-                        </div>
-                        <div style="width: 100%"  ng-if="displayTables.card1">
-                            <h5 class="center">{{ fpCards[0].chartObject.title.text }}</h5>
-                            <table class="bordered striped centered" id="jinsi">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th ng-repeat="column in fpCards[0].chartObject.series">{{ column.name }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr data-ng-repeat="cats in fpCards[0].chartObject.xAxis.categories">
-                                    <td>{{ cats }}</td>
-                                    <td ng-repeat="column in fpCards[0].chartObject.series">{{ column.data[$parent.$index] }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-action-info-outline right" style="font-size: 34px;color: #0059bc"></i></span>
-                        <p>
-                            <a ng-click="changeTable('card1','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
-                            <a ng-click="changeTable('card1','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
-                            <button class="waves-effect waves-light btn teal darken-2" ng-csv="csvdata" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
-
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-                        <p class="flow-text"><b>Description:</b> This charts displays the current total number of health workers trained in the selected FP method/s, in the selected geographies, in the indicated month</p>
-                        <p class="flow-text"><b>Interpretation of Data:</b><p>
-                        <p class="flow-text"><u>Display option 1:</u> One FP method, multiple geographies</p>
-                        <p class="flow-text">If you select one FP method (eg implants) and multiple geographies (eg 6 districts within your region) you can compare the total number of health workers trained in implants across the 6 selected districts. This allows you to identify which districts have the larger gaps in number health workers trained in implants.</p>
-                        <p class="flow-text"><u>Display option 2:</u> One Geography, multiple FP methods</p>
-                        <p class="flow-text">If you select one geography (eg 'Pwani Region') and multiple FP methods, you can compare the total number of health workers trained in each selected FP method, within Pwani Region. This allows you to identify which FP methods have the larger gaps in number of health workers trained, in Pwani Region</p>
-
-                        <p class="flow-text"><b>Display options:</b> One FP method, multiple geographies</p>
-                        <p class="flow-text"><b>Indicator Type:</b> Number</p>
-                        <p class="flow-text"> <b>Numerator:</b> Total number of health workers that have achieved training competency in selected FP method/s (short-acting, implants, IUCDs, minilap, NSV) in the selected geography in the indicated month
-
-                        </p>
-                        <p class="flow-text"> <b>Denominator:</b>N/A</p>
-                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
-                    </div>
-                </div>
+                <div portal-card="" dataobject='fpCards[0]'></div>
             </div>
         </div>
     </div>

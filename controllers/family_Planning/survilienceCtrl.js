@@ -71,6 +71,58 @@ angular.module("hmisPortal")
             if($scope.data.outOrganisationUnits.length === 0){
                 alert("no orgunit selected")
             }else{
+                $scope.card1 = {
+                    showLoader:true,
+                    loadingMessage: "",
+                    description:'This charts displays changes over time in the percentage of clients that adopted family planning following post abortion or miscarriage care services (at the FP service entry point), in the selected geographies, in the indicated 12 month period',
+                    display_option_1:'You can select the geographical areas of interest to you (eg national; zones; regions; districts).This chart allows you to monitor changes over time in proportion of cPAC clients who take up an FP method after cPAC services. This chart helps to identify lower performing zones/regions/district and to monitor unusual variations in the trend over time.',
+                    display_option_2:'',
+                    option_2:false,
+                    indicator_type:'Percentage',
+                    numerator:'Among facilities that are eligible to provide FP services, the total number of clients that received each family planning method (Jadelle, Implanon, other) after MVA or D+C for miscarriage or abortion; in the selected geography, for each month in the indicated 12 month period',
+                    denominator:' Among facilities that are eligible to provide FP services, the total number of clients that received MVA or D+C for miscarriage or abortion; in the selected geography, for each month in the indicated 12 month period ',
+                    data_source:'DHIS-2 FP reporting Tool'
+                };
+                $scope.card2 = {
+                    showLoader:true,
+                    loadingMessage: "",
+                    description:'This charts displays changes over time in the total number of clients that adopted family planning in the Postpartum period (at the FP service entry point), in the selected geographies, in the indicated 12 month period',
+                    display_option_1:'You can select the geographical areas of interest to you (eg national; zones; regions; districts).This chart allows you to monitor changes over time in the number of post-partum clients who take up an FP method42 days after delivery. Note that this trend line shows total numbers so might fluctuate according to number of live births per month in a given facility, but should be generally increasing.This chart helps to identify lower performing zones/regions/district and to monitor unusual variations in the trend over time.',
+                    display_option_2:'',
+                    option_2:false,
+                    indicator_type:'Number',
+                    numerator:'Among facilities that are eligible to provide FP services, the total number of clients  that received each family planning method (Jadelle, Implanon, other) within 42 days of delivery; in the selected geography, for each month in the indicated 12 month period',
+                    denominator:'N/A',
+                    data_source:'DHIS-2 FP reporting Tool'
+                };
+                $scope.card3 = {
+                    showLoader:true,
+                    loadingMessage: "",
+                    description:'This charts displays changes over time in the percentage of all HIV- negative or status unknown FP clients that adopted HIV Testing and Counselling, in the selected geographies, in the indicated 12 month period',
+                    display_option_1:' You can select the geographical areas of interest to you (eg national; zones; regions; districts).This chart allows you to monitor changes over time in the proportion of HIV negative or status unknown FP clients who adopted HTC at the FP service entry point. This chart helps to identify lower performing zones/regions/district and to monitor unusual variations in the trend over time.',
+                    display_option_2:'',
+                    option_2:false,
+                    indicator_type:'Percentage',
+                    numerator:'Among facilities that are eligible to provide FP services, the total number of clients of any age that tested for HIV; in the selected geography, for each month in the indicated 12 month period ',
+                    denominator:'Among facilities that are eligible to provide FP services, the total number of clients of all ages for all FP methods (male condoms, female condoms, pill, injectables, implants, IUCD, minilap, NSV) minus the total number of FP clients who are known to be HIV positive; in the selected geography, for each month in the indicated 12 month period',
+                    data_source:'DHIS-2 FP reporting Tool'
+                };
+
+                $scope.card1.loadingMessage = "Authenticating portal...";
+                $scope.card1.chartObject = angular.copy(FPManager.chartObject);
+                $scope.card1.chartObject.loading = true;
+                $scope.card1.chartObject.options.title.text ="Percent Clients Adopting Family Planning post abortion or miscarriage " +FPManager.lastTwelveMonthName;
+
+                $scope.card2.loadingMessage = "Authenticating portal...";
+                $scope.card2.chartObject = angular.copy(FPManager.chartObject);
+                $scope.card2.chartObject.loading = true;
+                $scope.card2.chartObject.options.title.text ="Clients Adopting Family Planing in the Postpartum Period "+FPManager.lastTwelveMonthName;
+
+                $scope.card3.loadingMessage = "Authenticating portal...";
+                $scope.card3.chartObject = angular.copy(FPManager.chartObject);
+                $scope.card3.chartObject.loading = true;
+                $scope.card3.chartObject.options.title.text ="Percent Family Planning Clients Adopting HIV Testing and Counselling (HTC) "+FPManager.lastTwelveMonthName;
+
                 var orgUnits = [];
                 angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
                     var name = orgUnit.name;
@@ -87,53 +139,43 @@ angular.module("hmisPortal")
 
                 var period = $scope.selectedPeriod;
                 var method = "uid";
-                var chartObject = angular.copy(portalService.chartObject);
-                var chartObject1 = angular.copy(portalService.chartObject);
-                var chartObject2 = angular.copy(portalService.chartObject);
 
-                chartObject.loading = true;
-                chartObject1.loading = true;
-                chartObject2.loading = true;
                 var defn = [
                     {id:'NOWyEruy9Ch',name:'Clients Adopting FP Following MVA or D+C(Numerator)' },
                     {id:'MovYxmAwPZP',name:'Clients Adopting FP Following MVA or D+C(Denominator)' },
                     {id:'OwAJT47sIgQ',name:'FP HIV testing rate among FP clients(Numerator)' },
                     {id:'NaCPtfoUkpH',name:'FP HIV testing rate among FP clients(Denominator)' }
-                ]
+                ];
                 var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
                 var base = portalService.base;
                 $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
                 },function(){
-                $rootScope.progressMessage = "Fetching data please wait ...";
-                $rootScope.showProgressMessage = true;
+                    $scope.card1.loadingMessage = "Fetching Data...";
+                    $scope.card2.loadingMessage = "Fetching Data...";
+                    $scope.card3.loadingMessage = "Fetching Data...";
                     $http.get(url).success(function(data){
-                        var period = ""
                         var orgUnits = $scope.prepareCategory('zones');
-                        var periods = $scope.prepareCategory('month')
+                        var periods = $scope.prepareCategory('month');
                         $rootScope.showProgressMessage = false;
 
-
-                        chartObject.title.text ="Percent Clients Adopting Family Planning post abortion or miscarriage Jan 2014 to Dec 2014";
-                        chartObject1.title.text ="Clients Adopting Family Planing in the Postpartum Period Jan 2014 to Dec 2014";
-                        chartObject2.title.text ="Percent Family Planning Clients Adopting HIV Testing and Counselling (HTC) Jan 2014 to Dec 2014";
-                        chartObject.yAxis.title.text ="%  of Clients";
-                        chartObject.yAxis.labels = {
+                        $scope.card1.chartObject.options.yAxis.title.text ="%  of Clients";
+                        $scope.card1.chartObject.options.yAxis.labels = {
                             formatter: function () {
                                 return this.value + '%';
                             }
                         };
-                        chartObject1.yAxis.title.text ="# of Clients";
-                        chartObject2.yAxis.title.text ="%  of Clients";
-                        chartObject2.yAxis.labels = {
+                        $scope.card2.chartObject.options.yAxis.title.text ="# of Clients";
+                        $scope.card3.chartObject.options.yAxis.title.text ="%  of Clients";
+                        $scope.card3.chartObject.options.yAxis.labels = {
                             formatter: function () {
                                 return this.value + '%';
                             }
                         };
                         angular.forEach(periods, function (val) {
-                            chartObject.xAxis.categories.push(val.name);
-                            chartObject1.xAxis.categories.push(val.name);
-                            chartObject2.xAxis.categories.push(val.name);
+                            $scope.card1.chartObject.options.xAxis.categories.push(val.name);
+                            $scope.card2.chartObject.options.xAxis.categories.push(val.name);
+                            $scope.card3.chartObject.options.xAxis.categories.push(val.name);
                         });
 
                         angular.forEach(orgUnits,function(yAxis){
@@ -148,23 +190,22 @@ angular.module("hmisPortal")
                                 chartSeries1.push(parseFloat(number1));
                                 chartSeries2.push(parseFloat(number2));
                             });
-                            chartObject.series.push({type: 'spline', name: yAxis.name, data: chartSeries});
-                            chartObject1.series.push({type: 'spline', name: yAxis.name, data: chartSeries1});
-                            chartObject2.series.push({type: 'spline', name: yAxis.name, data: chartSeries2});
+                            $scope.card1.chartObject.series.push({type: 'spline', name: yAxis.name, data: chartSeries});
+                            $scope.card2.chartObject.series.push({type: 'spline', name: yAxis.name, data: chartSeries1});
+                            $scope.card3.chartObject.series.push({type: 'spline', name: yAxis.name, data: chartSeries2});
                         });
-                        chartObject.loading = false;
-                        chartObject1.loading = false;
-                        chartObject2.loading = false;
 
-                        $('#chart').highcharts(chartObject);
-                        $scope.chartObject = chartObject;
-                        $scope.csvdata = portalService.prepareDataForCSV(chartObject);
-                        $('#chart2').highcharts(chartObject1);
-                        $scope.chartObject1 = chartObject1;
-                        $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
-                        $('#chart3').highcharts(chartObject2);
-                        $scope.chartObject2 = chartObject2;
-                        $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
+                        $scope.card1.csvdata = FPManager.prepareDataForCSV($scope.card1.chartObject);
+                        $scope.card2.csvdata = FPManager.prepareDataForCSV($scope.card2.chartObject);
+                        $scope.card3.csvdata = FPManager.prepareDataForCSV($scope.card3.chartObject);
+
+                        $scope.card1.chartObject.loading = false;
+                        $scope.card2.chartObject.loading = false;
+                        $scope.card3.chartObject.loading = false;
+
+                        $scope.card1.showLoader = false;
+                        $scope.card2.showLoader = false;
+                        $scope.card3.showLoader = false;
 
                     });
                 });

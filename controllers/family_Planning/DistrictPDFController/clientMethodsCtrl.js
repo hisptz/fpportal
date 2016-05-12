@@ -223,7 +223,7 @@ angular.module("hmisPortal")
                 chart:'line',
                 yaxisTittle:'# client',
                 visible:'consumption by method',
-                chartObject:angular.copy(FPManager.defaultChartObject)
+                chartObject:angular.copy(FPManager.defaultChartObject1)
 
             },
             {

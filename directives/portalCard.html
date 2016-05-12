@@ -46,8 +46,8 @@
         <p class="flow-text"><u>Display option 2:</u> One Geography, multiple FP methods</p>
         <p class="flow-text"> {{ cardCtrl.dataobject.display_option_2 }}</p>
         <p class="flow-text"><b>Indicator Type:</b> {{ cardCtrl.dataobject.indicator_type }}</p>
-        <p class="flow-text"><b> Numerator:</b> {{ cardCtrl.dataobject.numerator }}</p>
-        <p class="flow-text"> <b>Denominator:</b> {{ cardCtrl.dataobject.denominator }}</p>
+        <p class="flow-text"><b> Numerator:</b> <span ng-bind-html="cardCtrl.dataobject.numerator"></span></p>
+        <p class="flow-text"> <b>Denominator:</b> <span ng-bind-html="cardCtrl.dataobject.denominator"></span></p>
         <p class="flow-text"><b>Data Source:</b>{{ cardCtrl.dataobject.data_source }}</p>
     </div>
 </div>

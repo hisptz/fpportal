@@ -289,12 +289,8 @@ angular.module("hmisPortal")
                     $rootScope.progressMessage = "Fetching data please wait ...";
                     $rootScope.showProgressMessage = true;
                     render.addRequest();
-                    $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
-
-                        //training table
-                        //$http.get(portalService.base+'api/sqlViews/AajDPSTPpzr/data.json?var=year:'+FPManager.lastMonthWithData).success(function(facilities){
+                    FPManager.getFPFacilityList().then(function(data){
                         render.addRequest();
-                        //$http.get(portalService.base+'api/sqlViews/AajDPSTPpzr/data.json?var=year:'+FPManager.lastMonthWithData).success(function(facilities){
                         $http.get(portalService.base+'api/sqlViews/ahVxVlhDa82/data.json?var=year:'+FPManager.lastMonthWithData).success(function(facilities){
                              var shortActingRegions = {};
                              var iucdRegions = {};

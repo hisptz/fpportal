@@ -277,14 +277,11 @@ angular.module("hmisPortal")
 
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
-            var base = "https://dhis.moh.go.tz/";
-            $rootScope.progressMessage = "Fetching data please wait ...";
-            $rootScope.showProgressMessage = true;
-            cardObject.loadingMessage = "Authenticating portal..."
+            cardObject.loadingMessage = "Authenticating portal...";
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
             j_username: "portal", j_password: "Portal123"
             },function() {
-                cardObject.loadingMessage = "Fetching Data..."
+                cardObject.loadingMessage = "Fetching Data...";
             $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
             var area = [];
             $http.get($scope.url).success(function(data){
@@ -389,7 +386,6 @@ angular.module("hmisPortal")
                             $scope.normalseries1.push({ name: val, data: serie})
                         });
                         cardObject.chartObject.series = $scope.normalseries1;
-                        $('#container11').highcharts(cardObject.chartObject);
                         cardObject.csvdata = FPManager.prepareDataForCSV(cardObject.chartObject);
 
                     }

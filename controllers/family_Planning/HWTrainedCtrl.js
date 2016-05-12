@@ -208,7 +208,17 @@ angular.module("hmisPortal")
                 chart:'column',
                 yaxisTittle:'# Health Workers Trained',
                 visible:'consumption by method',
-                chartObject:angular.copy(portalService.chartObject)
+                chartObject:angular.copy(FPManager.chartObject),
+                showLoader:true,
+                loadingMessage: "",
+                description:'This charts displays the current total number of health workers trained in the selected FP method/s, in the selected geographies, in the indicated month',
+                display_option_1:'If you select one FP method (eg implants) and multiple geographies (eg 6 districts within your region) you can compare the total number of health workers trained in implants across the 6 selected districts. This allows you to identify which districts have the larger gaps in number health workers trained in implants.',
+                display_option_2:'If you select one geography (eg "Pwani Region") and multiple FP methods, you can compare the total number of health workers trained in each selected FP method, within Pwani Region. This allows you to identify which FP methods have the larger gaps in number of health workers trained, in Pwani Region',
+                option_2:true,
+                indicator_type:'Number',
+                numerator:'Total number of health workers that have achieved training competency in selected FP method/s (short-acting, implants, IUCDs, minilap, NSV) in the selected geography in the indicated month',
+                denominator:'N/A',
+                data_source:'Train Tracker'
             }];
 
 
@@ -223,9 +233,7 @@ angular.module("hmisPortal")
 
         $scope.prepareSeries = function(cardObject,chart){
             cardObject.chartObject.loading = true;
-            var base = "https://dhis.moh.go.tz/";
-            $rootScope.progressMessage = "Fetching data please wait ...";
-            $rootScope.showProgressMessage = true;
+            cardObject.loadingMessage = "Authenticating portal...";
             $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
                 j_username: "portal", j_password: "Portal123"
             },function() {
@@ -239,7 +247,7 @@ angular.module("hmisPortal")
                     cardObject.displayTable = false;
                 }
 
-                cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
+                cardObject.chartObject.options.yAxis.title.text = cardObject.yaxisTittle;
 
                 var peri = preparePeriod($scope.selectedPeriod);
                 $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+FPManager.lastMonthWithData+"&displayProperty=NAME";
@@ -247,7 +255,7 @@ angular.module("hmisPortal")
                 cardObject.chartObject.loading = true;
                 var datass = '';
 
-
+                cardObject.loadingMessage = "Fetching Data...";
                 $http.get($scope.url).success(function(data){
                     if(data.hasOwnProperty('metaData')){
                         var xAxisItems = [];
@@ -255,47 +263,45 @@ angular.module("hmisPortal")
                         var methodId = [];
                         if($scope.data.outMethods.length == 1){
                             $scope.titleToUse = $scope.data.outMethods[0].name;
-                            cardObject.chartObject.title.text = cardObject.title+' - '+ $scope.titleToUse;
+                            cardObject.chartObject.options.title.text = cardObject.title+' - '+ $scope.titleToUse;
                                 xAxisItems = $scope.prepareCategory('zones');
                             yAxisItems = $scope.prepareCategory('methods');
                         }else{
                             $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
-                            cardObject.chartObject.title.text = cardObject.title+' - '+ $scope.titleToUse;
+                            cardObject.chartObject.options.title.text = cardObject.title+' - '+ $scope.titleToUse;
                             xAxisItems = $scope.prepareCategory('methods');
                             yAxisItems = $scope.prepareCategory('zones');
                         }
-                        /////////////////////////// second chart ////////////////////////////////
-                        cardObject.chartObject.xAxis.categories = [];
+
+                        cardObject.chartObject.options.xAxis.categories = [];
                             angular.forEach(yAxisItems, function (value) {
-                                cardObject.chartObject.xAxis.categories.push(value.name);
+                                cardObject.chartObject.options.xAxis.categories.push(value.name);
                             });
                             $scope.normalseries1 = [];
-                                delete cardObject.chartObject.chart;
-                                angular.forEach(xAxisItems, function (val) {
-                                    var serie = [];
-                                    angular.forEach(yAxisItems, function (value) {
-                                        if($scope.data.outMethods.length == 1){
-                                            var number = $scope.getDataFromUrl(data.rows, val.id, $scope.currentYear, value.id);
-                                        }else{
-                                            var number = $scope.getDataFromUrl(data.rows,value.id, $scope.currentYear, val.id);
-                                        }
-                                        serie.push(number);
-                                    });
-                                    $scope.normalseries1.push({type: 'column', name: val.name, data: serie})
+                            angular.forEach(xAxisItems, function (val) {
+                                var serie = [];
+                                angular.forEach(yAxisItems, function (value) {
+                                    if($scope.data.outMethods.length == 1){
+                                        var number = $scope.getDataFromUrl(data.rows, val.id, $scope.currentYear, value.id);
+                                    }else{
+                                        var number = $scope.getDataFromUrl(data.rows,value.id, $scope.currentYear, val.id);
+                                    }
+                                    serie.push(number);
                                 });
-                                cardObject.chartObject.series = $scope.normalseries1;
-                                $scope.chartObject = cardObject.chartObject;
-                                $('#container12').highcharts(cardObject.chartObject);
-                                $scope.csvdata = portalService.prepareDataForCSV(cardObject.chartObject);
+                                $scope.normalseries1.push({type: 'column', name: val.name, data: serie})
+                            });
+                            cardObject.chartObject.series = $scope.normalseries1;
+                        cardObject.csvdata = FPManager.prepareDataForCSV(cardObject.chartObject);
 
-
-                        //////////////////////////////first chart ///////////////////////////
                         cardObject.chartObject.loading = false
+                        cardObject.showLoader = false;
                     }else{
                         cardObject.chartObject.loading = false
+                        cardObject.showLoader = false;
                     }
 
                     $rootScope.showProgressMessage = false;
+                    cardObject.showLoader = false;
 
                 });
             });
