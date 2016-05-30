@@ -9,7 +9,7 @@ angular.module("hmisPortal")
     .config(function($httpProvider) {
 
     })
-    .controller("menuController",function ($rootScope,$scope,$http,portalService,FPManager,$location,Base64) {
+    .controller("menuController",function ($rootScope,$scope,$http,portalService,FPManager,$location,Base64,$timeout) {
         $scope.isActive = function (viewLocation) {
             var active = (viewLocation === $location.path());
             return active;
@@ -47,17 +47,6 @@ angular.module("hmisPortal")
         $scope.addSubscriber = function(){
             $rootScope.progressMessage = "Adding you to the list of subscribers, Please wait ...";
             $rootScope.showProgressMessage = true;
-            var authdata = Base64.encode($scope.newUser.name.replace(/ /g,'') + ':DHIS2016');
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-            $http.get(portalService.base +"api/userGroups.json?filter=name:eq:Portal Subscription").then(function(result){
-                console.log(result);
-                console.log(result.data.userGroups[0]);
-                $rootScope.progressMessage = "Data Sent Successfully.";
-                $rootScope.showProgressMessage = true;
-                $timeout(function(){
-                    $rootScope.showProgressMessage = false;
-                },2000)
-            });
             var userPayload = {
                 firstName: $scope.newUser.name,
                 surname: $scope.newUser.name,
@@ -76,17 +65,21 @@ angular.module("hmisPortal")
                     id: "vAvEltyXGbD"
                 } ]
             }
-            $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
-                j_username: "portal", j_password: "Portal123"
-            },function() {
+            var authdata = Base64.encode('portal:Portal123');
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+            $http.get(portalService.base +"api/userGroups.json?filter=name:eq:Portal Subscription").then(function(result){
+                console.log(result);
+                console.log(result.data.userGroups[0]);
 
-            },function(){
-                $rootScope.progressMessage = "Error occured during subscription process";
-                $rootScope.showProgressMessage = true;
-                $timeout(function(){
-                    $rootScope.showProgressMessage = false;
-                },2000)
-            })
+                $http.post(portalService.base +"api/users",userPayload).then(function(result){
+                    console.log(result);
+                    $rootScope.progressMessage = "You have been subscribed Successfully.";
+                    $rootScope.showProgressMessage = true;
+                    $timeout(function(){
+                        $rootScope.showProgressMessage = false;
+                    },2000)
+                });
+            });
         }
 
 
