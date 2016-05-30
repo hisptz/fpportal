@@ -47,33 +47,41 @@ angular.module("hmisPortal")
         $scope.addSubscriber = function(){
             $rootScope.progressMessage = "Adding you to the list of subscribers, Please wait ...";
             $rootScope.showProgressMessage = true;
-            var userPayload = {
-                firstName: $scope.newUser.name,
-                surname: $scope.newUser.name,
-                email: $scope.newUser.email,
-                userCredentials: {
-                    username: $scope.newUser.name.replace(/ /g,''),
-                    password: "DHIS2016",
-                    userRoles: [ {
-                        id: "Euq3XfEIEbx"
-                    } ]
-                },
-                organisationUnits: [ {
-                    id: "ImspTQPwCqd"
-                } ],
-                userGroups: [ {
-                    id: "vAvEltyXGbD"
-                } ]
-            }
+
             var authdata = Base64.encode('portal:Portal123');
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
             $http.get(portalService.base +"api/userGroups.json?filter=name:eq:Portal Subscription").then(function(result){
                 console.log(result);
                 console.log(result.data.userGroups[0]);
-
+                var organisationUnits = [];
+                $scope.data.outRegistrationOrganisationUnits.forEach(function(orgUnit){
+                    organisationUnits.push(orgUnit.id);
+                });
+                var userPayload = {
+                    firstName: $scope.newUser.name,
+                    surname: $scope.newUser.name,
+                    email: $scope.newUser.email,
+                    userCredentials: {
+                        username: $scope.newUser.name.replace(/ /g,''),
+                        password: "DHIS2016"/*,
+                        userRoles: [ {
+                            id: "Euq3XfEIEbx"
+                        } ]*/
+                    },
+                    organisationUnits:organisationUnits,
+                    userGroups: [ {
+                        id: result.data.userGroups[0].id
+                    } ]
+                }
                 $http.post(portalService.base +"api/users",userPayload).then(function(result){
                     console.log(result);
                     $rootScope.progressMessage = "You have been subscribed Successfully.";
+                    $rootScope.showProgressMessage = true;
+                    $timeout(function(){
+                        $rootScope.showProgressMessage = false;
+                    },2000)
+                },function(){
+                    $rootScope.progressMessage = "Error Subscribing. Please try again.";
                     $rootScope.showProgressMessage = true;
                     $timeout(function(){
                         $rootScope.showProgressMessage = false;
