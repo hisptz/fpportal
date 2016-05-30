@@ -9,7 +9,7 @@ angular.module("hmisPortal")
     .config(function($httpProvider) {
 
     })
-    .controller("menuController",function ($rootScope,$scope,$http,portalService,FPManager,$location) {
+    .controller("menuController",function ($rootScope,$scope,$http,portalService,FPManager,$location,Base64) {
         $scope.isActive = function (viewLocation) {
             var active = (viewLocation === $location.path());
             return active;
@@ -47,6 +47,17 @@ angular.module("hmisPortal")
         $scope.addSubscriber = function(){
             $rootScope.progressMessage = "Adding you to the list of subscribers, Please wait ...";
             $rootScope.showProgressMessage = true;
+            var authdata = Base64.encode($scope.newUser.name.replace(/ /g,'') + ':DHIS2016');
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+            $http.get(portalService.base +"api/userGroups.json?filter=name:eq:Portal Subscription").then(function(result){
+                console.log(result);
+                console.log(result.data.userGroups[0]);
+                $rootScope.progressMessage = "Data Sent Successfully.";
+                $rootScope.showProgressMessage = true;
+                $timeout(function(){
+                    $rootScope.showProgressMessage = false;
+                },2000)
+            });
             var userPayload = {
                 firstName: $scope.newUser.name,
                 surname: $scope.newUser.name,
