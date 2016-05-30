@@ -55,14 +55,15 @@ angular.module("hmisPortal")
                 console.log(result.data.userGroups[0]);
                 var organisationUnits = [];
                 $scope.data.outRegistrationOrganisationUnits.forEach(function(orgUnit){
-                    organisationUnits.push(orgUnit.id);
+                    organisationUnits.push({id:orgUnit.id});
                 });
+                var max = 1000,min = 1;
                 var userPayload = {
                     firstName: $scope.newUser.name,
                     surname: $scope.newUser.name,
                     email: $scope.newUser.email,
                     userCredentials: {
-                        username: $scope.newUser.name.replace(/ /g,''),
+                        username: $scope.newUser.name.replace(/ /g,'') + Math.floor(Math.random() * (max - min + 1)) + min,
                         password: "DHIS2016"/*,
                         userRoles: [ {
                             id: "Euq3XfEIEbx"
