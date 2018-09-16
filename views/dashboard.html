@@ -12,7 +12,7 @@
         -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);
         box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);
         color: #111;
-        font-size: 13px;
+        font-size: 9px;
         position: absolute;
         bottom:30em;
         left: 15em;
@@ -43,7 +43,7 @@
         -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.75);
         box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.75);
         color: #111;
-        font-size: 13px;
+        font-size: 9px;
         position: absolute;
         bottom:1.5em;
         left: 2em;
@@ -135,7 +135,9 @@
             <div class="input-field col s6 grey lighten-5" ng-if="$root.periodType == 'years'">
                 <select ng-model="$root.selectedPeriod" ng-change="$root.firstClick1()" material-select watch>
                     <option value="2014">2014</option>
-                    <!--<option value="2015">2015</option>-->
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
                 </select>
                 <label>Period</label>
             </div>
@@ -228,14 +230,45 @@
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">{{ card.title }} ( {{ totalPop }} )<i class="material-icons right">more_vert</i></span>
                                 <p>
-                                    <a ng-click="changePopChart($event,icon.name,card)" ng-repeat="icon in card.icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
-                                    <a ng-click="downloadPopulationExcel(card)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>
+                                    <a ng-click="changePopChart($event,'table',card)"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                                    <a ng-click="changeChart($event,'column',card)"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                                    <!--<a ng-click="changeChart('map',card)"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Map</a>-->
+                                    <button class="waves-effect waves-light btn teal darken-2" ng-click="downloadPopulationExcel(card)">CSV</button>
+                                    <span class="card-title activator grey-text text-darken-4" style="font-size: 18px;"><i class="material-icons mdi-action-info-outline right" style="font-size: 38px;color: #0059bc;margin-top:10px"></i></span>
+
+
+                                    <!--<a ng-click="changePopChart($event,icon.name,card)" ng-repeat="icon in card.icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>-->
+                                    <!--<a ng-click="downloadPopulationExcel(card)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
                                 </p>
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4">{{ card.title }}  ( {{ totalPop }} )<i class="material-icons right">close</i></span>
-                                <p class="flow-text">{{ card.description }}</p>
+                                <p class="flow-text"><b>Description</b>:&nbsp;&nbsp;&nbsp;{{ card.description }}</p>
+                                <p class="flow-text"><b>Data Element Aggregation Type</b>:&nbsp;&nbsp;&nbsp;{{card.dataElementDetails.aggregationType}}</p>
+                                <p class="flow-text"><b>Data Element Category Combination</b>:&nbsp;&nbsp;&nbsp;{{card.dataElementDetails.categoryCombo.name}}</p>
+                                <ul ng-repeat="item in card.dataElementDetails.categoryCombo.categories">
+                                       <li class="flow-text"><b>Categories</b>:&nbsp;&nbsp;&nbsp;{{item.name}}
+                                           <ul ng-repeat="type in item.categoryOptions">
+                                             <li class="flow-text"><b>Categories Option</b>:&nbsp;&nbsp;&nbsp;{{type.name}}</li>
+                                           </ul>
+                                       </li>
+                                 </ul>
+                             </div>
+
+                    <!--Model object for the card-->
+                    <div id="link{{ card.data }}" class="modal" style="border-radius: 10px;width: 90%;max-height: 100%">
+                        <div class="modal-content">
+                            <h4 style="text-align: center">{{ card.title }}</h4>
+                            <div style="width: 100%">
+                                <highchart style="width: 86%" ng-if="!card.displayTable && !card.displayMap && !card.displayColumn" config="card.chartObject"></highchart>
+                                <div id="c{{ card.data }}" ng-show="card.displayColumn" style="margin: 0 auto;width: 86%"></div>
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class=" modal-action modal-close waves-effect waves-green btn-flat">Close</button>
+                        </div>
+                    </div>
+                    <!--end of model object-->
                         </div>
 
 
@@ -270,15 +303,29 @@
 
                     </div>
                     <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4">POPULATION BY AGE GROUP<i class="material-icons right">more_vert</i></span>
                         <p>
-                            <a ng-click="changeChart($event,icon.name)" ng-repeat="icon in icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
-                            <a ng-click="downloadExcel1()" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>
+                            <a ng-click="changeChart($event,'table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                            <a ng-click="changeChart($event,'column')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                            <!--<a ng-click="changeChart('map',card)"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Map</a>-->
+                            <button class="waves-effect waves-light btn teal darken-2" ng-click="downloadExcel1()">CSV</button>
+                            <span class="card-title activator grey-text text-darken-4" style="font-size: 18px;"><i class="material-icons mdi-action-info-outline right" style="font-size: 38px;color: #0059bc;margin-top:10px"></i></span>
+
+                            <!--<a ng-click="changeChart($event,icon.name)" ng-repeat="icon in icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>-->
+                            <!--<a ng-click="downloadExcel1()" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
                         </p>
                     </div>
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">POPULATION BY AGE GROUP<i class="material-icons right">close</i></span>
                         <p class="flow-text">Population data</p>
+                        <p class="flow-text"><b>Data Element Aggregation Type</b>:&nbsp;&nbsp;&nbsp;{{dataElementDetail.aggregationType}}</p>
+                        <p class="flow-text"><b>Date Element Category Combination</b>:&nbsp;&nbsp;&nbsp;{{dataElementDetail.categoryCombo.name}}</p>
+                        <ul ng-repeat="item in dataElementDetail.categoryCombo.categories">
+                            <li class="flow-text"><b>Category Name</b>:&nbsp;&nbsp;&nbsp; {{item.name}}
+                                <ul ng-repeat="type in item.categoryOptions">
+                                    <li class="flow-text"><b>Category Option Name</b>:&nbsp;&nbsp;&nbsp;{{type.name}}</li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -312,15 +359,33 @@
 
         </div>
         <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">POPULATION BY GENDER<i class="material-icons right">more_vert</i></span>
             <p>
-                <a ng-click="changeChart($event,icon.name)" ng-repeat="icon in icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
-                <a ng-click="downloadjinsiExcel()" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>
+                <a ng-click="changeChart($event,'table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                <a ng-click="changeChart($event,'column')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                <!--<a ng-click="changeChart('map',card)"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Map</a>-->
+                <button class="waves-effect waves-light btn teal darken-2" ng-click="downloadjinsiExcel()">CSV</button>
+                <span class="card-title activator grey-text text-darken-4" style="font-size: 18px;"><i class="material-icons mdi-action-info-outline right" style="font-size: 38px;color: #0059bc;margin-top:10px"></i></span>
+
+                <!--<a ng-click="changeChart($event,icon.name)" ng-repeat="icon in icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>-->
+                <!--<a ng-click="downloadjinsiExcel()" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
             </p>
         </div>
         <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">POPULATION BY GENDER<i class="material-icons right">close</i></span>
             <p class="flow-text">Population data by gender</p>
+            <p class="flow-text" ng-if="dataElementDetail.aggregationType"><b>Date Element Aggregation Name</b>:&nbsp;&nbsp;&nbsp;{{dataElementDetail.aggregationType}}</p>
+            <p class="flow-text" ng-if="dataElementDetail.categoryCombo.name"><b>Date Element Category Combination Name</b>:&nbsp;&nbsp;&nbsp;{{dataElementDetail.categoryCombo.name}}</p>
+            <ul ng-repeat="item in dataElementDetail.categoryCombo.categories">
+                <li class="flow-text" ng-if="item.name"><b>Category Name</b>:&nbsp;&nbsp;&nbsp;{{item.name}}
+                    <ul ng-repeat="type in item.categoryOptions">
+                        <li class="flow-text" ng-if="type.name"><b>Category Option Name</b>:&nbsp;&nbsp;&nbsp;{{type.name}}</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul ng-repeat="dataSet in dataElementDetail.dataSets">
+                <li class="flow-text" ng-if="dataSet.name"><b>Data Set Name</b>:&nbsp;&nbsp;&nbsp;{{dataSet.name}}</li>
+                <li class="flow-text" ng-if="dataSet.periodType"><b>Period Type</b>:&nbsp;&nbsp;&nbsp;{{dataSet.periodType}}</li>
+            </ul>
         </div>
     </div>
 
@@ -333,7 +398,8 @@
                 </div>
 
                 <div style="width: 100%" ng-if="card.displayMap">
-                    <p ng-if="card.chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>
+                    <!--<p ng-if="card.chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
+                    <p ng-if="!card.layers" class="center">Loading ....</p>
                     <openlayers ng-if="!card.chartObject.loading" ol-center="card.Africa" ol-defaults="card.defaults" custom-layers="true"  height="400px" >
                         <ol-layer ol-layer-properties="layer" name="test" ng-repeat="layer in card.layers"></ol-layer>
                     </openlayers>
@@ -374,15 +440,46 @@
 
             </div>
             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">{{ card.title }}<i class="material-icons right">more_vert</i></span>
                 <p>
-                    <a ng-click="changecompletenesChart($event,icon.name,card)" ng-repeat="icon in card.icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>
-                    <a ng-click="downloadcompletenesExcel(card)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>
+                    <a ng-click="changecompletenesChart($event,'table',card)"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
+                    <a ng-click="changecompletenesChart($event,card.default_chart,card)"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
+                    <!--<a ng-click="changeChart('map',card)"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Map</a>-->
+                    <button class="waves-effect waves-light btn teal darken-2" ng-click="downloadcompletenesExcel(card)">CSV</button>
+                    <span class="card-title activator grey-text text-darken-4" style="font-size: 18px;"><i class="material-icons mdi-action-info-outline right" style="font-size: 38px;color: #0059bc;margin-top:10px"></i></span>
+
+
+                    <!--<a ng-click="changecompletenesChart($event,icon.name,card)" ng-repeat="icon in card.icons" title="{{ icon.name }}" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/{{icon.image}}" style="height: 20px;width: 20px"/></i></a>-->
+                    <!---->
+                    <!--<a ng-click="downloadcompletenesExcel(card)" target="_blank"  title="Download Excel" class="btn-floating btn-small waves-effect waves-light teal darken-2" style="padding-top: 5px;padding-left: 8px"><img src="assets/img/cvs.jpg" style="height: 20px;width: 20px"/></i></a>-->
                 </p>
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{ card.title }}<i class="material-icons right">close</i></span>
-                <p class="flow-text">{{ card.description }}</p>
+                <p class="flow-text"><b>Description</b>:&nbsp;&nbsp;&nbsp;{{ card.description }}</p>
+                 <ul ng-repeat="item in card.dataElementDetails">
+                    <li class="flow-text" ng-if="item.name"><b>Date Element Name</b>:&nbsp;&nbsp;&nbsp;{{item.name}}</li>
+                    <li class="flow-text" ng-if="item.aggregationType"><b>Date Element Aggregation Type</b>:&nbsp;&nbsp;&nbsp;{{item.aggregationType}}</li>
+                    <li class="flow-text" ng-if="item.categoryCombo.name"><b>Date Element CategoryCombination </b>:&nbsp;&nbsp;&nbsp;{{item.categoryCombo.name}}</li>
+                        <ul ng-repeat="type in item.categories">
+                            <li class="flow-text" ng-if="type.name"><b>Category Name</b>:&nbsp;&nbsp;&nbsp;{{type.name}}
+                              <ul ng-repeat="option in type.categoryOptions">
+                                   <li class="flow-text" ng-if="option.name"><b>Category Option Name</b>:&nbsp;&nbsp;&nbsp;{{option.name}}</li>
+                              </ul>
+                            </li>
+                        </ul>
+                 </ul>
+                <ul ng-repeat="item in card.dataSetDetails">
+                    <li class="flow-text" ng-if="item.name"><b>Data Set Name</b>:&nbsp;&nbsp;&nbsp;{{item.name}}</li>
+                    <li class="flow-text" ng-if="item.periodType"><b>Data Set Period Type</b>:&nbsp;&nbsp;&nbsp;{{item.periodType}}</li>
+                    <li class="flow-text" ng-if="item.categoryCombo.name"><b>Category Combination Name</b>:&nbsp;&nbsp;&nbsp;{{item.categoryCombo.name}}</li>
+                    <ul ng-repeat="type in item.categories">
+                        <li class="flow-text" ng-if="type.name"><b>Category Name</b>:&nbsp;&nbsp;&nbsp;{{type.name}}
+                            <ul ng-repeat="option in type.categoryOptions">
+                                <li class="flow-text" ng-if="option.name"><b>Category Option Name</b>:&nbsp;&nbsp;&nbsp;{{option.name}}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
             </div>
         </div>
     </div>

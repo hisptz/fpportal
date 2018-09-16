@@ -6,7 +6,7 @@ angular.module("hmisPortal")
     .config(function($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     })
-    .controller("jinsiCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService) {
+    .controller("jinsiCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,$resource,portalService) {
         //displaying loading during page change
         $rootScope.$on("$routeChangeStart",
             function (event, current, previous, rejection) {
@@ -27,7 +27,7 @@ angular.module("hmisPortal")
         $scope.jinsi.displayTable = false;
         $scope.icons=[
             {name:'table',image:'table.jpg',action:''},
-            {name:'bar',image:'bar.png',action:''},
+            {name:'column',image:'bar.png',action:''},
             {name:'line',image:'line.png',action:''},
             {name:'combined',image:'combined.jpg',action:''},
             {name:'column',image:'column.png',action:''},
@@ -150,17 +150,7 @@ angular.module("hmisPortal")
                                 $scope.normalseries.push({type: 'column', name: value.name, data: serie});
                                 $scope.normalseries.push({type: 'spline', name: value.name, data: serie});
                             });
-                            $scope.normalseries.push({
-                                type: 'pie',
-                                name: $scope.UsedName,
-                                data: serie1,
-                                center: [100, 80],
-                                size: 150,
-                                showInLegend: false,
-                                dataLabels: {
-                                    enabled: false
-                                }
-                            })
+
                             $scope.jinsichartConfig.series = $scope.normalseries;
                         }
                         else if ($scope.data.chartType == 'table') {
@@ -288,18 +278,6 @@ angular.module("hmisPortal")
         //
         $scope.cards.malaria = [
 
-            //{
-            //    title:'FACILITY BY TYPES AND OWNERSHIP',
-            //    description:'FACILITY BY TYPES AND OWNERSHIP',
-            //    cardClass:"col m12 s12",
-            //    data:'pNKhRlFZJbW;F7rOwHs03bE;eLBxCVGSC84;UXtq3G5o5iR;q9uFxOgNr5O;pocBJUp9dbX;mPK50J06lEV;Z0poM2BaIYt;M20Cu1g6VQm;Ahd4CO1qBtW;vDpgaeM5NLo;bcl3yz5Wa1T',
-            //    icons:angular.copy($scope.icons),
-            //    displayTable:false,
-            //    displayMap:false,
-            //    chart:'bar',
-            //    chartObject:angular.copy($scope.defaultObject)
-            //
-            //},
             {
                 title:'FACILITY BY TYPES',
                 description:'FACILITY BY TYPES',
@@ -308,7 +286,9 @@ angular.module("hmisPortal")
                 icons:angular.copy($scope.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'column',
+                dataElementDetails:[],
+                showParent:false,
                 chartObject:angular.copy($scope.defaultObject)
 
             },{
@@ -319,7 +299,9 @@ angular.module("hmisPortal")
                 icons:angular.copy($scope.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'column',
+                dataElementDetails:[],
+                showParent:false,
                 chartObject:angular.copy($scope.defaultObject)
 
             },{
@@ -331,7 +313,9 @@ angular.module("hmisPortal")
                 icons:angular.copy($scope.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'column',
+                dataSetDetails:[],
+                showParent:false,
                 chartObject:angular.copy($scope.defaultObject)
 
             },
@@ -343,7 +327,9 @@ angular.module("hmisPortal")
                 icons:angular.copy($scope.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'column',
+                dataSetDetails:[],
+                showParent:false,
                 chartObject:angular.copy($scope.defaultObject)
 
             },
@@ -355,7 +341,9 @@ angular.module("hmisPortal")
                 icons:angular.copy($scope.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'column',
+                dataSetDetails:[],
+                showParent:false,
                 chartObject:angular.copy($scope.defaultObject)
 
             },
@@ -363,11 +351,13 @@ angular.module("hmisPortal")
                 title:'NTLP DATA COMPLETENESS',
                 description:'NTLP DATA COMPLETENESS',
                 cardClass:"col m12 s12",
-                data:'UHDfKY2mUOQ;ykDbDeDvTcx;ZOkoQ7BtbVQ;IzUZXETYoyB',
+                data:'UHDfKY2mUOQ;ykDbDeDvTcx;O2V8r4UT8kB;IzUZXETYoyB',
                 icons:angular.copy($scope.icons),
                 displayTable:false,
                 displayMap:false,
-                chart:'bar',
+                chart:'column',
+                dataSetDetails:[],
+                showParent:false,
                 chartObject:angular.copy($scope.defaultObject)
 
             }
@@ -382,11 +372,13 @@ angular.module("hmisPortal")
 
                  elements.push({'name':name,'uid':val})
             });
-            data.push({'name': jsonObject.metaData.names[$rootScope.selectedOrgUnit], 'id': $rootScope.selectedOrgUnit});
+            if(card.showParent == true){
+                data.push({'name': jsonObject.metaData.names[$rootScope.selectedOrgUnit], 'id': $rootScope.selectedOrgUnit});
+            }
             angular.forEach(jsonObject.metaData.ou,function(region){
-                if(region != $rootScope.selectedOrgUnit ) {
+                //if(region != $rootScope.selectedOrgUnit ) {
                     data.push({'name': jsonObject.metaData.names[region], 'id': region});
-                }
+               // }
             });
             structure.regions = data;
             structure.elements = elements;
@@ -459,11 +451,28 @@ angular.module("hmisPortal")
 
                 if($scope.selectedOrgUnit == "m0frOspS7JY"){
 
-                    $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+cardObject.data+"&dimension=ou:LEVEL-1;LEVEL-2;"+$scope.selectedOrgUnit+"&filter=pe:"+$scope.selectedPeriod+"&displayProperty=NAME";
+                    $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+cardObject.data+"&dimension=ou:LEVEL-2;"+$scope.selectedOrgUnit+"&filter=pe:"+$scope.selectedPeriod+"&displayProperty=NAME";
                 }else{
                     $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+cardObject.data+"&dimension=ou:LEVEL-2;LEVEL-3;"+$scope.selectedOrgUnit+"&filter=pe:"+$scope.selectedPeriod+"&displayProperty=NAME";
                 }
+                if(cardObject.hasOwnProperty('dataSetDetails')){
+                    angular.forEach(cardObject.data.split(";"),function(val){
+                        var indicatorApi=
+                            $resource(portalService.base +"api/dataSets/"+val +".json?fields=id,name,periodType,shortName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]]");
+                        var indicatorResult=indicatorApi.get(function(dataElementObject){
+                            cardObject.dataSetDetails.push(dataElementObject);
+                          });
+                    });
+                }else{
 
+                    angular.forEach(cardObject.data.split(";"),function(val){
+                  var indicatorApi=
+                        $resource(portalService.base +"api/dataElements/"+val +".json?fields=id,name,aggregationType,displayName,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]],dataSets[id,name,periodType]");
+                    var indicatorResult=indicatorApi.get(function(dataElementObject){
+                        cardObject.dataElementDetails.push(dataElementObject);
+                     });
+                  });
+                }
 
                 $http.get($scope.url).success(function(data){
                     if(data.hasOwnProperty('metaData')){
@@ -471,8 +480,7 @@ angular.module("hmisPortal")
                         angular.forEach(useThisData.regions,function(value){
                             $scope.area.push(value.name);
                         });
-                        $scope.subCategory = useThisData.elements;
-                        cardObject.chartObject.xAxis.categories = $scope.area;
+                         cardObject.chartObject.xAxis.categories = $scope.area;
 
                         $scope.normalseries = [];
                         if($scope.data.chartType == "pie"){
@@ -505,10 +513,7 @@ angular.module("hmisPortal")
                                 $scope.normalseries.push({type: 'column', name: value.name, data: serie});
                                 $scope.normalseries.push({type: 'spline', name: value.name, data: serie});
                             });
-                            $scope.normalseries.push({type: 'pie', name: $scope.UsedName, data: serie1,center: [100, 80],size: 150,showInLegend: false,
-                                dataLabels: {
-                                    enabled: false
-                                }})
+
                             cardObject.chartObject.series = $scope.normalseries;
                         }
                         else if(chart == 'table'){
@@ -745,11 +750,7 @@ angular.module("hmisPortal")
                         $scope.normalseries.push({type: 'column', name: value.name, data: serie});
                         $scope.normalseries.push({type: 'spline', name: value.name, data: serie});
                     });
-                    $scope.normalseries.push({type: 'pie', name: $scope.UsedName, data: serie1,center: [100, 80],size: 150,showInLegend: false,
-                        dataLabels: {
-                            enabled: false
-                        }
-                    })
+
                     $scope.facilityOwnchartConfig.series = $scope.normalseries;
                 }
                 else if(chart == 'table'){
@@ -880,10 +881,7 @@ angular.module("hmisPortal")
                         $scope.normalseries.push({type: 'column', name: value.name, data: serie});
                         $scope.normalseries.push({type: 'spline', name: value.name, data: serie});
                     });
-                    $scope.normalseries.push({type: 'pie', name: $scope.UsedName, data: serie1,center: [100, 80],size: 150,showInLegend: false,
-                        dataLabels: {
-                            enabled: false
-                        }})
+
                         $scope.facilityTypechartConfig.series = $scope.normalseries;
                 }
                 else if(chart == 'table'){
@@ -941,6 +939,112 @@ angular.module("hmisPortal")
 
             $scope.areaHR = [];
             $scope.useregionHR = [];
+            $.getJSON('hr.json',function(resp){
+                var regions = [];
+                angular.forEach(resp,function(value){
+                    if(value.region_uid == "Region" ){
+                        var district = [];
+                        district.push(value);
+                        regions.push({'name':value.name,'uid':value.uid,districts:district});
+
+                        //$scope.regions[value.uid] = {'name':value.name,'uid':value.uid};
+                    }
+                });
+                angular.forEach(regions,function(value){
+                    angular.forEach(resp,function(val){
+                        if(val.region_uid == value.uid ){
+                             value.districts.push(val);
+                        }
+                    });
+                });
+                 if($scope.selectedOrgUnit == "m0frOspS7JY"){
+                    $scope.useregionHR = [];
+                    $scope.areaHR = [];
+                    angular.forEach(regions,function(value){
+                        $scope.areaHR.push(value.name);
+                        $scope.useregionHR.push({'name':value.name,'id':value.uid});
+                    });
+                }else{
+                    $scope.areaHR = [];
+                    $scope.useregionHR = [];
+                    angular.forEach(regions,function(value){
+                        if(value.uid == $scope.selectedOrgUnit){
+                            angular.forEach(value.districts,function(val){
+                                if(val.region_uid == $scope.selectedOrgUnit){
+                                    $scope.areaHR.push(val.name);
+                                    $scope.useregionHR.push({'name':val.name,'id':val.uid});
+                                }
+                            });
+                        }
+                    });
+                }
+                 $scope.HRchartConfig.xAxis.categories = $scope.areaHR;
+
+                $scope.HRnormalseries = [];
+                if(chart == "pie"){
+                    delete $scope.HRchartConfig.chart;
+                    var serie = [];
+                    angular.forEach($scope.HRsubCategory,function(value){
+                        angular.forEach($scope.useregionHR,function(val){
+                            var number = $scope.getHRData(regions,val.id,value.uid);
+                            serie.push({name: value.name+" - "+ val.name , y: parseInt(number)})
+                        });
+                    });
+                    $scope.HRnormalseries.push({type: chart, name:"HR" , data: serie,showInLegend: true,
+                        dataLabels: {
+                            enabled: false
+                        } });
+                    $scope.HRchartConfig.series = $scope.HRnormalseries;
+                }
+                else if(chart == "combined"){
+                    delete $scope.HRchartConfig.chart;
+                    var serie1 = [];
+                    angular.forEach($scope.HRsubCategory,function(value){
+                        var serie = [];
+
+                        angular.forEach($scope.useregionHR,function(val){
+                            var number = $scope.getHRData(regions,val.id,value.uid);
+                            serie.push(parseInt(number));
+                            serie1.push({name: value.name+" - "+ val.name , y: parseInt(number) })
+                        });
+                        $scope.HRnormalseries.push({type: 'column', name: value.name, data: serie});
+                        $scope.HRnormalseries.push({type: 'spline', name: value.name, data: serie});
+                    });
+
+                    $scope.HRchartConfig.series = $scope.HRnormalseries;
+                }
+                else if(chart == 'table'){
+                    $scope.HRtable ={}
+                    $scope.HRtable.headers = [];
+                    $scope.HRtable.colums =[];
+                    angular.forEach($scope.HRsubCategory,function(value){
+                        var serie = [];
+                        $scope.HRtable.headers.push(value.name);
+                    });
+                    angular.forEach($scope.useregionHR,function(val){
+                        var seri = [];
+                        angular.forEach($scope.HRsubCategory,function(value){
+                            var number = $scope.getHRData(regions,val.id,value.uid);
+                            seri.push({name:value.name,value:parseInt(number)});
+                        });
+                        $scope.HRtable.colums.push({name:val.name,values:seri});
+                    });
+                  }
+                else{
+                    delete $scope.HRchartConfig.chart;
+                    angular.forEach($scope.HRsubCategory,function(value){
+                        var serie = [];
+                        angular.forEach($scope.useregionHR,function(val){
+                            var number = $scope.getHRData(regions,val.id,value.uid);
+                            serie.push(number);
+                        });
+                        $scope.HRnormalseries.push({type: chart, name: value.name, data: serie})
+                    });
+                    $scope.HRchartConfig.series = $scope.HRnormalseries;
+                }
+
+
+            });
             $scope.HRchartConfig.loading = false;
 
         };
@@ -1075,8 +1179,8 @@ angular.module("hmisPortal")
 
             $scope.preparejinsiSeries();
             $scope.prepareFacilitySeries('own','table');
-            $scope.prepareFacilityTypeSeries('bar');
-            $scope.prepareHRSeries('bar');
+            $scope.prepareFacilityTypeSeries('column');
+            $scope.prepareHRSeries('column');
             $rootScope.firstClick2();
             angular.forEach($scope.cards.malaria,function(value){
                 $scope.preparecompletenesSeries(value,value.chart);

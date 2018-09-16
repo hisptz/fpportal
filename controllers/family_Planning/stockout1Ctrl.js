@@ -13,12 +13,12 @@ angular.module("hmisPortal")
         $scope.geographicalZones = FPManager.zones;
         $scope.geoToUse = [];
         $scope.zones = "";
-        $scope.selectedMethod = 'EcP5Na7DO0r';
-        angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
-            $scope.zones += value.id+";";
-            $scope.geoToUse.push({name:value.name,id:value.id, ticked: true });
-        });
         $scope.data = {};
+        $scope.selectedYear = FPManager.latestYear;
+        $scope.data.selectedMonth = FPManager.latestMonth;
+        $scope.hideMethods = true;
+
+
         $scope.updateTree = function(){
             $scope.data.orgUnitTree1 = [];
             $scope.data.orgUnitTree = [];
@@ -52,7 +52,6 @@ angular.module("hmisPortal")
                 $scope.updateTree();
             }
         };
-        $scope.selectedMethod = 'EcP5Na7DO0r';
 
         $scope.prepareCategory = function(type){
             var data = [];
@@ -77,18 +76,7 @@ angular.module("hmisPortal")
                 data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
                 data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
+                data = FPManager.getLastTwelveMonthList($scope.data.selectedMonth);
             }if(type == 'methods'){
                 data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
                     {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
@@ -117,6 +105,12 @@ angular.module("hmisPortal")
             {'name':'Natural FP','uid':'GGpsoh0DX6T'}
         ];
         $scope.updateMethod = function(){
+            $scope.data.menuMethods = [];
+            angular.forEach($scope.FPmethods,function(value){
+                $scope.data.menuMethods.push({name:value.name,id:value.uid });
+            });
+        };
+        $scope.clearMethods = function(){
             $scope.data.menuMethods = [];
             angular.forEach($scope.FPmethods,function(value){
                 $scope.data.menuMethods.push({name:value.name,id:value.uid });
@@ -164,11 +158,12 @@ angular.module("hmisPortal")
         $scope.getNumberPerOu = function(ou,arr2,pe){
             var num = $scope.getDataFromUrl(arr2,ou,pe);
             var percent = (num.trained == 0)?0:(num.trainedAndstockOut/num.trained)*100;
-            return percent.toFixed(2);
+            return percent.toFixed(1);
         };
 
 
         $scope.getSelectedValues = function(){
+            console.log($scope.data.selectedMonth)
             if($scope.data.outOrganisationUnits.length === 0){
                 alert("no orgunit selected")
             }else
@@ -188,7 +183,7 @@ angular.module("hmisPortal")
 
                 $scope.StockOutObject.loadingMessage = "Authenticating portal...";
                 $scope.StockOutObject.chartObject = angular.copy(FPManager.chartObject)
-                $scope.StockOutObject.chartObject.options.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables "+FPManager.lastTwelveMonthName;
+                $scope.StockOutObject.chartObject.options.title.text ="Percent All Facilities with a Health Worker Trained in Short-Acting Methods but Stocked Out of Injectables or Pills - "+FPManager.getlastTwelveMonthName($scope.data.selectedMonth);
                 $scope.StockOutObject.chartObject.options.yAxis.title.text ="% of Facilities";
                 $scope.StockOutObject.chartObject.loading = true;
                 $.post( portalService.base + "dhis-web-commons-security/login.action?authOnly=true", {
@@ -216,12 +211,11 @@ angular.module("hmisPortal")
                         $scope.StockOutObject.chartObject.options.xAxis.categories.push(val.name);
                     });
                     $scope.StockOutObject.loadingMessage = "Fetching Stock Out and Training Data...";
-                    $http.get(portalService.base+'api/sqlViews/N9UEcr3rwUv/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
-                        $rootScope.showProgressMessage = false;
+                    FPManager.getFPStockoutData($scope.data.selectedMonth).then(function(val1){
                         angular.forEach(orgUnits, function (yAxis) {
                             var serie = [];
                             angular.forEach(periods, function (xAxis) {
-                                serie.push(parseFloat($scope.getNumberPerOu(yAxis.id,val1.rows,xAxis.id)));
+                                serie.push(parseFloat($scope.getNumberPerOu(yAxis.id,val1,xAxis.id)));
                             });
                             $scope.StockOutObject.chartObject.series.push({type: 'spline', name: yAxis.name, data: serie})
                         });
@@ -238,9 +232,6 @@ angular.module("hmisPortal")
 
 
 
-
-
-        $scope.selectedMethod = 'all';
         $scope.selectedPeriod = '2014';
         $scope.data.chartType = 'column';
         $scope.displayTable = false;
@@ -293,18 +284,8 @@ angular.module("hmisPortal")
                 data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
                 data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
+                console.log($scope.data.selectedMonth)
+                data = FPManager.getLastTwelveMonthList($scope.data.selectedMonth)
             }if(type == 'methods'){
                 data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
                     {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
@@ -324,8 +305,8 @@ angular.module("hmisPortal")
             if(ou == "m0frOspS7JY" ){
                 $.each(arr, function (k, v) {
                     if(v[4] == pe){
-                        num += parseInt(v[5]);
-                        num1 += parseInt(v[6]);
+                        num += (v[5] == "")?0:parseInt(v[5]);
+                        num1 += (v[6] == "")?0:parseInt(v[6]);
                     }
                 });
             }else{
@@ -337,8 +318,8 @@ angular.module("hmisPortal")
                         $.each(arr, function (k, v) {
                             if (v[0] == j || v[2] == j) {
                                 if(v[4] == pe){
-                                    num += parseInt(v[5]);
-                                    num1 += parseInt(v[6]);
+                                    num += (v[5] == "")?0:parseInt(v[5]);
+                                    num1 += (v[6] == "")?0:parseInt(v[6]);
                                 }
                             }
                         });
@@ -347,8 +328,8 @@ angular.module("hmisPortal")
                     $.each(arr, function (k, v) {
                         if (v[0] == ou || v[2] == ou) {
                             if(v[4] == pe){
-                                num += parseInt(v[5]);
-                                num1 += parseInt(v[6]);
+                                num += (v[5] == "")?0:parseInt(v[5]);
+                                num1 += (v[6] == "")?0:parseInt(v[6]);
                             }
 
                         }

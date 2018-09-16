@@ -11,11 +11,10 @@ angular.module("hmisPortal")
         $scope.geographicalZones = FPManager.zones;
         $scope.geoToUse = [];
         $scope.zones = "";
-        angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
-            $scope.zones += value.id+";";
-            $scope.geoToUse.push({name:value.name,id:value.id, ticked: true });
-        });
         $scope.data = {};
+        $scope.selectedYear = FPManager.latestYear;
+        $scope.data.selectedMonth = FPManager.latestMonth;
+
         $scope.data.outOrganisationUnits = [];
         $scope.updateTree = function(){
             $scope.data.orgUnitTree1 = [];
@@ -29,8 +28,14 @@ angular.module("hmisPortal")
                     });
                     zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
                 });
-                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
-                $scope.data.outOrganisationUnits.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
+                if(value.name != "Eastern Zone"){
+                    $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
+                    $scope.data.outOrganisationUnits.push({ name:value.name,id:value.id, children:zoneRegions,selected:true })
+                }
+                else{
+                    $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
+                    $scope.data.outOrganisationUnits.push({ name:value.name,id:value.id, children:zoneRegions })
+                }
             });
             $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
         };
@@ -52,19 +57,6 @@ angular.module("hmisPortal")
             }
         };
 
-        //switching between tables and charts
-        $scope.displayTables = {card1:false,card2:false,card3:false}
-        $scope.changeTable =function(card,value){
-            if(value == "table"){
-                if(card == "card1"){$scope.displayTables.card1 = true}
-                if(card == "card2"){$scope.displayTables.card2 = true}
-                if(card == "card3"){$scope.displayTables.card3 = true}
-            }if(value == "chart"){
-                if(card == "card1"){$scope.displayTables.card1 = false}
-                if(card == "card2"){$scope.displayTables.card2 = false}
-                if(card == "card3"){$scope.displayTables.card3 = false}
-            }
-        };
 
         $scope.getSelectedValues = function(){
 
@@ -111,17 +103,17 @@ angular.module("hmisPortal")
                 $scope.card1.loadingMessage = "Authenticating portal...";
                 $scope.card1.chartObject = angular.copy(FPManager.chartObject);
                 $scope.card1.chartObject.loading = true;
-                $scope.card1.chartObject.options.title.text ="Percent Clients Adopting Family Planning post abortion or miscarriage " +FPManager.lastTwelveMonthName;
+                $scope.card1.chartObject.options.title.text ="Percent Clients Adopting Family Planning post abortion or miscarriage " +FPManager.getlastTwelveMonthName($scope.data.selectedMonth);
 
                 $scope.card2.loadingMessage = "Authenticating portal...";
                 $scope.card2.chartObject = angular.copy(FPManager.chartObject);
                 $scope.card2.chartObject.loading = true;
-                $scope.card2.chartObject.options.title.text ="Clients Adopting Family Planing in the Postpartum Period "+FPManager.lastTwelveMonthName;
+                $scope.card2.chartObject.options.title.text ="Clients Adopting Family Planing in the Postpartum Period "+FPManager.getlastTwelveMonthName($scope.data.selectedMonth);
 
                 $scope.card3.loadingMessage = "Authenticating portal...";
                 $scope.card3.chartObject = angular.copy(FPManager.chartObject);
                 $scope.card3.chartObject.loading = true;
-                $scope.card3.chartObject.options.title.text ="Percent Family Planning Clients Adopting HIV Testing and Counselling (HTC) "+FPManager.lastTwelveMonthName;
+                $scope.card3.chartObject.options.title.text ="Percent Family Planning Clients Adopting HIV Testing and Counselling (HTC) "+FPManager.getlastTwelveMonthName($scope.data.selectedMonth);
 
                 var orgUnits = [];
                 angular.forEach($scope.data.outOrganisationUnits,function(orgUnit){
@@ -146,7 +138,7 @@ angular.module("hmisPortal")
                     {id:'OwAJT47sIgQ',name:'FP HIV testing rate among FP clients(Numerator)' },
                     {id:'NaCPtfoUkpH',name:'FP HIV testing rate among FP clients(Denominator)' }
                 ];
-                var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
+                var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+FPManager.lastTwelveMonth($scope.data.selectedMonth)+"&displayProperty=NAME";
                 var base = portalService.base;
                 $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
@@ -221,8 +213,8 @@ angular.module("hmisPortal")
         $scope.findValue = function(arr,ou,pe,dx,numerator,denominator,type){
 
             var amount = 0;
-            var numeratorValue = 0
-            var denominatorValue = 0
+            var numeratorValue = 0;
+            var denominatorValue = 0;
             if((ou.indexOf(';') > -1)){
                 var orgArr = ou.split(";");
                 var i = 0;
@@ -247,7 +239,7 @@ angular.module("hmisPortal")
                         }
                     });
                     if(type == 'percent'){
-                        amount = (denominatorValue != 0)?parseFloat((numeratorValue/denominatorValue )* 100).toFixed(2):0;
+                        amount = (denominatorValue != 0)?parseFloat((numeratorValue/denominatorValue )* 100).toFixed(1):0;
                     }
 
                 });
@@ -316,18 +308,7 @@ angular.module("hmisPortal")
                 data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
                 data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
+                data = FPManager.getLastTwelveMonthList($scope.data.selectedMonth)
             }if(type == 'methods'){
                 data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
                     {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},

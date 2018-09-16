@@ -3,19 +3,65 @@
  */
 
 angular.module("hmisPortal")
-    .run(function() {
+    .run(function($window, $rootScope,$timeout) {
+        $rootScope.online = navigator.onLine;
+        $window.addEventListener("offline", function () {
+            $rootScope.$apply(function() {
+                $rootScope.online = false;
+                $rootScope.status = "Offline";
+            });
+        }, false);
+        $window.addEventListener("online", function () {
+            $timeout(function(){
+                $rootScope.$apply(function() {
+                    $rootScope.online = true;
+                    $rootScope.status = "Online";
 
+                });
+            },2000);
+        }, false);
     })
-    .controller("mainCtrl",function ($rootScope,$scope,$q,$http,$timeout,portalService) {
+    .controller("mainCtrl",function ($rootScope,$window,$scope,$q,$http,$timeout,$route,portalService,FPManager) {
 
+        $scope.periodName = FPManager.getMonthName(FPManager.lastMonthWithData);
         $rootScope.showLoader = false;
         $rootScope.currentDownloading = false;
         $rootScope.$on("$routeChangeStart",
             function (event, current, previous, rejection) {
+                $rootScope.online = navigator.onLine;
+                $window.addEventListener("offline", function () {
+                    $rootScope.$apply(function() {
+                        $rootScope.online = false;
+                        $rootScope.status = "Offline";
+                    });
+                }, false);
+                $window.addEventListener("online", function () {
+                    $timeout(function(){
+                        $rootScope.$apply(function() {
+                            $rootScope.online = true;
+                            $rootScope.status = "Online";
+
+                        });
+                    },2000);
+                }, false);
                 $rootScope.showLoader = true;
             });
         $rootScope.$on("$routeChangeSuccess",
             function (event, current, previous, rejection) {
+                $rootScope.online = navigator.onLine;
+                $window.addEventListener("offline", function () {
+                    $rootScope.$apply(function() {
+                        $rootScope.online = false;
+                    });
+                }, false);
+                $window.addEventListener("online", function () {
+                    $timeout(function(){
+                        $rootScope.$apply(function() {
+                            $rootScope.online = true;
+                            $rootScope.status = "Online";
+                          });
+                    },2000);
+                }, false);
                 $rootScope.showLoader = false;
 
             });
@@ -37,14 +83,12 @@ angular.module("hmisPortal")
             dataTextToSend['subject']=subject;
             dataTextToSend['text']=textMessage+" Contacts Details: Email " +mail+"  and Phone number " +phone;
             dataTextToSend['userGroups']=userGroups;
-            console.log(dataTextToSend);
-            $http({
+             $http({
                 method: 'POST',
                 url: messageUrl,
                 data: dataTextToSend
             }).then(function(response) {
-                    console.log(dataTextToSend);
-                    $scope.showLoading=false;
+                     $scope.showLoading=false;
                     $scope.messageSend=true;
                     $scope.subject='';
                     $scope.textMessage='';
@@ -114,12 +158,17 @@ angular.module("hmisPortal")
             $scope.showFilter = true;
         };
 
-        $scope.linkValue = 'statistcs';
+        $scope.linkValue = 'census';
 
         $scope.activateLink = function(linkValue){
             $scope.linkValue = linkValue;
             alert(linkValue);
         }
+        $scope.reloadAction=function(){
+            $route.reload();
+        }
+
+
      }).directive('portalCard', function() {
         return {
             restrict: 'AE',

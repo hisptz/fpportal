@@ -5,19 +5,84 @@ angular.module('hmisPortal')
     .config(function($httpProvider) {
         $httpProvider.defaults.withCredentials = true;
     })
-    .controller('indicatorsCtrl',function ($rootScope,$scope,$http,$q,$location,$timeout,olData,olHelpers,shared,portalService,chartsManager) {
+    .controller('indicatorsCtrl',function ($rootScope,$window,$scope,$http,$q,$location,$timeout,$resource,olData,olHelpers,shared,portalService,chartsManager) {
         //displaying loading during page change
         $rootScope.$on("$routeChangeStart",
             function (event, current, previous, rejection) {
+                $rootScope.online = navigator.onLine;
+                $window.addEventListener("offline", function () {
+                    $rootScope.$apply(function() {
+                        $rootScope.online = false;
+                        $rootScope.status = "Offline";
+                    });
+                }, false);
+                $window.addEventListener("online", function () {
+                    $timeout(function(){
+                    $rootScope.$apply(function() {
+                            $rootScope.online = true;
+                            $rootScope.status = "Online";
+
+                    });
+                    },2000);
+                }, false);
                 $rootScope.showLoader = true;
             });
         $rootScope.$on("$routeChangeSuccess",
             function (event, current, previous, rejection) {
+                $rootScope.online = navigator.onLine;
+                $window.addEventListener("offline", function () {
+                    $rootScope.$apply(function() {
+                        $rootScope.online = false;
+                    });
+                }, false);
+                $window.addEventListener("online", function () {
+                    $rootScope.$apply(function() {
+                        $rootScope.online = true;
+                    });
+                }, false);
                 $rootScope.showLoader = false
             });
 
+        //$scope.checkbox="false";
+
+        //find the section where the user is now
+        $scope.getCurrentSection = function(){
+            var location = $location.path();
+            location = location.slice(1);
+            var name = "";
+            if(location == "malaria"){ name = "Malaria Indicators(RCH & HMIS Indicators)"; }
+            if(location == "ivd"){ name = "IVD Indicators(Program Indicators)"; }
+            if(location == "nutrition"){ name = "Nutrition Indicators(Program Indicators)"; }
+            if(location == "hivaids"){ name = "HIV AIDS Indicators(Program Indicators)"; }
+            if(location == "tracer_medicine"){ name = "Trace Medicine Indicators(Program Indicators)"; }
+            if(location == "tb"){ name = "TB Indicators(Program Indicators)"; }
+            if(location == "mortalities"){ name = "Mortalities Indicators"; }
+            if(location == "antenatalCare"){ name = "Antenatal Care Indicators(RCH & HMIS Indicators)"; }
+            if(location == "ancIntegration"){ name = "ANC Integration Indicators(RCH & HMIS Indicators)"; }
+            if(location == "laborDelivery"){ name = "Labour and Delivery Indicators(RCH & HMIS Indicators)"; }
+            if(location == "newbornCare"){ name = "Newborn Care Indicators(RCH & HMIS Indicators)"; }
+            if(location == "postnatalCare"){ name = "Postnatal Care Indicators(RCH & HMIS Indicators)"; }
+            if(location == "gbvVac"){ name = "GBV & VAC Indicators(RCH & HMIS Indicators)"; }
+            if(location == "cervicalCancer"){ name = "Cervical Cancer Indicators(RCH & HMIS Indicators)"; }
+            if(location == "noncommunicabledisease"){ name = "Non Communicable Disease Indicators(Program Indicators)"; }
+            if(location == "pmtct"){ name = "PMTCT(HIV AIDS Indicators(Program Indicators))"; }
+            if(location == "art"){ name = "ART(HIV AIDS Indicators(Program Indicators))"; }
+            if(location == "hbc"){ name = "HBC(HIV AIDS Indicators(Program Indicators))"; }
+            if(location == "pediatrichiv"){ name = "PEDIATRIC HIV(HIV AIDS Indicators(Program Indicators))"; }
+            if(location == "tbandhiv"){ name = "TB & HIV(HIV AIDS Indicators(Program Indicators))"; }
+            if(location == "vmcc"){ name = "VMCC(HIV AIDS Indicators(Program Indicators))"; }
+            if(location == "sti"){ name = "STI(HIV AIDS Indicators(Program Indicators))"; }
+
+            return name;
+        };
+
+        //find the section where the user is now
+
+
+
         $rootScope.periodType = 'years';
         portalService.orgUnitId = $rootScope.selectedOrgUnit;
+        portalService.parent=$scope.checkbox;
         portalService.period = $rootScope.selectedPeriod;
         $scope.selectedOrgUnitLevel = "2";
         //getting indicators for specified card
@@ -30,7 +95,7 @@ angular.module('hmisPortal')
                          *displayTable,displayTable default to false define them only if you want different value
                          *chart default to bar, define it if you want the value to be otherwise
                          */
-                        value.icons = angular.copy(portalService.icons);
+                        value.icons = angular.copy(portalService.icons1);
                         value.chartObject = angular.copy(portalService.chartObject);
                         (value.hasOwnProperty('displayTable')) ? value.displayTable = value.displayTable : value.displayTable = false;
                         (value.hasOwnProperty('displayMap')) ? value.displayMap = value.displayMap : value.displayMap = false;
@@ -47,9 +112,6 @@ angular.module('hmisPortal')
         //defining cards
         $scope.cards = {};
         //selected indicator cards..to change card definitions we can use file at indicators/[urlPath].json
-        //get name of indicators from the url
-
-
         //prepare dataelements and indicators for sending on analytics
         $scope.prepareDataElements = function (cardsObjects) {
             var dataElements = [];
@@ -60,18 +122,97 @@ angular.module('hmisPortal')
             });
             return dataElements.join(";");
         };
-
-        $scope.changeChart = function (type, card) {
-
-            //displaying loading message
+        $scope.checkbox=false;
+        $scope.updateParent=function(card,value){
             card.chartObject.loading = true;
 
             //setting orgunit and period for service to use
             portalService.orgUnitId = $rootScope.selectedOrgUnit;
+            portalService.parent=value;
+            portalService.period = $rootScope.selectedPeriod;
+            var url='';
+            if(value==true){
+                if (portalService.orgUnitId == "m0frOspS7JY") {
+                    url = portalService.base+"api/analytics.json?dimension=dx:"+card.data+"&dimension=ou:LEVEL-1;LEVEL-2;m0frOspS7JY&dimension=pe:"+portalService.period+"&displayProperty=NAME";
+                } else {
+                    url = portalService.base+"api/analytics.json?dimension=dx:"+card.data+"&dimension=ou:LEVEL-2;LEVEL-3;"+portalService.orgUnitId+"&dimension=pe:"+portalService.period+"&displayProperty=NAME";
+                }
+            }else{
+                if (portalService.orgUnitId == "m0frOspS7JY") {
+                    url = portalService.base+"api/analytics.json?dimension=dx:"+card.data+"&dimension=ou:LEVEL-2;m0frOspS7JY&dimension=pe:"+portalService.period+"&displayProperty=NAME";
+                } else {
+                    url = portalService.base+"api/analytics.json?dimension=dx:"+card.data+"&dimension=ou:LEVEL-3;"+portalService.orgUnitId+"&dimension=pe:"+portalService.period+"&displayProperty=NAME";
+                }
+            }
+            $http.get(url).success(function (objectData) {
+                card.displayTable = false;
+                $scope.showReport = true;
+                card.displayColumn = false;
+                 if (card.chart == 'table') {
+                    card.displayTable = true;
+                    card.displayMap = false;
+                    card.chart = 'table';
+                    card.table = chartsManager.drawChart(objectData, 'dx',[card.data] ,'ou',[] , 'pe', portalService.period, card.title, card.chart);
+
+                    //hiding loading message
+                    card.chartObject.loading = false;
+                } else if (card.chart == 'map') {
+                    card.displayMap = true;
+                    card.displayTable = false;
+                    card.chart = 'map';
+                    var dataToUse = portalService.prepareData(objectData,card.data);
+                    if ($rootScope.selectedOrgUnit == "m0frOspS7JY") {
+                        portalService.drawMap(portalService.base, portalService.orgUnitId, 2, card, card.title, dataToUse);
+                    } else {
+                        portalService.drawMap(portalService.base, portalService.orgUnitId, 3, card, card.title, dataToUse);
+                    }
+                    card.chartObject.loading = false;
+                }
+                else if(card.chart == 'spider'){
+                    card.displayColumn = true;
+                    card.displayMap = false;
+                    card.displayTable = false;
+                    card.chartObject = chartsManager.drawChart(objectData, 'ou', [], 'dx', [card.data], 'pe', portalService.period, card.title, "spider");
+                    $(function() {
+                        $("#"+card.data).highcharts(card.chartObject);
+                        $("#c"+card.data).highcharts(card.chartObject);
+                    });
+
+                } else if(card.chart == 'column'){
+                    card.displayColumn = true;
+                    card.displayMap = false;
+                    card.displayTable = false;
+                    card.chartObject = chartsManager.drawChart(objectData, 'ou', [], 'dx', [card.data], 'pe', portalService.period, card.title, "column");
+                    $(function() {
+                        $("#"+card.data).highcharts(card.chartObject);
+                        $("#c"+card.data).highcharts(card.chartObject);
+                    });
+
+                }
+                else {
+                    card.displayMap = false;
+                    card.displayTable = false;
+                    card.chart = "bar";
+                    card.chartObject = chartsManager.drawChart(objectData, 'ou', [], 'dx', [card.data], 'pe', portalService.period, card.title, card.chart);
+
+
+                }
+              });
+        }
+
+        $scope.changeChart = function (type, card) {
+             //displaying loading message
+            card.chartObject.loading = true;
+             //setting orgunit and period for service to use
+             if($scope.checkbox){
+              }
+            portalService.orgUnitId = $rootScope.selectedOrgUnit;
+            portalService.parent=$scope.checkbox;
             portalService.period = $rootScope.selectedPeriod;
             card.displayTable = false;
             $scope.showReport = true;
-            if (type == 'table') {
+            card.displayColumn = false;
+             if (type == 'table') {
                 card.displayTable = true;
                 card.displayMap = false;
                 card.chart = 'table';
@@ -83,13 +224,34 @@ angular.module('hmisPortal')
                 card.displayMap = true;
                 card.displayTable = false;
                 card.chart = 'map';
-                var dataToUse = portalService.prepareData($scope.analyticsObject);
+                var dataToUse = portalService.prepareData($scope.analyticsObject,card.data);
                 if ($rootScope.selectedOrgUnit == "m0frOspS7JY") {
                     portalService.drawMap(portalService.base, portalService.orgUnitId, 2, card, card.title, dataToUse);
                 } else {
                     portalService.drawMap(portalService.base, portalService.orgUnitId, 3, card, card.title, dataToUse);
                 }
                 card.chartObject.loading = false;
+            }
+            else if(type == 'spider'){
+                card.displayColumn = true;
+                card.displayMap = false;
+                card.displayTable = false;
+                card.chartObject = chartsManager.drawChart($scope.analyticsObject, 'ou', [], 'dx', [card.data], 'pe', $rootScope.selectedPeriod, card.title, "spider");
+                $(function() {
+                    $("#"+card.data).highcharts(card.chartObject);
+                    $("#c"+card.data).highcharts(card.chartObject);
+                });
+
+            } else if(type == 'column'){
+                card.displayColumn = true;
+                card.displayMap = false;
+                card.displayTable = false;
+                card.chartObject = chartsManager.drawChart($scope.analyticsObject, 'ou', [], 'dx', [card.data], 'pe', $rootScope.selectedPeriod, card.title, "column");
+                $(function() {
+                    $("#"+card.data).highcharts(card.chartObject);
+                    $("#c"+card.data).highcharts(card.chartObject);
+                });
+
             }
             else {
                 card.displayMap = false;
@@ -100,7 +262,23 @@ angular.module('hmisPortal')
 
             }
 
-        }
+        };
+
+        //prepare data for use in csv
+        $scope.prepareDataForCSV = function(card){
+            var chartObject = chartsManager.drawChart($scope.analyticsObject, 'ou', [], 'dx', [card.data], 'pe', $rootScope.selectedPeriod, card.title, 'bar');
+            var items = [];
+            angular.forEach(chartObject.xAxis.categories,function(value){
+                var obj = {name:value};
+                var i = 0;
+                angular.forEach(chartObject.series,function(val){
+                    obj[val.name] = val.data[i];
+                    i++;
+                })
+                items.push(obj);
+            })
+             return items;
+        };
 
         $scope.getPeriodName = function (period) {
             if (period.length == 4) {
@@ -180,8 +358,8 @@ angular.module('hmisPortal')
 
         $rootScope.firstClick = function () {
             portalService.orgUnitId = $rootScope.selectedOrgUnit;
+            portalService.parent=$scope.checkbox;
             portalService.period = $rootScope.selectedPeriod;
-
             var location = $location.path();
             location = location.slice(1);
             $rootScope.progressMessage = " getting " + location + " indicators ...";
@@ -198,12 +376,25 @@ angular.module('hmisPortal')
                        j_username: "portal", j_password: "Portal123"
                     },function(){
                         $rootScope.progressMessage = " getting " + location + " data ...";
-                        portalService.getAnalyticsObject(dataElements,portalService.period,portalService.orgUnitId).then(function(analyticsObject){
+                        portalService.getAnalyticsObject(dataElements,portalService.period,portalService.orgUnitId,portalService.parent).then(function(analyticsObject){
                             $scope.analyticsObject = analyticsObject;
-                           $rootScope.showProgressMessage = false;
-                           angular.forEach(data, function (value) {
+                            $rootScope.showProgressMessage = false;
+                            angular.forEach(data, function (value) {
+                               var indicatorApi=
+                                   $resource(portalService.base+"api/indicators/"+value.data+".json?fields=id,name,numeratorDescription,denominatorDescription,denominator,numerator,indicatorType[id,name],dataSets[id,name,periodType]");
+                               var indicatorResult=indicatorApi.get(function(indicatorObject){
+                                   value.indicatorType=indicatorObject;
+                                   var expApi=
+                                       $resource(portalService.base+'api/expressions/description',{get:{method:"JSONP"}});
+                                   var numeratorExp=expApi.get({expression:indicatorObject.numerator},function(numeratorText){
+                                       value.numerator=numeratorText.description;
+                                   });
+                                   var denominator=expApi.get({expression:indicatorObject.denominator},function(denominatorText){
+                                       value.denominator=denominatorText.description;
+                                   });
+                               });
                                $scope.changeChart(value.chart, value)
-                            });
+                               });
                         }, function (response) { // optional
                            $rootScope.progressMessage = "!Problem has Occurred, system failed getting " + location + " data !";
                            $timeout(function () {
@@ -211,41 +402,8 @@ angular.module('hmisPortal')
 
                            }, 10000);
                         });
-                       // });
-                        $http.get(base + "api/me.json",function(data){
-                            console.log(data);
-                        });
+                      });
 
-                    });
-
-
-//                    $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
-//                        j_username: "portal", j_password: "Portal123"
-//                    },function(){
-//                            $rootScope.progressMessage = " getting " + location + " data ...";
-//
-//                            portalService.getAnalyticsObject(dataElements, $scope.year, $rootScope.orgUnitId).then(function (analyticsObject) {
-//
-//                            $scope.analyticsObject = analyticsObject;
-//                            console.log(analyticsObject);
-//                            $rootScope.showProgressMessage = false;
-//                            angular.forEach(data, function (value) {
-//                                $scope.changeChart(value.chart, value)
-//                            });
-//                        }, function (response) { // optional
-//                            $rootScope.progressMessage = "!Problem has Occurred, system failed getting " + location + " data !";
-//                            $timeout(function () {
-//                                $rootScope.showProgressMessage = false;
-//
-//                            }, 10000);
-//                        });
-//
-//                    }, function (response) { // optional
-//                        $rootScope.progressMessage = "Authentication Problem has Occurred, system failed getting " + location + " indicators !";
-//                        $timeout(function () {
-//                            $rootScope.showProgressMessage = false;
-//                        }, 10000);
-//                    });
                    });
 
         };
@@ -253,3 +411,12 @@ angular.module('hmisPortal')
         $rootScope.firstClick();
 
     });
+function getTotalDataFromUrl(arr,de,ou){
+    var num = 0;
+    $.each(arr,function(k,v){
+        if(v[1] == ou && v[0]==de){
+            num = Number(v[2])
+        }
+    });
+    return num;
+}

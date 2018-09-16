@@ -75,7 +75,7 @@ angular.module("hmisPortal")
             }else{
 
 
-                var period = $scope.selectedPeriod;
+                var period = FPManager.lastMonthWithData;
                 var method = "uid";
                 var chartObject = angular.copy(portalService.chartObject);
                 var chartObject1 = angular.copy(portalService.chartObject);
@@ -90,7 +90,7 @@ angular.module("hmisPortal")
                     {id:'OwAJT47sIgQ',name:'FP HIV testing rate among FP clients(Numerator)' },
                     {id:'NaCPtfoUkpH',name:'FP HIV testing rate among FP clients(Denominator)' }
                 ];
-                var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:LEVEL-3;LEVEL-4;"+$scope.regionUid+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
+                var url = portalService.base+"api/24/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:LEVEL-3;LEVEL-4;"+$scope.regionUid+"&dimension=pe:"+FPManager.lastTwelveMonth(FPManager.lastMonthWithData)+"&displayProperty=NAME";
                 var base = portalService.base;
                 $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
@@ -98,30 +98,34 @@ angular.module("hmisPortal")
                     $http.get(portalService.base + "api/organisationUnits/" + $scope.regionUid + ".json?fields=name").success(function (region) {
                         //load the completeness data and handle the comparison
                         $scope.name = region.name;
-                        var lastMonth = parseInt(FPManager.lastMonthWithOtherData) - 1;
-                        $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:m0frOspS7JY&dimension=pe:'+FPManager.lastMonthWithOtherData+'&displayProperty=NAME').success(function(data){
+                        var lastMonth = parseInt(FPManager.lastMonthWithData) - 1;
+                        $http.get(portalService.base+'api/24/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:m0frOspS7JY&dimension=pe:'+FPManager.lastMonthWithData+'&displayProperty=NAME').success(function(data){
+                        //var period = "201511"
+                        //var lastMonth = parseInt(period) - 1;
+                        //$http.get(portalService.base+'api/24/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:m0frOspS7JY&dimension=pe:'+period+'&displayProperty=NAME').success(function(data){
                             angular.forEach(data.rows,function(v){
-                                if(v[1] == "m0frOspS7JY" && v[2] == FPManager.lastMonthWithOtherData){
+                                if(v[1] == "m0frOspS7JY" && v[2] == period){
                                     $scope.nationalAverage = v[3];
                                 }
                             });
-
+                            $timeout(function () {
+                                render.finishRequest();
+                            });
                         });
                         FPManager.getFPFacilityList().then(function(orgUni) {
-                            $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-3;LEVEL-4;'+$scope.regionUid+'&dimension=pe:'+FPManager.lastMonthWithOtherData+';'+lastMonth+'&displayProperty=NAME').success(function(data){
+                            $http.get(portalService.base+'api/24/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-3;LEVEL-4;'+$scope.regionUid+'&dimension=pe:'+period+';'+lastMonth+'&displayProperty=NAME').success(function(data){
                                 var orgUnitsCompletenes = [];
                                 angular.forEach(orgUni.organisationUnits,function(orgUnit){
                                     if(data.metaData.ou.indexOf(orgUnit.id) > -1){
                                         var value = 0;
                                         angular.forEach(data.rows,function(v){
-                                            if(v[1] !== $scope.regionUid && v[1] == orgUnit.id && v[2] == FPManager.lastMonthWithOtherData){
+                                            if(v[1] !== $scope.regionUid && v[1] == orgUnit.id && v[2] == period){
                                                 value = v[3];
                                             }
                                         });
                                         (value == 0)?orgUnitsCompletenes.push({name:data.metaData.names[orgUnit.id],value:value}):"";
                                     }
                                 });
-
                                 for(var i=0;i<50;i++){
                                     if(orgUnitsCompletenes[i]){
 
@@ -130,7 +134,7 @@ angular.module("hmisPortal")
                                     }
                                 }
                                 angular.forEach(data.rows,function(v){
-                                    if(v[1] == $scope.regionUid && v[2] == FPManager.lastMonthWithOtherData){
+                                    if(v[1] == $scope.regionUid && v[2] == period){
                                         $scope.thisMonthCompletenes = v[3];
                                     }if(v[1] == $scope.regionUid && v[2] == lastMonth){
                                         $scope.lastMonthCompletenes = v[3];
@@ -139,7 +143,9 @@ angular.module("hmisPortal")
                                 });
                                 var orderBy = $filter('orderBy');
                                 $scope.orgUnitsCompletenes1 = $filter('limitTo')(orderBy(orgUnitsCompletenes, 'value', false), 50, 0);
-
+                                $timeout(function () {
+                                    render.finishRequest();
+                                });
                             });
 
                         });
@@ -150,11 +156,11 @@ angular.module("hmisPortal")
                             var HTCfacilitieParcent = [];
                             angular.forEach(data.metaData.ou,function(orgunit){
                                 if(orgunit !== $scope.regionUid){
-                                    if($scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent').available){
-                                        CPACfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent').amount+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent').amount});
+                                    if($scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent').available){
+                                        CPACfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent').amount+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent').amount});
                                     }
-                                    if($scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent').available){
-                                        HTCfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent').amount+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent').amount});
+                                    if($scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent').available){
+                                        HTCfacilitieParcent.push({name:data.metaData.names[orgunit]+"( "+$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent').amount+"% )",value:$scope.findValue1(data.rows,orgunit,FPManager.lastMonthWithOtherData,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent').amount});
                                     }
                                 }
                             });
@@ -162,18 +168,18 @@ angular.module("hmisPortal")
                             $scope.CPACfacilitieParcent = $filter('limitTo')(orderBy(CPACfacilitieParcent, 'value', false), 6, 0);
                             $scope.HTCfacilitieParcent = $filter('limitTo')(orderBy(HTCfacilitieParcent, 'value', false), 6, 0);
 
-                            var orgUnits2 = [{'name':'% Clients Adopting FP following abortion or miscarriage'},{'name':'% FP clients adopting HTC'}];
-                            var periods = $scope.prepareCategory('month')
+                            var orgUnits2 = [{'name':'% clients adopting FP following abortion or miscarriage'},{'name':'% FP clients adopting HTC'}];
+                            var periods = $scope.prepareCategory('month');
                             $rootScope.showProgressMessage = false;
 
 
-                            chartObject.title.text =region.name +" Service integration "+FPManager.lastTwelveMonthName;
+                            chartObject.title.text =region.name +" service integration, "+FPManager.getlastTwelveMonthName(FPManager.lastMonthWithData);
                             chartObject.legend = {
                                 layout: 'vertical',
                                 itemMarginTop: 10,
                                 itemMarginBottom: 10
                             };
-                            chartObject.yAxis.title.text ="%  of Clients";
+                            chartObject.yAxis.title.text ="%  of clients";
                             chartObject.yAxis.labels = {
                                 formatter: function () {
                                     return this.value + '%';
@@ -185,11 +191,9 @@ angular.module("hmisPortal")
                             var chartSeries = [];
                             var chartSeries1 = [];
                             angular.forEach(orgUnits2,function(yAxis){
-
                                 angular.forEach(periods,function(xAxis){
-                                    if(yAxis.name == "% Clients Adopting FP following abortion or miscarriage"){
+                                    if(yAxis.name == "% clients adopting FP following abortion or miscarriage"){
                                         var number = $scope.findValue(data.rows,$scope.regionUid,xAxis.id,'cWMJ2HsNTtr','NOWyEruy9Ch','MovYxmAwPZP','percent');
-                                        console.log()
                                         chartSeries.push(parseFloat(number));
                                     }if(yAxis.name == "% FP clients adopting HTC"){
                                         var number2 = $scope.findValue(data.rows,$scope.regionUid,xAxis.id,'reywf66stpK','OwAJT47sIgQ','NaCPtfoUkpH','percent');
@@ -197,12 +201,14 @@ angular.module("hmisPortal")
                                     }
                                 });
                             });
-                            console.log(chartSeries);
                             chartObject.series.push({type: 'spline', name: "% Clients Adopting FP following abortion or miscarriage", data: chartSeries});
                             chartObject.series.push({type: 'spline', name: "% FP clients adopting HTC", data: chartSeries1});
 
                             chartObject.loading = false;
                             $('#survilience1').highcharts(chartObject);
+                            $timeout(function () {
+                                render.finishRequest();
+                            });
                         });
                     });
                 });
@@ -301,27 +307,10 @@ angular.module("hmisPortal")
                         data.push({'name':orgUnit.name,'id':names.join(";")});
                     }else{
                         data.push({'name':orgUnit.name,'id':orgUnit.id});
-
                     }
                 });
-            }if(type == 'quarter'){
-                data.push({'name':'Jan - Mar '+per,'id':per+'Q1'});
-                data.push({'name':'Apr - Jun '+per,'id':per+'Q2'});
-                data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
-                data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
+                data = FPManager.getLastTwelveMonthList(FPManager.lastMonthWithData);
             }if(type == 'methods'){
                 data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
                     {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
@@ -337,9 +326,6 @@ angular.module("hmisPortal")
 
 
     });
-
-
-
 
 
 function preparePeriod(period){

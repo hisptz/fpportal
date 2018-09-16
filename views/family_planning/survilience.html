@@ -6,33 +6,8 @@
 </style>
 
 <div class="row">
-    <div class="z-depth-1  grey lighten-5" style="width:96.5%;position:fixed;top:70px;z-index:900;margin-left: 24px; margin-right: 0px">
-        <div class="section grey lighten-5 " >
-            <div class="col s5"><label>Period</label></div>
-            <div class="col s5"><label>Geography</label></div>
-            <div class="col s2">&nbsp;</div>
-            <div class="input-field col s5 grey lighten-5">
-                <select ng-model="selectedPeriod" ng-change="$root.firstClick1()">
-                    <option value="2014">2014</option>
-                    <!--<option value="2015">2015</option>-->
-                </select>
-            </div>
-            <div class="input-field col s5 grey lighten-5">
-                <multi-select-tree
-                        data-input-model="data.orgUnitTree"
-                        multi-select="true"
-                        data-output-model="data.outOrganisationUnits"
-                        data-default-label="Select Geography"
-                        data-callback="selectOnly1Or2(item, selectedItems)">
-                </multi-select-tree>
-            </div>
-
-
-            <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="getSelectedValues()">Update</div>
-        </div>
-    </div>
+    <div ng-include="'views/family_planning/fp_filters.html'"></div>
 </div>
-
 
 <script>
     var orgUnits=[{"id":"YtVMnut7Foe","name":"Arusha Region"},{"id":"acZHYslyJLt","name":"Dar Es Salaam Region"},{"id":"Cpd5l15XxwA","name":"Dodoma Region"},{"id":"MAL4cfZoFhJ","name":"Geita Region"},{"id":"sWOWPBvwNY2","name":"Iringa Region"},{"id":"Crkg9BoUo5w","name":"Kagera Region"},{"id":"DWSo42hunXH","name":"Katavi Region"},{"id":"RD96nI1JXVV","name":"Kigoma Region"},{"id":"lnOyHhoLzre","name":"Kilimanjaro Region"},{"id":"VMgrQWSVIYn","name":"Lindi Region"},{"id":"qg5ySBw9X5l","name":"Manyara Region"},{"id":"vYT08q7Wo33","name":"Mara Region"},{"id":"A3b5mw8DJYC","name":"Mbeya Region"},{"id":"Sj50oz9EHvD","name":"Morogoro Region"},{"id":"bN5q5k5DgLA","name":"Mtwara Region"},{"id":"hAFRrgDK0fy","name":"Mwanza Region"},{"id":"qarQhOt2OEh","name":"Njombe Region"},{"id":"yyW17iCz9As","name":"Pwani Region"},{"id":"vAtZ8a924Lx","name":"Rukwa Region"},{"id":"ZYYX8Q9SGoV","name":"Ruvuma Region"},{"id":"EO3Ps3ny0Nr","name":"Shinyanga Region"},{"id":"IgTAEKMqKRe","name":"Simiyu Region"},{"id":"LGTVRhKSn1V","name":"Singida Region"},{"id":"kZ6RlMnt2bp","name":"Tabora Region"},{"id":"vU0Qt1A5IDz","name":"Tanga Region"}];

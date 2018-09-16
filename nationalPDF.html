@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="hmisPortal" ng-controller="mainCtrl" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>HMIS Web Portal - Loading</title>
+    <title>LOADING</title>
 
     <link type="text/css" rel="stylesheet" href="assets/libs/materialize/css/materialize.min.css"  media="screen,projection"/>
     <style>
@@ -41,9 +41,7 @@
     <script src="bower_components/tree/angular-multi-select-tree-0.1.0.min.js"></script>
     <script src="bower_components/tree/angular-multi-select-tree-0.1.0.tpl.js"></script>
 
-    <script>
-        var mainModule = angular.module('hmisPortal', ["ngRoute",'ngResource','ngAnimate',"datatables",'ngSanitize','highcharts-ng','openlayers-directive','ui.materialize','dhisHighchartAngularService','multi-select-tree','ngCsv']);
-    </script>
+
     <script>
         var render = {
             requests:0,
@@ -52,11 +50,45 @@
             },
             finishRequest : function(){
                 this.requests--;
-                if(this.requests == 0){
-                    document.title = 'HMIS Web Portal';
+                if(this.requests == -1 && document.title.toLowerCase().indexOf("error") == -1){
+                    document.title = 'SUCCESS';
                 }
+            },
+            error:function(){
+                document.title = 'ERROR';
             }
         }
+        window.onerror = function() {
+            render.error();
+        };
+    </script>
+    <script>
+        var mainModule = angular.module('hmisPortal', ["ngRoute",'ngResource','ngAnimate',"datatables",'ngSanitize','highcharts-ng','openlayers-directive','ui.materialize','dhisHighchartAngularService','multi-select-tree','ngCsv']);
+
+        (function(){
+            var httpInterceptor = function ($provide, $httpProvider) {
+                $provide.factory('httpInterceptor', function ($q) {
+                    return {
+                        response: function (response) {
+                            return response || $q.when(response);
+                        },
+                        responseError: function (rejection) {
+                            render.error();
+                            return $q.reject(rejection);
+                        }
+                    };
+                });
+                $httpProvider.interceptors.push('httpInterceptor');
+            };
+            angular.module("hmisPortal").config(httpInterceptor);
+            Highcharts.setOptions({
+                plotOptions: {
+                    series: {
+                        animation: false
+                    }
+                }
+            });
+        }());
     </script>
     <script src="assets/js/routes.js"></script>
     <script src="services/mapService.js"></script>
@@ -68,7 +100,6 @@
     <script src="controllers/dashboardCtrl.js"></script>
     <script src="controllers/jinsiCtrl.js"></script>
     <script src="controllers/morbidityCtrl.js"></script>
-    <script src="controllers/familyPlanningCtrl.js"></script>
     <script src="controllers/family_Planning/PDFControllers/clientDemographicsCtrl.js"></script>
     <script src="controllers/family_Planning/PDFControllers/clientMethodsCtrl.js"></script>
     <script src="controllers/family_Planning/PDFControllers/survilienceCtrl.js"></script>
@@ -85,7 +116,7 @@
 <div style="width: 1080px;margin: 20px">
 <table>
     <tr>
-        <td style="width: 80%"><h4>Tanzania Family Planning Dashboard Report <br> National Report for Dec 2014</h4></td>
+        <td style="width: 80%"><h4>Tanzania Family Planning Dashboard Report <br> National Report for {{ periodName }}</h4></td>
         <td><img style="width: 180px;height: 160px" src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Coat_of_arms_of_Tanzania.svg/100px-Coat_of_arms_of_Tanzania.svg.png'/></td>
     </tr>
 </table>
@@ -95,12 +126,14 @@
         <legend style="font-size: 1.37em;font-weight: bold">Clients:</legend>
     <table>
         <tr>
-            <td style="width: 750px;height: 350px" ng-controller="clientMethodsCtrl">
-                <div id="container12" style="border:groove 1px #000000; min-width: 350px; height: 350px; margin: 0 auto"></div>
+            <td style="width: 70%;" ng-controller="clientMethodsCtrl">
+                <div  style="border:groove 1px #000000">
+                    <div id="container12" style="min-width: 350px; height: 400px; margin: 0 auto"></div>
+                </div>
             </td>
-            <td style="width: 330px;vertical-align: top">
-                <p class="text-info" style="margin-top: 0px; padding: 8px; color:#6498D9;border: 1px solid deepskyblue; line-height: 30px">
-                    <b>ACTION:</b>  Note: for more information on other FP methods not displayed here, (permanent methods and male and female condoms) refer to the FP Dashboard
+            <td style="width: 30%;vertical-align: top">
+                <p class="text-info" style="height: 400px;margin: 0px; padding: 8px; color:#6498D9;border: 1px solid deepskyblue; line-height: 30px">
+                    <b>ACTION:</b> Use the graph to the left to monitor FP clients trends over time; investigate any unexplained sharp decreases
 
                     <br><br>Note: for more information  on other FP methods not displayed here, (permanent methods and male and female condoms)
                     refer to the FP Dashboard.
@@ -130,7 +163,7 @@
 <table>
     <tr>
         <td style="width: 520px; margin-top: 5px; " >
-            <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+            <p style="height: 115px; padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                 <b>ACTION:</b> Use the graph above to identify FP methods and facility
                 types with largest gap in trained providers. If possible, resources for
                 FP trainings should be directed to the regions listed in the table
@@ -138,7 +171,7 @@
             </p>
         </td>
         <td style=" width: 520px;; margin-top: 5px;" >
-            <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+            <p style="height: 115px; padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                 <b>ACTION:</b> The trend lines in the graph above should be increasing
                 with time. Use the FP dashboard to investigate any unexplained
                 decreases in percentage of facilities providing each FP method
@@ -147,11 +180,11 @@
     </tr>
 </table>
 
-        <table style="margin: 10px; width: 1060px" ng-controller="HWParcentageCtrl">
+        <table style="margin: 10px;height: 350px; width: 1060px" ng-controller="HWParcentageCtrl">
             <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                <th colspan="4" style="font-size: 18px;">Regions with lowest percentage of facilities with 2 or more Health Workers trained in FP methods</th></tr>
+                <th colspan="4" style="font-size: 18px;">Regions with lowest percentage of facilities with 2 or more health workers trained in FP methods</th></tr>
             <tr style="border: solid 1px #6498D9" ng-repeat="orgs in orgunitsWithLowTraining" >
-                <td>{{ orgs.name }}</td>
+                <td><b>{{ orgs.name }}</b></td>
                 <td>{{ orgs.region1 }}</td>
                 <td>{{ orgs.region2 }}</td>
                 <td>{{ orgs.region3 }}</td>
@@ -163,7 +196,7 @@
 
 
 <!--Stock Outs-->
-    <br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br />
     <fieldset>
         <legend style="font-size: 1.37em;;font-weight: bold">Stock Outs:</legend>
         <table  ng-controller="stockoutCtrl">
@@ -174,10 +207,16 @@
 
                     </div>
                 </td>
+
                 <td style="width: 50%">
-                    <table border="1px" >
+                    <style>
+                        .tableBold tr:nth-child(2) td{
+                            font-weight: bold;
+                        }
+                    </style>
+                    <table border="1px" class="tableBold" style="height: 343px;">
                         <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                            <th colspan="2"> Regions with highest percentage of facilities experiencing  Stock Out Pills or Injectable </th></tr>
+                            <th colspan="2"> Regions with highest percentage of facilities experiencing stock out of pills or injectables </th></tr>
                         <tr style="border: solid 1px #6498D9" ng-repeat="dis in stockOutData">
                             <td>{{ dis.oral }}</td>
                             <td>{{ dis.injectable }}</td>
@@ -196,7 +235,7 @@
                 </p>
             </td>
             <td style="width: 50%">
-                <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                <p style="height: 90px;padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                     <b>ACTION:</b>Investigate regions with high stock out rates, check
                     distribution and stock provision
                 </p>
@@ -258,11 +297,11 @@
             <td style="width: 520px;">
                 <fieldset>
                     <legend style="font-size: 1.37em;;font-weight: bold">Reporting Rates:</legend>
-                <div style="border:groove 1px #000000; height: 340px">
-                    <table border="1px">
+                <div style="border:groove 1px #000000;">
+                    <table border="1px" style="height: 300px;">
                         <tr style="background-color: #4F81BD; color: white; border: solid 1px #6498D9 ">
-                            <th >Highest Reporting rate</th>
                             <th >Lowest reporting rate</th>
+                            <th >Highest reporting rate</th>
                         </tr>
                         <tr style="border: solid 1px #6498D9" ng-repeat="org in OrgunitInReportingRate">
                             <td>{{ org.high }}</td>
@@ -270,9 +309,9 @@
                         </tr>
                     </table>
                 </div>
-                    <p style=" padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
+                    <p style="height: 155px; padding: 8px; border: solid 1px #6498D9; color:#6498D9;">
                         This month the national reporting rate was <b>{{ thisMonthCompletenes }}%</b>  of
-                        facilities, as compared to <b>{{ lastMonthCompletenes }}%</b> last month.
+                        facilities, as compared to <b>{{ lastMonthCompletenes }}%</b> last month.<br />
                         <b>ACTION:</b> alert regional coordinators; provide positive
                         feedback to best performing regions and support to low
                         performing regions.

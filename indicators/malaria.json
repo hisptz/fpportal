@@ -1,50 +1,41 @@
 [
   {
-    "title":"ANC IPT2 COVERAGE",
-    "description":"Maelezo ya ANC IPT2 COVERAGE",
+    "title":"IPT2 COVERAGE",
+    "description":"Proportion of pregnant women who received at least 2 doses of IPT during ANC visit",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
-    "cardClass":"col s12 m6",
+    "cardClass":"col s12 m12",
     "data":"i47jm4Pkkq6"
   },
+
   {
-    "title":"ANC MALARIA PREVELANCE",
-    "description":"Maelezo ya ANC MALARIA PREVELANCE",
-    "indicatorType":"",
-    "numerator":"",
-    "denominator":"",
-    "cardClass":"col m6 s12", 
-    "data":"vfaY7k6TINl",
-    "chart":"line"
-  },
-  {
-    "title":"ANC Proportion  of pregnant women receiving ITN Voucher",
-    "description":"Maelezo ya ANC Proportion  of pregnant women receiving ITN Voucher",
+    "title":"Proportion of OPD confirmed malaria cases",
+    "description":"Proportion of OPD confirmed malaria cases",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m12 s12",
-    "data":"tit1C1VPIV7", 
+    "data":"xrYmEc4LCCo",
     "chart":"combined"
   },
   {
-    "title":"Proportional of Malaria cases in OPD",
-    "description":"Proportional of Malaria cases in OPD",
+    "title":"Malaria test rate among pregnant women during ANC visit",
+    "description":"Malaria test rate among pregnant women during ANC visit",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
-    "cardClass":"col m6 s12",
-    "data":"xrYmEc4LCCo"
+    "cardClass":"col m12 s12",
+    "data":"FaooqUblXag"
 
-  },
-  {
-    "title":"Proportional of Malaria cases in IPD",
-    "description":"Proportional of Malaria cases in OPD",
+  },{
+    "title":"Malaria positivity rate among pregnant women during ANC visit",
+    "description":"Malaria test rate among pregnant women during ANC visit",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
-    "cardClass":"col m6 s12",
-    "data":"CaPhxP3hIHD"
+    "cardClass":"col m12 s12",
+    "data":"vfaY7k6TINl"
+
   }
 ]

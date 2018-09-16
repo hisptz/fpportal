@@ -18,11 +18,10 @@ angular.module("hmisPortal")
         $scope.geographicalZones = FPManager.zones;
         $scope.geoToUse = [];
         $scope.zones = "";
-        angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
-            $scope.zones += value.id+";";
-            $scope.geoToUse.push({name:value.name,id:value.id, ticked: true });
-        });
         $scope.data = {};
+        $scope.selectedYear = FPManager.latestYear;
+        $scope.data.selectedMonth = FPManager.latestMonth;
+
         $scope.data.outMethods = [];
         $scope.data.outOrganisationUnits = [];
         $scope.updateTree = function(){
@@ -77,14 +76,6 @@ angular.module("hmisPortal")
             $scope.firstClick();
         };
 
-        $scope.changeZone = function(){
-            $scope.zones = "";
-            angular.forEach($scope.selectedRegions,function(value){
-                $scope.zones += value.id+";";
-            })
-            $scope.firstClick();
-        };
-
 
         $scope.selectedMethod = 'all';
         $scope.selectedPeriod = '2015';
@@ -93,30 +84,6 @@ angular.module("hmisPortal")
         $scope.displayTable = false;
         $scope.currentOrgUnit = "m0frOspS7JY";
         $scope.currentMonthperiod = FPManager.getMonthYear($scope.selectedPeriod);
-
-        $scope.changeChart = function(type,card){
-            card.displayTable = false;
-
-            $scope.showReport = true;
-            if(type == 'table'){
-                card.displayTable = true;
-                card.displayMap = false;
-                card.chart = 'table';
-                $scope.data.chartType = 'table';
-            }else if(type == 'map'){
-                card.displayMap = true;
-                card.displayTable = false;
-                card.chart = 'map';
-                $scope.data.chartType = 'map';
-            }
-            else{
-                card.displayMap = false;
-                card.displayTable = false;
-                card.chart = type;
-                $scope.data.chartType = type;
-            }
-            $scope.prepareSeries(card,$scope.data.chartType);
-        };
 
         $scope.methods = [
             {'name':'Short Acting','uid':'iWDh2fUbRTJ'},
@@ -131,6 +98,16 @@ angular.module("hmisPortal")
             angular.forEach($scope.methods,function(value){
                 if(value.name == "Implants"){
                     $scope.data.menuMethods.push({ name:value.name,id:value.uid,selected:true });
+                }else{
+                    $scope.data.menuMethods.push({ name:value.name,id:value.uid });
+                }
+            });
+        };
+        $scope.clearMethods = function(){
+            $scope.data.menuMethods = [];
+            angular.forEach($scope.methods,function(value){
+                if(value.name == "Implants"){
+                    $scope.data.menuMethods.push({ name:value.name,id:value.uid });
                 }else{
                     $scope.data.menuMethods.push({ name:value.name,id:value.uid });
                 }
@@ -184,20 +161,11 @@ angular.module("hmisPortal")
 
         };
 
-        //switching between tables and charts
-        $scope.displayTables = {card1:false}
-        $scope.changeTable =function(card,value){
-            if(value == "table"){
-                if(card == "card1"){$scope.displayTables.card1 = true}
-            }if(value == "chart"){
-                if(card == "card1"){$scope.displayTables.card1 = false}
-            }
-        };
 
         $scope.fpCards = [
             {
-                title:'Total Health Workers Trained as of '+FPManager.lastMonthWithDataName ,
-                description:'Total Health Workers Trained as of '+FPManager.lastMonthWithDataName,
+                title:'Total Health Workers Trained as of ',
+                description:'Total Health Workers Trained as of ',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
                 category:'month',
@@ -250,7 +218,7 @@ angular.module("hmisPortal")
                 cardObject.chartObject.options.yAxis.title.text = cardObject.yaxisTittle;
 
                 var peri = preparePeriod($scope.selectedPeriod);
-                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+FPManager.lastMonthWithData+"&displayProperty=NAME";
+                $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+FPManager.getUniqueOrgUnits($scope.data.outOrganisationUnits)+"&dimension=pe:"+$scope.data.selectedMonth+"&displayProperty=NAME";
                 var area = [];
                 cardObject.chartObject.loading = true;
                 var datass = '';
@@ -263,12 +231,12 @@ angular.module("hmisPortal")
                         var methodId = [];
                         if($scope.data.outMethods.length == 1){
                             $scope.titleToUse = $scope.data.outMethods[0].name;
-                            cardObject.chartObject.options.title.text = cardObject.title+' - '+ $scope.titleToUse;
-                                xAxisItems = $scope.prepareCategory('zones');
+                            cardObject.chartObject.options.title.text = cardObject.title+' '+ FPManager.getMonthName($scope.data.selectedMonth) +' - '+ $scope.titleToUse;
+                            xAxisItems = $scope.prepareCategory('zones');
                             yAxisItems = $scope.prepareCategory('methods');
                         }else{
                             $scope.titleToUse = $scope.data.outOrganisationUnits[0].name;
-                            cardObject.chartObject.options.title.text = cardObject.title+' - '+ $scope.titleToUse;
+                            cardObject.chartObject.options.title.text = cardObject.title+' '+ FPManager.getMonthName($scope.data.selectedMonth)+' - '+ $scope.titleToUse;
                             xAxisItems = $scope.prepareCategory('methods');
                             yAxisItems = $scope.prepareCategory('zones');
                         }
@@ -426,7 +394,7 @@ angular.module("hmisPortal")
         };
 
 
-        $rootScope.firstClick = function(){
+        $rootScope.getSelectedValues = function(){
             if($scope.data.outMethods.length === 0){
 
             }
@@ -434,7 +402,7 @@ angular.module("hmisPortal")
                 $scope.prepareSeries(value,value.chart);
             });
         };
-        $scope.firstClick();
+        $scope.getSelectedValues();
     });
 
 function preparePeriod(period){

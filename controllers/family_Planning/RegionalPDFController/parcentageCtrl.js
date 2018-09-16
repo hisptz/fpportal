@@ -184,7 +184,7 @@ angular.module("hmisPortal")
             });
             var num = $scope.getDataFromUrl(arr2,ou,pe);
             var percent = (num/count)*100;
-            return percent.toFixed(2);
+            return percent.toFixed(1);
         };
 
 
@@ -210,7 +210,7 @@ angular.module("hmisPortal")
 
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
             var percent = (num/count)*100;
-            return percent.toFixed(2);
+            return percent.toFixed(1);
         };
 
 
@@ -233,7 +233,7 @@ angular.module("hmisPortal")
                         var chartObject1 = angular.copy(portalService.chartObject);
 
 
-                        chartObject1.yAxis.title.text ="% of Facilities";
+                        chartObject1.yAxis.title.text ="% of facilities";
 
 
                         chartObject1.yAxis.labels = {
@@ -251,11 +251,11 @@ angular.module("hmisPortal")
                             chartObject1.xAxis.categories.push(val.name);
                         });
 
-                        chartObject1.title.text = region.name+ " Percent of facilities providing each FP method Jan 2014 to Dec 2014";
+                        chartObject1.title.text = region.name+ " percent of facilities providing each FP method, "+FPManager.getlastTwelveMonthName(FPManager.lastMonthWithData);
                         $rootScope.progressMessage = "Fetching data please wait ...";
                         $rootScope.showProgressMessage = true;
-                        $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function(data){
-                            $http.get(portalService.base+'api/sqlViews/eq83I34KW4K/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                        FPManager.getFPFacilityList().then(function(data){
+                            $http.get(portalService.base+'api/sqlViews/eq83I34KW4K/data.json?var=types:Hospital&'+FPManager.lastTwelveMonthForSql(FPManager.lastMonthWithData)).success(function(val1){
                                 $rootScope.showProgressMessage = false;
                                 angular.forEach(methodss, function (yAxis) {
                                     var serie = [];
@@ -268,6 +268,9 @@ angular.module("hmisPortal")
                                 $scope.chartObject1 = chartObject1
                                 $scope.csvdata1 = portalService.prepareDataForCSV(chartObject1);
                                 $scope.pchart1 = chartObject1;
+                                $timeout(function () {
+                                    render.finishRequest();
+                                });
                             });
 
 
@@ -341,18 +344,7 @@ angular.module("hmisPortal")
                 data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
                 data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
+                data = FPManager.getLastTwelveMonthList(FPManager.lastMonthWithData);
             }if(type == 'methods'){
                 angular.forEach()
             }

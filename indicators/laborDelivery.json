@@ -1,70 +1,95 @@
 [
   {
-    "title":"Waliojifungua Kabla ya Kufika Kituoni (BBA)",
-    "description":"Maelezo ya Waliojifungua Kabla ya Kufika Kituoni (BBA)",
+    "title":"Deliveries by skilled attendants",
+    "description":"Deliveries by skilled attendants",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col s12 m6",
-    "data":"awbB2k6c4dy"
+    "data":"vVRVLjgU10c"
   },
   {
-    "title":"Waliojifungulia Nyumbani",
-    "description":"Maelezo ya Waliojifungulia Nyumbani",
+    "title":"Delivery Abnormal <20 yrs rate (C/S,, breech, vacuum)",
+    "description":"Delivery Abnormal <20 yrs rate (C/S,, breech, vacuum)",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"nGed5u8o6gv",
-    "chart":"line"
-
-  },
-  {
-    "title":"Waliojifungulia kituoni",
-    "description":"Maelezo ya Waliojifungulia kituoni",
-    "indicatorType":"",
-    "numerator":"",
-    "denominator":"",
-    "cardClass":"col m12 s12",
-    "data":"kLI4iGDbN3p",
+    "data":"EshKVxzCvBH",
     "chart":"combined"
 
   },
   {
-    "title":"Waliozalishwa na Wakunga wa Jadi (TBA)",
-    "description":"Waliozalishwa na Wakunga wa Jadi (TBA)",
+    "title":"Delivery Complications (PPH) Rate",
+    "description":"Delivery Complications (PPH) Rate",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"DUlS90FQGNh"
+    "data":"M0o2XBdgeqe"
 
   },
   {
-    "title":"Waliojifungua kwa Vacuum",
-    "description":"Waliojifungua kwa Vacuum",
+    "title":"Delivery Complications rate",
+    "description":"Delivery Complications rate",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"totaZnTeUuK"
+    "data":"HgDnbOA8zJg"
   },
   {
-    "title":"Caesarian Section",
-    "description":"Caesarian Section",
+    "title":"Percentage Delivery HIV prevalence",
+    "description":"Percentage Delivery HIV prevalence",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"snAJ4ADu50F"
+    "data":"bO9Bu1APnzq"
   },
   {
-    "title":"Breech Delivery",
-    "description":"Breech Delivery",
+    "title":"Delivery rate < 20 years",
+    "description":"Delivery rate < 20 years",
     "numerator":"",
     "denominator":"",
     "indicatorType":"",
     "cardClass":"col m6 s12",
-    "data":"EdaxsmnoohA"
+    "data":"iMGb5vQ7Gtc"
+  },
+  {
+    "title":"Delivery rate in Facility",
+    "description":"Delivery rate in Facility",
+    "numerator":"",
+    "denominator":"",
+    "indicatorType":"",
+    "cardClass":"col m6 s12",
+    "data":"deit7zvLIcV"
+  },
+  {
+    "title":"Delivery Referrals Rate ",
+    "description":"Delivery Referrals Rate ",
+    "numerator":"",
+    "denominator":"",
+    "indicatorType":"",
+    "cardClass":"col m6 s12",
+    "data":"KA8PbrYf6ca"
+  },
+  {
+    "title":"Delivery Vacuum Extraction Rate",
+    "description":"Delivery Vacuum Extraction Rate",
+    "numerator":"",
+    "denominator":"",
+    "indicatorType":"",
+    "cardClass":"col m6 s12",
+    "data":"SAorNBdnTRS"
+  },
+  {
+    "title":"Emergency Obstetric Care Rate",
+    "description":"Emergency Obstetric Care Rate",
+    "numerator":"",
+    "denominator":"",
+    "indicatorType":"",
+    "cardClass":"col m6 s12",
+    "data":"ePEFxdsB7V7"
   }
 ]

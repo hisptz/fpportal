@@ -75,7 +75,7 @@ angular.module("hmisPortal")
             }else{
 
 
-                var period = $scope.selectedPeriod;
+                var period = FPManager.lastMonthWithData;
                 var method = "uid";
                 var chartObject = angular.copy(portalService.chartObject);
                 var chartObject1 = angular.copy(portalService.chartObject);
@@ -90,7 +90,7 @@ angular.module("hmisPortal")
                     {id:'OwAJT47sIgQ',name:'FP HIV testing rate among FP clients(Numerator)' },
                     {id:'NaCPtfoUkpH',name:'FP HIV testing rate among FP clients(Denominator)' }
                 ];
-                var url = portalService.base+"api/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:LEVEL-3;LEVEL-2;"+$scope.regionUid+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
+                var url = portalService.base+"api/24/analytics.json?dimension=dx:cWMJ2HsNTtr;b6O7BaQ46R4;reywf66stpK;NaCPtfoUkpH;OwAJT47sIgQ;MovYxmAwPZP;NOWyEruy9Ch&dimension=ou:LEVEL-3;LEVEL-2;"+$scope.regionUid+"&dimension=pe:"+FPManager.lastTwelveMonth(FPManager.lastMonthWithData)+"&displayProperty=NAME";
                 var base = portalService.base;
                 $.post( base + "dhis-web-commons-security/login.action?authOnly=true", {
                     j_username: "portal", j_password: "Portal123"
@@ -98,28 +98,34 @@ angular.module("hmisPortal")
                     $http.get(portalService.base + "api/organisationUnits/" + $scope.regionUid + ".json?fields=name").success(function (region) {
                         //load the completeness data and handle the comparison
                         $scope.name = region.name;
-                        var lastMonth = parseInt(FPManager.lastMonthWithOtherData) - 1;
-                        $http.get(portalService.base+'api/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-2;LEVEL-3;'+$scope.regionUid+'&dimension=pe:'+FPManager.lastMonthWithOtherData+';'+lastMonth+'&displayProperty=NAME').success(function(data){
-                            var orgUnitsCompletenes = [];
-                            angular.forEach(data.rows,function(v){
-                                if(v[1] !== $scope.regionUid && v[2] == FPManager.lastMonthWithOtherData){
-                                    orgUnitsCompletenes.push({name:data.metaData.names[v[1]],value:v[3]})
+                        var lastMonth = parseInt(FPManager.lastMonthWithData) - 1;
+                        $http.get(portalService.base+'api/24/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-2;LEVEL-3;'+$scope.regionUid+'&dimension=pe:'+FPManager.lastMonthWithData+';'+lastMonth+'&displayProperty=NAME').success(function(data){
+                        //var period = "201511"
+                        //var lastMonth = parseInt(period) - 1;
+                        //$http.get(portalService.base+'api/24/analytics.json?dimension=dx:TfoI3vTGv1f&dimension=ou:LEVEL-2;LEVEL-3;'+$scope.regionUid+'&dimension=pe:'+period+';201511&displayProperty=NAME').success(function(data){
+                            
+                            $scope.OrgunitInReportingRate = [{},{},{}]
+                            var setIndex = 0
+                            for(var i = 0; i < data.rows.length ; i++){
+                                if(parseInt(data.rows[i][3]) < 100){
+                                    $scope.OrgunitInReportingRate[setIndex].high = data.metaData.names[data.rows[i][1]]+'( '+data.rows[i][3]+' % )';
+                                    setIndex++;
+                                    if(setIndex == 3){
+                                        break;
+                                    }
                                 }
-                                if(v[1] == $scope.regionUid && v[2] == FPManager.lastMonthWithOtherData){
-                                    $scope.thisMonthCompletenes = v[3];
-                                }if(v[1] == $scope.regionUid && v[2] == lastMonth){
-                                    $scope.lastMonthCompletenes = v[3];
+                            }
+                            setIndex = 0
+                            for(var i = data.rows.length - 1; i >= 0; i--){
+                                $scope.OrgunitInReportingRate[setIndex].low = data.metaData.names[data.rows[i][1]]+'( '+data.rows[i][3]+' % )';
+                                setIndex++;
+                                if(setIndex == 3){
+                                    break;
                                 }
-
-                            });
-                            var orderBy = $filter('orderBy');
-                            $scope.orgUnitsCompletenes = orderBy(orgUnitsCompletenes, 'value', false);
-                            $scope.orgUnitsCompletenes1 = orderBy(orgUnitsCompletenes, 'value', true);
-                            $scope.OrgunitInReportingRate = [
-                                {high:$scope.orgUnitsCompletenes1[0].name+'( '+$scope.orgUnitsCompletenes1[0].value+' % )',low:$scope.orgUnitsCompletenes[0].name+'( '+$scope.orgUnitsCompletenes[0].value+' % )'},
-                                {high:$scope.orgUnitsCompletenes1[1].name+'( '+$scope.orgUnitsCompletenes1[1].value+' % )',low:$scope.orgUnitsCompletenes[1].name+'( '+$scope.orgUnitsCompletenes[1].value+' % )'},
-                                {high:$scope.orgUnitsCompletenes1[2].name+'( '+$scope.orgUnitsCompletenes1[2].value+' % )',low:$scope.orgUnitsCompletenes[2].name+'( '+$scope.orgUnitsCompletenes[2].value+' % )'}
-                            ];
+                            }
+                                $timeout(function () {
+                                    render.finishRequest();
+                                });
                         });
 
 
@@ -136,17 +142,17 @@ angular.module("hmisPortal")
                             $rootScope.showProgressMessage = false;
 
 
-                            chartObject.title.text ="Districts with lowest percentage of Clients Adopting FP following cPAC compared with region average";
-                            chartObject1.title.text ="Region trend in number of clients Adopting FP in the Postpartum Period";
-                            chartObject2.title.text ="Districts with lowest percentage of Family Planning Clients Adopting HTC compared with region average";
-                            chartObject.yAxis.title.text ="%  of Clients";
+                            chartObject.title.text ="Districts with lowest percentage of clients adopting FP post abortion or miscarriage compared with region average, "+FPManager.getlastTwelveMonthName(FPManager.lastMonthWithData);
+                            chartObject1.title.text ="Region trend in number of clients adopting FP in the postpartum period, "+FPManager.getlastTwelveMonthName(FPManager.lastMonthWithData);
+                            chartObject2.title.text ="Districts with lowest percentage of family planning clients adopting HTC compared with region average, "+FPManager.getlastTwelveMonthName(FPManager.lastMonthWithData);
+                            chartObject.yAxis.title.text ="%  of clients";
                             chartObject.yAxis.labels = {
                                 formatter: function () {
                                     return this.value + '%';
                                 }
                             };
-                            chartObject1.yAxis.title.text ="# of Clients";
-                            chartObject2.yAxis.title.text ="%  of Clients";
+                            chartObject1.yAxis.title.text ="# of clients";
+                            chartObject2.yAxis.title.text ="% of clients";
                             chartObject2.yAxis.labels = {
                                 formatter: function () {
                                     return this.value + '%';
@@ -195,7 +201,9 @@ angular.module("hmisPortal")
                             $('#survilience3').highcharts(chartObject2);
                             $scope.chartObject2 = chartObject2;
                             $scope.csvdata2 = portalService.prepareDataForCSV(chartObject2);
-
+                            $timeout(function () {
+                                render.finishRequest();
+                            });
                         });
                     });
                 });
@@ -256,7 +264,7 @@ angular.module("hmisPortal")
                         }
                     });
                     if(type == 'percent'){
-                        amount = (denominatorValue != 0)?parseFloat((numeratorValue/denominatorValue )* 100).toFixed(2):0;
+                        amount = (denominatorValue != 0)?parseFloat((numeratorValue/denominatorValue )* 100).toFixed(1):0;
                     }
 
                 });
@@ -327,18 +335,7 @@ angular.module("hmisPortal")
                 data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
                 data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
+                data = FPManager.getLastTwelveMonthList(FPManager.lastMonthWithData);
             }if(type == 'methods'){
                 data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
                     {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
@@ -354,12 +351,3 @@ angular.module("hmisPortal")
 
 
     });
-
-
-
-
-
-function preparePeriod(period){
-
-    return ""+period+"01;"+period+"02;"+period+"03;"+period+"04;"+period+"05;"+period+"06;"+period+"07;"+period+"08;"+period+"09;"+period+"10;"+period+"11;"+period+"12;"+period+"Q1;"+period+"Q2;"+period+"Q3;"+period+"Q4";
-}

@@ -1,68 +1,50 @@
 [
 
   {
-    "title":"Postnatal Waliojifungulia Nje ya Kituo (BBA)",
-    "description":"Maelezo ya Postnatal Waliojifungulia Nje ya Kituo (BBA)",
+    "title":"Post Natal Care before 7 days rate",
+    "description":"Post Natal Care before 7 days rate",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"tiqnsoZrT6O",
+    "data":"S0cn3ephUSs",
     "chart":"line"
   },
   {
-    "title":"Postnatal Waliojifungulia Nyumbani",
-    "description":"Postnatal Waliojifungulia Nyumbani",
+    "title":"Postnatal attendance rate",
+    "description":"Postnatal attendance rate",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"XmlrCz7rtai"
+    "data":"qcsYPHvfnUM"
   },
   {
-  "title":"Postnatal Wenye Upungufu Mkubwa wa Damu (Hb < 8.5 g/dl)",
-  "description":"Maelezo ya Postnatal Wenye Upungufu Mkubwa wa Damu (Hb < 8.5 g/dl)",
+  "title":"Proportion of all expected deliveries recieving PNC less than 48 hours after delivery",
+  "description":"Proportion of all expected deliveries recieving PNC less than 48 hours after delivery",
   "indicatorType":"",
   "numerator":"",
   "denominator":"",
   "cardClass":"col s12 m12",
-  "data":"ed3cOOqsNe6"
+  "data":"ArDihWp4xik"
 },
   {
-    "title":"Postnatal Waliojifungua kwa Wakunga wa Jadi (TBA) na Kuhudhuria Huduma Baada ya Kujifungua",
-    "description":"Postnatal Waliojifungua kwa Wakunga wa Jadi (TBA) na Kuhudhuria Huduma Baada ya Kujifungua",
+    "title":"Percentage of babies who attended postnatal care within 7 days of delivery",
+    "description":"Percentage of babies who attended postnatal care within 7 days of delivery",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m12 s12",
-    "data":"kUZXTGwjL0f",
+    "data":"kxWtlmuQjRI",
     "chart":"line"
   },
   {
-    "title":"Mama waliohudhuria postanatal  kati ya siku ya 2-7",
-    "description":"Mama waliohudhuria postanatal  kati ya siku ya 2-7",
+    "title":"Percentage of women who attended postpartum care within 7 days of delivery",
+    "description":"Percentage of women who attended postpartum care within 7 days of delivery",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"jmiebz1jQDn"
-  },
-  {
-    "title":"Postnatal Waliohudhuria Huduma Baada ya Kujifungua Ndani ya Saa 48",
-    "description":"Postnatal Waliohudhuria Huduma Baada ya Kujifungua Ndani ya Saa 48",
-    "indicatorType":"",
-    "numerator":"",
-    "denominator":"",
-    "cardClass":"col m12 s12",
-    "data":"IEMyGwhBTXd"
-  },
-  {
-    "title":"Postnatal Waliomaliza Mahudhurio Yote ya Huduma Baada ya Kujifungua",
-    "description":"Postnatal Waliomaliza Mahudhurio Yote ya Huduma Baada ya Kujifungua",
-    "indicatorType":"",
-    "numerator":"",
-    "denominator":"",
-    "cardClass":"col m12 s12",
-    "data":"BmKchKT33Ma"
+    "data":"MchVN9VuUa9"
   }
 ]

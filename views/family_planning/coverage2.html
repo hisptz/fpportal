@@ -6,55 +6,10 @@
 </style>
 
 <div class="row">
-    <div class="z-depth-1  grey lighten-5" style="width:96.5%;position:fixed;top:70px;z-index:900;margin-left: 24px; margin-right: 0px">
-        <div class="section grey lighten-5 " >
-            <div class="col s2"><label>Period</label></div>
-            <div class="col s5"><label>Geography</label></div>
-            <div class="col s4"><label>Methods</label></div>
-            <div class="col s1">&nbsp;</div>
-            <div class="input-field col s2 grey lighten-5">
-                <select ng-model="selectedPeriod" ng-change="$root.firstClick1()">
-                    <option value="2014"></option>
-                    <!--<option value="2015">2015</option>-->
-                </select>
-            </div>
-            <div class="input-field col s5 grey lighten-5">
-                <multi-select-tree
-                        data-input-model="data.orgUnitTree"
-                        multi-select="true"
-                        data-output-model="data.outOrganisationUnits"
-                        data-default-label="Select Geography"
-                        data-callback="selectOnly1Or2(item, selectedItems)">
-                </multi-select-tree>
-            </div>
-
-            <div class="input-field col s4 grey lighten-5">
-                <multi-select-tree
-                        data-input-model="data.menuMethods"
-                        multi-select="true"
-                        data-output-model="data.outMethods"
-                        data-default-label="Select Method"
-                        data-callback="selectOnly1Or3(item, selectedItems)">
-                </multi-select-tree>
-            </div>
-
-            <div class="col s1 btn waves-effect waves-light" style="margin-top: 20px" ng-click="getSelectedValues()">Update</div>
-        </div>
-    </div>
+    <div ng-include="'views/family_planning/fp_filters.html'"></div>
 </div>
 
 
-<script>
-    var orgUnits=[{"id":"YtVMnut7Foe","name":"Arusha Region"},{"id":"acZHYslyJLt","name":"Dar Es Salaam Region"},{"id":"Cpd5l15XxwA","name":"Dodoma Region"},{"id":"MAL4cfZoFhJ","name":"Geita Region"},{"id":"sWOWPBvwNY2","name":"Iringa Region"},{"id":"Crkg9BoUo5w","name":"Kagera Region"},{"id":"DWSo42hunXH","name":"Katavi Region"},{"id":"RD96nI1JXVV","name":"Kigoma Region"},{"id":"lnOyHhoLzre","name":"Kilimanjaro Region"},{"id":"VMgrQWSVIYn","name":"Lindi Region"},{"id":"qg5ySBw9X5l","name":"Manyara Region"},{"id":"vYT08q7Wo33","name":"Mara Region"},{"id":"A3b5mw8DJYC","name":"Mbeya Region"},{"id":"Sj50oz9EHvD","name":"Morogoro Region"},{"id":"bN5q5k5DgLA","name":"Mtwara Region"},{"id":"hAFRrgDK0fy","name":"Mwanza Region"},{"id":"qarQhOt2OEh","name":"Njombe Region"},{"id":"yyW17iCz9As","name":"Pwani Region"},{"id":"vAtZ8a924Lx","name":"Rukwa Region"},{"id":"ZYYX8Q9SGoV","name":"Ruvuma Region"},{"id":"EO3Ps3ny0Nr","name":"Shinyanga Region"},{"id":"IgTAEKMqKRe","name":"Simiyu Region"},{"id":"LGTVRhKSn1V","name":"Singida Region"},{"id":"kZ6RlMnt2bp","name":"Tabora Region"},{"id":"vU0Qt1A5IDz","name":"Tanga Region"}];
-    var dropdown = "<select class='changeOrgUnit' ng-model='$root.selectedOrgUnit'  ng-change='$root.firstClick1()'>"
-    dropdown += "<option value='m0frOspS7JY'>MOH Tanzania</option>"
-    $.each(orgUnits,function(key,orgUnit){
-        dropdown += "<option value='"+orgUnit.id+"'> "+orgUnit.name+"</option>";
-    });
-    dropdown += "</select>";
-    $(".orgDropdown").html(dropdown);
-    $('select').material_select();
-</script>
 
 <div class="row" >
     <div ng-include="'views/family_planning/fp_menu.html'"></div>
@@ -63,170 +18,20 @@
         <div class="section">
             <!--Client Through Routine Facility-Based service-->
             <div class="col s12 m12" style="padding-left: 0px">
-                <div class="card z-depth-2 teal lighten-5 large">
-                    <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
-                        <div style="width: 100%">
-                            <!--<highchart  config="pchart"></highchart>-->
-                            <div ng-show="!displayTables.card1" id="pchart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                        </div>
-                        <div style="width: 100%"  ng-if="displayTables.card1">
-                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
-                            <h5 class="center">{{ chartObject.title.text }}</h5>
-                            <table class="bordered striped centered" id="jinsi">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th ng-repeat="column in chartObject.series">{{ column.name }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr data-ng-repeat="cats in chartObject.xAxis.categories">
-                                    <td>{{ cats }}</td>
-                                    <td ng-repeat="column in chartObject.series">{{ column.data[$parent.$index] }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-action-info-outline right" style="font-size: 34px;color: #0059bc"></i></span>
-                        <p>
-                            <a ng-click="changeTable('card1','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
-                            <a ng-click="changeTable('card1','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
-                            <button class="waves-effect waves-light btn teal darken-2" ng-csv="csvdata" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
-
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-
-                        <p class="flow-text"><b>Description:</b> This charts displays the percentage of hospitals with  two or more health workers trained in the selected FP method/s (as a proportion of all hospitals that are eligible to provide FP services) in the selected geographies, in the indicated month</p>
-                        <p class="flow-text"><b>Interpretation of Data:</b><p>
-                        <p class="flow-text"><u>Display option 1:</u> One FP method, multiple geographies</p>
-                        <p class="flow-text">If you select one FP method (eg implants) and multiple geographies (eg 6 districts within a region) you can compare the total percent of Hospitals with two or more health workers trained in implants across the 6 selected districts. This allows you to identify geographic areas that should be prioritised for implant training.
-                            <br>Note: the national target is for all facilities to have at least two providers trained in each FP method</p>
-                        <p class="flow-text"><u>Display option 2:</u> One Geography, multiple FP methods</p>
-                        <p class="flow-text">If you select one geography (eg 'Lake Zone') and multiple FP methods, you can compare the percentage of hospital with two or more health workers trained in each selected FP method, within the Lake Zone. This allows you to identify which methods may require further training, in the Lake Zone.
-                            <br>Note: the national target is for all facilities to have at least two providers trained in each FP method</p>
-                        <p class="flow-text"><b>Indicator Type:</b> Percentage</p>
-                        <p class="flow-text"> <b>Numerator:</b>  Total number of hospitals that are eligible to provide FP services that have two or more healthworkers that have achieved training competency  in the selected FP method/s (short-acting, implants, IUCDs, minilap, NSV) in the selected geography in the indicated month
-                        </p>
-                        <p class="flow-text"> <b>Denominator:</b>   Total number of hospitals that are eligible to provide FP services, in the selected geography for each month in the indicated month</p>
-                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
-                    </div>
-                </div>
+                <div portal-card="" dataobject='hospitalObject'></div>
             </div>
 
             <!--Client Through Routine Facility-Based service-->
             <div class="col s12 m12" style="padding-left: 0px">
-                <div class="card z-depth-2 teal lighten-5 large">
-                    <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
-                        <div style="width: 100%">
-
-                            <!--<highchart  config="pchart"></highchart>-->
-                            <div  ng-show="!displayTables.card2" id="pchart1" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                        </div>
-                        <div style="width: 100%"  ng-if="displayTables.card2">
-                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
-                            <h5 class="center">{{ chartObject1.title.text }}</h5>
-                            <table class="bordered striped centered" id="jinsi">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th ng-repeat="column in chartObject1.series">{{ column.name }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr data-ng-repeat="cats in chartObject1.xAxis.categories">
-                                    <td>{{ cats }}</td>
-                                    <td ng-repeat="column in chartObject1.series">{{ column.data[$parent.$index] }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-action-info-outline right" style="font-size: 34px;color: #0059bc"></i></span>
-                        <p>
-                            <a ng-click="changeTable('card2','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
-                            <a ng-click="changeTable('card2','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
-                            <button class="waves-effect waves-light btn teal darken-2" ng-csv="csvdata1" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
-
-                        </p>                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-
-                        <p class="flow-text"><b>Description:</b> This charts displays the percentage of Health Centres with  two or more health workers trained in the selected FP method/s  (as a proportion of all health centres that are eligible to provide FP services), in the selected geographies, in the indicated month</p>
-                        <p class="flow-text"><b>Interpretation of Data:</b><p>
-                        <p class="flow-text"><u>Display option 1:</u> One FP method, multiple geographies</p>
-                        <p class="flow-text">If you select one FP method (eg implants) and multiple geographies (eg 6 districts within a region) you can compare the total percent of health centres with two or more health workers trained in implants across the 6 selected districts. This allows you to identify geographic areas that should be prioritised for implant training.
-                            <br>Note: the national target is for all facilities to have at least two providers trained in each FP method</p>
-                        <p class="flow-text"><u>Display option 2:</u> One Geography, multiple FP methods</p>
-                        <p class="flow-text">If you select one geography (eg 'Lake Zone') and multiple FP methods, you can compare the percentage of health centres with two or more health workers trained in each selected FP method, within the Lake Zone. This allows you to identify which methods may require further training, in the Lake Zone.
-                            <br>Note: the national target is for all facilities to have at least two providers trained in each FP method</p>
-                        <p class="flow-text"><b>Indicator Type:</b> Percentage</p>
-                        <p class="flow-text"> <b>Numerator:</b>  Total number of health centres that are eligible to provide FP services that have two or more healthworkers that have achieved training competency  in the selected FP method/s (short-acting, implants, IUCDs, minilap, NSV) in the selected geography in the indicated month </p>
-                        <p class="flow-text"> <b>Denominator:</b> Total number of health centres that are eligible to provide FP services, in the selected geography  for each month in the indicated month</p>
-                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
-                    </div>
-                </div>
+                <div portal-card="" dataobject='healtyCenterObject'></div>
             </div>
 
             <div class="col s12 m12" style="padding-left: 0px">
-                <div class="card z-depth-2 teal lighten-5 large">
-                    <div class="card-image waves-effect waves-block waves-light" style="overflow: scroll">
-                        <div style="width: 100%">
-
-                            <!--<highchart  config="pchart"></highchart>-->
-                            <div ng-show="!displayTables.card3" id="pchart2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                        </div>
-                        <div style="width: 100%"  ng-if="displayTables.card3">
-                            <!--<p ng-if="fpCards[0].chartObject.loading" class="center"><img src="assets/img/loading.gif">Loading ....</p>-->
-                            <h5 class="center">{{ chartObject2.title.text }}</h5>
-                            <table class="bordered striped centered" id="jinsi">
-                                <thead>
-                                <tr>
-                                    <th></th>
-                                    <th ng-repeat="column in chartObject2.series">{{ column.name }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr data-ng-repeat="cats in chartObject2.xAxis.categories">
-                                    <td>{{ cats }}</td>
-                                    <td ng-repeat="column in chartObject2.series">{{ column.data[$parent.$index] }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><i class="material-icons mdi-action-info-outline right" style="font-size: 34px;color: #0059bc"></i></span>
-                        <p>
-                            <a ng-click="changeTable('card3','table')"  title="Table" class="waves-effect waves-light btn teal darken-2" >Table</a>
-                            <a ng-click="changeTable('card3','chart')"  title="Chart" class="waves-effect waves-light btn teal darken-2" >Chart</a>
-                            <button class="waves-effect waves-light btn teal darken-2" ng-csv="csvdata2" csv-label="true" filename="data.csv" field-separator="," decimal-separator=".">CSV</button>
-
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                        <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-
-                        <p class="flow-text"><b>Description:</b>This charts displays the percentage of dispensaries with  two or more health workers trained in the selected FP method/s  (as a proportion of all dispensaries that are eligible to provide FP services), in the selected geographies, in the indicated month</p>
-                        <p class="flow-text"><b>Interpretation of Data:</b><p>
-                        <p class="flow-text"><u>Display option 1:</u> One FP method, multiple geographies</p>
-                        <p class="flow-text">If you select one FP method (eg implants) and multiple geographies (eg 6 districts within a region) you can compare the total percent of dispensaries with two or more health workers trained in implants across the 6 selected districts. This allows you to identify geographic areas that should be prioritised for implant training.
-                            <br>Note: the national target is for all facilities to have at least two providers trained in each FP method</p>
-                        <p class="flow-text"><u>Display option 2:</u> One Geography, multiple FP methods</p>
-                        <p class="flow-text">If you select one geography (eg 'Lake Zone') and multiple FP methods, you can compare the percentage of dispensaries with two or more health workers trained in each selected FP method, within the Lake Zone. This allows you to identify which methods may require further training, in the Lake Zone.
-                            <br>Note: the national target is for all facilities to have at least two providers trained in each FP method</p>
-                        <p class="flow-text"><b>Indicator Type:</b> Percentage</p>
-                        <p class="flow-text"> <b>Numerator:</b> Total number of dispensaries that are eligible to provide FP services that have two or more healthworkers that have achieved training competency  in the selected FP method/s (short-acting, implants, IUCDs, minilap, NSV) in the selected geography in the indicated month
-                        </p>
-                        <p class="flow-text"> <b>Denominator:</b> Total number of dispensaries that are eligible to provide FP services, in the selected geography  for each month in the indicated month</p>
-                        <p class="flow-text"><b>Data Source:</b> Train Tracker</p>
-                    </div>
-                </div>
+                <div portal-card="" dataobject='dispensaryObject'></div>
             </div>
         </div>
+
+        <h6>Click <a href="http://www.rchs.go.tz/traintracker/main.php" style="color: #00796B;"><big><b>here</b></big></a> to visit the TrainTracker website for more detailed information on trained providers</h6>
+
     </div>
 </div>

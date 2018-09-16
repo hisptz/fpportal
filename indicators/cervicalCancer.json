@@ -1,88 +1,115 @@
 [
   {
-    "title":"Clients who received VIA screening",
-    "description":"Maelezo ya Clients who received VIA screening",
+    "title":"CECAP_Cryotherapy same day initial visit",
+    "description":"CECAP_Cryotherapy same day initial visit",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col s12 m6",
-    "data":"jbZa8J1H2ET"
+    "data":"r0amqJp0D9H"
   },
   {
-    "title":"Clients with Positive VIA results",
-    "description":"Maelezo ya Clients with Positive VIA results",
+    "title":"Cryotherapy same day return visit",
+    "description":"Cryotherapy same day return visit",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"TMXGiqmTZ3M",
+    "data":"VQuJu7LuUbf",
     "chart":"line"
 
   },
   {
-    "title":"Clients with VIA positive results treated with cryotherapy on the same day",
-    "description":"Clients with VIA positive results treated with cryotherapy on the same day",
+    "title":"Cryotherapy same day Routine visit VIA-",
+    "description":"Cryotherapy same day Routine visit VIA-",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m12 s12",
-    "data":"BQLLzTvEHBL",
+    "data":"xBUHUubOa70",
     "chart":"combined"
 
   },
   {
-    "title":"Total number of VIA+ clients receiving cryotherapy",
-    "description":"Total number of VIA+ clients receiving cryotherapy",
+    "title":"Large lesion referral initial visit",
+    "description":"Large lesion referral initial visit",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"UCKrT4buBRQ"
+    "data":"FbkYU4WCRNI"
 
   },
   {
-    "title":"Waliopewa Huduma ya Cryotherapy",
-    "description":"Waliopewa Huduma ya Cryotherapy",
+    "title":"Large lesion referral return visit",
+    "description":"Large lesion referral return visit",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"bZCT8NgyVw0"
+    "data":"GMwVCX0CleQ"
   },
   {
-    "title":"Women with positive VIA results referred for suspect with cancer",
-    "description":"Women with positive VIA results referred for suspect with cancer",
+    "title":"Large lesion referral routine visit VIA-",
+    "description":"Large lesion referral routine visit VIA-",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m12 s12",
-    "data":"fHEmmGUV9Wc"
+    "data":"nK2gAYR2EhT"
   },
   {
-    "title":"Number of clients with LEEP treatment performed",
-    "description":"Number of clients with LEEP treatment performed",
+    "title":"Suspect cancer follow up visit",
+    "description":"Suspect cancer follow up visit",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"ulM6a7dZoXM"
+    "data":"AjvblhjaukL"
   },
   {
-    "title":"Number of post-treatment complications (cryotherapy or LEEP)",
-    "description":"Number of post-treatment complications (cryotherapy or LEEP)",
+    "title":"Suspect cancer initial visit",
+    "description":"Suspect cancer initial visit",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"MkNGtEtobp1"
+    "data":"rywWOy8Eada"
   },
   {
-    "title":"Waliodhaniwa Kuwa na Saratani ya Shingo ya Mfuko wa Kizazi wakati wa FP",
-    "description":"Waliodhaniwa Kuwa na Saratani ya Shingo ya Mfuko wa Kizazi wakati wa FP",
+    "title":"Suspect cancer routine VIA-",
+    "description":"Suspect cancer routine VIA-",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m12 s12",
-    "data":"IZgTEU5SD0H"
+    "data":"Rk2tL7jUhve"
+  },
+  {
+    "title":"VIA screening first visit",
+    "description":"VIA screening first visit",
+    "indicatorType":"",
+    "numerator":"",
+    "denominator":"",
+    "cardClass":"col m12 s12",
+    "data":"oBTUbnPkrMT"
+  },
+  {
+    "title":"VIA screening follow up visit VIA -Ve",
+    "description":"VIA screening follow up visit VIA -Ve",
+    "indicatorType":"",
+    "numerator":"",
+    "denominator":"",
+    "cardClass":"col m12 s12",
+    "data":"BJ4nRBRl7dT"
+  },
+  {
+    "title":"VIA screening return visit after a year",
+    "description":"VIA screening return visit after a year",
+    "indicatorType":"",
+    "numerator":"",
+    "denominator":"",
+    "cardClass":"col m12 s12",
+    "data":"GUzbp0z6oLm"
   }
 ]

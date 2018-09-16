@@ -76,18 +76,7 @@ angular.module("hmisPortal")
                 data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
                 data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
+                data = FPManager.getLastTwelveMonthList(FPManager.lastMonthWithData);
             }if(type == 'methods'){
                 data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
                     {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
@@ -180,7 +169,7 @@ angular.module("hmisPortal")
             });
             var num = $scope.getDataFromUrl(arr2,ou,pe);
             var percent = (num/count)*100;
-            return percent.toFixed(2);
+            return percent.toFixed(1);
         };
 
         $scope.orgUnitType = function(arr,type){
@@ -216,7 +205,7 @@ angular.module("hmisPortal")
 
             var num = $scope.getDataFromUrl2(arr2,ou,pe);
             var percent = (count == 0)?0:(num/count)*100;
-            return percent.toFixed(2);
+            return percent.toFixed(1);
         };
 
 
@@ -235,8 +224,8 @@ angular.module("hmisPortal")
 
                         var chartObject = angular.copy(portalService.chartObject);
 
-                        chartObject.title.text = "Percent of facilities in "+region.name+" Stocked Out of Pills OR Injectables for any number of days";
-                        chartObject.yAxis.title.text = "% of Facilities";
+                        chartObject.title.text = "Percent of facilities in "+region.name+" stocked out of pills or injectables for any number of days";
+                        chartObject.yAxis.title.text = "% of facilities";
                         chartObject.legend = {
                             align: 'right',
                             verticalAlign: 'top',
@@ -257,9 +246,7 @@ angular.module("hmisPortal")
                         $rootScope.progressMessage = "Fetching data please wait ...";
                         $rootScope.showProgressMessage = true;
                         $http.get(portalService.base + 'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name,organisationUnitGroups[name],ancestors[id]]').success(function (data) {
-                            //stockout list table
-                            //$http.get(portalService.base+'api/sqlViews/yE42I0DBMVt/data.json?var=type:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(facilities){
-                            $http.get(portalService.base+'api/analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=ou:LEVEL-4;'+$scope.regionUid+'&filter=pe:'+FPManager.lastMonthWithOtherData+'&displayProperty=NAME').success(function(facilities){
+                            $http.get(portalService.base+'api/analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=ou:LEVEL-4;'+$scope.regionUid+'&filter=pe:'+FPManager.lastMonthWithData+'&displayProperty=NAME').success(function(facilities){
                                 $scope.AllstockOutData = [];
                                 $scope.PillstockOutData = [];
                                 $scope.InjectablestockOutData = [];
@@ -282,17 +269,14 @@ angular.module("hmisPortal")
                                     });
                                 });
                                 var orderBy = $filter('orderBy');
-
+                                $timeout(function () {
+                                    render.finishRequest();
+                                });
 
                             });
 
 
-                                //$http.get(portalService.base+'api/sqlViews/yE42I0DBMVt/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(healthCenter){
-                                //$http.get(portalService.base+'api/sqlViews/h7KbQnXjcmz/data.json?var=types:Health Center&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(healthCenter){
-                                //    $http.get(portalService.base+'api/sqlViews/h7KbQnXjcmz/data.json?var=types:Hospital&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(hosptal){
-                                //        $http.get(portalService.base+'api/sqlViews/h7KbQnXjcmz/data.json?var=types:Dispensary&var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(dispensary){
-
-                            $http.get(portalService.base+'api/sqlViews/Fvxf4sjmWxC/data.json?var=month1:201401&var=month2:201402&var=month3:201403&var=month4:201404&var=month5:201405&var=month6:201406&var=month7:201407&var=month8:201408&var=month9:201409&var=month10:201410&var=month11:201411&var=month12:201412').success(function(val1){
+                            $http.get(portalService.base+'api/sqlViews/Fvxf4sjmWxC/data.json?'+FPManager.lastTwelveMonthForSql(FPManager.lastMonthWithData)).success(function(val1){
                                     $rootScope.showProgressMessage = false;
                                     angular.forEach(orgUnits, function (yAxis) {
                                         var serie = [];
@@ -300,7 +284,6 @@ angular.module("hmisPortal")
                                             if (yAxis.name == "Facilities") {
                                                 serie.push(parseFloat($scope.getNumberPerOu(data.organisationUnits,$scope.regionUid,val1.rows,xAxis.id)));
                                             }
-
                                         });
                                         chartObject.series.push({
                                             type: 'spline',
@@ -312,10 +295,10 @@ angular.module("hmisPortal")
                                     $scope.pchart = chartObject;
                                     $scope.chartObject = chartObject;
                                     $scope.csvdata = portalService.prepareDataForCSV(chartObject);
+                                $timeout(function () {
+                                    render.finishRequest();
                                 });
-                                    //});
-                                //});
-                            //});
+                                });
                         });
                     });
                 });
@@ -327,38 +310,6 @@ angular.module("hmisPortal")
 
 
 
-
-
-        $scope.selectedMethod = 'all';
-        $scope.selectedPeriod = '2014';
-        $scope.data.chartType = 'column';
-        $scope.displayTable = false;
-        $scope.currentOrgUnit = "m0frOspS7JY";
-
-
-        $scope.changeChart = function(type,card){
-            card.displayTable = false;
-
-            $scope.showReport = true;
-            if(type == 'table'){
-                card.displayTable = true;
-                card.displayMap = false;
-                card.chart = 'table';
-                $scope.data.chartType = 'table';
-            }else if(type == 'map'){
-                card.displayMap = true;
-                card.displayTable = false;
-                card.chart = 'map';
-                $scope.data.chartType = 'map';
-            }
-            else{
-                card.displayMap = false;
-                card.displayTable = false;
-                card.chart = type;
-                $scope.data.chartType = type;
-            }
-            $scope.prepareSeries(card,$scope.data.chartType);
-        };
         $scope.prepareCategory = function(type){
             var data = [];
             var per = $scope.selectedPeriod;
@@ -376,32 +327,8 @@ angular.module("hmisPortal")
 
                     }
                 });
-            }if(type == 'quarter'){
-                data.push({'name':'Jan - Mar '+per,'id':per+'Q1'});
-                data.push({'name':'Apr - Jun '+per,'id':per+'Q2'});
-                data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
-                data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
-            }if(type == 'methods'){
-                data.push({'name':'client <20 Male Condoms','id':'W74wyMy1mp0'},
-                    {'name':'client <20 Female Condoms','id':'p8cgxI3yPx8'},
-                    {'name':'Oral Pills','id':'aSJKs4oPZAf'},
-                    {'name':'Injectables','id':'LpkdcaLc4I9'},
-                    {'name':'Implants','id':'p14JdJaG2aC'},
-                    {'name':'IUCDs','id':'GvbkEo6sfSd'},
-                    {'name':'Natural FP','id':'QRCRjFreECE'});
+                data = FPManager.getLastTwelveMonthList(FPManager.lastMonthWithData);
             }
 
             return data;
@@ -483,10 +410,3 @@ angular.module("hmisPortal")
     });
 
 
-
-
-
-function preparePeriod(period){
-
-    return ""+period+"01;"+period+"02;"+period+"03;"+period+"04;"+period+"05;"+period+"06;"+period+"07;"+period+"08;"+period+"09;"+period+"10;"+period+"11;"+period+"12;"+period+"Q1;"+period+"Q2;"+period+"Q3;"+period+"Q4";
-}

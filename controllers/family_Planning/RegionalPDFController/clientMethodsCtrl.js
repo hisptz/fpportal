@@ -9,13 +9,13 @@ angular.module("hmisPortal")
     .config(function($httpProvider) {
 
     })
-    .controller("clientMethodsCtrl",function ($rootScope,$scope,$http,portalService,FPManager,$location) {
+    .controller("clientMethodsCtrl",function ($rootScope,$scope,$http,portalService,FPManager,$location,$timeout) {
         $scope.regionUid = $location.search().uid;
-        console.log($scope.regionUid);
         $rootScope.showProgressMessage = false;
         $scope.geographicalZones = FPManager.zones;
         $scope.geoToUse = [];
         $scope.zones = "";
+        $scope.periodName = FPManager.getMonthName(FPManager.lastMonthWithData);
         angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
             $scope.zones += value.id+";";
             $scope.geoToUse.push({name:value.name,id:value.id, ticked: true });
@@ -212,8 +212,8 @@ angular.module("hmisPortal")
         $scope.fpCards = [
 
     {
-                title:'Family Planning clients by Method through Routine Facility-Based Service Dec 2014' ,
-                description:'Total Clients Quarterly',
+                title:'Family planning clients by method through routine facility-based service, '+FPManager.getMonthName(FPManager.lastMonthWithData) ,
+                description:'Total clients quarterly',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
                 category:'other',
@@ -222,13 +222,13 @@ angular.module("hmisPortal")
                 displayTable:false,
                 displayMap:false,
                 chart:'line',
-                yaxisTittle:'# client',
+                yaxisTittle:'# of clients',
                 visible:'consumption by method',
                 chartObject:angular.copy(FPManager.defaultChartObject1)
 
             },
             {
-                title:'[X Region] Number of FP clients through Routine Facility-Based Service',
+                title:'[X Region] Number of FP clients through routine facility-based service ',
                 description:'Total Clients Monthly',
                 cardClass:"col s12 m12",
                 data:$scope.methods,
@@ -238,7 +238,7 @@ angular.module("hmisPortal")
                 displayTable:false,
                 displayMap:false,
                 chart:'line',
-                yaxisTittle:'# client',
+                yaxisTittle:'# of clients',
                 visible:'consumption by method',
                 chartObject:angular.copy(portalService.chartObject)
 
@@ -276,7 +276,7 @@ angular.module("hmisPortal")
                     }
 
                     var peri = preparePeriod($scope.selectedPeriod);
-                    $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+$scope.regionUid+"&dimension=pe:201401;201402;201403;201404;201405;201406;201407;201408;201409;201410;201411;201412&displayProperty=NAME";
+                    $scope.url = portalService.base+"api/analytics.json?dimension=dx:"+$scope.getAllMethods()+"&dimension=ou:"+$scope.regionUid+"&dimension=pe:"+FPManager.lastTwelveMonth(FPManager.lastMonthWithData)+"&displayProperty=NAME";
                     var area = [];
                     cardObject.chartObject.loading = true;
                     var datass = '';
@@ -284,14 +284,13 @@ angular.module("hmisPortal")
 
                     $http.get($scope.url).success(function(data){
                         if(data.hasOwnProperty('metaData')){
-                            //var useThisData = $scope.prepareData(data,$scope.prepareCategory(cardObject.category),cardObject.category,cardObject);
                             var yAxisItems = ['new','returning','total'];
                             var xAxisItems = [];
                             var methodId = [];
                             var methodId1 = [];
 
                             $scope.titleToUse = region.name;
-                            cardObject.chartObject.title.text = region.name + " Number of FP clients through Routine Facility-Based Service";
+                            cardObject.chartObject.title.text = region.name + " Number of FP clients through routine facility-based service, "+FPManager.getlastTwelveMonthName(FPManager.lastMonthWithData);
                             cardObject.chartObject.yAxis.title.text = cardObject.yaxisTittle;
                             cardObject.chartObject.legend = {
                                 align: 'right',
@@ -334,7 +333,9 @@ angular.module("hmisPortal")
                         }
 
                         $rootScope.showProgressMessage = false;
-
+                        $timeout(function () {
+                            render.finishRequest();
+                        });
                     });
 
                 });
@@ -424,18 +425,7 @@ angular.module("hmisPortal")
                 data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
                 data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov'+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
+                data = FPManager.getLastTwelveMonthList(FPManager.lastMonthWithData);
             }if(type == 'methods'){
                 data.push({'name':'Male Condoms','uid':'JMmqv0tyVr7'},
                     {'name':'Female Condoms','uid':'Nt8M08bJKXl'},

@@ -7,7 +7,7 @@ angular.module("hmisPortal")
         $httpProvider.defaults.withCredentials = true;
         $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
     })
-    .controller("dataCtrl",function ($rootScope,$scope,$http,$routeParams,chartsManager,portalService,$timeout) {
+    .controller("dataCtrl",function ($rootScope,$scope,$sce,$http,$routeParams,chartsManager,$resource,portalService,$timeout) {
         //displaying loading during page change
         $rootScope.$on("$routeChangeStart",
             function (event, current, previous, rejection) {
@@ -17,6 +17,7 @@ angular.module("hmisPortal")
             function (event, current, previous, rejection) {
                 $rootScope.showLoader = false
             });
+
 
 
             $rootScope.showProgressMessage = false;
@@ -35,6 +36,7 @@ angular.module("hmisPortal")
                     j_username: "portal", j_password: "Portal123"
                 },function(){
                     $http.get($scope.datasetUrl).success(function(data){
+                        $scope.CurrentSection = data.name.replace("NACP_", " ").replace("HMIS_", " ").replace("NTLP_", " ");
                         $scope.dataSetName  = data.shortName;
                             $scope.dataserObject = data;
                             var dataElements = $scope.prepareDataElements(data);
@@ -51,29 +53,18 @@ angular.module("hmisPortal")
                                 $scope.table = chartsManager.drawChart(metaData,'ou',[],'dx',[],'none',"",data.shortName,'table');
                                 $scope.loadingImage = false;
                                 $scope.rows = 'ou';
+                                var indicatorApi=
+                                    $resource(portalService.base +"api/dataSets/"+$scope.dataSetId +".json?fields=id,name,periodType,shortName,dataEntryForm,categoryCombo[id,name,categories[id,name,categoryOptions[id,name]]]");
+                                var indicatorResult=indicatorApi.get(function(dataSetObject){
+                                    $scope.dataSetDetails =dataSetObject;
+                                    $scope.dataSetHTML =$sce.getTrustedHtml(dataSetObject.dataEntryForm.htmlCode);
+                                 });
                             }).error(function(error){
                                 $rootScope.progressMessage = "Error during getting data...";
                                 $timeout( function(){ $rootScope.showProgressMessage = false; }, 10000);
                             });
                     });
-                    //$http.get($scope.datasetUrl).success(function (dataset) {
-                    //    $scope.dataSetName  = dataset.shortName;
-                    //    $scope.dataserObject = dataset;
-                    //    var dataElements = $scope.prepareDataElements(dataset);
-                    //    $rootScope.progressMessage = "Getting form data ...";
-                    //    var dataUrl = portalService.base+"api/analytics.json?dimension=dx:"+dataElements+"&dimension=ou:LEVEL-2;"+ $scope.selectedOrgUnit +"&filter=pe:" + $scope.selectedPeriod + "&displayProperty=NAME"
-                    //    //var dataUrl = "datasetData.json";
-                    //    $http.get(dataUrl).success(function (metaData){
-                    //        $rootScope.showProgressMessage = false;
-                    //        $scope.metaData = metaData;
-                    //        $scope.table = chartsManager.drawChart(metaData,'ou',[],'dx',[],'none',"",dataset.shortName,'table');
-                    //        $scope.loadingImage = false;
-                    //        $scope.rows = 'ou';
-                    //    }).error(function(error){
-                    //        $rootScope.progressMessage = "Error during getting data...";
-                    //        $timeout( function(){ $rootScope.showProgressMessage = false; }, 10000);
-                    //    });
-                    //});
+
                 });
 
             };

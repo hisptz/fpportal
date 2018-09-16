@@ -1,0 +1,77 @@
+<div class="z-depth-1 grey lighten-5" style="width:96.5%;position:fixed;top:0px;z-index:900;margin-left: 24px; margin-right: 0px" ng-controller="filterController">
+    <div class="section grey lighten-5 " >
+        <div ng-class="hideMethods?'col s3':'col s3'"><label>Period</label></div>
+        <div ng-class="hideMethods?'col s7':'col s4'"><label>Geography &nbsp;&nbsp;&nbsp;
+            <a style="cursor: pointer; padding-left: 2px;padding-right: 2px; border: 1px rgba(70, 66, 62, 0.11) solid " title="Clear All" ng-click="clearAllOrgunits()">
+               <small>clear all</small>
+            </a></label></div>
+        <div ng-if="!hideMethods" class="col s3"><label>Methods  &nbsp;&nbsp;&nbsp;<a style="cursor: pointer; padding-left: 2px;padding-right: 2px; border: 1px rgba(70, 66, 62, 0.11) solid " title="Reset" ng-click="clearAllMethods()">
+            <small>clear all</small>
+        </a></label></div>
+        <div class="input-field col s3  grey lighten-5" style="margin-top: 0px">
+            <div class="col s6 input-field">
+                    <select ng-model="selectedYear" ng-change="updatePeriod(selectedYear)" material-select watch >
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                    </select>
+            </div>
+            <style>
+
+                .months ul.dropdown-content li:last-child{
+                    display:none
+                }
+            </style>
+            <div class="col s6 input-field months">
+                <select  ng-change="updateMonth(data.selectedMonth)" ng-model="data.selectedMonth" material-select watch>
+                    <option value="{{selectedYear}}01">January</option>
+                    <option value="{{selectedYear}}02">February</option>
+                    <option value="{{selectedYear}}03">March</option>
+                    <option value="{{selectedYear}}04">April</option>
+                    <option value="{{selectedYear}}05">May</option>
+                    <option value="{{selectedYear}}06">June</option>
+                    <option value="{{selectedYear}}07">July</option>
+                    <option value="{{selectedYear}}08">August</option>
+                    <option value="{{selectedYear}}09">September</option>
+                    <option value="{{selectedYear}}10">October</option>
+                    <option value="{{selectedYear}}11">November</option>
+                    <option value="{{selectedYear}}12">December</option>
+                    <option>{{selectedYear}}12</option>
+                    <!--<option ng-repeat="month in monthList" value="{{selectedYear}}{{month.value}}">{{selectedYear}}{{month.value}}</option>
+                    <option></option>-->
+                </select>
+            </div>
+
+
+        </div>
+        <div ng-class="hideMethods?'col s7':'col s4'" class="input-field  grey lighten-5">
+            <multi-select-tree
+                    data-input-model="data.orgUnitTree"
+                    multi-select="true"
+                    data-output-model="data.outOrganisationUnits"
+                    data-default-label="Select Geography"
+                    data-callback="selectOnly1Or2(item, selectedItems)">
+            </multi-select-tree>
+
+        </div>
+        <div ng-if="!hideMethods" class="input-field col s3 grey lighten-5">
+            <multi-select-tree
+                    data-input-model="data.menuMethods"
+                    multi-select="true"
+                    data-output-model="data.outMethods"
+                    data-default-label="Select Method"
+                    data-callback="selectOnly1Or3(item, selectedItems)">
+            </multi-select-tree>
+        </div>
+
+        <div class="col s2 btn waves-effect waves-light" style="margin-top: 20px" ng-click="getSelectedValues()">Update</div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.select').material_select();
+    });
+</script>

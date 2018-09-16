@@ -6,7 +6,7 @@
   "denominator":" ",
   "cardClass":"col s12 m12",
   "data":"PlatsD7r6BI"
- },
+},
   {
     "title":"Normal saline Availability",
     "description":"Normal saline Availability",
@@ -14,7 +14,7 @@
     "numerator":" ",
     "denominator":" ",
     "cardClass":"col m6 s12",
-     "data":"Y6gfcTiQcis",
+    "data":"Y6gfcTiQcis",
     "chart":"line"
   },
   {
@@ -45,7 +45,7 @@
     "denominator":" ",
     "cardClass":"col m6 s12",
     "data":"Y0HAPpe3X8A",
-    "chart":"map"
+    "chart":"bar"
   },
   {
     "title":"Penta Valent Availability",
@@ -138,7 +138,7 @@
     "denominator":" ",
     "cardClass":"col m6 s12",
     "data":"GfA6IHXRUyb",
-    "chart":"map"
+    "chart":"bar"
   },
 
   {
@@ -234,7 +234,7 @@
     "numerator":" ",
     "denominator":" ",
     "cardClass":"col m6 s12",
-    "data":"oB0IISPgAz4", 
+    "data":"oB0IISPgAz4",
     "chart":"table"
   },
 
@@ -246,7 +246,7 @@
     "denominator":" ",
     "cardClass":"col m6 s12",
     "data":"LZHwfqERPiC",
-     "chart":"pie"
+    "chart":"pie"
 
   },
 
@@ -268,9 +268,9 @@
     "numerator":" ",
     "denominator":" ",
     "cardClass":"col m6 s12",
-    "data":"SiUdy5FzDSP", 
+    "data":"SiUdy5FzDSP",
     "chart":"pie"
-    
+
   },
 
   {
@@ -280,9 +280,9 @@
     "numerator":" ",
     "denominator":" ",
     "cardClass":"col m6 s12",
-    "data":"J5hVzb8Mhwi", 
+    "data":"J5hVzb8Mhwi",
     "chart":"column"
-   },
+  },
 
   {
     "title":"RHZE Rifampicin 150mg/Isoniazide 75mg/Pyrazinamide/Etdambutol Tablets",
@@ -293,7 +293,7 @@
     "cardClass":"col m6 s12",
     "data":"F08pnezPe17",
     "chart":"area"
-   },
+  },
 
   {
     "title":"RH Rifampicin 150MG/Isoniazide 75mg Tablets",
@@ -302,9 +302,9 @@
     "numerator":" ",
     "denominator":" ",
     "cardClass":"col m6 s12",
-    "data":"amI2RHuAaE5", 
+    "data":"amI2RHuAaE5",
     "chart":"combined"
-  
+
   },
 
   {
@@ -316,7 +316,7 @@
     "cardClass":"col m6 s12",
     "data":"Si3s2HTVelD",
     "chart":"pie"
-    
+
 
   }
 ]

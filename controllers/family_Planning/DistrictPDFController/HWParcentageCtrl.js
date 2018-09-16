@@ -188,7 +188,7 @@ angular.module("hmisPortal")
             });
             var num = $scope.getDataFromUrl(arr2,ou,pe);
             var percent = (num/count)*100;
-            return percent.toFixed(2);
+            return percent.toFixed(1);
         };
 
 
@@ -197,7 +197,7 @@ angular.module("hmisPortal")
 
             var num = $scope.getDataFromUrl1(arr2,ou,pe,method);
             var percent = (num.trained == 0)?0:(num.trainedAndprovide/num.trained)*100;
-            return percent.toFixed(2);
+            return percent.toFixed(1);
         };
 
         $scope.getNumberPerOu2 = function(arr,ou,arr2,pe,method){
@@ -211,7 +211,7 @@ angular.module("hmisPortal")
             });
             var num = $scope.getDataFromUrl2(arr2,ou,pe,method);
             var percent = (num/count)*100;
-            return percent.toFixed(2);
+            return percent.toFixed(1);
         };
 
         $scope.getFacilityForMethod = function(type,hosptal,hcenter,dispensary){
@@ -302,7 +302,7 @@ angular.module("hmisPortal")
                         var chart3 = angular.copy(chartObject);
                         var chart4 = angular.copy(chartObject);
                         var chart5 = angular.copy(chartObject);
-                        chart1.yAxis.title.text ="% of Facilities";
+                        chart1.yAxis.title.text ="% of facilities";
                         chart5.legend = {
                             align: 'right',
                             enabled: true,
@@ -332,9 +332,9 @@ angular.module("hmisPortal")
                         //charts local uid = KIuvtXj2Dt2, online uid = Aj6aLkjr7dk
                        // $http.get(portalService.base+'api/dataSets/TfoI3vTGv1f.json?fields=organisationUnits[name]').success(function(data) {
 
-                            $http.get(portalService.base + 'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Hospital&var=month:' + FPManager.lastMonthWithOtherData).success(function (hosptal) {
-                                $http.get(portalService.base + 'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Health Center&var=month:' + FPManager.lastMonthWithOtherData).success(function (hcenter) {
-                                    $http.get(portalService.base + 'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Dispensary&var=month:' + FPManager.lastMonthWithOtherData).success(function (dispensary) {
+                            $http.get(portalService.base + 'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Hospital&var=month:' + FPManager.lastMonthWithData).success(function (hosptal) {
+                                $http.get(portalService.base + 'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Health Center&var=month:' + FPManager.lastMonthWithData).success(function (hcenter) {
+                                    $http.get(portalService.base + 'api/sqlViews/Aj6aLkjr7dk/data.json?var=types:Dispensary&var=month:' + FPManager.lastMonthWithData).success(function (dispensary) {
 
                                         $scope.nsvData = $scope.getFacilityForMethod('NSV', hosptal.rows, hcenter.rows, dispensary.rows);
                                         $scope.miniLapData = $scope.getFacilityForMethod('Mini Lap', hosptal.rows, hcenter.rows, dispensary.rows);
@@ -384,6 +384,9 @@ angular.module("hmisPortal")
                                         $('#parChar5').highcharts(chart5);
                                         $scope.csvdata = portalService.prepareDataForCSV(chartObject);
                                         $scope.pchart = chartObject;
+                                        $timeout(function () {
+                                            render.finishRequest();
+                                        });
                                     });
                                 });
 
@@ -454,18 +457,7 @@ angular.module("hmisPortal")
                 data.push({'name':'Jul - Sep '+per,'id':per+'Q3'});
                 data.push({'name':'Oct - Dec '+per,'id':per+'Q4'});
             }if(type == 'month'){
-                data.push({'name':'Jan '+per,'id':per+'01'});
-                data.push({'name':'Feb '+per,'id':per+'02'});
-                data.push({'name':'Mar '+per,'id':per+'03'});
-                data.push({'name':'Apr '+per,'id':per+'04'});
-                data.push({'name':'May '+per,'id':per+'05'});
-                data.push({'name':'Jun '+per,'id':per+'06'});
-                data.push({'name':'Jul '+per,'id':per+'07'});
-                data.push({'name':'Aug '+per,'id':per+'08'});
-                data.push({'name':'Sep '+per,'id':per+'09'});
-                data.push({'name':'Oct '+per,'id':per+'10'});
-                data.push({'name':'Nov '+per,'id':per+'11'});
-                data.push({'name':'Dec '+per,'id':per+'12'});
+                data = FPManager.getLastTwelveMonthList(FPManager.lastMonthWithData);
             }if(type == 'methods'){
                 angular.forEach()
             }

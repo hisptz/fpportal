@@ -160,10 +160,11 @@ chartServices.factory('chartsManager',function(){
       var num = 0;
       var currentService = this;
       $.each(analyticsObject.rows,function(key,value){
-        if(filterType === 'none'){
+       if(filterType === 'none'){
           if(value[currentService.getTitleIndex(analyticsObject.headers,yAxisType)] === yAxisUid &&
             value[currentService.getTitleIndex(analyticsObject.headers,xAxisType)] === xAxisUid ){
             num = parseFloat(value[currentService.getTitleIndex(analyticsObject.headers,'value')]);
+
           }
         }else{
 
@@ -175,7 +176,7 @@ chartServices.factory('chartsManager',function(){
         }
 
       });
-      return num;
+     return num;
     },
 
     //drawing some charts
@@ -183,10 +184,10 @@ chartServices.factory('chartsManager',function(){
       var currentService = this;
       switch (type){
         case 'bar':
-          return currentService.drawOtherCharts(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems, filterType, filterUid, title, type);
+          return currentService.drawOtherCharts(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems, filterType, filterUid, title, 'column');
           break;
         case 'column':
-          return currentService.drawOtherCharts(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems, filterType, filterUid, title, type);
+          return currentService.drawColumnChart(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems, filterType, filterUid, title, 'bar');
           break;
         case 'combined':
           return currentService.drawCombinedChart(analyticsObject,  xAxisType,xAxisItems,yAxisType,yAxisItems, filterType, filterUid, title);
@@ -199,6 +200,12 @@ chartServices.factory('chartsManager',function(){
           break;
         case 'table':
           return currentService.drawTable(analyticsObject,  xAxisType,xAxisItems,yAxisType,yAxisItems, filterType, filterUid, title);
+          break;
+        case 'area':
+          return currentService.drawOtherCharts(analyticsObject,  xAxisType,xAxisItems,yAxisType,yAxisItems, filterType, filterUid, title, type);
+          break;
+        case 'spider':
+          return currentService.drawSpiderChart(analyticsObject,  xAxisType,xAxisItems,yAxisType,yAxisItems, filterType, filterUid, title, type);
           break;
         default :
           return currentService.drawTable(analyticsObject,  xAxisType,xAxisItems,yAxisType,yAxisItems, filterType, filterUid, title);
@@ -226,30 +233,25 @@ chartServices.factory('chartsManager',function(){
       },
     //hacks for pie chart
     drawPieChart : function(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems,filterType,filterUid,title){
+
       var chartObject = angular.copy(this.defaultChartObject);
       chartObject.title.text = title;
-
 
       //chartObject.yAxis.title.text = title.toLowerCase();
       var pieSeries = [];
       var metaDataObject = this.prepareCategories(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems);
       var currentService = this;
-      //set x-axis categories
-      angular.forEach(metaDataObject.xAxisItems, function (val) {
-        chartObject.xAxis.categories.push(val.name);
-      });
+      var serie = [];
       angular.forEach(metaDataObject.yAxisItems,function(yAxis){
         angular.forEach(metaDataObject.xAxisItems,function(xAxis){
           var number = currentService.getDataValue(analyticsObject,xAxisType,xAxis.uid,yAxisType,yAxis.uid,filterType,filterUid);
-          pieSeries.push({name: yAxis.name+' - '+ xAxis.name , y: parseFloat(number)});
+          serie.push({name: xAxis.name , y: parseFloat(number)});
         });
       });
-
-      chartObject.series = {type: 'pie', name:title , data: pieSeries,showInLegend: true,
+      chartObject.series.push({type: 'pie', name:title , data: serie,showInLegend: true,
         dataLabels: {
           enabled: false
-        }
-      };
+        } });
       return chartObject;
     },
 
@@ -275,17 +277,18 @@ chartServices.factory('chartsManager',function(){
         chartObject.series.push({type: 'column', name: yAxis.name, data: barSeries});
         chartObject.series.push({type: 'spline', name: yAxis.name, data: barSeries});
       });
-      chartObject.series.push({type: 'pie', name: title, data: pieSeries,center: [100, 80],size: 150,showInLegend: false,
-        dataLabels: {
-          enabled: false
-        }
-      });
+      //chartObject.series.push({type: 'pie', name: title, data: pieSeries,center: [100, 80],size: 150,showInLegend: false,
+      //  dataLabels: {
+      //    enabled: false
+      //  }
+      //});
 
       return chartObject;
     },
 
     //draw all other types of chart[bar,line,area]
     drawOtherCharts : function(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems,filterType,filterUid,title,chartType){
+
       var chartObject = angular.copy(this.defaultChartObject);
       chartObject.title.text = title;
       var metaDataObject = this.prepareCategories(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems);
@@ -303,9 +306,92 @@ chartServices.factory('chartsManager',function(){
         chartObject.series.push({type: chartType, name: yAxis.name, data: chartSeries});
       });
       return chartObject;
+    },
+    //draw all other types of chart[bar,line,area]
+    drawColumnChart : function(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems,filterType,filterUid,title,chartType){
+
+      var chartObject = angular.copy(this.defaultChartObject);
+      chartObject.title.text = title;
+      chartObject.xAxis.labels.rotation = 0;
+      var metaDataObject = this.prepareCategories(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems);
+      var currentService = this;
+      angular.forEach(metaDataObject.xAxisItems, function (val) {
+        chartObject.xAxis.categories.push(val.name);
+      });
+      angular.forEach(metaDataObject.yAxisItems,function(yAxis){
+        var chartSeries = [];
+        angular.forEach(metaDataObject.xAxisItems,function(xAxis){
+          var number = currentService.getDataValue(analyticsObject,xAxisType,xAxis.uid,yAxisType,yAxis.uid,filterType,filterUid);
+          //console.log(xAxis.name+"("+xAxis.uid+")"+"---"+yAxis.name+"("+yAxis.uid+")"+" value is " + number);
+          chartSeries.push(parseFloat(number));
+        });
+        chartObject.series.push({type: chartType, name: yAxis.name, data: chartSeries});
+      });
+      return chartObject;
+    },
+
+    drawSpiderChart : function(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems,filterType,filterUid,title,chartType){
+      var metaDataObject = this.prepareCategories(analyticsObject, xAxisType,xAxisItems,yAxisType,yAxisItems);
+      var currentService = this;
+      var categories = [];
+      angular.forEach(metaDataObject.xAxisItems, function (val) {
+        categories.push(val.name);
+      });
+
+      var series = [];
+      angular.forEach(metaDataObject.yAxisItems,function(yAxis){
+        var chartSeries = [];
+        angular.forEach(metaDataObject.xAxisItems,function(xAxis){
+          var number = currentService.getDataValue(analyticsObject,xAxisType,xAxis.uid,yAxisType,yAxis.uid,filterType,filterUid);
+          //console.log(xAxis.name+"("+xAxis.uid+")"+"---"+yAxis.name+"("+yAxis.uid+")"+" value is " + number);
+          chartSeries.push(parseFloat(number));
+        });
+        series.push({name: yAxis.name, data: chartSeries, pointPlacement: 'on'});
+      });
+      var chartObject = {
+
+        chart: {
+          polar: true,
+              type: 'line'
+        },
+
+        title: {
+          text: title,
+              x: -80
+        },
+
+        pane: {
+          size: '80%'
+        },
+
+        xAxis: {
+          categories: categories,
+              tickmarkPlacement: 'on',
+              lineWidth: 0
+        },
+
+        yAxis: {
+          gridLineInterpolation: 'polygon',
+              lineWidth: 0,
+              min: 0
+        },
+
+        tooltip: {
+          shared: true
+        },
+
+        legend: {
+          align: 'center',
+              verticalAlign: 'bottom',
+              y: 70,
+              layout: 'horizontal'
+        },
+
+        series: series
+
+      };
+      return chartObject;
     }
-
-
   };
   return chartsManager;
 });

@@ -106,8 +106,27 @@ angular.module("hmisPortal")
         $routeProvider.when("/nutrition",{
             templateUrl: 'views/indicatorsView.html',
             controller: 'indicatorsCtrl'
+        });$routeProvider.when("/hbc",{
+            templateUrl: 'views/indicatorsView.html',
+            controller: 'indicatorsCtrl'
+        });$routeProvider.when("/art",{
+            templateUrl: 'views/indicatorsView.html',
+            controller: 'indicatorsCtrl'
+        });$routeProvider.when("/pediatrichiv",{
+            templateUrl: 'views/indicatorsView.html',
+            controller: 'indicatorsCtrl'
+        });$routeProvider.when("/tbandhiv",{
+            templateUrl: 'views/indicatorsView.html',
+            controller: 'indicatorsCtrl'
+        });$routeProvider.when("/vmcc",{
+            templateUrl: 'views/indicatorsView.html',
+            controller: 'indicatorsCtrl'
         });
         $routeProvider.when("/hivaids",{
+            templateUrl: 'views/indicatorsView.html',
+            controller: 'indicatorsCtrl'
+        });
+        $routeProvider.when("/noncommunicabledisease",{
             templateUrl: 'views/indicatorsView.html',
             controller: 'indicatorsCtrl'
         });
@@ -151,11 +170,34 @@ angular.module("hmisPortal")
             templateUrl: 'views/indicatorsView.html',
             controller: 'indicatorsCtrl'
         });
-        $routeProvider.when("/feedback",{
-            templateUrl: 'views/feedback.html',
-            controller: 'mainCtrl'
+        $routeProvider.when("/book10",{
+            templateUrl: 'views/book10.html',
+            controller: 'book10Ctrl'
+        });
+        $routeProvider.when("/death",{
+            templateUrl: 'views/death.html',
+            controller: 'deathCtrl'
         });
 
+
+        $routeProvider.when("/hbc",{
+            templateUrl: 'views/hbc.html',
+            controller: 'hbcCtrl'
+        });
+
+        $routeProvider.when("/hct",{
+            templateUrl: 'views/hct.html',
+            controller: 'hctCtrl'
+        });
+        $routeProvider.when("/pmtct",{
+            templateUrl: 'views/indicatorsView.html',
+            controller: 'indicatorsCtrl'
+        });
+        $routeProvider.when("/sti",{
+            templateUrl: 'views/indicatorsView.html',
+            controller: 'indicatorsCtrl'
+        });
+        
         /**
          * Family planning routes
          * Used by family planning portal.
@@ -225,8 +267,6 @@ angular.module("hmisPortal")
             controller: 'FPHomeController'
         });
 
-
-        //default route
         $routeProvider.otherwise({
             redirectTo: '/home'
         });

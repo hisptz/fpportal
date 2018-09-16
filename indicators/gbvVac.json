@@ -1,153 +1,153 @@
 [
   {
-    "title":"GBV Idadi ya wateja wote",
-    "description":"GBV Idadi ya wateja wote",
+    "title":"Proportion of persons with irreversible physical disability caused by GBV and VAC",
+    "description":"Proportion of persons with irreversible physical disability caused by GBV and VAC",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col s12 m6",
-    "data":"DoUU3CT1A07"
+    "data":"N1IXK8iUDkI"
   },
   {
-    "title":"GBV Idadi ya wateja wapya",
-    "description":"GBV Idadi ya wateja wapya",
+    "title":"Percentage of Female GBV and VAC Physically assaulted clients amongst all Females",
+    "description":"Percentage of Female GBV and VAC Physically assaulted clients amongst all Females",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"x2UGbITvfI8",
+    "data":"rJbmyK2R99I",
     "displayTable":false,
     "displayMap":false,
     "chart":"line"
 
   },
   {
-    "title":"GBV Idadi ya wateja waliokuja kwa ufuatiliaji (Follow up visit)",
-    "description":"GBV Idadi ya wateja waliokuja kwa ufuatiliaji (Follow up visit)",
+    "title":"Percentage of Female GBV and VAC Sexually assaulted clients amongst all clients",
+    "description":"Percentage of Female GBV and VAC Sexually assaulted clients amongst all clients",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m12 s12",
-    "data":"sYUZyts1MMT",
+    "data":"xAtBhldnlvA",
     "chart":"combined"
 
   },
   {
-    "title":"GBV Wateja Waliofanyiwa unasihi (Counseling)",
-    "description":"GBV Wateja Waliofanyiwa unasihi (Counseling)",
+    "title":"Percentage of GBV and VAC clients tested for HIV",
+    "description":"Percentage of GBV and VAC clients tested for HIV",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"H1J48AbjszO"
+    "data":"goCKavMLzj0"
 
   },
   {
-    "title":"GBV Idadi ya waliopatwa na ukatili wa kimwili (Physical Violence)",
-    "description":"GBV Idadi ya waliopatwa na ukatili wa kimwili (Physical Violence)",
+    "title":"Percentage of GBV and VAC neglected children",
+    "description":"Percentage of GBV and VAC neglected children",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"CifISChGCYR"
+    "data":"ZuLKohzHg8x"
   },
   {
-    "title":"GBV Idadi ya waliopatwa na ukatili wa kingono (Sexual Violence)",
-    "description":"GBV Idadi ya waliopatwa na ukatili wa kingono (Sexual Violence)",
+    "title":"Percentage of Female GBV and VAC survivors provided with Emergency contraceptives",
+    "description":"Percentage of Female GBV and VAC survivors provided with Emergency contraceptives",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"Lf8xT5PZToo"
+    "data":"xIe8SvPcmt9"
   },
   {
-    "title":"GBV Idadi ya waliopatwa na ukatili wa kihisia (Emotional Violence)",
-    "description":"GBV Idadi ya waliopatwa na ukatili wa kihisia (Emotional Violence)",
+    "title":"Percentage of GBV and VAC survivors received from initiating services",
+    "description":"Percentage of GBV and VAC survivors received from initiating services",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"T1K7yVgE4kd"
+    "data":"mmcrGmc2saD"
   },
   {
-    "title":"GBV Idadi ya watoto waliotelekezwa (Neglect)",
-    "description":"GBV Idadi ya watoto waliotelekezwa (Neglect)",
+    "title":"Percentage of GBV and VAC survivors who were counseled",
+    "description":"Percentage of GBV and VAC survivors who were counseled",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"WMP9qQJXRiY"
+    "data":"Uw3uVIU16pl"
   },
   {
-    "title":"GBV Idadi ya waliopata ukatili kwa kulawitiwa",
-    "description":"GBV Idadi ya waliopata ukatili kwa kulawitiwa",
+    "title":"Percentage of GBV and VAC survivors who were asked screening questions",
+    "description":"Percentage of GBV and VAC survivors who were asked screening questions",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"XOGHJegdR50"
+    "data":"kXSindxfnnS"
   },
   {
-    "title":"GBV Idadi ya waliofika kituoni ndani ya saa 72 baada ya tukio",
-    "description":"GBV Idadi ya waliofika kituoni ndani ya saa 72 baada ya tukio",
+    "title":"Percentage of GBV and VAC survivors whose Forensic Investigation has been collected for legal action",
+    "description":"Percentage of GBV and VAC survivors whose Forensic Investigation has been collected for legal action",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"vKdJGP5FCOi"
+    "data":"jrDlrzIx6BM"
   },
   {
-    "title":"GBV Walipimwa Virusi vya UKIMWI (HIV testing)",
-    "description":"GBV Walipimwa Virusi vya UKIMWI (HIV testing)",
+    "title":"Percentage of Male GBV and VAC Physically assaulted clients amongst all Males",
+    "description":"Percentage of Male GBV and VAC Physically assaulted clients amongst all Males",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"YObV7hMSedk"
+    "data":"GIX5BhjLlti"
   },
   {
-    "title":"GBV Waliopewa njia ya uzazi wa mpango wa dharura (Emergency Contraceptive)",
-    "description":"GBV Waliopewa njia ya uzazi wa mpango wa dharura (Emergency Contraceptive)",
+    "title":"Percentage of Male GBV and VAC Sexually assaulted clients amongst all clients",
+    "description":"Percentage of Male GBV and VAC Sexually assaulted clients amongst all clients",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"p9eTsPP1aRG"
+    "data":"ubP2yRgDM2K"
   },
   {
-    "title":"GBV Wateja waliopata rufaa kutoka nje ya kituo",
-    "description":"GBV Wateja waliopata rufaa kutoka nje ya kituo",
+    "title":"Percentage of sexually assaulted survivors eligible for PEP who actually received HIV PEP within 72 hours (Ke)",
+    "description":"Percentage of sexually assaulted survivors eligible for PEP who actually received HIV PEP within 72 hours (Ke)",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
-    "cardClass":"col m6 s12",
-    "data":"qJbkDpJoZlN"
+    "cardClass":"col m12 s12",
+    "data":"Doxbg7niGf4"
   },
   {
-    "title":"GBV Waliopewa matibabu ya kinga (Post Exposure Prophylaxis)",
-    "description":"GBV Waliopewa matibabu ya kinga (Post Exposure Prophylaxis)",
+    "title":"Percentage of sexually assaulted survivors eligible for PEP who actually received HIV PEP within 72 hours (Me)",
+    "description":"Percentage of sexually assaulted survivors eligible for PEP who actually received HIV PEP within 72 hours (Me)",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
-    "cardClass":"col m6 s12",
-    "data":"wZ0mfD4QRAZ"
+    "cardClass":"col m12 s12",
+    "data":"XYPfUBG16Sq"
   },
   {
-    "title":"GBV Wateja waliopata rufaa kwenda nje ya kituo",
-    "description":"GBV Wateja waliopata rufaa kwenda nje ya kituo",
+    "title":"Percentage of all GBV and VAC clients who returned for a follow up visit (as recommended by national guidelines)",
+    "description":"Percentage of all GBV and VAC clients who returned for a follow up visit (as recommended by national guidelines)",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"ZwYZZG8v7wX"
+    "data":"Vmnzyg0zXjT"
   },
   {
-    "title":"GBV Wateja waliopata rufaa ndani ya kituo",
-    "description":"GBV Wateja waliopata rufaa ndani ya kituo",
+    "title":"Percentage of GBV and VAC survivors referred out for Support services",
+    "description":"Percentage of GBV and VAC survivors referred out for Support services",
     "indicatorType":"",
     "numerator":"",
     "denominator":"",
     "cardClass":"col m6 s12",
-    "data":"x8BqhbTBKyr"
+    "data":"kuOederGToH"
   }
 ]
