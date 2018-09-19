@@ -1,0 +1,27 @@
+{
+  "name": "standardreport",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hisptz/standard-report.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hisptz/standard-report/issues"
+  },
+  "homepage": "https://github.com/hisptz/standard-report#readme",
+  "dependencies": {
+    "local-web-server": "^2.5.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "^3.1.4"
+  }
+}

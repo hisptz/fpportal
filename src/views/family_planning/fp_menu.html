@@ -1,0 +1,114 @@
+<style>
+    .active1{
+        background-color: #E0F2F1;
+        color: #ffffff;
+    }
+    .active1 a{
+        color: #000000;
+    }
+    a{
+        color:#000000;
+    }
+    .collapsible.popout>li.active {
+        box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        margin: 0px 0px 0px 23px
+    }
+    .collapsible-body {
+        display: none;
+        border-bottom: 1px solid #ddd;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background-color: #fafafa;
+    }
+    .flow-text {
+        font-size: 1.1rem;
+    }
+
+
+
+</style>
+<div class="col s12 l2 m2" style="padding: 0px" ng-controller="menuController" >
+    <div class="section mainmenu" style="margin-top: 82px">
+        <div>
+            <ul class="collapsible popout fp-menu " data-collapsible="accordion">
+                <li class="lighten-5" style="margin-right: 1px;" >
+                    <div class="collapsible-header" style="font-size: 12px" ng-class="{ active: isActive('/familyPlanningHome') }"><a href="./#familyPlanningHome" style="font-size: 12px"><i class="material-icons mdi-action-home"></i>Home</a> </div>
+
+                </li>
+                <li class="lighten-5" style="margin-right: 1px;" >
+                    <div class="collapsible-header" style="font-size: 12px" ng-class="{ active: isActive('/hw_trained') || isActive('/facilities_hw_trained') || isActive('/facilities_providing_FP') || isActive('/facilities_providing_CBD') || isActive('/facilities_with_trained_hw') }"><i class="material-icons mdi-editor-format-align-justify"></i>Coverage</div>
+                    <div class="collapsible-body">
+                        <p ng-class="{ active1: isActive('/hw_trained') }"><a href="./#hw_trained" style="font-size: 12px"><i class="material-icons mdi-navigation-arrow-right"></i>HWs Trained</a> </p><hr>
+                        <p ng-class="{ active1: isActive('/facilities_hw_trained') }"><a href="./#facilities_hw_trained" style="font-size: 12px">Facilities with HWs Trained</a> </p><hr>
+                        <p ng-class="{ active1: isActive('/facilities_providing_FP') }"><a href="./#facilities_providing_FP" style="font-size: 12px">Facilities Providing FP</a> </p><hr>
+                        <p ng-class="{ active1: isActive('/facilities_providing_CBD') }"><a href="./#facilities_providing_CBD" style="font-size: 12px">Facilities Providing FP through CBD</a> </p><hr>
+                        <p ng-class="{ active1: isActive('/facilities_with_trained_hw') }"><a href="./#facilities_with_trained_hw" style="font-size: 12px">Facilities with HWs Trained Providing FP</a> </p>
+                    </div>
+                </li>
+                <li  class="lighten-5" style="margin-right: 1px" >
+                    <div class="collapsible-header" style="font-size: 12px" ng-class="{ active: isActive('/consumption_by_method') || isActive('/consumption_by_demographic') }"><i class="material-icons mdi-editor-format-align-justify"></i>Clients</div>
+                    <div class="collapsible-body">
+                        <p  ng-class="{ active1: isActive('/consumption_by_method') }"><a href="./#consumption_by_method" style="font-size: 12px">Clients by Method</a> </p><hr>
+                        <p  ng-class="{ active1: isActive('/consumption_by_demographic') }"><a href="./#consumption_by_demographic"   style="font-size: 12px">Clients by Demographics & Outreach</a> </p>
+                    </div>
+                </li>
+                <li class="lighten-5" style="margin-right: 1px">
+                    <div class="collapsible-header" style="font-size: 12px" ng-class="{ active: isActive('/sos_at_facilities') || isActive('/sos_at_facilities_trained_hw') }"><i class="material-icons mdi-editor-format-align-justify"></i>Stock Outs</div>
+                    <div class="collapsible-body">
+                        <p  ng-class="{ active1: isActive('/sos_at_facilities') }"><a href="./#sos_at_facilities"   style="font-size: 12px">SOs at Facilities Providing FP.</a></p><hr>
+                        <p  ng-class="{ active1: isActive('/sos_at_facilities_trained_hw') }"><a href="./#sos_at_facilities_trained_hw"   style="font-size: 12px">SOs at Facilities with HWs Trained.</a></p>
+                    </div>
+                </li>
+                <li class="lighten-5" style="margin-right: 1px">
+                    <div class="collapsible-header" style="font-size: 12px"  ng-class="{ active: isActive('/service_intergration') }">
+                        <i class="material-icons mdi-editor-format-align-justify"></i>Service Integration</div>
+                    <div class="collapsible-body">
+                        <p  ng-class="{ active1: isActive('/service_intergration') }"><a href="./#service_intergration"  style="font-size: 12px">Service Integration</a> </p>
+                    </div>
+                </li>
+                <li class="lighten-5" style="margin-right: 1px">
+                    <div class="collapsible-header" style="font-size: 12px"><i class="material-icons mdi-editor-format-align-justify"></i>Monthly Reports</div>
+                    <!--<div class="collapsible-body">-->
+                        <!--<form ng-submit="addSubscriber()">-->
+                        <!--<h5 style="text-align: center">Subscribe Here for Monthly Reports</h5>-->
+                        <!--<p>Name *:<br><input type="text" placeholder="Name" ng-model="newUser.name"></p>-->
+                        <!--<p>Email *:<input type="email" placeholder="Email Address" ng-model="newUser.email"></p>-->
+                        <!--<p>Report Area *:-->
+                            <!--<multi-select-tree-->
+                                    <!--data-input-model="data.orgUnitTree4"-->
+                                    <!--multi-select="true"-->
+                                    <!--data-output-model="data.outRegistrationOrganisationUnits"-->
+                                    <!--data-default-label="Select Organization Unit"-->
+                                    <!--data-callback="selectOnly1Or2(item, selectedItems)">-->
+                            <!--</multi-select-tree>-->
+                        <!--</p>-->
+                        <!--<p>-->
+                            <!--<button ng-if="newUser.name !== '' && newUser.email !== '' && data.outRegistrationOrganisationUnits.length !== 0" class="btn btn-info">Subscribe</button><br>-->
+                        <!--</p>-->
+                        <!--</form>-->
+                    <!--</div>-->
+
+
+                    <div class="collapsible-body">
+                        <p  ng-class="{ active1: isActive('/fp_monthly_report') }"><a href="./#fp_monthly_report"  style="font-size: 12px"> Monthly PDF Reports</a> </p>
+                        <p  ng-class="{ active1: isActive('/fp_custom_report') }"><a href="./#fp_custom_report"  style="font-size: 12px"> Custom All Data Reports</a> </p>
+                    </div>
+
+                </li>
+            </ul>
+
+            <ul class="collapsible popout fp-menu " data-collapsible="accordion">
+                <li class="blue lighten-5" style="margin-right: 1px;" >
+                    <div class="collapsible-header" style="font-size: 12px" ><a href="https://hmisportal.moh.go.tz/hmisportal/FP_Dashboard_User_Manual_Final.pdf" style="font-size: 12px"><i class="material-icons mdi-file-file-download"></i>User Manual</a> </div>
+                </li>
+            </ul>
+            <script>
+                $('.collapsible').collapsible({
+                    accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+                });
+            </script>
+        </div>
+    </div>
+
+</div>
