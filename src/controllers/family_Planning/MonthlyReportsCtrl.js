@@ -3,7 +3,7 @@ angular.module("hmisPortal")
     .config(function($httpProvider) {
         // $httpProvider.defaults.withCredentials = true;
     })
-    .controller("monthlyReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
+    .controller("monthlyReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService) {
         //displaying loading during page change
         $scope.addSubscriber = function(){
             $rootScope.progressMessage = "Adding you to the list of subscribers, Please wait ...";

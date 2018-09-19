@@ -267,14 +267,14 @@ angular.module("hmisPortal")
             controller: 'FPHomeController'
         });
 
+        $routeProvider.when("/fp_custom_report",{
+            templateUrl: 'views/family_planning/fp_custom_reports.html',
+            controller: 'customReportsCtrl'
+        });
+
         $routeProvider.when("/fp_monthly_report",{
             templateUrl: 'views/family_planning/fp_monthly_reports.html',
             controller: 'monthlyReportsCtrl'
-        });
-
-        $routeProvider.when("/fp_custom_report",{
-            templateUrl: 'views/family_planning/fp_monthly_reports.html',
-            controller: 'customReportsCtrl'
         });
 
         $routeProvider.otherwise({

@@ -7,12 +7,14 @@
 
     .custom-item{
         padding-right: 3px;
-        padding-left: 3px;
+        padding-left: 13px;
         height: 30px;
+
     }
 
     .custom-item:hover{
         background-color: #dcdcdc;
+        cursor: pointer;
     }
 
 
@@ -90,6 +92,7 @@
 <div class="row" >
     <!--menus-->
     <div ng-include="'views/family_planning/fp_menu.html'"></div>
+
     <!--cards-->
 
 
@@ -132,7 +135,7 @@
 
                     <div class="row">
 
-                        <div class="col" style="width: 15%;">
+                        <div class="col" style="width: 16%;">
                             <form>
                                 <div class="form-group" >
                                     <label>Country:</label>
@@ -147,7 +150,7 @@
                             </form>
                         </div>
 
-                        <div class="col" style="width: 15%;">
+                        <div class="col" style="width: 16%;">
                             <form>
                                 <div class="form-group">
                                     <label>Zone:</label>
@@ -164,7 +167,7 @@
                             </form>
                         </div>
 
-                        <div class="col" style="width: 15%;">
+                        <div class="col" style="width: 16%;">
                             <form>
                                 <div class="form-group">
                                     <label>Region:</label>
@@ -179,7 +182,7 @@
                             </form>
                         </div>
 
-                        <div class="col" style="width: 15%;">
+                        <div class="col" style="width: 16%;">
                             <form>
                                 <div class="form-group">
                                     <label>District:</label>
@@ -194,7 +197,7 @@
                             </form>
                         </div>
 
-                        <div class="col" style="width: 15%;">
+                        <div class="col" style="width: 16%;">
                             <form>
                                 <div class="form-group">
                                     <label>Facility:</label>
@@ -209,7 +212,7 @@
                             </form>
                         </div>
 
-                        <div class="col" style="width: 15%;">
+                        <div class="col" style="width: 16%;">
                             <form>
                                 <div class="form-group">
                                     <label>Facility type:</label>
@@ -235,6 +238,279 @@
                     </div>
 
                 </div>
+
+                    <!--second card row on page items-->
+                <div class="row">
+                    <div class="col" style="width: 25%">
+                        <div class="card">
+                            <div class="col" style="margin-top: 2%;width: 100%">
+                                <form>
+                                    <div class="form-group" >
+                                        <label>Facility staffed with HWs Trained in :</label>
+                                        <div class="card">
+                                            <ul class="list-group">
+                                                <li class="list-group-item custom-item">Short Acting</li>
+                                                <li class="list-group-item custom-item">Implants</li>
+                                                <li class="list-group-item custom-item">UICD's</li>
+                                                <li class="list-group-item custom-item">NSV</li>
+                                                <li class="list-group-item custom-item">Minilap</li>
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" style="width: 50%;">
+                        <div class="card">
+
+                            <div class="col" style="margin-top: 2%;width: 33%">
+                                <form>
+                                    <div class="form-group" >
+                                        <label>Clients by service : <br>
+                                        Routine facility based
+                                        </label>
+                                        <div class="card">
+                                            <ul class="list-group">
+                                                <li class="list-group-item custom-item">Male condoms</li>
+                                                <li class="list-group-item custom-item">Female condoms</li>
+                                                <li class="list-group-item custom-item">Oral pills</li>
+                                                <li class="list-group-item custom-item">Injectables</li>
+                                                <!--<li class="list-group-item custom-item">Minilap</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col" style="margin-top: 2%;width: 33%">
+                                <form>
+                                    <div class="form-group" >
+                                        <label>Clients by service : <br>
+                                            Outreach
+                                        </label>
+                                        <div class="card">
+                                            <ul class="list-group">
+                                                <li class="list-group-item custom-item">Implants insertions</li>
+                                                <li class="list-group-item custom-item">Implants removal</li>
+                                                <li class="list-group-item custom-item">UICD insertions</li>
+                                                <li class="list-group-item custom-item">UICD removals</li>
+                                                <!--<li class="list-group-item custom-item">Minilap</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col" style="margin-top: 2%;width: 33%">
+                                <form>
+                                    <div class="form-group" >
+                                        <label>Clients by service : <br>
+                                            CBD
+                                        </label>
+                                        <div class="card">
+                                            <ul class="list-group">
+                                                <li class="list-group-item custom-item">Short acting</li>
+                                                <li class="list-group-item custom-item">Implants insertions</li>
+                                                <li class="list-group-item custom-item">Implants removal</li>
+                                                <li class="list-group-item custom-item">UICD insertions</li>
+                                                <!--<li class="list-group-item custom-item">UICD removals</li>-->
+                                                <!--<li class="list-group-item custom-item">Minilap</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col w-100">
+                                <label class="container">Show clients < 20 years of age
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="col" style="width: 25%">
+                        <div class="card">
+
+                            <div class="col" style="margin-top: 2%;width: 100%">
+                                <form>
+                                    <div class="form-group" >
+                                        <label>Facility providing services </label>
+                                        <div class="card">
+                                            <ul class="list-group">
+                                                <li class="list-group-item custom-item">Male condoms</li>
+                                                <li class="list-group-item custom-item">Female condoms</li>
+                                                <li class="list-group-item custom-item">Oral pills</li>
+                                                <li class="list-group-item custom-item">NSV</li>
+                                                <li class="list-group-item custom-item">Minilap</li>
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <!--third items row card on page-->
+                <div class="row">
+                    <div class="col" style="width: 25%">
+                        <div class="card">
+                            <div class="col" style="margin-top: 2%;width: 100%">
+                                <form>
+                                    <div class="form-group" >
+                                        <label>Facility stocked out:</label>
+                                        <div class="card">
+                                            <ul class="list-group">
+                                                <li class="list-group-item custom-item">Oral pills</li>
+                                                <li class="list-group-item custom-item">Injectables</li>
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col" style="width: 50%;">
+                        <div class="card">
+                            <div class="col" style="margin-top: 2%;width: 100%">
+                                <form>
+                                    <div class="form-group" >
+                                        <label>Service integration </label>
+                                        <div class="card">
+                                            <ul class="list-group">
+                                                <li class="list-group-item custom-item">Miscarriage/Post abortion clients adopting FP</li>
+                                                <li class="list-group-item custom-item">Postpartum clients adopting FP</li>
+                                                <li class="list-group-item custom-item">FP Clients adopting HIV testing & Councelling</li>
+                                                <li class="list-group-item custom-item">FP Clients adopting Breast cancer screening</li>
+                                                <li class="list-group-item custom-item">FP Clients adopting Cervical cancer screening</li>
+                                                <!--<li class="list-group-item custom-item">Injectables</li>-->
+                                                <!--<li class="list-group-item custom-item">Minilap</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                                <!--<li class="list-group-item custom-item">First item</li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col" style="width: 25%" >
+                        <div class="card">
+
+                            <div class="col" style="margin-top: 2%">
+                                <form>
+                                    <div class="form-group" >
+                                        <label>Time Period display</label>
+                                        <label class="container">Monthly
+                                            <input type="checkbox" checked="checked">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">Quarterly
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">Annual
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="container">Total
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                    </div>
+                                </form>
+                            </div>
+
+
+                            <div class="col" style="margin-top: 2%">
+                                <form>
+                                    <div class="form-group" >
+                                        <label>Date Range :</label>
+                                        <label class="container">Last Month
+                                            <input type="checkbox" checked="checked">
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label class="container">Last 3 Months
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label class="container">Last 6 Months
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label class="container">Last 12 Months
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label class="container">Custom
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <div >
+                                            <div class="row" style="display: inline-flex">
+                                                <label> Start Date :</label>
+                                                <input type="date" class="form-control">
+                                            </div>
+
+                                            <div class="row" style="display: inline-flex">
+                                                <label> End Date :</label>
+                                                <input type="date" class="form-control">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col" style="width: 6%;margin-left: 45%;">
+                        <form>
+                            <p>
+                                <button  class="btn btn-info">Preview</button><br>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
             </div>
 
         </div>

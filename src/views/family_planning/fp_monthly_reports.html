@@ -7,12 +7,13 @@
 
     .custom-item{
         padding-right: 3px;
-        padding-left: 3px;
+        padding-left: 13px;
         height: 30px;
     }
 
     .custom-item:hover{
         background-color: #dcdcdc;
+        cursor: pointer;
     }
 </style>
 
@@ -146,11 +147,11 @@
 
                     </div>
 
-                    <div class="row">
+                    <div class="row" style="padding-left: 13px">
                         <form ng-submit="addSubscriber()">
                         <h5 style="text-align: center">Subscribe Here for Monthly Reports, Enter your name and email address to automatically receive this report by email monthly</h5>
-                        <p style="width: 40%">Name *:<br><input type="text" placeholder="Name" ng-model="newUser.name" ></p>
-                        <p style="width: 40%">Email *:<input type="email" placeholder="Email Address" ng-model="newUser.email"></p>
+                        <p style="width: 40%; display: inline-flex">Name *:<br><input type="text" placeholder="Name" ng-model="newUser.name" ></p>
+                        <p style="width: 40%; display: inline-flex">Email *:<input type="email" placeholder="Email Address" ng-model="newUser.email"></p>
                         <p>Report Area *:
                         <multi-select-tree
                         data-input-model="data.orgUnitTree4"
