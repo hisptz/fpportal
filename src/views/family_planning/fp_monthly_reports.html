@@ -54,25 +54,25 @@
                         </div>
                     </div>
 
-                    <!--<div class="row">-->
-                        <!--<form ng-submit="addSubscriber()">-->
-                        <!--<h5 style="text-align: center">Subscribe Here for Monthly Reports, Enter your name and email address to automatically receive this report by email monthly</h5>-->
-                        <!--<p style="width: 40%">Name *:<br><input type="text" placeholder="Name" ng-model="newUser.name" ></p>-->
-                        <!--<p style="width: 40%">Email *:<input type="email" placeholder="Email Address" ng-model="newUser.email"></p>-->
-                        <!--<p>Report Area *:-->
-                        <!--<multi-select-tree-->
-                        <!--data-input-model="data.orgUnitTree4"-->
-                        <!--multi-select="true"-->
-                        <!--data-output-model="data.outRegistrationOrganisationUnits"-->
-                        <!--data-default-label="Select Organization Unit"-->
-                        <!--data-callback="selectOnly1Or2(item, selectedItems)">-->
-                        <!--</multi-select-tree>-->
-                        <!--</p>-->
-                        <!--<p>-->
-                        <!--<button ng-if="newUser.name !== '' && newUser.email !== '' && data.outRegistrationOrganisationUnits.length !== 0" class="btn btn-info">Subscribe</button><br>-->
-                        <!--</p>-->
-                        <!--</form>-->
-                    <!--</div>-->
+                    <div class="row">
+                        <form ng-submit="addSubscriber()">
+                        <h5 style="text-align: center">Subscribe Here for Monthly Reports, Enter your name and email address to automatically receive this report by email monthly</h5>
+                        <p style="width: 40%">Name *:<br><input type="text" placeholder="Name" ng-model="newUser.name" ></p>
+                        <p style="width: 40%">Email *:<input type="email" placeholder="Email Address" ng-model="newUser.email"></p>
+                        <p>Report Area *:
+                        <multi-select-tree
+                        data-input-model="data.orgUnitTree4"
+                        multi-select="true"
+                        data-output-model="data.outRegistrationOrganisationUnits"
+                        data-default-label="Select Organization Unit"
+                        data-callback="selectOnly1Or2(item, selectedItems)">
+                        </multi-select-tree>
+                        </p>
+                        <p>
+                        <button ng-if="newUser.name !== '' && newUser.email !== '' && data.outRegistrationOrganisationUnits.length !== 0" class="btn btn-info">Subscribe</button><br>
+                        </p>
+                        </form>
+                    </div>
                 </div>
             </div>
 
