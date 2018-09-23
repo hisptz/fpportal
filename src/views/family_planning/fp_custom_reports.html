@@ -474,11 +474,11 @@
                                         </label>
 
                                         <label class="container">Custom
-                                            <input type="checkbox">
+                                            <input type="checkbox" id="custom_date_checkbox">
                                             <span class="checkmark"></span>
                                         </label>
 
-                                        <div >
+                                        <div id="custom_date">
                                             <div class="row" style="display: inline-flex">
                                                 <label> Start Date :</label>
                                                 <input type="date" class="form-control">
@@ -516,3 +516,17 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+    $('#custom_date_checkbox').change(
+        function(){
+            if ($(this).is(':checked')) {
+                $('#custom_date').show();
+            }else{
+                $('#custom_date').hide();
+            }
+        });
+
+</script>
