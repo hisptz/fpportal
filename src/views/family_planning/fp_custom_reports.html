@@ -286,8 +286,9 @@
                                             </label>
                                             <div class="card">
                                                 <ul class="list-group">
-                                                    <li class="list-group-item custom-item"
-                                                        ng-repeat="outReacher in outreachData track by $index" ng-click="updateOutreachCBD(staffed)"> {{outReacher.name}}</li>
+                                                    <li ng-repeat="outReacher in outreachData track by $index"
+                                                        class="list-group-item custom-item {{outReacher.active}} "
+                                                        ng-click="updatingsFromOutreachCBD(outReacher)"> {{outReacher.name}}</li>
                                                     <!--<li class="list-group-item custom-item">Implants removal</li>-->
                                                     <!--<li class="list-group-item custom-item">UICD insertions</li>-->
                                                     <!--<li class="list-group-item custom-item">UICD removals</li>-->
@@ -600,7 +601,7 @@
                     <div class="row spacing">
                         <table class="table table-hover table-condensed table-bordered">
                             <tr class="table-grey">
-                                <th ng-repeat="header in trainingDataFacilityDataViewHeader track by $index"> {{header.name}}</th>
+                                <th ng-repeat="header in aggregateDataViewHeader track by $index"> {{header.name}}</th>
                                 <!--<th>Zone</th>-->
                                 <!--<th>Region</th>-->
                                 <!--<th>District</th>-->

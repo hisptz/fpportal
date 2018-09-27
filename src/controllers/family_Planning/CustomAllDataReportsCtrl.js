@@ -7,6 +7,7 @@ angular.module("hmisPortal")
         //displaying loading during page change
         $scope.endDate = '';
         $scope.outreachData = [];
+        $scope.tableHeader = [];
         $scope.startDate = '';
         $scope.showReportSection = false;
         $scope.customDate = false;
@@ -32,13 +33,14 @@ angular.module("hmisPortal")
 
 
         $scope.staffedHWstrained = [
-            {name: 'Short Acting',active: 'active', childrens: [{name: 'Short Acting',active: '', indicator: {name: '', id:''},children: []}]},
+            {name: 'Short Acting',active: '',
+                childrens: [{name: 'Short Acting',active: '', indicator: {name: 'Total Short acting', id:''},children: []}]},
             {name: 'Implants',active: '',
-                childrens: [{name: 'Implants insertions',active: '', indicator: {name: '', id:''},children: []},
-                    {name: 'Implants removal',active: '', indicator: {name: '', id:''},children: []} ]},
+                childrens: [{name: 'Implants insertions',active: '', indicator: {name: 'Total Implants insertions', id:''},children: []},
+                    {name: 'Implants removal',active: '', indicator: {name: 'Total Implants removals', id:''},children: []} ]},
             {name: 'UICDs',active: '',
-                childrens: [{name: 'UICDs insertion',active: '', indicator: {name: '', id:''},children: []},
-                    {name: 'UICDs removal',active: '', indicator: {name: '', id:''},children: []}]}
+                childrens: [{name: 'UICDs insertion',active: '', indicator: {name: 'Total UICDs insertions', id:''},children: []},
+                    {name: 'UICDs removal',active: '', indicator: {name: 'Total UICDs removals', id:''},children: []}]}
             ];
 
 
@@ -60,6 +62,20 @@ angular.module("hmisPortal")
             });
         };
 
+        $scope.updatingsFromOutreachCBD = function (data){
+            angular.forEach( $scope.outreachData, function (item) {
+                if (item.name === data.name) {
+                    if (item.active === 'active') {
+                        item.active = '';
+                        $scope.aggregateDataViewHeader = $scope.itemsOnTableHeaderRemoval($scope.aggregateDataViewHeader, data.indicator, 'name')
+                    } else {
+                        item.active = 'active';
+                        $scope.aggregateDataViewHeader.push(data.indicator)
+                    }
+                }
+            })
+        }
+
         $scope.removeDuplicates= function(originalArray, key) {
             var newArray = [];
             var lookupObject  = {};
@@ -77,10 +93,18 @@ angular.module("hmisPortal")
             angular.forEach(collection, function (collectedItem, index) {
                 angular.forEach(removals, function (removalItem) {
                     if(collectedItem[key] === removalItem[key]){
-                        console.log(collectedItem)
                         collection.splice(index, removals.length);
                     }
                 });
+            });
+            return collection;
+        }
+
+        $scope.itemsOnTableHeaderRemoval = function(collection, removal, key){
+            angular.forEach(collection, function (collectedItem, index) {
+                    if(collectedItem[key] === removal[key]){
+                        collection.splice(index, 1);
+                    }
             });
             return collection;
         }
