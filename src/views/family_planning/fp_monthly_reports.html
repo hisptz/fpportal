@@ -41,125 +41,105 @@
             <div>
                 <h4>Monthly PDF Reports</h4>
             </div>
+
+            <div ng-if="showReportSection" class="col">
+                <form>
+                    <p>
+                        <button  class="btn btn-info" ng-click="previewReport()">Data criteria</button><br>
+                    </p>
+                </form>
+            </div>
+
             <div class="col s12 m12">
-
-                <div class="card">
-
+                <div ng-if="!showReportSection" class="card">
                     <div class="row">
-
-                        <div class="col" style="width: 15%;">
+                        <div class="col" style="width: 24%;">
                             <form>
                                 <div class="form-group" >
                                     <label>Country:</label>
-                                    <div class="card">
-                                        <ul class="list-group">
-                                            <li class="list-group-item custom-item">Tanzania</li>
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                        </ul>
+
+                                    <multi-select-tree
+                                            data-input-model="data.orgUnitTree4"
+                                            multi-select="true"
+                                            data-output-model="data.outRegistrationOrganisationUnits"
+                                            data-default-label="Select Organization Unit"
+                                            data-callback="selectOnly1Or2(item, selectedItems)">
+                                    </multi-select-tree>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col" style="width: 40%;">
+                            <form>
+                                <div class="form-group">
+                                    <label style="margin-left: 2%;">Period:</label>
+                                    <div class="input-field col grey lighten-5" style="margin-top: 0px; margin-left: 10%">
+                                        <div class="col input-field">
+                                            <select ng-model="selectedYear" ng-change="updatePeriod(selectedYear)" material-select watch >
+                                                <option value="2018">2018</option>
+                                                <option value="2017">2017</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2015">2015</option>
+                                                <option value="2014">2014</option>
+                                            </select>
+                                        </div>
+                                        <style>
+
+                                            .months ul.dropdown-content li:last-child{
+                                                display:none
+                                            }
+                                        </style>
+                                        <div class="col input-field months">
+                                            <select  ng-change="updateMonth(data.selectedMonth)" ng-model="data.selectedMonth" material-select watch>
+                                                <option value="{{selectedYear}}01">January</option>
+                                                <option value="{{selectedYear}}02">February</option>
+                                                <option value="{{selectedYear}}03">March</option>
+                                                <option value="{{selectedYear}}04">April</option>
+                                                <option value="{{selectedYear}}05">May</option>
+                                                <option value="{{selectedYear}}06">June</option>
+                                                <option value="{{selectedYear}}07">July</option>
+                                                <option value="{{selectedYear}}08">August</option>
+                                                <option value="{{selectedYear}}09">September</option>
+                                                <option value="{{selectedYear}}10">October</option>
+                                                <option value="{{selectedYear}}11">November</option>
+                                                <option value="{{selectedYear}}12">December</option>
+                                                <option>{{selectedYear}}12</option>
+                                                <!--<option ng-repeat="month in monthList" value="{{selectedYear}}{{month.value}}">{{selectedYear}}{{month.value}}</option>
+                                                <option></option>-->
+                                            </select>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </form>
                         </div>
 
-                        <div class="col" style="width: 15%;">
-                            <form>
-                                <div class="form-group">
-                                    <label>Zone:</label>
-                                    <div class="card">
-                                        <!--<ul class="list-group" ng-repeat="zone in zonals track by $index" >-->
-                                            <!--<li class="list-group-item custom-item" >{{zone.name}}</li>-->
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                        <ul class="list-group">
-                                            <li class="list-group-item custom-item" > Northern Zone</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col" style="width: 15%;">
-                            <form>
-                                <div class="form-group">
-                                    <label>Region:</label>
-                                    <div class="card">
-                                        <ul class="list-group">
-                                            <li class="list-group-item custom-item">Arusha Region</li>
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                        </ul>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col" style="width: 15%;">
-                            <form>
-                                <div class="form-group">
-                                    <label>District:</label>
-                                    <div class="card">
-                                        <ul class="list-group">
-                                            <li class="list-group-item custom-item">Arusha City Council </li>
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                        </ul>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col" style="width: 15%;">
-                            <form>
-                                <div class="form-group">
-                                    <label>Facility:</label>
-                                    <div class="card">
-                                        <ul class="list-group">
-                                            <li class="list-group-item custom-item">AICC Hospital</li>
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                            <!--<li class="list-group-item custom-item">First item</li>-->
-                                        </ul>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col" style="width: 10%;">
-                            <form>
-                                <div class="form-group">
-                                    <label>Date range:</label>
-                                    <input type="date" class="form-control">
-                                    <br>
-                                    to
-                                    <br>
-                                    <input type="date" class="form-control">
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col" style="width: 6%;margin-top: 5%;">
+                        <div class="col" style="width: 6%;">
                             <form>
                                 <p>
-                                    <button  class="btn btn-info">Preview</button><br>
+                                    <button  class="btn btn-info" ng-click="previewReport()">Preview</button><br>
                                 </p>
                             </form>
                         </div>
 
                     </div>
-
                     <div class="row" style="padding-left: 13px">
                         <form ng-submit="addSubscriber()">
                         <h5 style="text-align: center">Subscribe Here for Monthly Reports, Enter your name and email address to automatically receive this report by email monthly</h5>
                         <p style="width: 40%; display: inline-flex">Name *:<br><input type="text" placeholder="Name" ng-model="newUser.name" ></p>
                         <p style="width: 40%; display: inline-flex">Email *:<input type="email" placeholder="Email Address" ng-model="newUser.email"></p>
                         <p>Report Area *:
-                        <multi-select-tree
-                        data-input-model="data.orgUnitTree4"
-                        multi-select="true"
-                        data-output-model="data.outRegistrationOrganisationUnits"
-                        data-default-label="Select Organization Unit"
-                        data-callback="selectOnly1Or2(item, selectedItems)">
-                        </multi-select-tree>
+                            <div style="width: 30%">
+                            <multi-select-tree
+                                    data-input-model="data.orgUnitTree4"
+                                    multi-select="true"
+                                    data-output-model="data.outRegistrationOrganisationUnits"
+                                    data-default-label="Select Organization Unit"
+                                    data-callback="selectOnly1Or2(item, selectedItems)">
+                            </multi-select-tree>
+                            </div>
+
                         </p>
                         <p>
                         <button ng-if="newUser.name !== '' && newUser.email !== '' && data.outRegistrationOrganisationUnits.length !== 0" class="btn btn-info">Subscribe</button><br>
@@ -167,6 +147,17 @@
                         </form>
                     </div>
                 </div>
+
+                 <!--card section 02 with tables-->
+                <div ng-if="showReportSection" class="card">
+                    <div class="row">
+                        <div style="text-align: center;margin-top: 10%">
+                            <h4>Displaying Reports</h4>
+                        </div>
+                    </div>
+                </div>
+                <!--End of card section 02 with tables-->
+
             </div>
 
         </div>

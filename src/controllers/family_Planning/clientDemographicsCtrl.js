@@ -23,7 +23,7 @@ angular.module("hmisPortal")
         };
         $scope.clearAllMethods = function(){
             $scope.clearMethods();
-        }
+        };
 
         $scope.updateTreeWithNone = function(){
             $scope.data.orgUnitTree1 = [];
