@@ -226,7 +226,7 @@ angular.module("hmisPortal")
         }
         $scope.previewReport = function() {
 
-            // if ($scope.reportHeader === 'Aggregate data'){ // this makes decision on table header visibility type
+            if ($scope.reportHeader === 'Aggregate data'){ // this makes decision on table header visibility type
                 $scope.tableHeader = $scope.aggregateDataViewHeader.concat($scope.tableHeaderOptions)
                 var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
 
@@ -234,15 +234,15 @@ angular.module("hmisPortal")
                   angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
                   $scope.tableContents.push({
                       zone: '', region: orgUnitCollection['name'], district: childOrgunit['name'], period: $scope.data.selectedMonth,
-                      fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.tableHeaderOptions
+                      fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
                   })
               })
               })
-            // } else {
-            //     $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
-            // }
+            } else {
+                $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
+            }
             $scope.showReportSection = !$scope.showReportSection;
-            // console.log($scope.data['outRegistrationOrganisationUnits']);
+            console.log($scope.data['outRegistrationOrganisationUnits']);
         }
         $scope.toggleCustomdate = function (event) {
             $scope.customDate = !$scope.customDate;
@@ -258,8 +258,17 @@ angular.module("hmisPortal")
             $scope.endDate = endDate;
             // console.log(start)
         }
-
+        $scope.getIndicatorItemsValues = function (){
+            var arrayLocal = []
+           angular.forEach( $scope.tableHeaderOptions, function (item) {
+               arrayLocal.push({
+                   name: item.name, id: item.id, value: Math.floor((Math.random() * 500) + 100)
+               })
+           });
+            return arrayLocal;
+        };
         $scope.getRandomValue = function (){
             return Math.floor((Math.random() * 500) + 100)
         }
+
     });

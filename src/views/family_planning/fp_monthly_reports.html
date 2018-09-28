@@ -60,7 +60,7 @@
 
                                     <multi-select-tree
                                             data-input-model="data.orgUnitTree4"
-                                            multi-select="true"
+                                            multi-select="false"
                                             data-output-model="data.outRegistrationOrganisationUnits"
                                             data-default-label="Select Organization Unit"
                                             data-callback="selectOnly1Or2(item, selectedItems)">
@@ -129,18 +129,18 @@
                         <h5 style="text-align: center">Subscribe Here for Monthly Reports, Enter your name and email address to automatically receive this report by email monthly</h5>
                         <p style="width: 40%; display: inline-flex">Name *:<br><input type="text" placeholder="Name" ng-model="newUser.name" ></p>
                         <p style="width: 40%; display: inline-flex">Email *:<input type="email" placeholder="Email Address" ng-model="newUser.email"></p>
-                        <p>Report Area *:
-                            <div style="width: 30%">
-                            <multi-select-tree
-                                    data-input-model="data.orgUnitTree4"
-                                    multi-select="true"
-                                    data-output-model="data.outRegistrationOrganisationUnits"
-                                    data-default-label="Select Organization Unit"
-                                    data-callback="selectOnly1Or2(item, selectedItems)">
-                            </multi-select-tree>
-                            </div>
+                        <!--<p>Report Area *:-->
+                            <!--<div style="width: 30%">-->
+                            <!--<multi-select-tree-->
+                                    <!--data-input-model="data.orgUnitTree4"-->
+                                    <!--multi-select="true"-->
+                                    <!--data-output-model="data.outRegistrationOrganisationUnits"-->
+                                    <!--data-default-label="Select Organization Unit"-->
+                                    <!--data-callback="selectOnly1Or2(item, selectedItems)">-->
+                            <!--</multi-select-tree>-->
+                            <!--</div>-->
 
-                        </p>
+                        <!--</p>-->
                         <p>
                         <button ng-if="newUser.name !== '' && newUser.email !== '' && data.outRegistrationOrganisationUnits.length !== 0" class="btn btn-info">Subscribe</button><br>
                         </p>
@@ -150,10 +150,8 @@
 
                  <!--card section 02 with tables-->
                 <div ng-if="showReportSection" class="card">
-                    <div class="row">
-                        <div style="text-align: center;margin-top: 10%">
-                            <h4>Displaying Reports</h4>
-                        </div>
+                    <div class="row" style="height: 900px">
+                        <iframe ng-src="{{link}}" frameborder="0" width="100%" height="100%" style="margin-top: 10px"></iframe>
                     </div>
                 </div>
                 <!--End of card section 02 with tables-->
