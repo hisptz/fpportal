@@ -11,10 +11,13 @@ angular.module("hmisPortal")
         $scope.showserviceIntegrationOptions = false;
         $scope.showstockOptions = false;
         $scope.currentOptionLabel = '';
+        $scope.selectedAggregagtionType = '';
         $scope.endDate = '';
         $scope.selectedReport = {};
         $scope.outreachData = [];
+        $scope.tableHeaderOptions = [];
         $scope.tableHeader = [];
+        $scope.tableContents = [];
         $scope.reportOptions = [];
         $scope.startDate = '';
         $scope.showReportSection = false;
@@ -44,8 +47,8 @@ angular.module("hmisPortal")
                 facilityIndicator: [{name: 'Total Short acting', id:''}]
                },
             {name: 'Implants',active: '',
-                aggregateIndicator: [{name: 'Total Short acting', id:''}],
-                facilityIndicator: [{name: 'Total Short acting', id:''}]},
+                aggregateIndicator: [{name: 'Facility staffed with HWs on implants service', id:''}],
+                facilityIndicator: [{name: 'Total facilities staffed with HWs on implants servic', id:''}]},
             {name: 'UICDs',active: '',
                 aggregateIndicator: [{name: 'Facilities staffed with HWs trained in IUCD services', id: ''},
                     {name: 'Facilities staffed with 2 or more HWs trained in IUCD services', id: ''}, {name: 'Total HWs trained in IUCD services', id: ''}],
@@ -133,17 +136,20 @@ angular.module("hmisPortal")
                 }
             });
         };
+        $scope.selectedAggregate = function (aggregation) {
+            $scope.reportHeader = aggregation;
+        }
         $scope.updateOutreachCBD = function (staffed) {
             angular.forEach( $scope.staffedHWstrained, function (item) {
                 if (item.name === staffed.name) {
                     if (item.active === 'actived') {
                         // hence remove its contents to other list groups
                         item.active = '';
-                        $scope.aggregateDataViewHeader = $scope.itemsOnTableHeaderRemoval($scope.aggregateDataViewHeader, staffed.indicator, 'name');
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, staffed.indicator, 'name');
                     } else {
                         // hence add its contents to other list groups
                         item.active = 'actived';
-                        $scope.aggregateDataViewHeader = $scope.aggregateDataViewHeader.concat(staffed.aggregateIndicator)
+                        $scope.tableHeaderOptions = $scope.tableHeaderOptions.concat(staffed.aggregateIndicator)
                     }
 
                 }
@@ -154,10 +160,10 @@ angular.module("hmisPortal")
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';
-                        $scope.aggregateDataViewHeader = $scope.itemsOnTableHeaderRemoval($scope.aggregateDataViewHeader, data.indicator, 'name')
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
                     } else {
                         item.active = 'actived';
-                        $scope.aggregateDataViewHeader.push(data.indicator)
+                        $scope.tableHeaderOptions.push(data.indicator)
                     }
                 }
             });
@@ -167,10 +173,10 @@ angular.module("hmisPortal")
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';
-                        $scope.aggregateDataViewHeader = $scope.itemsOnTableHeaderRemoval($scope.aggregateDataViewHeader, data.indicator, 'name')
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
                     } else {
                         item.active = 'actived';
-                        $scope.aggregateDataViewHeader.push(data.indicator)
+                        $scope.tableHeaderOptions.push(data.indicator)
                     }
                 }
             });
@@ -180,10 +186,10 @@ angular.module("hmisPortal")
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';
-                        $scope.aggregateDataViewHeader = $scope.itemsOnTableHeaderRemoval($scope.aggregateDataViewHeader, data.indicator, 'name')
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
                     } else {
                         item.active = 'actived';
-                        $scope.aggregateDataViewHeader.push(data.indicator)
+                        $scope.tableHeaderOptions.push(data.indicator)
                     }
                 }
             });
@@ -219,8 +225,24 @@ angular.module("hmisPortal")
             return collection;
         }
         $scope.previewReport = function() {
+
+            // if ($scope.reportHeader === 'Aggregate data'){ // this makes decision on table header visibility type
+                $scope.tableHeader = $scope.aggregateDataViewHeader.concat($scope.tableHeaderOptions)
+                var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
+
+              angular.forEach(orgUnit, function (orgUnitCollection) {
+                  angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
+                  $scope.tableContents.push({
+                      zone: '', region: orgUnitCollection['name'], district: childOrgunit['name'], period: $scope.data.selectedMonth,
+                      fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.tableHeaderOptions
+                  })
+              })
+              })
+            // } else {
+            //     $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
+            // }
             $scope.showReportSection = !$scope.showReportSection;
-            console.log($scope.startDate, $scope.endDate);
+            // console.log($scope.data['outRegistrationOrganisationUnits']);
         }
         $scope.toggleCustomdate = function (event) {
             $scope.customDate = !$scope.customDate;
@@ -235,5 +257,9 @@ angular.module("hmisPortal")
         $scope.changeendDate = function(endDate) {
             $scope.endDate = endDate;
             // console.log(start)
+        }
+
+        $scope.getRandomValue = function (){
+            return Math.floor((Math.random() * 500) + 100)
         }
     });
