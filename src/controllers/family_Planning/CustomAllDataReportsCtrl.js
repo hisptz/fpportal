@@ -228,7 +228,7 @@ angular.module("hmisPortal")
             return collection;
         }
         $scope.previewReport = function() {
-
+            $scope.tableContents = [];
             if ($scope.reportHeader === 'Aggregate data'){ // this makes decision on table header visibility type
                 $scope.tableHeader = $scope.aggregateDataViewHeader.concat($scope.tableHeaderOptions)
                 var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
@@ -238,7 +238,7 @@ angular.module("hmisPortal")
                   $scope.tableContents.push({
                       zone: '', region: orgUnitCollection['name'], district: childOrgunit['name'], period: $scope.data.selectedMonth,
                       fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
-                  })
+                  });
               })
               })
             }
