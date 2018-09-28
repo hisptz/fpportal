@@ -64,12 +64,12 @@ angular.module("hmisPortal")
             }
             ];
         $scope.reportTypes = [
-            {name:'Facility data report', id:'1'},
             {name:'Training data report', id:'2' },
             {name:'Clients & services data report', id:'3'},
             {name:'History of provision data report', id:'4'},
             {name:'Commodities data report', id:'5' },
             {name:'Service integration data report', id:'6' },
+            {name:'Facility data report', id:'1'}
         ];
         $scope.aggregationTypes = [{name:'Aggregate data',id:'1'}, {name:'Facility data',id:'2'}];
         $scope.outreachData =[
