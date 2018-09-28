@@ -95,6 +95,135 @@
         margin-left: 10px;
         margin-right: 10px;
     }
+
+
+
+
+    period-filter-container {
+        /*display: grid;*/
+        /*grid-template-columns: repeat(2, 1fr);*/
+        /*border: solid 1px #dddddd;*/
+        padding: .2em;
+    }
+
+    .period-top-section {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .period-type-section,
+    .period-year-section {
+        flex: 1;
+    }
+
+    .period-year-section {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .period-header {
+        display: flex;
+    }
+
+
+    .period-top-section,
+    .period-year-btns {
+        padding-bottom:.2em;
+    }
+
+    .period-available-header {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        border: solid 1px #dddddd;
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+
+    .period-selected-header {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        border-top: solid 1px #dddddd;
+        border-bottom: solid 1px #dddddd;
+        border-right: solid 1px #dddddd;
+        padding: 5px 10px;
+        font-size: 13px;
+    }
+
+    .period-available-header a,
+    .period-selected-header a {
+        cursor: pointer;
+    }
+
+    .period-body {
+        display: flex;
+        border-left: solid 1px #dddddd;
+        border-right: solid 1px #dddddd;
+        border-bottom: solid 1px #dddddd;
+    }
+
+    .period-available-body,
+    .period-selected-body {
+        flex: 1;
+        padding: .2em;
+        height: 220px;
+        overflow: auto;
+    }
+
+    .period-available-body {
+        border-right: solid 1px #dddddd;
+    }
+
+    .period-filter-btns {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: .2em;
+    }
+
+    .period-available-body::-webkit-scrollbar,
+    .period-selected-body::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    .period-available-body::-webkit-scrollbar-track,
+    .period-selected-body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+        border-radius: 10px;
+    }
+
+    .period-available-body::-webkit-scrollbar-thumb,
+    .period-selected-body::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    }
+
+    .period-list {
+        list-style-type: none;
+        padding: 5px;
+    }
+
+    .period-list > li > a {
+        padding: 5px;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        font-size: 12px;
+        color: #000000;
+    }
+
+    .period-list > li > a:hover {
+        background-color: #dddddd;
+    }
+
+    .single-period-selection {
+        overflow: auto;
+        height: 250px;
+    }
+
+
+
+
 </style>
 
 
@@ -155,53 +284,141 @@
                         </div>
                         <!--end orgunit selection-->
 
-                        <!--period selection-->
-                        <div class="row" >
-                            <form>
-                                <label>Period:</label>
-                                <div class="form-group">
-                                    <div class="input-field col grey lighten-5" style="margin-top: 5px;width: 100%;">
-                                        <div class="col input-field" style="width: 45%;margin-left: 5%">
-                                            <select ng-model="selectedYear" ng-change="updatePeriod(selectedYear)" material-select watch >
-                                                <option value="2018">2018</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2015">2015</option>
-                                                <option value="2014">2014</option>
-                                            </select>
-                                        </div>
-                                        <style>
+                        <!--&lt;!&ndash;period selection&ndash;&gt;-->
+                        <!--<div class="row" >-->
+                            <!--<form>-->
+                                <!--<label>Period:</label>-->
+                                <!--<div class="form-group">-->
+                                    <!--<div class="input-field col grey lighten-5" style="margin-top: 5px;width: 100%;">-->
+                                        <!--<div class="col input-field" style="width: 45%;margin-left: 5%">-->
+                                            <!--<select ng-model="selectedYear" ng-change="updatePeriod(selectedYear)" material-select watch >-->
+                                                <!--<option value="2018">2018</option>-->
+                                                <!--<option value="2017">2017</option>-->
+                                                <!--<option value="2016">2016</option>-->
+                                                <!--<option value="2015">2015</option>-->
+                                                <!--<option value="2014">2014</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                        <!--<style>-->
 
-                                            .months ul.dropdown-content li:last-child{
-                                                display:none
-                                            }
-                                        </style>
-                                        <div class="col input-field months" style="width: 45%;margin-left: 5%">
-                                            <select  ng-change="updateMonth(data.selectedMonth)" ng-model="data.selectedMonth" material-select watch>
-                                                <option value="{{selectedYear}}01">January</option>
-                                                <option value="{{selectedYear}}02">February</option>
-                                                <option value="{{selectedYear}}03">March</option>
-                                                <option value="{{selectedYear}}04">April</option>
-                                                <option value="{{selectedYear}}05">May</option>
-                                                <option value="{{selectedYear}}06">June</option>
-                                                <option value="{{selectedYear}}07">July</option>
-                                                <option value="{{selectedYear}}08">August</option>
-                                                <option value="{{selectedYear}}09">September</option>
-                                                <option value="{{selectedYear}}10">October</option>
-                                                <option value="{{selectedYear}}11">November</option>
-                                                <option value="{{selectedYear}}12">December</option>
-                                                <option>{{selectedYear}}12</option>
-                                                <!--<option ng-repeat="month in monthList" value="{{selectedYear}}{{month.value}}">{{selectedYear}}{{month.value}}</option>
-                                                <option></option>-->
-                                            </select>
-                                        </div>
+                                            <!--.months ul.dropdown-content li:last-child{-->
+                                                <!--display:none-->
+                                            <!--}-->
+                                        <!--</style>-->
+                                        <!--<div class="col input-field months" style="width: 45%;margin-left: 5%">-->
+                                            <!--<select  ng-change="updateMonth(data.selectedMonth)" ng-model="data.selectedMonth" material-select watch>-->
+                                                <!--<option value="{{selectedYear}}01">January</option>-->
+                                                <!--<option value="{{selectedYear}}02">February</option>-->
+                                                <!--<option value="{{selectedYear}}03">March</option>-->
+                                                <!--<option value="{{selectedYear}}04">April</option>-->
+                                                <!--<option value="{{selectedYear}}05">May</option>-->
+                                                <!--<option value="{{selectedYear}}06">June</option>-->
+                                                <!--<option value="{{selectedYear}}07">July</option>-->
+                                                <!--<option value="{{selectedYear}}08">August</option>-->
+                                                <!--<option value="{{selectedYear}}09">September</option>-->
+                                                <!--<option value="{{selectedYear}}10">October</option>-->
+                                                <!--<option value="{{selectedYear}}11">November</option>-->
+                                                <!--<option value="{{selectedYear}}12">December</option>-->
+                                                <!--<option>{{selectedYear}}12</option>-->
+                                                <!--&lt;!&ndash;<option ng-repeat="month in monthList" value="{{selectedYear}}{{month.value}}">{{selectedYear}}{{month.value}}</option>-->
+                                                <!--<option></option>&ndash;&gt;-->
+                                            <!--</select>-->
+                                        <!--</div>-->
 
 
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</form>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;period selection&ndash;&gt;-->
+
+
+
+
+
+
+
+                        <div class="period-filter-container">
+                            <!--period type and year selection block-->
+                            <div class="period-top-section">
+                                <div class="period-type-section">
+                                    <select
+                                            ng-model="selectedPeriodType"
+                                            ng-change="updatePeriodType(selectedPeriodType, $event)"
+                                            class="form-control input-sm pull-left "  style="display: flex !important;"
+                                    >
+                                        <option value="" disabled>Select period type</option>
+                                        <option
+                                                ng-repeat="periodType in periodTypes"
+                                                value="{{periodType.value}}"
+                                        >{{periodType.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="period-year-section">
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-outline-secondary" ng-click="pushPeriodBackward($event)">Prev Year</button>
+                                        <button type="button" class="btn btn-outline-secondary" ng-click="pushPeriodForward($event)">Next Year</button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+                            <!--end of period type and year selection block-->
+
+                            <!--period body-->
+                            <div class="multiple-period-selection">
+                                <!--period available and selected section-->
+                                <div class="period-header">
+                                    <div class="period-available-header">
+                                        <span>Available ({{availablePeriods.length}})</span>
+                                        <a (click)="selectAllPeriods($event)">&raquo;</a>
+                                    </div>
+                                    <div class="period-selected-header">
+                                        <a (click)="deselectAllPeriods($event)">&laquo;</a>
+                                        <span>Selected ({{selectedPeriods.length}})</span>
+                                    </div>
+                                </div>
+                                <!--end of period available and selected section-->
+                                <div class="period-body">
+                                    <div class="period-available-body">
+                                        <ul class="period-list">
+                                            <li
+                                                    ng-repeat="availablePeriod in availablePeriods"
+                                            >
+                                                <a ng-click="toggleAvailablePeriod(availablePeriod, $event)">
+                                                    {{availablePeriod.name}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="period-selected-body">
+                                        <ul class="period-list">
+                                            <li
+                                                    ng-repeat="selectedPeriod in selectedPeriods"
+                                            >
+                                                <a ng-click="toggleSelectedPeriod(selectedPeriod, $event)">
+                                                    {{selectedPeriod.name}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!--period selection-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
 
                     <!--second card row on page items-->
@@ -239,9 +456,6 @@
                             <!--aggregation type-->
                         </div>
 
-
-
-
                         <div class="col" style="width: 50%;" ng-if="showstaffedOptions">
                             <div class="card">
                                 <div class="col" style="margin-top: 2%;width: 100%">
@@ -264,68 +478,70 @@
                         <div class="col" style="width: 50%;" ng-if="showclientsOptions">
                             <div class="card">
 
-                                <div class="col" style="margin-top: 2%;width: 33%">
-                                    <form>
-                                        <div class="form-group" >
-                                            <label>Clients by service : <br>
-                                                Routine facility based
-                                            </label>
-                                            <div class="card">
-                                                <ul class="list-group">
-                                                    <li ng-repeat="routineData in routineFacilityData track by $index"
-                                                        class="list-group-item custom-item {{routineData.active}} "
-                                                        ng-click="updatingsRoutineDatatoTable(routineData)"> {{routineData.name}}</li>
-                                                </ul>
+                                <div class="row">
+                                    <div class="col" style="margin-top: 2%;width: 33%">
+                                        <form>
+                                            <div class="form-group" >
+                                                <label>Clients by service : <br>
+                                                    Routine facility based
+                                                </label>
+                                                <div class="card">
+                                                    <ul class="list-group">
+                                                        <li ng-repeat="routineData in routineFacilityData track by $index"
+                                                            class="list-group-item custom-item {{routineData.active}} "
+                                                            ng-click="updatingsRoutineDatatoTable(routineData)"> {{routineData.name}}</li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
+
+                                    <div class="col" style="margin-top: 2%;width: 33%">
+                                        <form>
+                                            <div class="form-group" >
+                                                <label>Clients by service : <br>
+                                                    Outreach
+                                                </label>
+                                                <div class="card">
+                                                    <ul class="list-group">
+                                                        <li ng-repeat="outReacher in outreachData track by $index"
+                                                            class="list-group-item custom-item {{outReacher.active}} "
+                                                            ng-click="updatingsOutreachOptionsToTable(outReacher)"> {{outReacher.name}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="col" style="margin-top: 2%;width: 33%">
+                                        <form>
+                                            <div class="form-group" >
+                                                <label>Clients by service : <br>
+                                                    CBD
+                                                </label>
+                                                <div class="card">
+                                                    <ul class="list-group">
+                                                        <li ng-repeat="cbdService in cbdServiceData track by $index"
+                                                            class="list-group-item custom-item {{cbdService.active}} "
+                                                            ng-click="updatingsCBDtoTable(cbdService)"> {{cbdService.name}}</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
                                 </div>
 
-                                <div class="col" style="margin-top: 2%;width: 33%">
-                                    <form>
-                                        <div class="form-group" >
-                                            <label>Clients by service : <br>
-                                                Outreach
-                                            </label>
-                                            <div class="card">
-                                                <ul class="list-group">
-                                                    <li ng-repeat="outReacher in outreachData track by $index"
-                                                        class="list-group-item custom-item {{outReacher.active}} "
-                                                        ng-click="updatingsOutreachOptionsToTable(outReacher)"> {{outReacher.name}}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <div class="col" style="margin-top: 2%;width: 33%">
-                                    <form>
-                                        <div class="form-group" >
-                                            <label>Clients by service : <br>
-                                                CBD
-                                            </label>
-                                            <div class="card">
-                                                <ul class="list-group">
-                                                    <li ng-repeat="cbdService in cbdServiceData track by $index"
-                                                        class="list-group-item custom-item {{cbdService.active}} "
-                                                        ng-click="updatingsCBDtoTable(cbdService)"> {{cbdService.name}}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <div class="col w-100">
-                                    <label class="container">Show clients < 20 years of age
-                                        <input type="checkbox" >
-                                        <span class="checkmark"></span>
-                                    </label>
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="container">Show clients < 20 years of age
+                                            <input type="checkbox" >
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
                                 </div>
 
                             </div>
-
-
-
                         </div>
 
                         <div class="col" style="width: 50%;" ng-if="showfacilityOptions">
