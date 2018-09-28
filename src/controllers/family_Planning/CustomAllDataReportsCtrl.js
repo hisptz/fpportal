@@ -13,6 +13,9 @@ angular.module("hmisPortal")
         $scope.currentOptionLabel = '';
         $scope.selectedAggregagtionType = '';
         $scope.endDate = '';
+        $scope.selectedYear = FPManager.latestYear;
+        $scope.monthList = [{value:12,name:"December"}];
+        $scope.data.selectedMonth = FPManager.latestMonth;
         $scope.selectedReport = {};
         $scope.outreachData = [];
         $scope.tableHeaderOptions = [];
@@ -71,7 +74,7 @@ angular.module("hmisPortal")
             {name:'Service integration data report', id:'6' },
             {name:'Facility data report', id:'1'}
         ];
-        $scope.aggregationTypes = [{name:'Aggregate data',id:'1'}, {name:'Facility data',id:'2'}];
+        $scope.aggregationTypes = [ {name:'Facility data',id:'2',selected:'selected'},{name:'Aggregate data',id:'1', selected:''}];
         $scope.outreachData =[
             {name:'Short Acting',active: '',indicator: {name: 'Total Short acting outreach', id:''}},
             {name: 'Implants insertions',active: '', indicator: {name: 'Total Implants insertions outreach', id:''}},

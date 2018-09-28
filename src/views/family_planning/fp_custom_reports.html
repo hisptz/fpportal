@@ -218,7 +218,7 @@
                                 <div class="form-group" >
                                     <div class="col input-field">
                                         <select ng-model="selectedAggregagtionType" ng-change="selectedAggregate(selectedAggregagtionType)"  material-select watch >
-                                            <option ng-repeat="aggregate in aggregationTypes track by $index" ng-value="aggregate.name">{{aggregate.name}}</option>
+                                            <option ng-repeat="aggregate in aggregationTypes track by $index" ng-value="aggregate.name" selected="{{aggregate.selected}}">{{aggregate.name}}</option>
                                         </select>
                                     </div>
                                 </div>
