@@ -9,10 +9,21 @@ angular.module("hmisPortal")
         });
     })
     .config( function($routeProvider){
+
+        // $routeProvider.when("/familyPlanningHome",{
+        //     templateUrl: 'views/family_planning/home.html',
+        //     controller: 'FPHomeController'
+        // });
+
         $routeProvider.when("/home",{
-            templateUrl: 'views/dashboard.html',
-            controller: 'dashboardCtrl'
+            templateUrl: 'views/family_planning/home.html',
+            controller: 'FPHomeController'
         });
+
+        // $routeProvider.when("/home",{
+        //     templateUrl: 'views/dashboard.html',
+        //     controller: 'dashboardCtrl'
+        // });
 
         $routeProvider.when("/downloads",{
             templateUrl: 'views/downloads.html',
