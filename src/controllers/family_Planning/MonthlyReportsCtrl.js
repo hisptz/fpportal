@@ -103,8 +103,14 @@ angular.module("hmisPortal")
         $scope.previewReport = function() {
             $scope.showReportSection = !$scope.showReportSection;
             $scope.selectedOrgunitId = $scope.data['outRegistrationOrganisationUnits'][0].id;
-            $scope.facilityType = ($scope.data['outRegistrationOrganisationUnits'][0].name.indexOf('Council') > -1)? 'districtPDF': 'regionPDF';
 
+            if($scope.data['outRegistrationOrganisationUnits'][0].name.indexOf('Council') > -1){
+                $scope.facilityType = 'districtPDF';
+            }else if($scope.data['outRegistrationOrganisationUnits'][0].name.indexOf('Region') > -1){
+                $scope.facilityType = 'regionPDF';
+            }else if($scope.data['outRegistrationOrganisationUnits'][0].name.indexOf('Tanzania') > -1){
+                $scope.facilityType = 'nationalPDF';
+            }
             $scope.link = '../'+$scope.facilityType+'.html#/home?uid='+$scope.selectedOrgunitId
             $scope.link = $sce.trustAsResourceUrl($scope.link);
             console.log($scope.data['outRegistrationOrganisationUnits'], $scope.data.selectedMonth);
