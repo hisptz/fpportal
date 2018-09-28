@@ -57,9 +57,8 @@
                         <!--orgunit selection section-->
                         <div class="row">
                             <form>
+                                <label>Organisation Unit:</label>
                                 <div class="form-group" >
-                                    <label>Country:</label>
-
                                     <multi-select-tree
                                             data-input-model="data.orgUnitTree4"
                                             multi-select="false"
@@ -75,10 +74,10 @@
                          <!--period section-->
                         <div class="row">
                             <form>
-                                <label style="margin-left: 2%;">Period:</label>
+                                <label>Period:</label>
                                 <div class="form-group">
-                                    <div class="input-field col grey lighten-5" style="margin-top: 0px; margin-left: 2%">
-                                        <div class="col input-field">
+                                    <div class="input-field col grey lighten-5" style="margin-top: 0px;width: 100%;">
+                                        <div class="col input-field" style="width: 45%;margin-left: 5%">
                                             <select ng-model="selectedYear" ng-change="updatePeriod(selectedYear)" material-select watch >
                                                 <option value="2018">2018</option>
                                                 <option value="2017">2017</option>
@@ -88,12 +87,11 @@
                                             </select>
                                         </div>
                                         <style>
-
                                             .months ul.dropdown-content li:last-child{
                                                 display:none
                                             }
                                         </style>
-                                        <div class="col input-field months">
+                                        <div class="col input-field months" style="width: 45%">
                                             <select  ng-change="updateMonth(data.selectedMonth)" ng-model="data.selectedMonth" material-select watch>
                                                 <option value="{{selectedYear}}01">January</option>
                                                 <option value="{{selectedYear}}02">February</option>
@@ -112,8 +110,6 @@
                                                 <option></option>-->
                                             </select>
                                         </div>
-
-
                                     </div>
                                 </div>
                             </form>
@@ -141,11 +137,11 @@
 
                     <div class="row" style="display: flex;">
 
-                        <div style="margin-left: 10px">
+                        <div style="margin-left: 20%">
                             <button  class="btn btn-info" ng-click="previewReport()">Preview</button><br>
                         </div>
 
-                        <div style="margin-left: 10px">
+                        <div style="margin-left: 40%">
                             <button ng-if="newUser.name !== '' && newUser.email !== '' && data.outRegistrationOrganisationUnits.length !== 0"
                                     class="btn btn-info" ng-click="addSubscriber()">Subscribe</button><br>
                         </div>
