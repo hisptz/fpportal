@@ -136,8 +136,9 @@
                 <div ng-if="!showReportSection" class="card">
 
 
-                    <div class="row" style="margin-top: 20px">
-                        <div class="col" style="width: 25%;">
+                    <div class="col" style="margin-top: 20px;width: 48%">
+                        <!--orgunit selection-->
+                        <div class="row">
                             <form>
                                 <div class="form-group" >
                                     <label>Country:</label>
@@ -152,13 +153,15 @@
                                 </div>
                             </form>
                         </div>
+                        <!--end orgunit selection-->
 
-                        <div class="col" style="width: 25%;">
+                        <!--period selection-->
+                        <div class="row" >
                             <form>
                                 <label>Period:</label>
                                 <div class="form-group">
-                                    <div class="input-field col grey lighten-5" style="margin-top: 5px; margin-left: 10%">
-                                        <div class="col input-field" style="width: 37%;">
+                                    <div class="input-field col grey lighten-5" style="margin-top: 5px;width: 100%;">
+                                        <div class="col input-field" style="width: 45%;margin-left: 5%">
                                             <select ng-model="selectedYear" ng-change="updatePeriod(selectedYear)" material-select watch >
                                                 <option value="2018">2018</option>
                                                 <option value="2017">2017</option>
@@ -173,7 +176,7 @@
                                                 display:none
                                             }
                                         </style>
-                                        <div class="col input-field months" style="width: 37%;">
+                                        <div class="col input-field months" style="width: 45%;margin-left: 5%">
                                             <select  ng-change="updateMonth(data.selectedMonth)" ng-model="data.selectedMonth" material-select watch>
                                                 <option value="{{selectedYear}}01">January</option>
                                                 <option value="{{selectedYear}}02">February</option>
@@ -198,37 +201,48 @@
                                 </div>
                             </form>
                         </div>
-
-                        <div class="col" style="width: 25%;">
-                            <form>
-                                <label>Report type:</label>
-                                <div class="form-group" >
-                                    <div class="col input-field" style="width: 100%;">
-                                        <select ng-model="selectedReport" ng-change="selectedReportType(selectedReport)" material-select watch >
-                                            <option ng-repeat="report in reportTypes track by $index" ng-value="report.id" >{{report.name}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col" style="width: 25%;">
-                            <form>
-                                <label>Aggregation type:</label>
-                                <div class="form-group" >
-                                    <div class="col input-field">
-                                        <select ng-model="selectedAggregagtionType" ng-change="selectedAggregate(selectedAggregagtionType)"  material-select watch >
-                                            <option ng-repeat="aggregate in aggregationTypes track by $index" ng-value="aggregate.name" selected="{{aggregate.selected}}">{{aggregate.name}}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <!--period selection-->
                     </div>
 
                     <!--second card row on page items-->
                     <div class="row">
-                        <div class="col" style="width: 25%" ng-if="showstaffedOptions">
+
+                        <div class="col" style="width: 50%;">
+                            <!--report type selection-->
+                            <div class="col" style="width: 50%;" >
+                                <form>
+                                    <label>Report type:</label>
+                                    <div class="form-group" >
+                                        <div class="col input-field" style="width: 100%;">
+                                            <select ng-model="selectedReport" ng-change="selectedReportType(selectedReport)" material-select watch >
+                                                <option ng-repeat="report in reportTypes track by $index" ng-value="report.id" >{{report.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--report type selection-->
+
+                            <!--aggregation type-->
+                            <div class="col" style="width: 50%;" >
+                                <form>
+                                    <label>Aggregation type:</label>
+                                    <div class="form-group" >
+                                        <div class="col input-field" style="width: 100%;">
+                                            <select ng-model="selectedAggregagtionType" ng-change="selectedAggregate(selectedAggregagtionType)"  material-select watch >
+                                                <option ng-repeat="aggregate in aggregationTypes track by $index" ng-value="aggregate.name" selected="{{aggregate.selected}}">{{aggregate.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--aggregation type-->
+                        </div>
+
+
+
+
+                        <div class="col" style="width: 50%;" ng-if="showstaffedOptions">
                             <div class="card">
                                 <div class="col" style="margin-top: 2%;width: 100%">
                                     <form>
@@ -314,13 +328,12 @@
 
                         </div>
 
-                        <div class="col" style="width: 25%" ng-if="showfacilityOptions">
+                        <div class="col" style="width: 50%;" ng-if="showfacilityOptions">
                             <div class="card">
-
                                 <div class="col" style="margin-top: 2%;width: 100%">
                                     <form>
+                                        <label>Facility providing services </label>
                                         <div class="form-group" >
-                                            <label>Facility providing services </label>
                                             <div class="card">
                                                 <ul class="list-group">
                                                     <li class="list-group-item custom-item">Male condoms</li>
@@ -337,11 +350,7 @@
                             </div>
                         </div>
 
-                    </div>
-
-                    <!--third items row card on page-->
-                    <div class="row">
-                        <div class="col" style="width: 25%" ng-if="showserviceIntegrationOptions">
+                        <div class="col" style="width: 50%" ng-if="showstockOptions">
                             <div class="card">
                                 <div class="col" style="margin-top: 2%;width: 100%">
                                     <form>
@@ -361,7 +370,7 @@
                             </div>
                         </div>
 
-                        <div class="col" style="width: 50%;" ng-if="showstockOptions">
+                        <div class="col" style="width: 50%;" ng-if="showserviceIntegrationOptions">
                             <div class="card">
                                 <div class="col" style="margin-top: 2%;width: 100%">
                                     <form>
@@ -388,177 +397,9 @@
 
                         </div>
 
-                        <!--<div class="col" style="width: 25%" >-->
-                            <!--<div class="card">-->
-
-                                <!--<div class="col" style="margin-top: 2%">-->
-                                    <!--<form>-->
-                                        <!--<div class="form-group" >-->
-                                            <!--<label>Time Period display</label>-->
-                                            <!--<label class="container">Monthly-->
-                                                <!--<input type="checkbox" checked="checked">-->
-                                                <!--<span class="checkmark"></span>-->
-                                            <!--</label>-->
-                                            <!--<label class="container">Quarterly-->
-                                                <!--<input type="checkbox">-->
-                                                <!--<span class="checkmark"></span>-->
-                                            <!--</label>-->
-                                            <!--<label class="container">Annual-->
-                                                <!--<input type="checkbox">-->
-                                                <!--<span class="checkmark"></span>-->
-                                            <!--</label>-->
-                                            <!--<label class="container">Total-->
-                                                <!--<input type="checkbox" >-->
-                                                <!--<span class="checkmark"></span>-->
-                                            <!--</label>-->
-
-                                        <!--</div>-->
-                                    <!--</form>-->
-                                <!--</div>-->
-
-
-                                <!--<div class="col" style="margin-top: 2%;">-->
-                                    <!--<form>-->
-                                        <!--<div class="form-group" >-->
-                                            <!--<label>Date Range :</label>-->
-                                            <!--<label ng-if="!customDate" class="container">Last Month-->
-                                                <!--<input type="checkbox" checked="checked" >-->
-                                                <!--<span class="checkmark"></span>-->
-                                            <!--</label>-->
-
-                                            <!--<label ng-if="!customDate" class="container">Last 3 Months-->
-                                                <!--<input type="checkbox">-->
-                                                <!--<span class="checkmark"></span>-->
-                                            <!--</label>-->
-
-                                            <!--<label ng-if="!customDate" class="container">Last 6 Months-->
-                                                <!--<input type="checkbox">-->
-                                                <!--<span class="checkmark"></span>-->
-                                            <!--</label>-->
-
-                                            <!--<label ng-if="!customDate" class="container">Last 12 Months-->
-                                                <!--<input type="checkbox">-->
-                                                <!--<span class="checkmark"></span>-->
-                                            <!--</label>-->
-
-                                            <!--<label class="container">Custom-->
-                                                <!--<input type="checkbox" id="custom_date_checkbox" ng-model="customDate" ng-change="toggleCustomdate(customDate)">-->
-                                                <!--<span class="checkmark"></span>-->
-                                            <!--</label>-->
-
-                                            <!--&lt;!&ndash;<div ng-if="customDate">&ndash;&gt;-->
-                                                <!--&lt;!&ndash;<div class="row" style="display: inline-flex">&ndash;&gt;-->
-                                                    <!--&lt;!&ndash;<label style="word-break: break-all;"> Start Date :</label>&ndash;&gt;-->
-                                                    <!--&lt;!&ndash;&lt;!&ndash;<input type="date" class="form-control" ng-model="startDate" ng-change="changestartDate(startDate)">&ndash;&gt;&ndash;&gt;-->
-                                                    <!--&lt;!&ndash;<div class="col" style="width: 80%;">&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;<form>&ndash;&gt;-->
-                                                            <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-                                                                <!--&lt;!&ndash;<div class="input-field col grey lighten-5" style="margin-top: 0px;display: flex;">&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;<div class="col input-field">&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;<select ng-model="selectedYear" ng-change="updatePeriod(selectedYear)" material-select watch >&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2018">2018</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2017">2017</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2016">2016</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2015">2015</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2014">2014</option>&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;</select>&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;<style>&ndash;&gt;-->
-
-                                                                        <!--&lt;!&ndash;.months ul.dropdown-content li:last-child{&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;display:none&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;}&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;</style>&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;<div class="col input-field months">&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;<select  ng-change="updateMonth(data.selectedMonth)" ng-model="data.selectedMonth" material-select watch>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}01">January</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}02">February</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}03">March</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}04">April</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}05">May</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}06">June</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}07">July</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}08">August</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}09">September</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}10">October</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}11">November</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}12">December</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option>{{selectedYear}}12</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;&lt;!&ndash;<option ng-repeat="month in monthList" value="{{selectedYear}}{{month.value}}">{{selectedYear}}{{month.value}}</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option></option>&ndash;&gt;&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;</select>&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-
-                                                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;</form>&ndash;&gt;-->
-                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                                                <!--&lt;!&ndash;<div class="row" style="display: inline-flex">&ndash;&gt;-->
-                                                    <!--&lt;!&ndash;<label style="word-break: break-all;"> End Date :</label>&ndash;&gt;-->
-                                                    <!--&lt;!&ndash;&lt;!&ndash;<input type="date" class="form-control" ng-model="endDate" ng-change="changeendDate(endDate)">&ndash;&gt;&ndash;&gt;-->
-
-                                                    <!--&lt;!&ndash;<div class="col" style="width: 80%;">&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;<form>&ndash;&gt;-->
-                                                            <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-                                                                <!--&lt;!&ndash;<div class="input-field col grey lighten-5" style="margin-top: 0px;display: flex;">&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;<div class="col input-field">&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;<select ng-model="selectedYear" ng-change="updatePeriod(selectedYear)" material-select watch >&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2018">2018</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2017">2017</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2016">2016</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2015">2015</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="2014">2014</option>&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;</select>&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;<style>&ndash;&gt;-->
-
-                                                                        <!--&lt;!&ndash;.months ul.dropdown-content li:last-child{&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;display:none&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;}&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;</style>&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;<div class="col input-field months">&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;<select  ng-change="updateMonth(data.selectedMonth)" ng-model="data.selectedMonth" material-select watch>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}01">January</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}02">February</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}03">March</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}04">April</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}05">May</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}06">June</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}07">July</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}08">August</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}09">September</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}10">October</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}11">November</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option value="{{selectedYear}}12">December</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option>{{selectedYear}}12</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;&lt;!&ndash;<option ng-repeat="month in monthList" value="{{selectedYear}}{{month.value}}">{{selectedYear}}{{month.value}}</option>&ndash;&gt;-->
-                                                                            <!--&lt;!&ndash;<option></option>&ndash;&gt;&ndash;&gt;-->
-                                                                        <!--&lt;!&ndash;</select>&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-
-                                                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;</form>&ndash;&gt;-->
-                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                                        <!--</div>-->
-                                    <!--</form>-->
-                                <!--</div>-->
-
-
-                            <!--</div>-->
-                        <!--</div>-->
-
                     </div>
 
+                    <!--preview button for the displaying reports-->
                     <div class="row">
                         <div class="col" style="width: 6%;margin-left: 45%;">
                             <form>
@@ -568,10 +409,11 @@
                             </form>
                         </div>
                     </div>
+                    <!--preview button for the displaying reports-->
 
                 </div>
 
-                <!--card section 02 with tables-->
+                <!--Report displaying tables-->
                 <div ng-if="showReportSection" class="card">
                     <div style="text-align: center">
                         <h5>{{reportHeader}} view</h5>
@@ -598,9 +440,7 @@
                         </table>
                     </div>
                 </div>
-                <!--End of card section 02 with tables-->
-
-
+                <!--End of Report displaying tables-->
             </div>
 
 

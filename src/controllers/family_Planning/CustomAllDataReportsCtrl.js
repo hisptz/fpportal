@@ -229,7 +229,7 @@ angular.module("hmisPortal")
         }
         $scope.previewReport = function() {
             $scope.tableContents = [];
-            if ($scope.reportHeader === 'Aggregate data'){ // this makes decision on table header visibility type
+            // if ($scope.reportHeader === 'Aggregate data'){ // this makes decision on table header visibility type
                 $scope.tableHeader = $scope.aggregateDataViewHeader.concat($scope.tableHeaderOptions)
                 var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
 
@@ -241,7 +241,7 @@ angular.module("hmisPortal")
                   });
               })
               })
-            }
+            // }
             // else {
             //     $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
             // }
