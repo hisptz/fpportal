@@ -238,9 +238,10 @@ angular.module("hmisPortal")
                   })
               })
               })
-            } else {
-                $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
             }
+            // else {
+            //     $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
+            // }
             $scope.showReportSection = !$scope.showReportSection;
             console.log($scope.data['outRegistrationOrganisationUnits']);
         }
