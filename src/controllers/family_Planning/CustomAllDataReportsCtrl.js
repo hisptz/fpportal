@@ -9,6 +9,7 @@ angular.module("hmisPortal")
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
         $scope.showfacilityReport = true;
+        $scope.aggregateDataWithChildrenOrgunit = true;
         $scope.showserviceIntegrationOptions = false;
         $scope.showstockOptions = false;
         $scope.currentOptionLabel = '';
@@ -36,37 +37,25 @@ angular.module("hmisPortal")
         $scope.facilityDataViewHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
             {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Facility', id: ''},
             {name: 'Facility type', id: ''}, {name: 'Period', id: ''}, {name: 'Reporting the FP template ', id: ''}];
-        $scope.trainingDataAggregateDataViewHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
-            {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP Facilities', id: ''},
-            {name: 'Total FP facilities reporting the FP template', id: ''}, {name: 'Facilities staffed with HWs trained in IUCD services', id: ''},
-            {name: 'Facilities staffed with 2 or more HWs trained in IUCD services', id: ''}, {name: 'Total HWs trained in IUCD services', id: ''}];
-        $scope.trainingDataFacilityDataViewHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
-            {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Facility', id: ''},
-            {name: 'Facility type', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP Facilities', id: ''},
-            {name: 'Reporting the FP template', id: ''},{name: 'Total HWs trained in IUCD services', id: ''}];
-        $scope.clientsServiceAggeregateDataViewHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
-            {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP Facilities', id: ''},{name: 'Total FP facilities reporting the FP template', id: ''},
-            {name: 'Total clients of injectables facility based', id: ''},{name: 'Reporting the FP template', id: ''},{name: 'Total HWs trained in IUCD services', id: ''}];
         $scope.staffedHWstrained = [
             {name: 'Short Acting',active: '',
-                aggregateIndicator: [{name: 'Total Short acting', id:''}],
-                facilityIndicator: [{name: 'Total Short acting', id:''}]
+                aggregateIndicator: [{name: 'Total clients using short acting methods', id:'Tq5PQFhyMnz'}],
+                facilityIndicator: [{name: 'Total clients using short acting methods', id:'Tq5PQFhyMnz'}]
                },
             {name: 'Implants',active: '',
-                aggregateIndicator: [{name: 'Facility staffed with HWs on implants service', id:''}],
-                facilityIndicator: [{name: 'Total facilities staffed with HWs on implants servic', id:''}]},
+                aggregateIndicator: [{name: 'Facility staffed with HWs on implants insertion service', id:'ZnTi99UdGCS'},{name: 'Facility staffed with HWs on implants removal service', id:'Eh1uMcVwxEY'}],
+                facilityIndicator: [{name: 'Total facilities staffed with HWs on implants insertion service facility', id:'lMFKZN3UaYp'},{name: 'Facility staffed with HWs on implants removal service', id:'Eh1uMcVwxEY'}]},
             {name: 'UICDs',active: '',
-                aggregateIndicator: [{name: 'Facilities staffed with HWs trained in IUCD services', id: ''},
-                    {name: 'Facilities staffed with 2 or more HWs trained in IUCD services', id: ''}, {name: 'Total HWs trained in IUCD services', id: ''}],
-                facilityIndicator: [{name: 'Total HWs trained in IUCD services', id: ''}],
+                aggregateIndicator: [{name: 'Total clients of IUCD insertions services Outreach based', id: 'RfSsrHPGBXV'}, {name: 'Total clients of IUCD removal services Outreach based', id: 'O10liqQFwcI'}],
+                facilityIndicator: [{name: 'Total clients of IUCD insertions services Facility based', id: 'UjGebiXNg0t'},{name: 'Total clients of IUCD removal services Facility based', id: 'GEjpz3mQo6E'}],
             },
             {name:'NSV', active:'',
-                aggregateIndicator:[],
-                facilityIndicator:[]
+                aggregateIndicator:[{name:'Total NSV on men outreach', id:'chmWn8ksICz'}],
+                facilityIndicator:[{name:'Total NSV on men routine', id:'JSmtnnW6WrR'}]
             },
             {name:'Minilap', active:'',
-                aggregateIndicator:[],
-                facilityIndicator:[]
+                aggregateIndicator:[{name:'Total Minilap on women outreach', id:'xip1SDutimh'}],
+                facilityIndicator:[{name:'Total Minilap on women routine', id:'xhcaH3H3pdK'}]
             }
             ];
         $scope.reportTypes = [
@@ -79,49 +68,47 @@ angular.module("hmisPortal")
         ];
         $scope.aggregationTypes = [ {name:'Facility data',id:'2',selected:'selected'},{name:'Aggregate data',id:'1', selected:''}];
         $scope.outreachData =[
-            {name:'Short Acting',active: '',indicator: {name: 'Total Short acting outreach', id:''}},
-            {name: 'Implants insertions',active: '', indicator: {name: 'Total Implants insertions outreach', id:''}},
-            {name: 'Implants removal',active: '', indicator: {name: 'Total Implants removals outreach', id:''}},
-            {name: 'UICDs insertion',active: '', indicator: {name: 'Total UICDs insertions outreach', id:''}},
-            {name: 'UICDs removal',active: '', indicator: {name: 'Total UICDs removals outreach', id:''}}
+            {name:'Short Acting',active: '',indicator: {name: 'Total Short acting outreach', id:'Tq5PQFhyMnz'}},
+            {name: 'Implants insertions',active: '', indicator: {name: 'Total Implants insertions outreach', id:'ZnTi99UdGCS'}},
+            {name: 'Implants removal',active: '', indicator: {name: 'Total Implants removals outreach', id:'Eh1uMcVwxEY'}},
+            {name: 'UICDs insertion',active: '', indicator: {name: 'Total UICDs insertions outreach', id:'RfSsrHPGBXV'}},
+            {name: 'UICDs removal',active: '', indicator: {name: 'Total UICDs removals outreach', id:'O10liqQFwcI'}}
         ];
         $scope.cbdServiceData =[
-            {name:'Male condoms',active: '',indicator: {name: 'Total male condoms CBD', id:''}},
-            {name: 'Female condoms',active: '', indicator: {name: 'Total female condoms CBD', id:''}},
-            {name: 'Oral pills',active: '', indicator: {name: 'Total oral pills CBD', id:''}},
+            {name:'Male condoms',active: '',indicator: {name: 'Total male condoms CBD', id:'OxxbMcRjVbt'}},
+            {name: 'Female condoms',active: '', indicator: {name: 'Total female condoms CBD', id:'CAZJesl4va5'}},
+            {name: 'Oral pills',active: '', indicator: {name: 'Total oral pills on CBD', id:'NHnXpXYblEM'}},
         ];
         $scope.routineFacilityData =[
-            {name:'Male condoms',active: '',indicator: {name: 'Total clients of male condoms Facility based', id:''}},
-            {name: 'Female condoms',active: '', indicator: {name: 'Total clients of  female condoms Facility based', id:''}},
-            {name: 'Oral pills',active: '', indicator: {name: 'Total clients of  oral pills Facility based', id:''}},
-            {name: 'Injectables',active: '', indicator: {name: 'Total clients of injectables Facility based', id:''}},
-            {name: 'Implants insertions',active: '', indicator: {name: 'Total clients of Implants insertions Facility based', id:''}},
-            {name: 'Implants removal',active: '', indicator: {name: 'Total clients of Implants removals Facility based', id:''}},
-            {name: 'UICDs insertion',active: '', indicator: {name: 'Total clients of UICDs insertions Facility based', id:''}},
-            {name: 'UICDs removal',active: '', indicator: {name: 'Total clients of UICDs removals Facility based', id:''}},
-            {name: 'NSV',active: '', indicator: {name: 'Total clients of NSV Facility based', id:''}},
-            {name: 'Minilap',active: '', indicator: {name: 'Total clients of Minilap Facility based', id:''}}
+            {name:'Male condoms',active: '',indicator: {name: 'Total clients of male condoms Facility based', id:'JMmqv0tyVr7'}},
+            {name: 'Female condoms',active: '', indicator: {name: 'Total clients of  female condoms Facility based', id:'Nt8M08bJKXl'}},
+            {name: 'Oral pills',active: '', indicator: {name: 'Total clients of  oral pills Facility based', id:'IFxhP0O4k0W'}},
+            {name: 'Injectables',active: '', indicator: {name: 'Total clients of injectables Facility based', id:'epPM7fO8CnH'}},
+            {name: 'Implants insertions',active: '', indicator: {name: 'Total clients of Implants insertions Facility based', id:'lMFKZN3UaYp'}},
+            {name: 'Implants removal',active: '', indicator: {name: 'Total clients of Implants removals Facility based', id:'Eh1uMcVwxEY'}},
+            {name: 'UICDs insertion',active: '', indicator: {name: 'Total clients of UICDs insertions Facility based', id:'UjGebiXNg0t'}},
+            {name: 'UICDs removal',active: '', indicator: {name: 'Total clients of UICDs removals Facility based', id:'GEjpz3mQo6E'}},
+            {name: 'NSV',active: '', indicator: {name: 'Total clients of NSV Facility based', id:'JSmtnnW6WrR'}},
+            {name: 'Minilap',active: '', indicator: {name: 'Total clients of Minilap Facility based', id:'xhcaH3H3pdK'}}
         ];
         $scope.serviceIntergrationData =[
             {name:'Miscarriage/Post abortion clients adopting FP',active: '',indicator: {name: 'Total Miscarriage/Post abortion clients adopting FP', id:''}},
             {name: 'Postpartum clients adopting FP',active: '', indicator: {name: 'Total Postpartum clients adopting FP', id:''}},
-            {name: 'FP Clients adopting HIV testing & Councelling',active: '', indicator: {name: 'Total FP Clients adopting HIV testing & Councelling', id:''}},
-            {name: 'FP Clients adopting Breast cancer screening',active: '', indicator: {name: 'Total FP Clients adopting Breast cancer screening', id:''}},
-            {name: 'FP Clients adopting Cervical cancer screening',active: '', indicator: {name: 'Total FP Clients adopting Cervical cancer screening', id:''}},
+            {name: 'FP Clients adopting HIV testing & Councelling',active: '', indicator: {name: 'Total FP Clients adopting HIV testing & Councelling', id:'qEWJizgHHot'}},
+            {name: 'FP Clients adopting Breast cancer screening',active: '', indicator: {name: 'Total FP Clients adopting Breast cancer screening', id:'GQ3JD2MeTIp'}},
+            {name: 'FP Clients adopting Cervical cancer screening',active: '', indicator: {name: 'Total FP Clients adopting Cervical cancer screening', id:'KLiLjLEQDrh'}},
         ];
         $scope.providingServiceData =[
-            {name:'Male condoms',active: '',indicator: {name: 'Total Male condoms service', id:''}},
-            {name: 'Female condoms',active: '', indicator: {name: 'Total Female condoms service', id:''}},
-            {name: 'Oral pills',active: '', indicator: {name: 'Total Oral pills service', id:''}},
-            {name: 'NSV',active: '', indicator: {name: 'Total NSV service', id:''}},
-            {name: 'Minilap',active: '', indicator: {name: 'Total Minilap service', id:''}},
+            {name:'Male condoms',active: '',indicator: {name: 'Total Male condoms service', id:'JMmqv0tyVr7'}},
+            {name: 'Female condoms',active: '', indicator: {name: 'Total Female condoms service', id:'Nt8M08bJKXl'}},
+            {name: 'Oral pills',active: '', indicator: {name: 'Total Oral pills service', id:'IFxhP0O4k0W'}},
+            {name: 'NSV',active: '', indicator: {name: 'Total NSV service', id:'JSmtnnW6WrR'}},
+            {name: 'Minilap',active: '', indicator: {name: 'Total Minilap service', id:'xhcaH3H3pdK'}},
         ];
         $scope.facilityStockOutData =[
-            {name: 'Oral pills',active: '', indicator: {name: 'Total Oral pills stock', id:''}},
-            {name: 'Injectables',active: '', indicator: {name: 'Total injectables stock', id:''}}
+            {name: 'Oral pills',active: '', indicator: {name: 'Total Oral pills stock', id:'TFORL9LBEDP'}},
+            {name: 'Injectables',active: '', indicator: {name: 'Total injectables stock', id:'TFORL9LBEDP'}}
         ];
-
-
         $scope.periodTypes = [
             {value: 'Monthly', name: 'Monthly', shown: true},
             {value: 'Quarterly', name: 'Quarterly', shown: false},
@@ -130,43 +117,31 @@ angular.module("hmisPortal")
             {value: 'RelativeQuarter', name: 'Relative Quarter', shown: false},
             {value: 'RelativeYear', name: 'Relative Year', shown: false},
         ];
-        $scope.availablePeriods = [];
+        $scope.availablePeriods = [
+            {id: 'THIS_MONTH', name: 'This Month'}, {id: 'LAST_MONTH', name: 'Last Month'}, {
+            id: 'LAST_3_MONTHS',
+            name: 'Last 3 Months'
+        }, {id: 'LAST_6_MONTHS', name: 'Last 6 Months'}, {id: 'LAST_12_MONTHS', name: 'Last 12 Months'}];
         $scope.selectedPeriods = [{id: 'LAST_12_MONTHS', name: 'Last 12 Months'}];
         $scope.data.outOrganisationUnits = [];
-        $scope.updateTree = function(){
-            $scope.data.orgUnitTree1 = [];
-            $scope.data.orgUnitTree = [];
-            angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
-                var zoneRegions = [];
-                angular.forEach(value.organisationUnits,function(regions){
-                    var regionDistricts = [];
-                    angular.forEach(regions.children,function(district){
-                        regionDistricts.push({name:district.name,id:district.id });
-                    });
-                    zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
+
+            // this portion of code will clear multselected orgunit to single selected orgunit
+        $scope.data.orgUnitTree1 = [];
+        $scope.data.orgUnitTree = [];
+        angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
+            var zoneRegions = [];
+            angular.forEach(value.organisationUnits,function(regions){
+                var regionDistricts = [];
+                angular.forEach(regions.children,function(district){
+                    regionDistricts.push({name:district.name,id:district.id });
                 });
-                $scope.data.outOrganisationUnits.push({ name:value.name,id:value.id, children:zoneRegions,selected:true })
-                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions,selected:true });
+                zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
             });
-            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1});
-        };
-        $scope.updateTree();
-        $scope.updateTreeWithOne = function(){
-            $scope.data.orgUnitTree1 = [];
-            $scope.data.orgUnitTree = [];
-            angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
-                var zoneRegions = [];
-                angular.forEach(value.organisationUnits,function(regions){
-                    var regionDistricts = [];
-                    angular.forEach(regions.children,function(district){
-                        regionDistricts.push({name:district.name,id:district.id });
-                    });
-                    zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
-                });
-                $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
-            });
-            $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
-        };
+            $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
+        });
+        $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
+        // end of portion code will clear multi-selected orgunit to single selected orgunit
+
 
         $scope.selectedReportType = function (reportType) {
             angular.forEach($scope.reportTypes, function (report) {
@@ -349,68 +324,15 @@ angular.module("hmisPortal")
         $scope.previewReport = function() {
             $scope.tableContents = [];
             $scope.tableHeader = [];
+            $scope.selectedOrgunit = $scope.data['outRegistrationOrganisationUnits'][0];
             if (!$scope.showfacilityReport){ // this makes decision on table header visibility type
-                var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
-                $scope.selectedOrgunit = $scope.data['outRegistrationOrganisationUnits'][0];
-                var orgUnitCollected = $scope.data['outRegistrationOrganisationUnits'][0];
 
-                if(orgUnitCollected.name.indexOf('Zone' ) > -1){
-                    var localHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
-                        {name: 'Region', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                        {name: 'FP facilities reporting the FP template', id: ''}];
-                    $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+                if($scope.aggregateDataWithChildrenOrgunit){
+                    $scope.reporDataWithChildren();
+                } else {
 
-                    angular.forEach(orgUnit, function (orgUnitCollection) {
-                        angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
-                            $scope.tableContents.push({
-                                zone: orgUnitCollection['name'], region: childOrgunit['name'], period: $scope.data.selectedMonth,
-                                fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
-                            });
-                        });
-                    });
-                }else if(orgUnitCollected.name.indexOf('Region' ) > -1){
-                    var localHeader = [{name: 'S/N', id:''},
-                        {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                        {name: 'FP facilities reporting the FP template', id: ''}];
-                    $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
-
-                    angular.forEach(orgUnit, function (orgUnitCollection) {
-                        angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
-                            $scope.tableContents.push({
-                                region: orgUnitCollection['name'], district: childOrgunit['name'], period: $scope.data.selectedMonth,
-                                fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
-                            });
-                        });
-                    });
-                }else if(orgUnitCollected.name.indexOf('Council' ) > -1){
-                    var localHeader = [{name: 'S/N', id:''},
-                        {name: 'District', id: ''}, {name: 'Facility', id: ''}, {name: 'Facility type', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                        {name: 'FP facilities reporting the FP template', id: ''}];
-                    $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
-
-                    angular.forEach(orgUnit, function (orgUnitCollection) {
-                        angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
-                            $scope.tableContents.push({
-                                district: orgUnitCollection['name'], facility: childOrgunit['name'], facilityType:indexOf('Dispensary') > -1 ? 'Dispensary' : 'Health Center',   period: $scope.data.selectedMonth,
-                                fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
-                            });
-                        });
-                    });
-                }else if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
-                    var localHeader = [{name: 'S/N', id:''},
-                        {name: 'Country', id: ''}, {name: 'Zone', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                        {name: 'FP facilities reporting the FP template', id: ''}];
-                    $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
-
-                    angular.forEach(orgUnit, function (orgUnitCollection) {
-                        angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
-                            $scope.tableContents.push({
-                                country: orgUnitCollection['name'], zone: childOrgunit['name'], period: $scope.data.selectedMonth,
-                                fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
-                            });
-                        });
-                    });
                 }
+
 
             }
             else {
@@ -421,7 +343,108 @@ angular.module("hmisPortal")
             // console.log($scope.data['outRegistrationOrganisationUnits']);
 
 
+        };
+
+        $scope.getLength = function (){
+            return $scope.tableHeaderOptions.length;
         }
+
+        $scope.reporDataWithChildren = function (){
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
+            var orgUnitCollected = $scope.data['outRegistrationOrganisationUnits'][0];
+            var dxAnalyticsString = '';
+            var orgunitAnalyticsString = '';
+
+            angular.forEach($scope.tableHeaderOptions, function (dx) {
+                dxAnalyticsString += ';'+ dx.id;
+            });
+            if($scope.selectedOrgunit.children){
+                angular.forEach($scope.selectedOrgunit.children, function (orgunit) {
+                    orgunitAnalyticsString += ';'+ orgunit.id;
+                });
+            }else{
+                orgunitAnalyticsString += ';'+ $scope.selectedOrgunit.id;
+            }
+
+            var url = '../api/analytics?dimension=dx:' + dxAnalyticsString.substring(1) + '' +
+                '&dimension=ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
+
+            $http.get(url)
+                .then(function(response) {
+                    console.log(JSON.stringify($scope.tableHeaderOptions))
+                    $scope.analyticsDataCollection = {};
+                    angular.forEach(response.data.rows, function (rowData) {
+                        var identiferKey = rowData[0]+'-'+rowData[1]+'-'+rowData[2];
+                        $scope.analyticsDataCollection[identiferKey] = rowData[3];
+                    });
+
+                    if(orgUnitCollected.name.indexOf('Zone' ) > -1){
+                        var localHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
+                            {name: 'Region', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                            {name: 'FP facilities reporting the FP template', id: ''}];
+                        $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                        angular.forEach($scope.selectedPeriods, function (period) {
+                            angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
+                                $scope.tableContents.push({
+                                    zone: $scope.selectedOrgunit.name, region: childOrgunit['name'], period: period, orgunit: childOrgunit['id'],
+                                    fpFacilities: Math.floor(Math.random() * 100) ,  fpFacilitiesReporting: 'Yes' ,
+                                    indicatorItems: $scope.tableHeaderOptions
+                                });
+                            });
+                        });
+                    }else if(orgUnitCollected.name.indexOf('Region' ) > -1){
+                        var localHeader = [{name: 'S/N', id:''},
+                            {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                            {name: 'FP facilities reporting the FP template', id: ''}];
+                        $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                        angular.forEach($scope.selectedPeriods, function (period) {
+                            angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
+                                $scope.tableContents.push({
+                                    region: $scope.selectedOrgunit.name, district: childOrgunit['name'], period: period, orgunit: childOrgunit['id'],
+                                    fpFacilities: Math.floor(Math.random() * 100),   fpFacilitiesReporting: 'Yes' , indicatorItems: $scope.tableHeaderOptions
+                                });
+                            });
+                        });
+                    }else if(orgUnitCollected.name.indexOf('Council' ) > -1){
+                        var localHeader = [{name: 'S/N', id:''},
+                            {name: 'District', id: ''}, {name: 'Facility', id: ''}, {name: 'Facility type', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                            {name: 'FP facilities reporting the FP template', id: ''}];
+                        $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                        angular.forEach($scope.selectedPeriods, function (period) {
+                            angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
+                                $scope.tableContents.push({
+                                    district: $scope.selectedOrgunit.name, facility: childOrgunit['name'], orgunit: childOrgunit['id'],
+                                    facilityType:childOrgunit['name'].indexOf('Dispensary') > -1 ? 'Dispensary' : 'Health Center', period: period,
+                                    fpFacilities: Math.floor(Math.random() * 100) , fpFacilitiesReporting: 'Yes' , indicatorItems: $scope.tableHeaderOptions
+                                });
+                            });
+                        });
+                    }else if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
+                        var localHeader = [{name: 'S/N', id:''},
+                            {name: 'Country', id: ''}, {name: 'Zone', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                            {name: 'FP facilities reporting the FP template', id: ''}];
+                        $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                        angular.forEach($scope.selectedPeriods, function (period) {
+                            angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
+                                $scope.tableContents.push({
+                                    country: $scope.selectedOrgunit.name, region: childOrgunit['name'], period: period, orgunit: childOrgunit['id'],
+                                    fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,indicatorItems: $scope.tableHeaderOptions
+                                });
+                            });
+                        });
+                    }
+
+
+                });
+
+
+
+        }
+
         $scope.toggleCustomdate = function (event) {
             $scope.customDate = !$scope.customDate;
         }
@@ -447,6 +470,9 @@ angular.module("hmisPortal")
         };
         $scope.getRandomValue = function (){
             return Math.floor((Math.random() * 500) + 100)
+        }
+        $scope.printReport = function (){
+            window.print();
         }
 
             // PERIOD COMPONENT FUNCTIONS
