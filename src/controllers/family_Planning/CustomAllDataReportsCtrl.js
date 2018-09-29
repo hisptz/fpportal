@@ -8,7 +8,7 @@ angular.module("hmisPortal")
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
-        $scope.showfacilityReport = false;
+        $scope.showfacilityReport = true;
         $scope.showserviceIntegrationOptions = false;
         $scope.showstockOptions = false;
         $scope.currentOptionLabel = '';
@@ -70,12 +70,12 @@ angular.module("hmisPortal")
             }
             ];
         $scope.reportTypes = [
-            {name:'Training data report', id:'2' },
-            {name:'Clients & services data report', id:'3'},
-            {name:'History of provision data report', id:'4'},
-            {name:'Commodities data report', id:'5' },
-            {name:'Service integration data report', id:'6' },
-            {name:'Facility data report', id:'1'}
+            {name:'Comprehensive FP report', id:'1'},
+            {name:'Trainings', id:'2' },
+            {name:'Clients & services', id:'3'},
+            {name:'History of provision', id:'4'},
+            {name:'Commodities', id:'5' },
+            {name:'Service integration', id:'6' },
         ];
         $scope.aggregationTypes = [ {name:'Facility data',id:'2',selected:'selected'},{name:'Aggregate data',id:'1', selected:''}];
         $scope.outreachData =[
@@ -102,6 +102,25 @@ angular.module("hmisPortal")
             {name: 'NSV',active: '', indicator: {name: 'Total clients of NSV Facility based', id:''}},
             {name: 'Minilap',active: '', indicator: {name: 'Total clients of Minilap Facility based', id:''}}
         ];
+        $scope.serviceIntergrationData =[
+            {name:'Miscarriage/Post abortion clients adopting FP',active: '',indicator: {name: 'Total Miscarriage/Post abortion clients adopting FP', id:''}},
+            {name: 'Postpartum clients adopting FP',active: '', indicator: {name: 'Total Postpartum clients adopting FP', id:''}},
+            {name: 'FP Clients adopting HIV testing & Councelling',active: '', indicator: {name: 'Total FP Clients adopting HIV testing & Councelling', id:''}},
+            {name: 'FP Clients adopting Breast cancer screening',active: '', indicator: {name: 'Total FP Clients adopting Breast cancer screening', id:''}},
+            {name: 'FP Clients adopting Cervical cancer screening',active: '', indicator: {name: 'Total FP Clients adopting Cervical cancer screening', id:''}},
+        ];
+        $scope.providingServiceData =[
+            {name:'Male condoms',active: '',indicator: {name: 'Total Male condoms service', id:''}},
+            {name: 'Female condoms',active: '', indicator: {name: 'Total Female condoms service', id:''}},
+            {name: 'Oral pills',active: '', indicator: {name: 'Total Oral pills service', id:''}},
+            {name: 'NSV',active: '', indicator: {name: 'Total NSV service', id:''}},
+            {name: 'Minilap',active: '', indicator: {name: 'Total Minilap service', id:''}},
+        ];
+        $scope.facilityStockOutData =[
+            {name: 'Oral pills',active: '', indicator: {name: 'Total Oral pills stock', id:''}},
+            {name: 'Injectables',active: '', indicator: {name: 'Total injectables stock', id:''}}
+        ];
+
 
         $scope.periodTypes = [
             {value: 'Monthly', name: 'Monthly', shown: true},
@@ -112,7 +131,7 @@ angular.module("hmisPortal")
             {value: 'RelativeYear', name: 'Relative Year', shown: false},
         ];
         $scope.availablePeriods = [];
-        $scope.selectedPeriods = [];
+        $scope.selectedPeriods = [{id: 'LAST_12_MONTHS', name: 'Last 12 Months'}];
         $scope.data.outOrganisationUnits = [];
         $scope.updateTree = function(){
             $scope.data.orgUnitTree1 = [];
@@ -240,6 +259,45 @@ angular.module("hmisPortal")
         }
         $scope.updatingsRoutineDatatoTable = function (data){
             angular.forEach( $scope.routineFacilityData, function (item) {
+                if (item.name === data.name) {
+                    if (item.active === 'actived') {
+                        item.active = '';
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
+                    } else {
+                        item.active = 'actived';
+                        $scope.tableHeaderOptions.push(data.indicator)
+                    }
+                }
+            });
+        };
+        $scope.updatingServiceIntergrationDatatoTable = function (data){
+            angular.forEach( $scope.serviceIntergrationData, function (item) {
+                if (item.name === data.name) {
+                    if (item.active === 'actived') {
+                        item.active = '';
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
+                    } else {
+                        item.active = 'actived';
+                        $scope.tableHeaderOptions.push(data.indicator)
+                    }
+                }
+            });
+        }
+        $scope.updatingHistoryOfProvisionDatatoTable = function (data){
+            angular.forEach( $scope.providingServiceData, function (item) {
+                if (item.name === data.name) {
+                    if (item.active === 'actived') {
+                        item.active = '';
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
+                    } else {
+                        item.active = 'actived';
+                        $scope.tableHeaderOptions.push(data.indicator)
+                    }
+                }
+            });
+        }
+        $scope.updatingfacilityStockDatatoTable = function (data){
+            angular.forEach( $scope.facilityStockOutData, function (item) {
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';

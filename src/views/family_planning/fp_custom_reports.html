@@ -273,7 +273,7 @@
 
                                     <multi-select-tree
                                             data-input-model="data.orgUnitTree"
-                                            multi-select="true"
+                                            multi-select="false"
                                             data-output-model="data.outRegistrationOrganisationUnits"
                                             data-default-label="Select Organization Unit"
                                             data-callback="selectOnly1Or2(item, selectedItems)">
@@ -372,7 +372,7 @@
                             <!--report type selection-->
 
                             <!--aggregation type-->
-                            <div class="col" style="width: 50%;" >
+                            <div ng-if="!showfacilityReport" class="col" style="width: 50%;" >
                                 <form>
                                     <label>Aggregation type:</label>
                                     <div class="form-group" >
@@ -387,6 +387,7 @@
                             <!--aggregation type-->
                         </div>
 
+                        <div ng-if="!showfacilityReport">
                         <div class="col" style="width: 50%;" ng-if="showstaffedOptions">
                             <div class="card">
                                 <div class="col" style="margin-top: 2%;width: 100%">
@@ -483,12 +484,9 @@
                                         <div class="form-group" >
                                             <div class="card">
                                                 <ul class="list-group">
-                                                    <li class="list-group-item custom-item">Male condoms</li>
-                                                    <li class="list-group-item custom-item">Female condoms</li>
-                                                    <li class="list-group-item custom-item">Oral pills</li>
-                                                    <li class="list-group-item custom-item">NSV</li>
-                                                    <li class="list-group-item custom-item">Minilap</li>
-                                                    <!--<li class="list-group-item custom-item">First item</li>-->
+                                                    <li ng-repeat="service in providingServiceData track by $index"
+                                                        class="list-group-item custom-item {{service.active}} "
+                                                        ng-click="updatingHistoryOfProvisionDatatoTable(service)"> {{service.name}}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -505,10 +503,9 @@
                                             <label>Facility stocked out:</label>
                                             <div class="card">
                                                 <ul class="list-group">
-                                                    <li class="list-group-item custom-item">Oral pills</li>
-                                                    <li class="list-group-item custom-item">Injectables</li>
-                                                    <!--<li class="list-group-item custom-item">First item</li>-->
-                                                    <!--<li class="list-group-item custom-item">First item</li>-->
+                                                    <li ng-repeat="stock in facilityStockOutData track by $index"
+                                                        class="list-group-item custom-item {{stock.active}} "
+                                                        ng-click="updatingfacilityStockDatatoTable(stock)"> {{stock.name}}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -525,15 +522,9 @@
                                             <label>Service integration </label>
                                             <div class="card">
                                                 <ul class="list-group">
-                                                    <li class="list-group-item custom-item">Miscarriage/Post abortion clients adopting FP</li>
-                                                    <li class="list-group-item custom-item">Postpartum clients adopting FP</li>
-                                                    <li class="list-group-item custom-item">FP Clients adopting HIV testing & Councelling</li>
-                                                    <li class="list-group-item custom-item">FP Clients adopting Breast cancer screening</li>
-                                                    <li class="list-group-item custom-item">FP Clients adopting Cervical cancer screening</li>
-                                                    <!--<li class="list-group-item custom-item">Injectables</li>-->
-                                                    <!--<li class="list-group-item custom-item">Minilap</li>-->
-                                                    <!--<li class="list-group-item custom-item">First item</li>-->
-                                                    <!--<li class="list-group-item custom-item">First item</li>-->
+                                                    <li ng-repeat="serviceData in serviceIntergrationData track by $index"
+                                                        class="list-group-item custom-item {{serviceData.active}} "
+                                                        ng-click="updatingServiceIntergrationDatatoTable(serviceData)"> {{serviceData.name}}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -543,7 +534,7 @@
                             </div>
 
                         </div>
-
+                        </div>
                     </div>
 
                     <!--preview button for the displaying reports-->
