@@ -561,7 +561,7 @@
                 </div>
 
                 <!--Report displaying tables-->
-                <div ng-if="showReportSection" class="card">
+                <div ng-if="showReportSection && !showfacilityReport " class="card">
                     <div style="text-align: center">
                         <h5>{{reportHeader}} view</h5>
                     </div>
@@ -590,70 +590,70 @@
                 <!--End of Report displaying tables-->
 
                  <!--caniam report view-->
-                <!--<div class="card">-->
-                    <!--<div class="cainam-contain">-->
-                        <!--<div class="row">-->
-                            <!--<div class="alert alert-danger" role="alert" id="notification" style="display: none">-->
+                <div ng-if="showReportSection && showfacilityReport"  class="card">
+                    <div class="cainam-contain">
+                        <div class="row">
+                            <div class="alert alert-danger" role="alert" id="notification" style="display: none">
 
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-md-6" style="float: right;">-->
-                                <!--<div><strong>Facility Type: </strong><span id="bcg1"></span></div>-->
-                                <!--<div><strong>District: </strong><span id="bcg2"></span></div>-->
-                                <!--<div><strong>Region: </strong><span id="bcg3"></span></div>-->
-                                <!--<div><strong>Zone: </strong><span id="bcg4"></span></div>-->
-                            <!--</div>-->
-                            <!--<br>-->
-                            <!--<br>-->
-                            <!--<br>-->
-                            <!--<br>-->
-                            <!--<div class="row">-->
-                                <!--<div class="col-md-6">-->
-                                    <!--<table id="TrainedHW">-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" style="float: right;">
+                                <div><strong>Facility Type: </strong><span id="bcg1"></span></div>
+                                <div><strong>District: </strong><span id="bcg2"></span></div>
+                                <div><strong>Region: </strong><span id="bcg3"></span></div>
+                                <div><strong>Zone: </strong><span id="bcg4"></span></div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table id="TrainedHW">
 
-                                    <!--</table>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                        <!--<br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-md-6">-->
-                                <!--<table id="HealthyFacilityTable">-->
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table id="HealthyFacilityTable">
 
-                                <!--</table>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                        <!--<br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-md-6">-->
-                                <!--<table id="CBDTable">-->
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table id="CBDTable">
 
-                                <!--</table>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                        <!--<br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-md-6">-->
-                                <!--<table id="OutReachTable">-->
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table id="OutReachTable">
 
-                                <!--</table>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<br>-->
-                        <!--<br>-->
-                        <!--<div class="row">-->
-                            <!--<div class="col-md-6">-->
-                                <!--<table id="LessTwentyAgeTable">-->
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <table id="LessTwentyAgeTable">
 
-                                <!--</table>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 

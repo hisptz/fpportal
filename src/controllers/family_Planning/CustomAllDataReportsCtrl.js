@@ -8,6 +8,7 @@ angular.module("hmisPortal")
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
+        $scope.showfacilityReport = false;
         $scope.showserviceIntegrationOptions = false;
         $scope.showstockOptions = false;
         $scope.currentOptionLabel = '';
@@ -112,8 +113,6 @@ angular.module("hmisPortal")
         ];
         $scope.availablePeriods = [];
         $scope.selectedPeriods = [];
-
-
         $scope.data.outOrganisationUnits = [];
         $scope.updateTree = function(){
             $scope.data.orgUnitTree1 = [];
@@ -153,7 +152,7 @@ angular.module("hmisPortal")
         $scope.selectedReportType = function (reportType) {
             angular.forEach($scope.reportTypes, function (report) {
                 if(report.id === '1' && reportType === '1'){
-
+                    $scope.showfacilityReport = true;
                     // $scope.reportOptions = report.options;
                 } else if (report.id === '2' && reportType === '2'){
                     console.log(report.id)
@@ -162,30 +161,35 @@ angular.module("hmisPortal")
                     $scope.showclientsOptions = false;
                     $scope.showserviceIntegrationOptions = false;
                     $scope.showstockOptions = false;
+                    $scope.showfacilityReport = false;
                 } else if (report.id === '3' && reportType === '3'){
                     $scope.showstaffedOptions = false;
                     $scope.showfacilityOptions = false;
                     $scope.showclientsOptions = true;
                     $scope.showserviceIntegrationOptions = false;
                     $scope.showstockOptions = false;
+                    $scope.showfacilityReport = false;
                 } else if (report.id === '4' && reportType === '4'){
                     $scope.showstaffedOptions = false;
                     $scope.showfacilityOptions = true;
                     $scope.showclientsOptions = false;
                     $scope.showserviceIntegrationOptions = false;
                     $scope.showstockOptions = false;
+                    $scope.showfacilityReport = false;
                 } else if (report.id === '5' && reportType === '5'){
                     $scope.showstaffedOptions = false;
                     $scope.showfacilityOptions = false;
                     $scope.showclientsOptions = false;
                     $scope.showserviceIntegrationOptions = false;
                     $scope.showstockOptions = true;
+                    $scope.showfacilityReport = false;
                 } else if (report.id === '6' && reportType === '6'){
                     $scope.showstaffedOptions = false;
                     $scope.showfacilityOptions = false;
                     $scope.showclientsOptions = false;
                     $scope.showserviceIntegrationOptions = true;
                     $scope.showstockOptions = false;
+                    $scope.showfacilityReport = false;
                 }
             });
         };
@@ -279,7 +283,7 @@ angular.module("hmisPortal")
         }
         $scope.previewReport = function() {
             $scope.tableContents = [];
-            // if ($scope.reportHeader === 'Aggregate data'){ // this makes decision on table header visibility type
+            if ($scope.reportHeader === 'Aggregate data'){ // this makes decision on table header visibility type
                 $scope.tableHeader = $scope.aggregateDataViewHeader.concat($scope.tableHeaderOptions)
                 var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
 
@@ -291,25 +295,13 @@ angular.module("hmisPortal")
                   });
               })
               })
-            // }
-            // else {
-            //     $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
-            // }
+            }
+            else {
+                // $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
+                $scope.loadFacilityDataReport()
+            }
             $scope.showReportSection = !$scope.showReportSection;
-            console.log($scope.data['outRegistrationOrganisationUnits']);
-
-
-            client_served_by_healthy_facility();
-
-            total_number_of_healthworkers();
-
-            client_served_by_CBD();
-
-            client_served_by_outreach();
-
-            client_served_age_less_twenty();
-
-
+            // console.log($scope.data['outRegistrationOrganisationUnits']);
 
 
         }
@@ -466,12 +458,24 @@ angular.module("hmisPortal")
             // END OF PERIOD COMPONENT FUNCTIONS
 
 
-        // FACILITY DATA CODE REPORTS
-        // $( "#bcg1" ).html( orgUnit.name );
-        // $( "#bcg2" ).html( orgUnitHierarchy[1].name );
-        // $( "#bcg3" ).html( orgUnitHierarchy[2].name );
-        // $( "#bcg4" ).html( "None" );
-        //
+        $scope.loadFacilityDataReport = function(){
+             // facility data collected functions
+
+            // FACILITY DATA CODE REPORTS
+            $( "#bcg1" ).html( $scope.data['outRegistrationOrganisationUnits'][0].name);
+            // $( "#bcg2" ).html( orgUnitHierarchy[1].name );
+            // $( "#bcg3" ).html( orgUnitHierarchy[2].name );
+            // $( "#bcg4" ).html( "None" );
+
+
+            client_served_by_healthy_facility();
+            total_number_of_healthworkers();
+            client_served_by_CBD();
+            client_served_by_outreach();
+            client_served_age_less_twenty();
+        }
+
+
         function sanitizedPeriods(periodArray) {
             var sanitizedPeriods = periodArray.map(function (period) {
                 return period.id;
@@ -495,8 +499,8 @@ angular.module("hmisPortal")
         }
 
         function client_served_by_CBD() {
-            console.log("Data Available");
-            $.get( "../api/analytics.json?dimension=dx:CAZJesl4va5;NHnXpXYblEM;OxxbMcRjVbt&dimension=pe:"+ sanitizedPeriods(periods) +"&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get( "../api/analytics.json?dimension=dx:CAZJesl4va5;NHnXpXYblEM;OxxbMcRjVbt&dimension=pe:"+ sanitizedPeriods($scope.selectedPeriods) +"&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
                 var pe = json.metaData.dimensions.pe;
                 var dx = json.metaData.dimensions.dx;
                 var datas = json.rows;
@@ -568,7 +572,7 @@ angular.module("hmisPortal")
 
         function client_served_by_healthy_facility() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( "../api/analytics.json?dimension=dx:Eh1uMcVwxEY;GEjpz3mQo6E;JSmtnnW6WrR;LmbDl4YdYAn;UjGebiXNg0t;bjkeLqFDDjo;c3f9YMx29Bx;isK24MvwQmy;lMFKZN3UaYp;xhcaH3H3pdK&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&dimension=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+            $.get( "../api/analytics.json?dimension=dx:Eh1uMcVwxEY;GEjpz3mQo6E;JSmtnnW6WrR;LmbDl4YdYAn;UjGebiXNg0t;bjkeLqFDDjo;c3f9YMx29Bx;isK24MvwQmy;lMFKZN3UaYp;xhcaH3H3pdK&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
                 var pe = json.metaData.dimensions.pe;
                 var dx = json.metaData.dimensions.dx;
                 var datas = json.rows;
@@ -643,7 +647,8 @@ angular.module("hmisPortal")
         }
 
         function client_served_by_outreach() {
-            $.get( "../api/analytics.json?dimension=dx:O10liqQFwcI;PLfFV1fKVfQ;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" + sanitizedPeriods(periods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get( "../api/analytics.json?dimension=dx:O10liqQFwcI;PLfFV1fKVfQ;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
                 var pe = json.metaData.dimensions.pe;
                 var dx = json.metaData.dimensions.dx;
                 var datas = json.rows;
@@ -714,7 +719,8 @@ angular.module("hmisPortal")
         }
 
         function client_served_age_less_twenty() {
-            $.get( "../api/analytics.json?dimension=dx:GvbkEo6sfSd;LpkdcaLc4I9;W74wyMy1mp0;aSJKs4oPZAf;p14JdJaG2aC;p8cgxI3yPx8&dimension=pe:" + sanitizedPeriods(periods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get( "../api/analytics.json?dimension=dx:GvbkEo6sfSd;LpkdcaLc4I9;W74wyMy1mp0;aSJKs4oPZAf;p14JdJaG2aC;p8cgxI3yPx8&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
                 var pe = json.metaData.dimensions.pe;
                 var dx = json.metaData.dimensions.dx;
                 var datas = json.rows;
@@ -789,7 +795,8 @@ angular.module("hmisPortal")
         }
 
         function healthworkerstesting() {
-            $.get( "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods(periods) + "&filter=ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get( "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
                 var pe = json.metaData.dimensions.pe;
                 var dx = json.metaData.dimensions.dx;
                 var datas = json.rows;
@@ -868,7 +875,8 @@ angular.module("hmisPortal")
         }
 
         function total_number_of_healthworkers() {
-            $.get( "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods(periods) + "&filter=ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get( "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
                 var pe = json.metaData.dimensions.pe;
                 var dx = json.metaData.dimensions.dx;
                 var datas = json.rows;
