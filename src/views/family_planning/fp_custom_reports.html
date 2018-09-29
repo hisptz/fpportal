@@ -573,9 +573,11 @@
 
                             <tr ng-repeat="row in tableContents track by $index">
                                 <td>{{$index + 1}}</td>
-                                <td>{{row.zone}}</td>
-                                <td>{{row['region']}}</td>
-                                <td>{{row.district}}</td>
+                                <td ng-if="row.zone">{{row.zone}}</td>
+                                <td ng-if="row.region">{{row.region}}</td>
+                                <td ng-if="row.district">{{row.district}}</td>
+                                <td ng-if="row.facility">{{row.facility}}</td>
+                                <td ng-if="row.facilityType">{{row.facilityType}}</td>
                                 <td>{{row.period}}</td>
                                 <td>{{row.fpFacilities}}</td>
                                 <td ng-repeat="headerValue in row.indicatorItems">

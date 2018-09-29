@@ -283,18 +283,55 @@ angular.module("hmisPortal")
         }
         $scope.previewReport = function() {
             $scope.tableContents = [];
-            if ($scope.reportHeader === 'Aggregate data'){ // this makes decision on table header visibility type
-                $scope.tableHeader = $scope.aggregateDataViewHeader.concat($scope.tableHeaderOptions)
+            $scope.tableHeader = [];
+            if (!$scope.showfacilityReport){ // this makes decision on table header visibility type
                 var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
+                var orgUnitCollected = $scope.data['outRegistrationOrganisationUnits'][0];
 
-              angular.forEach(orgUnit, function (orgUnitCollection) {
-                  angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
-                  $scope.tableContents.push({
-                      zone: '', region: orgUnitCollection['name'], district: childOrgunit['name'], period: $scope.data.selectedMonth,
-                      fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
-                  });
-              })
-              })
+                if(orgUnitCollected.name.indexOf('Zone' ) > -1){
+                    var localHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
+                        {name: 'Region', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                        {name: 'FP facilities reporting the FP template', id: ''}];
+                    $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                    angular.forEach(orgUnit, function (orgUnitCollection) {
+                        angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
+                            $scope.tableContents.push({
+                                zone: orgUnitCollection['name'], region: childOrgunit['name'], period: $scope.data.selectedMonth,
+                                fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
+                            });
+                        });
+                    });
+                }else if(orgUnitCollected.name.indexOf('Region' ) > -1){
+                    var localHeader = [{name: 'S/N', id:''},
+                        {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                        {name: 'FP facilities reporting the FP template', id: ''}];
+                    $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                    angular.forEach(orgUnit, function (orgUnitCollection) {
+                        angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
+                            $scope.tableContents.push({
+                                region: orgUnitCollection['name'], district: childOrgunit['name'], period: $scope.data.selectedMonth,
+                                fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
+                            });
+                        });
+                    });
+                }else if(orgUnitCollected.name.indexOf('Council' ) > -1){
+                    var localHeader = [{name: 'S/N', id:''},
+                        {name: 'District', id: ''}, {name: 'Facility', id: ''}, {name: 'Facility type', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                        {name: 'FP facilities reporting the FP template', id: ''}];
+                    $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                    angular.forEach(orgUnit, function (orgUnitCollection) {
+                        angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
+                            $scope.tableContents.push({
+                                district: orgUnitCollection['name'], facility: childOrgunit['name'], facilityType:indexOf('Dispensary') > -1 ? 'Dispensary' : 'Health Center',   period: $scope.data.selectedMonth,
+                                fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
+                            });
+                        });
+                    });
+                }
+
             }
             else {
                 // $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
