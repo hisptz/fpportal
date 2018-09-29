@@ -29,7 +29,7 @@ angular.module("hmisPortal")
         $scope.customDate = false;
         $scope.selectedPeriodType = '';
         $scope.periodType = 'monthly';
-        $scope.reportHeader = 'Aggregate data view';
+        $scope.reportHeader = 'Report on ';
         $scope.aggregateDataViewHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
             {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
             {name: 'FP facilities reporting the FP template', id: ''}];
@@ -226,6 +226,7 @@ angular.module("hmisPortal")
                         // hence add its contents to other list groups
                         item.active = 'actived';
                         $scope.tableHeaderOptions = $scope.tableHeaderOptions.concat(staffed.aggregateIndicator)
+                        $scope.reportHeader += ',' +staffed.name;
                     }
 
                 }
@@ -239,7 +240,8 @@ angular.module("hmisPortal")
                         $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
                     } else {
                         item.active = 'actived';
-                        $scope.tableHeaderOptions.push(data.indicator)
+                        $scope.tableHeaderOptions.push(data.indicator);
+                        $scope.reportHeader += ',' +data.name;
                     }
                 }
             });
@@ -253,6 +255,7 @@ angular.module("hmisPortal")
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
+                        $scope.reportHeader += ',' +data.name;
                     }
                 }
             });
@@ -266,6 +269,7 @@ angular.module("hmisPortal")
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
+                        $scope.reportHeader += ',' +data.name;
                     }
                 }
             });
@@ -279,6 +283,7 @@ angular.module("hmisPortal")
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
+                        $scope.reportHeader += ',' +data.name;
                     }
                 }
             });
@@ -292,6 +297,7 @@ angular.module("hmisPortal")
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
+                        $scope.reportHeader += ',' +data.name;
                     }
                 }
             });
@@ -305,6 +311,7 @@ angular.module("hmisPortal")
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
+                        $scope.reportHeader += ',' +data.name;
                     }
                 }
             });
@@ -344,6 +351,7 @@ angular.module("hmisPortal")
             $scope.tableHeader = [];
             if (!$scope.showfacilityReport){ // this makes decision on table header visibility type
                 var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
+                $scope.selectedOrgunit = $scope.data['outRegistrationOrganisationUnits'][0];
                 var orgUnitCollected = $scope.data['outRegistrationOrganisationUnits'][0];
 
                 if(orgUnitCollected.name.indexOf('Zone' ) > -1){

@@ -221,6 +221,10 @@
         height: 250px;
     }
 
+    .criteria-buttons{
+        margin-left: 8px;
+    }
+
 
 
 
@@ -254,9 +258,14 @@
 
             <div ng-if="showReportSection" class="col">
                 <form>
-                    <p>
-                        <button  class="btn btn-info" ng-click="previewReport()">Data criteria</button><br>
-                    </p>
+                    <div class="row" style="display: flex;">
+                        <button  class="btn btn-info " ng-click="previewReport()">Data criteria</button><br>
+                        <button  class="btn btn-info criteria-buttons" ng-click="previewReport()">Download csv</button><br>
+                        <button  class="btn btn-info criteria-buttons" ng-click="previewReport()">Print report</button><br>
+                    </div>
+
+
+
                 </form>
             </div>
 
@@ -354,7 +363,6 @@
 
                     <!--second card row on page items-->
                     <div class="row">
-
                         <div class="col" style="width: 50%;">
                             <!--report type selection-->
                             <div class="col" style="width: 50%;" >
@@ -386,7 +394,6 @@
                             </div>
                             <!--aggregation type-->
                         </div>
-
                         <div ng-if="!showfacilityReport">
                         <div class="col" style="width: 50%;" ng-if="showstaffedOptions">
                             <div class="card">
@@ -554,7 +561,7 @@
                 <!--Report displaying tables-->
                 <div ng-if="showReportSection && !showfacilityReport " class="card">
                     <div style="text-align: center">
-                        <h5>{{reportHeader}} view</h5>
+                        <h5>{{reportHeader}} from {{selectedOrgunit.name}}</h5>
                     </div>
                     <div class="row spacing">
                         <table class="table table-hover table-condensed table-bordered">
