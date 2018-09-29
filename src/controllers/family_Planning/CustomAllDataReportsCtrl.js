@@ -330,6 +330,20 @@ angular.module("hmisPortal")
                             });
                         });
                     });
+                }else if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
+                    var localHeader = [{name: 'S/N', id:''},
+                        {name: 'Country', id: ''}, {name: 'Zone', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                        {name: 'FP facilities reporting the FP template', id: ''}];
+                    $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                    angular.forEach(orgUnit, function (orgUnitCollection) {
+                        angular.forEach(orgUnitCollection['children'], function (childOrgunit) {
+                            $scope.tableContents.push({
+                                country: orgUnitCollection['name'], zone: childOrgunit['name'], period: $scope.data.selectedMonth,
+                                fpFacilities: Math.floor((Math.random() * 100) + 95) , indicatorItems: $scope.getIndicatorItemsValues()
+                            });
+                        });
+                    });
                 }
 
             }

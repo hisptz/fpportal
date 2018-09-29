@@ -573,6 +573,7 @@
 
                             <tr ng-repeat="row in tableContents track by $index">
                                 <td>{{$index + 1}}</td>
+                                <td ng-if="row.country">{{row.country}}</td>
                                 <td ng-if="row.zone">{{row.zone}}</td>
                                 <td ng-if="row.region">{{row.region}}</td>
                                 <td ng-if="row.district">{{row.district}}</td>
