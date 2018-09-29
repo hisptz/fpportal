@@ -264,7 +264,6 @@
 
                 <div ng-if="!showReportSection" class="card">
 
-
                     <div class="col" style="margin-top: 20px;width: 48%">
                         <!--orgunit selection-->
                         <div class="row">
@@ -273,7 +272,7 @@
                                     <label>Country:</label>
 
                                     <multi-select-tree
-                                            data-input-model="data.orgUnitTree4"
+                                            data-input-model="data.orgUnitTree"
                                             multi-select="true"
                                             data-output-model="data.outRegistrationOrganisationUnits"
                                             data-default-label="Select Organization Unit"
@@ -284,60 +283,7 @@
                         </div>
                         <!--end orgunit selection-->
 
-                        <!--&lt;!&ndash;period selection&ndash;&gt;-->
-                        <!--<div class="row" >-->
-                            <!--<form>-->
-                                <!--<label>Period:</label>-->
-                                <!--<div class="form-group">-->
-                                    <!--<div class="input-field col grey lighten-5" style="margin-top: 5px;width: 100%;">-->
-                                        <!--<div class="col input-field" style="width: 45%;margin-left: 5%">-->
-                                            <!--<select ng-model="selectedYear" ng-change="updatePeriod(selectedYear)" material-select watch >-->
-                                                <!--<option value="2018">2018</option>-->
-                                                <!--<option value="2017">2017</option>-->
-                                                <!--<option value="2016">2016</option>-->
-                                                <!--<option value="2015">2015</option>-->
-                                                <!--<option value="2014">2014</option>-->
-                                            <!--</select>-->
-                                        <!--</div>-->
-                                        <!--<style>-->
-
-                                            <!--.months ul.dropdown-content li:last-child{-->
-                                                <!--display:none-->
-                                            <!--}-->
-                                        <!--</style>-->
-                                        <!--<div class="col input-field months" style="width: 45%;margin-left: 5%">-->
-                                            <!--<select  ng-change="updateMonth(data.selectedMonth)" ng-model="data.selectedMonth" material-select watch>-->
-                                                <!--<option value="{{selectedYear}}01">January</option>-->
-                                                <!--<option value="{{selectedYear}}02">February</option>-->
-                                                <!--<option value="{{selectedYear}}03">March</option>-->
-                                                <!--<option value="{{selectedYear}}04">April</option>-->
-                                                <!--<option value="{{selectedYear}}05">May</option>-->
-                                                <!--<option value="{{selectedYear}}06">June</option>-->
-                                                <!--<option value="{{selectedYear}}07">July</option>-->
-                                                <!--<option value="{{selectedYear}}08">August</option>-->
-                                                <!--<option value="{{selectedYear}}09">September</option>-->
-                                                <!--<option value="{{selectedYear}}10">October</option>-->
-                                                <!--<option value="{{selectedYear}}11">November</option>-->
-                                                <!--<option value="{{selectedYear}}12">December</option>-->
-                                                <!--<option>{{selectedYear}}12</option>-->
-                                                <!--&lt;!&ndash;<option ng-repeat="month in monthList" value="{{selectedYear}}{{month.value}}">{{selectedYear}}{{month.value}}</option>-->
-                                                <!--<option></option>&ndash;&gt;-->
-                                            <!--</select>-->
-                                        <!--</div>-->
-
-
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</form>-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash;period selection&ndash;&gt;-->
-
-
-
-
-
-
-
+                        <!--period selection-->
                         <div class="period-filter-container">
                             <!--period type and year selection block-->
                             <div class="period-top-section">
@@ -403,22 +349,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        <!--period selection-->
                     </div>
 
                     <!--second card row on page items-->
@@ -657,6 +588,77 @@
                     </div>
                 </div>
                 <!--End of Report displaying tables-->
+
+                 <!--caniam report view-->
+                <!--<div class="card">-->
+                    <!--<div class="cainam-contain">-->
+                        <!--<div class="row">-->
+                            <!--<div class="alert alert-danger" role="alert" id="notification" style="display: none">-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-6" style="float: right;">-->
+                                <!--<div><strong>Facility Type: </strong><span id="bcg1"></span></div>-->
+                                <!--<div><strong>District: </strong><span id="bcg2"></span></div>-->
+                                <!--<div><strong>Region: </strong><span id="bcg3"></span></div>-->
+                                <!--<div><strong>Zone: </strong><span id="bcg4"></span></div>-->
+                            <!--</div>-->
+                            <!--<br>-->
+                            <!--<br>-->
+                            <!--<br>-->
+                            <!--<br>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-6">-->
+                                    <!--<table id="TrainedHW">-->
+
+                                    <!--</table>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<br>-->
+                        <!--<br>-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-6">-->
+                                <!--<table id="HealthyFacilityTable">-->
+
+                                <!--</table>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<br>-->
+                        <!--<br>-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-6">-->
+                                <!--<table id="CBDTable">-->
+
+                                <!--</table>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<br>-->
+                        <!--<br>-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-6">-->
+                                <!--<table id="OutReachTable">-->
+
+                                <!--</table>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<br>-->
+                        <!--<br>-->
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-6">-->
+                                <!--<table id="LessTwentyAgeTable">-->
+
+                                <!--</table>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+
+
+
+
             </div>
 
 
