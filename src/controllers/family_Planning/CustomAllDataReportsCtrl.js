@@ -330,9 +330,8 @@ angular.module("hmisPortal")
                 if($scope.aggregateDataWithChildrenOrgunit){
                     $scope.reporDataWithChildren();
                 } else {
-
+                    $scope.reporDataWithOutChildren();
                 }
-
 
             }
             else {
@@ -345,15 +344,12 @@ angular.module("hmisPortal")
 
         };
 
-        $scope.getLength = function (){
-            return $scope.tableHeaderOptions.length;
-        }
-
         $scope.reporDataWithChildren = function (){
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
             var orgUnitCollected = $scope.data['outRegistrationOrganisationUnits'][0];
             var dxAnalyticsString = '';
             var orgunitAnalyticsString = '';
+            var url = '';
 
             angular.forEach($scope.tableHeaderOptions, function (dx) {
                 dxAnalyticsString += ';'+ dx.id;
@@ -366,12 +362,27 @@ angular.module("hmisPortal")
                 orgunitAnalyticsString += ';'+ $scope.selectedOrgunit.id;
             }
 
-            var url = '../api/analytics?dimension=dx:' + dxAnalyticsString.substring(1) + '' +
-                '&dimension=ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
+            if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
+
+                // if($scope.selectedOrgunit.children){
+                //     angular.forEach($scope.selectedOrgunit.children, function (orgunit) {
+                //         orgunitAnalyticsString += ';OU_GROUP-'+ orgunit.id;
+                //     });
+                // }else{
+                //     orgunitAnalyticsString += ';OU_GROUP-'+ $scope.selectedOrgunit.id;
+                // }
+
+                url = '../api/analytics?dimension=dx:' + dxAnalyticsString.substring(1) + '' +
+                    '&dimension=ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
+
+            } else {
+                url = '../api/analytics?dimension=dx:' + dxAnalyticsString.substring(1) + '' +
+                    '&dimension=ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
+            }
 
             $http.get(url)
                 .then(function(response) {
-                    console.log(JSON.stringify($scope.tableHeaderOptions))
+                    console.log(JSON.stringify('use this'));
                     $scope.analyticsDataCollection = {};
                     angular.forEach(response.data.rows, function (rowData) {
                         var identiferKey = rowData[0]+'-'+rowData[1]+'-'+rowData[2];
@@ -441,13 +452,103 @@ angular.module("hmisPortal")
 
                 });
 
+        };
+
+        $scope.reporDataWithOutChildren = function (){
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
+            var orgUnitCollected = $scope.data['outRegistrationOrganisationUnits'][0];
+            var dxAnalyticsString = '';
+            var orgunitAnalyticsString = '';
+            var url = '';
+
+            angular.forEach($scope.tableHeaderOptions, function (dx) {
+                dxAnalyticsString += ';'+ dx.id;
+            });
+            orgunitAnalyticsString = $scope.selectedOrgunit.id;
+            if(orgUnitCollected.name.indexOf('Zone' ) > -1){
+
+                orgunitAnalyticsString += ';OU_GROUP-'+ $scope.selectedOrgunit.id;
+
+                url = '../api/analytics?dimension=dx:' + dxAnalyticsString.substring(1) + '' +
+                    '&dimension=ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
+
+            } else {
+                url = '../api/analytics?dimension=dx:' + dxAnalyticsString.substring(1) + '' +
+                    '&ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
+            }
 
 
+            $http.get(url)
+                .then(function(response) {
+                    console.log(JSON.stringify($scope.tableHeaderOptions))
+                    $scope.analyticsDataCollection = {};
+                    angular.forEach(response.data.rows, function (rowData) {
+                        var identiferKey = rowData[0]+'-'+$scope.selectedOrgunit.id+'-'+rowData[1];
+                        $scope.analyticsDataCollection[identiferKey] = rowData[2];
+                    });
+
+                    if(orgUnitCollected.name.indexOf('Zone' ) > -1){
+                        var localHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
+                            {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                            {name: 'FP facilities reporting the FP template', id: ''}];
+                        $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                        angular.forEach($scope.selectedPeriods, function (period) {
+                                $scope.tableContents.push({
+                                    zone: $scope.selectedOrgunit.name, period: period, orgunit: $scope.selectedOrgunit.id,
+                                    fpFacilities: Math.floor(Math.random() * 100) ,  fpFacilitiesReporting: 'Yes' ,
+                                    indicatorItems: $scope.tableHeaderOptions
+                                });
+                        });
+                    }else if(orgUnitCollected.name.indexOf('Region' ) > -1){
+                        var localHeader = [{name: 'S/N', id:''},
+                            {name: 'Region', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                            {name: 'FP facilities reporting the FP template', id: ''}];
+                        $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                        angular.forEach($scope.selectedPeriods, function (period) {
+                                $scope.tableContents.push({
+                                    region: $scope.selectedOrgunit.name, period: period, orgunit: $scope.selectedOrgunit.id,
+                                    fpFacilities: Math.floor(Math.random() * 100),   fpFacilitiesReporting: 'Yes' , indicatorItems: $scope.tableHeaderOptions
+                                });
+                        });
+                    }else if(orgUnitCollected.name.indexOf('Council' ) > -1){
+                        var localHeader = [{name: 'S/N', id:''},
+                            {name: 'District', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                            {name: 'FP facilities reporting the FP template', id: ''}];
+                        $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                        angular.forEach($scope.selectedPeriods, function (period) {
+                                $scope.tableContents.push({
+                                    district: $scope.selectedOrgunit.name, orgunit: $scope.selectedOrgunit.id,
+                                    period: period,
+                                    fpFacilities: Math.floor(Math.random() * 100) , fpFacilitiesReporting: 'Yes' , indicatorItems: $scope.tableHeaderOptions
+                                });
+                        });
+                    }else if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
+                        var localHeader = [{name: 'S/N', id:''},
+                            {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                            {name: 'FP facilities reporting the FP template', id: ''}];
+                        $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
+
+                        angular.forEach($scope.selectedPeriods, function (period) {
+                                $scope.tableContents.push({
+                                    period: period, orgunit: $scope.selectedOrgunit.id,
+                                    fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,indicatorItems: $scope.tableHeaderOptions
+                                });
+                        });
+                    }
+                });
         }
 
-        $scope.toggleCustomdate = function (event) {
-            $scope.customDate = !$scope.customDate;
-        }
+
+
+        $scope.toggleIncludesubOrgunitLevel = function (event) {
+            $scope.aggregateDataWithChildrenOrgunit = !$scope.aggregateDataWithChildrenOrgunit;
+            if($scope.aggregateDataWithChildrenOrgunit){
+                console.log('Sub-orgunit level included');
+            }
+        };
         $scope.togglePeriodType = function (periodType) {
             $scope.periodType = periodType;
         }
@@ -603,44 +704,32 @@ angular.module("hmisPortal")
 
         $scope.loadFacilityDataReport = function(){
              // facility data collected functions
-
             // FACILITY DATA CODE REPORTS
             $( "#bcg1" ).html( $scope.data['outRegistrationOrganisationUnits'][0].name);
-            // $( "#bcg2" ).html( orgUnitHierarchy[1].name );
-            // $( "#bcg3" ).html( orgUnitHierarchy[2].name );
-            // $( "#bcg4" ).html( "None" );
-
-
             client_served_by_healthy_facility();
             total_number_of_healthworkers();
             client_served_by_CBD();
             client_served_by_outreach();
             client_served_age_less_twenty();
         }
-
-
         function sanitizedPeriods(periodArray) {
             var sanitizedPeriods = periodArray.map(function (period) {
                 return period.id;
             }).join(";");
             return sanitizedPeriods;
         }
-
         function get_last_string(compound_word) {
             var sanitized_str = compound_word.split(" ");
             return sanitized_str[sanitized_str.length - 1];
         }
-
         function get_first_string(compound_word) {
             var sanitized_str = compound_word.split(" ");
             return sanitized_str[0];
         }
-
         function get_first_three_letters(word) {
             var processed_word = word.substring(0, 3);
             return processed_word.charAt(0).toUpperCase() + processed_word.slice(1).toLowerCase();
         }
-
         function client_served_by_CBD() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( "../api/analytics.json?dimension=dx:CAZJesl4va5;NHnXpXYblEM;OxxbMcRjVbt&dimension=pe:"+ sanitizedPeriods($scope.selectedPeriods) +"&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
@@ -712,7 +801,6 @@ angular.module("hmisPortal")
                 }
             });
         }
-
         function client_served_by_healthy_facility() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( "../api/analytics.json?dimension=dx:Eh1uMcVwxEY;GEjpz3mQo6E;JSmtnnW6WrR;LmbDl4YdYAn;UjGebiXNg0t;bjkeLqFDDjo;c3f9YMx29Bx;isK24MvwQmy;lMFKZN3UaYp;xhcaH3H3pdK&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
@@ -788,7 +876,6 @@ angular.module("hmisPortal")
                 }
             });
         }
-
         function client_served_by_outreach() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( "../api/analytics.json?dimension=dx:O10liqQFwcI;PLfFV1fKVfQ;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
@@ -860,7 +947,6 @@ angular.module("hmisPortal")
                 }
             });
         }
-
         function client_served_age_less_twenty() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( "../api/analytics.json?dimension=dx:GvbkEo6sfSd;LpkdcaLc4I9;W74wyMy1mp0;aSJKs4oPZAf;p14JdJaG2aC;p8cgxI3yPx8&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
@@ -936,7 +1022,6 @@ angular.module("hmisPortal")
                 }
             });
         }
-
         function healthworkerstesting() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
@@ -1016,7 +1101,6 @@ angular.module("hmisPortal")
                 }
             });
         }
-
         function total_number_of_healthworkers() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {

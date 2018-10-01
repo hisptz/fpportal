@@ -225,7 +225,15 @@
         margin-left: 8px;
     }
 
-
+    #loadingMessage {
+        width: 50%;
+        height: 50%;
+        z-index: 10;
+        background: #ccc;
+        top: 0px;
+        left: 0px;
+        position: absolute;
+    }
 
 
 </style>
@@ -234,6 +242,20 @@
 <!--<div class="row">-->
 <!--<div ng-include="'views/family_planning/fp_filters.html'"></div>-->
 <!--</div>-->
+
+<script>
+    $('#foo').ready(function () {
+        $('#loadingMessage').css('display', 'visible');
+    });
+    $('#foo').load(function () {
+        $('#loadingMessage').css('display', 'none');
+    });
+</script>
+
+
+<iframe src="nationalPDF.html" id="foo"></iframe>
+<div id="loadingMessage">Loadinggggggg...</div>
+
 
 <div class="row" >
     <!--menus-->
@@ -288,6 +310,16 @@
                                             data-callback="selectOnly1Or2(item, selectedItems)">
                                     </multi-select-tree>
                                 </div>
+
+                                <div class="row" style="margin-top: 15px">
+                                    <div class="col">
+                                        <label class="container">Include sub-orgunit level data
+                                            <input type="checkbox" ng-model="aggregateDataWithChildrenOrgunit" ng-change="toggleIncludesubOrgunitLevel(aggregateDataWithChildrenOrgunit)" >
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
                             </form>
                         </div>
                         <!--end orgunit selection-->
@@ -469,15 +501,6 @@
                                         </form>
                                     </div>
 
-                                </div>
-
-                                <div class="row">
-                                    <div class="col">
-                                        <label class="container">Show clients < 20 years of age
-                                            <input type="checkbox" >
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
                                 </div>
 
                             </div>
