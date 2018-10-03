@@ -477,15 +477,24 @@ angular.module("hmisPortal")
                     '&ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
             }
 
-
             $http.get(url)
                 .then(function(response) {
                     console.log(JSON.stringify($scope.tableHeaderOptions))
                     $scope.analyticsDataCollection = {};
-                    angular.forEach(response.data.rows, function (rowData) {
-                        var identiferKey = rowData[0]+'-'+$scope.selectedOrgunit.id+'-'+rowData[1];
-                        $scope.analyticsDataCollection[identiferKey] = rowData[2];
-                    });
+
+                    if(orgUnitCollected.name.indexOf('Zone' ) > -1){
+                        angular.forEach(response.data.rows, function (rowData) {
+                            var identiferKey = rowData[0]+'-'+$scope.selectedOrgunit.id+'-'+rowData[2];
+                            $scope.analyticsDataCollection[identiferKey] =
+                                (($scope.analyticsDataCollection[identiferKey])? $scope.analyticsDataCollection[identiferKey] : 0) + parseFloat(rowData[3]);
+                        });
+                        console.log("Checking : "+ JSON.stringify($scope.analyticsDataCollection))
+                    } else {
+                        angular.forEach(response.data.rows, function (rowData) {
+                            var identiferKey = rowData[0]+'-'+$scope.selectedOrgunit.id+'-'+rowData[1];
+                            $scope.analyticsDataCollection[identiferKey] = rowData[2];
+                        });
+                    }
 
                     if(orgUnitCollected.name.indexOf('Zone' ) > -1){
                         var localHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
@@ -1158,8 +1167,6 @@ angular.module("hmisPortal")
 
             });
         }
-
-
         // END OF FACILITY DATA CODE REPORTS
 
 
