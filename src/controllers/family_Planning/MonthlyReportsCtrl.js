@@ -116,6 +116,52 @@ angular.module("hmisPortal")
             console.log($scope.data['outRegistrationOrganisationUnits'], $scope.data.selectedMonth);
         }
 
+        $scope.printReport = function (){
+
+            // var w =window.open();
+            // var htmlPrinted =  document.getElementById('reportFrame');
+            // var htmlToPrint = '' +
+            //     '<style type="text/css">' +
+            //     'table th, table td {' +
+            //     'border:1px solid #000;' +
+            //     'padding:1em;' +
+            //     '}' + 'table {' +
+            //     'border-collapse: collapse;' +
+            //     '}' +
+            //     '</style>';
+            //
+            // htmlToPrint += htmlPrinted.outerHTML;
+            // w.document.write(htmlToPrint);
+            // // w.document.write(htmlPrinted);
+            // w.print();
+
+            // window.frames["monthlyReportFrame"].focus();
+            // window.frames["monthlyReportFrame"].print();
+            // document.getElementById("reportFrame").contentWindow.print()​​​​​​;
+
+            window.print();
+
+
+
+            // try{
+            //     var oIframe = document.getElementById('ifrmPrint');
+            //     var oContent = document.getElementById('divToPrint').innerHTML;
+            //     var oDoc = (oIframe.contentWindow || oIframe.contentDocument);
+            //     if (oDoc.document) oDoc = oDoc.document;
+            //     oDoc.write("<html><head><title>title</title>");
+            //     oDoc.write("</head><body onload='this.focus(); this.print();'>");
+            //     oDoc.write(oContent + "</body></html>");
+            //
+            //     oDoc.close();
+            //
+            // }
+            // catch(e){
+            //     self.print();
+            // }
+
+
+
+        }
     });
 
 
