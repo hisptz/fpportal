@@ -563,7 +563,7 @@
                 </div>
 
                 <!--Report displaying tables-->
-                <div ng-if="showReportSection && !showfacilityReport" class="card">
+                <div ng-if="showReportSection && !showfacilityReport && !showLoaderImage" class="card">
                     <div style="text-align: center">
                         <h5>{{reportHeader}} from {{selectedOrgunit.name}}</h5>
                     </div>
@@ -596,7 +596,7 @@
                 <!--End of Report displaying tables-->
 
                  <!--caniam report view-->
-                <div ng-if="showReportSection && showfacilityReport"  class="card">
+                <div ng-if="showReportSection && showfacilityReport && !showLoaderImage"  class="card">
                     <div class="cainam-contain">
                         <div class="row">
                             <div class="alert alert-danger" role="alert" id="notification" style="display: none">
@@ -656,45 +656,45 @@
                     </div>
                 </div>
 
-                <!--<div ng-if="showLoading" id="loadingMessage" class="row">-->
-                    <!--&lt;!&ndash;LOADER ANIMATIONS&ndash;&gt;-->
-                    <!--<div style="width: 100%;text-align: center">-->
-                        <!--<div id="loader" style="text-align:center">-->
-                            <!--<svg width='170px' height='170px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"-->
-                                 <!--preserveAspectRatio="xMidYMid" class="uil-balls">-->
-                                <!--<rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>-->
-                                <!--<g transform="rotate(0 50 50)">-->
-                                    <!--<circle r="5" cx="30" cy="50">-->
-                                        <!--<animateTransform attributeName="transform" type="translate" begin="0s" repeatCount="indefinite"-->
-                                                          <!--dur="0.5s" values="0 0;29.999999999999996 -17.320508075688775"-->
-                                                          <!--keyTimes="0;1"/>-->
-                                        <!--<animate attributeName="fill" dur="0.5s" begin="0s" repeatCount="indefinite" keyTimes="0;1"-->
-                                                 <!--values="#c5523f;#f2b736"/>-->
-                                    <!--</circle>-->
-                                <!--</g>-->
-                                <!--<g transform="rotate(120 50 50)">-->
-                                    <!--<circle r="5" cx="30" cy="50">-->
-                                        <!--<animateTransform attributeName="transform" type="translate" begin="0s" repeatCount="indefinite"-->
-                                                          <!--dur="0.5s" values="0 0;29.999999999999996 -17.320508075688775"-->
-                                                          <!--keyTimes="0;1"/>-->
-                                        <!--<animate attributeName="fill" dur="0.5s" begin="0s" repeatCount="indefinite" keyTimes="0;1"-->
-                                                 <!--values="#f2b736;#499255"/>-->
-                                    <!--</circle>-->
-                                <!--</g>-->
-                                <!--<g transform="rotate(240 50 50)">-->
-                                    <!--<circle r="5" cx="30" cy="50">-->
-                                        <!--<animateTransform attributeName="transform" type="translate" begin="0s" repeatCount="indefinite"-->
-                                                          <!--dur="0.5s" values="0 0;29.999999999999996 -17.320508075688775"-->
-                                                          <!--keyTimes="0;1"/>-->
-                                        <!--<animate attributeName="fill" dur="0.5s" begin="0s" repeatCount="indefinite" keyTimes="0;1"-->
-                                                 <!--values="#499255;#c5523f"/>-->
-                                    <!--</circle>-->
-                                <!--</g>-->
-                            <!--</svg>-->
-                        <!--</div>-->
-                        <!--<div class="loader-info-note"> Loading report... </div>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div ng-if="showLoaderImage" id="loadingMessage" class="row">
+                    <!--LOADER ANIMATIONS-->
+                    <div style="width: 100%;text-align: center">
+                        <div id="loader" style="text-align:center">
+                            <svg width='170px' height='170px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+                                 preserveAspectRatio="xMidYMid" class="uil-balls">
+                                <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+                                <g transform="rotate(0 50 50)">
+                                    <circle r="5" cx="30" cy="50">
+                                        <animateTransform attributeName="transform" type="translate" begin="0s" repeatCount="indefinite"
+                                                          dur="0.5s" values="0 0;29.999999999999996 -17.320508075688775"
+                                                          keyTimes="0;1"/>
+                                        <animate attributeName="fill" dur="0.5s" begin="0s" repeatCount="indefinite" keyTimes="0;1"
+                                                 values="#c5523f;#f2b736"/>
+                                    </circle>
+                                </g>
+                                <g transform="rotate(120 50 50)">
+                                    <circle r="5" cx="30" cy="50">
+                                        <animateTransform attributeName="transform" type="translate" begin="0s" repeatCount="indefinite"
+                                                          dur="0.5s" values="0 0;29.999999999999996 -17.320508075688775"
+                                                          keyTimes="0;1"/>
+                                        <animate attributeName="fill" dur="0.5s" begin="0s" repeatCount="indefinite" keyTimes="0;1"
+                                                 values="#f2b736;#499255"/>
+                                    </circle>
+                                </g>
+                                <g transform="rotate(240 50 50)">
+                                    <circle r="5" cx="30" cy="50">
+                                        <animateTransform attributeName="transform" type="translate" begin="0s" repeatCount="indefinite"
+                                                          dur="0.5s" values="0 0;29.999999999999996 -17.320508075688775"
+                                                          keyTimes="0;1"/>
+                                        <animate attributeName="fill" dur="0.5s" begin="0s" repeatCount="indefinite" keyTimes="0;1"
+                                                 values="#499255;#c5523f"/>
+                                    </circle>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="loader-info-note"> Loading report... </div>
+                    </div>
+                </div>
 
 
 
