@@ -5,10 +5,12 @@ angular.module("hmisPortal")
     })
     .controller("customReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
         //displaying loading during page change
+        $scope.showLoader = 'none';
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
         $scope.showfacilityReport = true;
+        $scope.showLoading = false;
         $scope.aggregateDataWithChildrenOrgunit = true;
         $scope.showserviceIntegrationOptions = false;
         $scope.showstockOptions = false;
@@ -322,6 +324,8 @@ angular.module("hmisPortal")
             return collection;
         }
         $scope.previewReport = function() {
+            $scope.showLoader = 'visible';
+            $scope.showLoading = true;
             $scope.tableContents = [];
             $scope.tableHeader = [];
             $scope.selectedOrgunit = $scope.data['outRegistrationOrganisationUnits'][0];
@@ -341,10 +345,11 @@ angular.module("hmisPortal")
             $scope.showReportSection = !$scope.showReportSection;
             // console.log($scope.data['outRegistrationOrganisationUnits']);
 
-
+            $scope.showLoading = false;
         };
 
         $scope.reporDataWithChildren = function (){
+            $scope.showLoader = 'visible';
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
             var orgUnitCollected = $scope.data['outRegistrationOrganisationUnits'][0];
             var dxAnalyticsString = '';
@@ -373,7 +378,7 @@ angular.module("hmisPortal")
                 // }
 
                 url = '../api/analytics?dimension=dx:' + dxAnalyticsString.substring(1) + '' +
-                    '&dimension=ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
+                    '&ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
 
             } else {
                 url = '../api/analytics?dimension=dx:' + dxAnalyticsString.substring(1) + '' +
@@ -385,8 +390,17 @@ angular.module("hmisPortal")
                     console.log(JSON.stringify('use this'));
                     $scope.analyticsDataCollection = {};
                     angular.forEach(response.data.rows, function (rowData) {
-                        var identiferKey = rowData[0]+'-'+rowData[1]+'-'+rowData[2];
-                        $scope.analyticsDataCollection[identiferKey] = rowData[3];
+                        var identiferKey = '';
+
+
+                        if($scope.selectedOrgunit.name.indexOf('Tanzania' ) > -1){
+                            identiferKey =  rowData[0]+'-'+$scope.selectedOrgunit.id+'-'+rowData[1];
+                            $scope.analyticsDataCollection[identiferKey] = rowData[2];
+                        } else {
+                            identiferKey = rowData[0]+'-'+rowData[1]+'-'+rowData[2];
+                            $scope.analyticsDataCollection[identiferKey] = rowData[3];
+                        }
+
                     });
 
                     if(orgUnitCollected.name.indexOf('Zone' ) > -1){
@@ -435,22 +449,23 @@ angular.module("hmisPortal")
                         });
                     }else if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
-                            {name: 'Country', id: ''}, {name: 'Zone', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
+                            {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
                             {name: 'FP facilities reporting the FP template', id: ''}];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
-                            angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
+                            // angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
                                 $scope.tableContents.push({
-                                    country: $scope.selectedOrgunit.name, region: childOrgunit['name'], period: period, orgunit: childOrgunit['id'],
+                                    period: period, orgunit: $scope.selectedOrgunit.id,
                                     fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,indicatorItems: $scope.tableHeaderOptions
                                 });
                             });
-                        });
+                        // });
                     }
 
 
                 });
+            $scope.showLoader = 'none';
 
         };
 
@@ -548,6 +563,7 @@ angular.module("hmisPortal")
                         });
                     }
                 });
+            $scope.showLoader = 'none';
         }
 
 
