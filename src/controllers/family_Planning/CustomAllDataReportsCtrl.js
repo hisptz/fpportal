@@ -6,7 +6,7 @@ angular.module("hmisPortal")
     .controller("customReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
         //displaying loading during page change
         $scope.showLoader = 'none';
-        $scope.serverLink = '../api/';
+        $scope.serverLink = '../dhis/api/';
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
@@ -200,7 +200,7 @@ angular.module("hmisPortal")
                     if (item.active === 'actived') {
                         // hence remove its contents to other list groups
                         item.active = '';
-                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, staffed.indicator, 'name');
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions,staffed.name, staffed.indicator, 'name');
                     } else {
                         // hence add its contents to other list groups
                         item.active = 'actived';
@@ -216,7 +216,7 @@ angular.module("hmisPortal")
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';
-                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions,data.name, data.indicator, 'name')
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator);
@@ -230,7 +230,7 @@ angular.module("hmisPortal")
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';
-                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions,data.name,data.indicator, 'name')
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
@@ -244,7 +244,7 @@ angular.module("hmisPortal")
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';
-                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions,data.name, data.indicator, 'name')
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
@@ -258,7 +258,7 @@ angular.module("hmisPortal")
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';
-                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions,data.name, data.indicator, 'name')
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
@@ -272,7 +272,7 @@ angular.module("hmisPortal")
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';
-                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions,data.name, data.indicator, 'name')
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
@@ -286,7 +286,7 @@ angular.module("hmisPortal")
                 if (item.name === data.name) {
                     if (item.active === 'actived') {
                         item.active = '';
-                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions, data.indicator, 'name')
+                        $scope.tableHeaderOptions = $scope.itemsOnTableHeaderRemoval($scope.tableHeaderOptions,data.name, data.indicator, 'name')
                     } else {
                         item.active = 'actived';
                         $scope.tableHeaderOptions.push(data.indicator)
@@ -317,7 +317,9 @@ angular.module("hmisPortal")
             });
             return collection;
         }
-        $scope.itemsOnTableHeaderRemoval = function(collection, removal, key){
+        $scope.itemsOnTableHeaderRemoval = function(collection,headerItemRemoval, removal, key){
+            $scope.reportHeader = $scope.reportHeader.replace(','+headerItemRemoval, '');
+
             angular.forEach(collection, function (collectedItem, index) {
                     if(collectedItem[key] === removal[key]){
                         collection.splice(index, 1);
@@ -398,37 +400,40 @@ angular.module("hmisPortal")
 
                     if(orgUnitCollected.name.indexOf('Zone' ) > -1){
                         var localHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
-                            {name: 'Region', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                            {name: 'FP facilities reporting the FP template', id: ''}];
+                            {name: 'Region', id: ''}, {name: 'Period', id: ''}];
+                            // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
                             angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
                                 $scope.tableContents.push({
                                     zone: $scope.selectedOrgunit.name, region: childOrgunit['name'], period: period, orgunit: childOrgunit['id'],
-                                    fpFacilities: Math.floor(Math.random() * 100) ,  fpFacilitiesReporting: 'Yes' ,
+                                    // fpFacilities: Math.floor(Math.random() * 100) ,  fpFacilitiesReporting: 'Yes' ,
                                     indicatorItems: $scope.tableHeaderOptions
                                 });
                             });
                         });
                     }else if(orgUnitCollected.name.indexOf('Region' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
-                            {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                            {name: 'FP facilities reporting the FP template', id: ''}];
+                            {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}
+                            // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
+                            ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
                             angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
                                 $scope.tableContents.push({
                                     region: $scope.selectedOrgunit.name, district: childOrgunit['name'], period: period, orgunit: childOrgunit['id'],
-                                    fpFacilities: Math.floor(Math.random() * 100),   fpFacilitiesReporting: 'Yes' , indicatorItems: $scope.tableHeaderOptions
+                                    // fpFacilities: Math.floor(Math.random() * 100),   fpFacilitiesReporting: 'Yes' ,
+                                    indicatorItems: $scope.tableHeaderOptions
                                 });
                             });
                         });
                     }else if(orgUnitCollected.name.indexOf('Council' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
-                            {name: 'District', id: ''}, {name: 'Facility', id: ''}, {name: 'Facility type', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                            {name: 'FP facilities reporting the FP template', id: ''}];
+                            {name: 'District', id: ''}, {name: 'Facility', id: ''}, {name: 'Facility type', id: ''},{name: 'Period', id: ''}
+                            // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
+                            ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
@@ -436,21 +441,24 @@ angular.module("hmisPortal")
                                 $scope.tableContents.push({
                                     district: $scope.selectedOrgunit.name, facility: childOrgunit['name'], orgunit: childOrgunit['id'],
                                     facilityType:childOrgunit['name'].indexOf('Dispensary') > -1 ? 'Dispensary' : 'Health Center', period: period,
-                                    fpFacilities: Math.floor(Math.random() * 100) , fpFacilitiesReporting: 'Yes' , indicatorItems: $scope.tableHeaderOptions
+                                    // fpFacilities: Math.floor(Math.random() * 100) , fpFacilitiesReporting: 'Yes' ,
+                                    indicatorItems: $scope.tableHeaderOptions
                                 });
                             });
                         });
                     }else if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
-                            {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                            {name: 'FP facilities reporting the FP template', id: ''}];
+                            {name: 'Period', id: ''},
+                            // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
+                            ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
                             // angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
                                 $scope.tableContents.push({
                                     period: period, orgunit: $scope.selectedOrgunit.id,
-                                    fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,indicatorItems: $scope.tableHeaderOptions
+                                    // fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,
+                                    indicatorItems: $scope.tableHeaderOptions
                                 });
                             });
                         // });
@@ -504,52 +512,59 @@ angular.module("hmisPortal")
 
                     if(orgUnitCollected.name.indexOf('Zone' ) > -1){
                         var localHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
-                            {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                            {name: 'FP facilities reporting the FP template', id: ''}];
+                            {name: 'Period', id: ''},
+                            // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
+                            ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
                                 $scope.tableContents.push({
                                     zone: $scope.selectedOrgunit.name, period: period, orgunit: $scope.selectedOrgunit.id,
-                                    fpFacilities: Math.floor(Math.random() * 100) ,  fpFacilitiesReporting: 'Yes' ,
+                                    // fpFacilities: Math.floor(Math.random() * 100) ,  fpFacilitiesReporting: 'Yes' ,
                                     indicatorItems: $scope.tableHeaderOptions
                                 });
                         });
                     }else if(orgUnitCollected.name.indexOf('Region' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
-                            {name: 'Region', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                            {name: 'FP facilities reporting the FP template', id: ''}];
+                            {name: 'Region', id: ''}, {name: 'Period', id: ''},
+                            // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
+                            ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
                                 $scope.tableContents.push({
                                     region: $scope.selectedOrgunit.name, period: period, orgunit: $scope.selectedOrgunit.id,
-                                    fpFacilities: Math.floor(Math.random() * 100),   fpFacilitiesReporting: 'Yes' , indicatorItems: $scope.tableHeaderOptions
+                                    // fpFacilities: Math.floor(Math.random() * 100),   fpFacilitiesReporting: 'Yes' ,
+                                    indicatorItems: $scope.tableHeaderOptions
                                 });
                         });
                     }else if(orgUnitCollected.name.indexOf('Council' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
-                            {name: 'District', id: ''},{name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                            {name: 'FP facilities reporting the FP template', id: ''}];
+                            {name: 'District', id: ''},{name: 'Period', id: ''},
+                            // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
+                            ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
                                 $scope.tableContents.push({
                                     district: $scope.selectedOrgunit.name, orgunit: $scope.selectedOrgunit.id,
                                     period: period,
-                                    fpFacilities: Math.floor(Math.random() * 100) , fpFacilitiesReporting: 'Yes' , indicatorItems: $scope.tableHeaderOptions
+                                    // fpFacilities: Math.floor(Math.random() * 100) , fpFacilitiesReporting: 'Yes' ,
+                                    indicatorItems: $scope.tableHeaderOptions
                                 });
                         });
                     }else if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
-                            {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
-                            {name: 'FP facilities reporting the FP template', id: ''}];
+                            {name: 'Period', id: ''},
+                            // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
+                            ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
                                 $scope.tableContents.push({
                                     period: period, orgunit: $scope.selectedOrgunit.id,
-                                    fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,indicatorItems: $scope.tableHeaderOptions
+                                    // fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,
+                                    indicatorItems: $scope.tableHeaderOptions
                                 });
                         });
                     }

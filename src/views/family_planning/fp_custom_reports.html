@@ -640,8 +640,8 @@
                                 <td ng-if="row.facility">{{row.facility}}</td>
                                 <td ng-if="row.facilityType">{{row.facilityType}}</td>
                                 <td>{{row.period.name}}</td>
-                                <td>{{row.fpFacilitiesReporting}}</td>
-                                <td>{{row.fpFacilities}} </td>
+                                <td ng-if="row.fpFacilitiesReporting">{{row.fpFacilitiesReporting}}</td>
+                                <td ng-if="row.fpFacilities">{{row.fpFacilities}} </td>
                                 <td ng-repeat="headerValue in row.indicatorItems track by $index">
                                     {{analyticsDataCollection[headerValue.id+'-'+row.orgunit+'-'+row.period.id]}}
                                 </td>
