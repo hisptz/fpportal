@@ -370,14 +370,6 @@ angular.module("hmisPortal")
 
             if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
 
-                // if($scope.selectedOrgunit.children){
-                //     angular.forEach($scope.selectedOrgunit.children, function (orgunit) {
-                //         orgunitAnalyticsString += ';OU_GROUP-'+ orgunit.id;
-                //     });
-                // }else{
-                //     orgunitAnalyticsString += ';OU_GROUP-'+ $scope.selectedOrgunit.id;
-                // }
-
                 url = $scope.serverLink+'analytics?dimension=dx:' + dxAnalyticsString.substring(1) + '' +
                     '&ou:' + orgunitAnalyticsString.substring(1) + '&dimension=pe:' + sanitizedPeriods($scope.selectedPeriods) + '&displayProperty=NAME&skipMeta=true&includeNumDen=true';
 
@@ -466,8 +458,6 @@ angular.module("hmisPortal")
                     $("#loadingMessage").hide();
                     $scope.showLoaderImage = false;
                 });
-
-
         };
 
         $scope.reporDataWithOutChildren = function (){
