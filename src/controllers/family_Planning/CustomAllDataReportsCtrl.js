@@ -1334,7 +1334,7 @@ angular.module("hmisPortal")
         }
         function total_number_of_healthworkers() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+            $.get( $scope.serverLink+"analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
                 var pe = json.metaData.dimensions.pe;
                 var dx = json.metaData.dimensions.dx;
                 var datas = json.rows;
@@ -1411,7 +1411,7 @@ angular.module("hmisPortal")
         }
         function commodities_stocked_out() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( "../api/analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods)+ "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+            $.get( $scope.serverLink+"analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods)+ "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
                 var pe = json.metaData.dimensions.pe;
                 var dx = json.metaData.dimensions.dx;
 
@@ -1490,7 +1490,7 @@ angular.module("hmisPortal")
         }
         function service_and_intergrations() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( "../api/analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;X52ysvNZ7q4;Xs33A99SoMs;qEWJizgHHot;r5gmWoT3ywf;rJPeim9h6qY;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+            $.get( $scope.serverLink+"analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;X52ysvNZ7q4;Xs33A99SoMs;qEWJizgHHot;r5gmWoT3ywf;rJPeim9h6qY;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
                 var pe = json.metaData.dimensions.pe;
                 var dx = json.metaData.dimensions.dx;
                 var datas = json.rows;

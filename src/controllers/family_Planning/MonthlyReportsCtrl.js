@@ -111,7 +111,7 @@ angular.module("hmisPortal")
             }else if($scope.data['outRegistrationOrganisationUnits'][0].name.indexOf('Tanzania') > -1){
                 $scope.facilityType = 'nationalPDF';
             }
-            $scope.link = ''+$scope.facilityType+'.html#/home?uid='+$scope.selectedOrgunitId
+            $scope.link = ''+$scope.facilityType+'.html#/home?uid='+$scope.selectedOrgunitId+'period='+$scope.data.selectedMonth
             $scope.link = $sce.trustAsResourceUrl($scope.link);
             console.log($scope.data['outRegistrationOrganisationUnits'], $scope.data.selectedMonth);
         }
