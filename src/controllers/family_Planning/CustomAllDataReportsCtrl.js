@@ -6,12 +6,13 @@ angular.module("hmisPortal")
     .controller("customReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
         //displaying loading during page change
         $scope.showLoader = 'none';
-        $scope.serverLink = '../dhis/api/';
+        $scope.serverLink = '../api/';
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
         $scope.showfacilityReport = true;
         $scope.showLoaderImage = false;
+        $("#loadingMessage").hide();
         $scope.aggregateDataWithChildrenOrgunit = true;
         $scope.showserviceIntegrationOptions = false;
         $scope.showstockOptions = false;
@@ -326,7 +327,8 @@ angular.module("hmisPortal")
         }
         $scope.previewReport = function() {
             $scope.showLoader = 'visible';
-            // $scope.showLoaderImage = true;
+            $("#loadingMessage").show();
+            $scope.showLoaderImage = true;
             $scope.tableContents = [];
             $scope.tableHeader = [];
             $scope.selectedOrgunit = $scope.data['outRegistrationOrganisationUnits'][0];
@@ -345,7 +347,7 @@ angular.module("hmisPortal")
             }
             $scope.showReportSection = !$scope.showReportSection;
             // console.log($scope.data['outRegistrationOrganisationUnits']);
-            $scope.showLoaderImage = false;
+            // $scope.showLoaderImage = false;
         };
 
         $scope.reporDataWithChildren = function (){
@@ -461,10 +463,10 @@ angular.module("hmisPortal")
                             });
                         // });
                     }
-
-
+                    $("#loadingMessage").hide();
+                    $scope.showLoaderImage = false;
                 });
-            $scope.showLoaderImage = false;
+
 
         };
 
@@ -561,8 +563,10 @@ angular.module("hmisPortal")
                                 });
                         });
                     }
+                    $("#loadingMessage").hide();
+                    $scope.showLoaderImage = false;
                 });
-            $scope.showLoaderImage = false;
+
         }
 
 
@@ -805,7 +809,7 @@ angular.module("hmisPortal")
             service_and_intergrations();
             commodities_stocked_out();
 
-            $scope.showLoaderImage = false;
+            // $scope.showLoaderImage = false;
         }
         function sanitizedPeriods(periodArray) {
             var sanitizedPeriods = periodArray.map(function (period) {
@@ -1568,7 +1572,10 @@ angular.module("hmisPortal")
                     $("#notification").show();
                     $("#notification").html("Please Select Facility Level");
                 }
+                $("#loadingMessage").hide();
+                // $scope.apply();
             });
+            $scope.showLoaderImage = false;
         }
         // END OF FACILITY DATA CODE REPORTS
 

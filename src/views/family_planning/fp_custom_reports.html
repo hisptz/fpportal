@@ -621,7 +621,7 @@
                 </div>
 
                 <!--Report displaying tables-->
-                <div ng-if="showReportSection && !showfacilityReport && !showLoaderImage" id="dynamicReport" class="card">
+                <div ng-if="showReportSection && !showfacilityReport" id="dynamicReport" class="card">
                     <div style="text-align: center">
                         <h5>{{reportHeader}} from {{selectedOrgunit.name}}</h5>
                     </div>
@@ -654,7 +654,7 @@
                 <!--End of Report displaying tables-->
 
                  <!--caniam report view-->
-                <div ng-if="showReportSection && showfacilityReport && !showLoaderImage"  class="card">
+                <div ng-if="showReportSection && showfacilityReport"  class="card">
                     <div id="comprehensiveReport" class="cainam-contain">
                         <div class="row">
                             <div class="alert alert-danger" role="alert" id="notification" style="display: none">
@@ -732,7 +732,8 @@
                     </div>
                 </div>
 
-                <div ng-if="showLoaderImage" id="loadingMessage" class="row">
+
+                <div id="loadingMessage" class="row">
                     <!--LOADER ANIMATIONS-->
                     <div style="width: 100%;text-align: center">
                         <div id="loader" style="text-align:center">
@@ -771,6 +772,7 @@
                         <div class="loader-info-note"> Loading report... </div>
                     </div>
                 </div>
+
 
 
 
