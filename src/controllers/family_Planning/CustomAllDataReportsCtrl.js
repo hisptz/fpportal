@@ -121,12 +121,9 @@ angular.module("hmisPortal")
             {value: 'RelativeQuarter', name: 'Relative Quarter', shown: false},
             {value: 'RelativeYear', name: 'Relative Year', shown: false},
         ];
-        $scope.availablePeriods = [
-            {id: 'THIS_MONTH', name: 'This Month'}, {id: 'LAST_MONTH', name: 'Last Month'}, {
-            id: 'LAST_3_MONTHS',
-            name: 'Last 3 Months'
-        }, {id: 'LAST_6_MONTHS', name: 'Last 6 Months'}, {id: 'LAST_12_MONTHS', name: 'Last 12 Months'}];
-        $scope.selectedPeriods = [{id: 'LAST_12_MONTHS', name: 'Last 12 Months'}];
+        $scope.availablePeriods = [];
+        $scope.selectedPeriods = [{id: '201809', name: 'September 2018'}];
+        $scope.lastSelectedPeriods = [];
         $scope.data.outOrganisationUnits = [];
 
             // this portion of code will clear multselected orgunit to single selected orgunit
@@ -345,13 +342,21 @@ angular.module("hmisPortal")
             }
             else {
                 // $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
+                $scope.lastSelectedPeriods = $scope.selectedPeriods;
+                var month = $scope.selectedPeriods[0].id.substring(4,6);
+                var year = $scope.selectedPeriods[0].id.substring(0,4);
+                $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
+                console.log(JSON.stringify($scope.selectedPeriods))
                 $scope.loadFacilityDataReport()
             }
             $scope.showReportSection = !$scope.showReportSection;
             // console.log($scope.data['outRegistrationOrganisationUnits']);
             // $scope.showLoaderImage = false;
         };
-
+        $scope.toggleDataSelections = function (){
+             $scope.selectedPeriods = $scope.lastSelectedPeriods
+            $scope.showReportSection = !$scope.showReportSection;
+        }
         $scope.reporDataWithChildren = function (){
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
             var orgUnitCollected = $scope.data['outRegistrationOrganisationUnits'][0];
@@ -467,7 +472,6 @@ angular.module("hmisPortal")
                     $scope.showLoaderImage = false;
                 });
         };
-
         $scope.reporDataWithOutChildren = function (){
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'];
             var orgUnitCollected = $scope.data['outRegistrationOrganisationUnits'][0];
@@ -573,9 +577,6 @@ angular.module("hmisPortal")
                 });
 
         }
-
-
-
         $scope.toggleIncludesubOrgunitLevel = function (event) {
             $scope.aggregateDataWithChildrenOrgunit = !$scope.aggregateDataWithChildrenOrgunit;
             if($scope.aggregateDataWithChildrenOrgunit){
@@ -643,37 +644,48 @@ angular.module("hmisPortal")
                 // w.document.write(htmlPrinted);
                 w.print();
             }
+        }
 
+        $scope.customLast12Months = function (month, year) {
+            var newYear = year - 1;
+            switch(month) {
+                case '01':
 
+                    return [newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03',newYear+'02',newYear+'01'];
 
+                case '02':
+                    return [year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03',newYear+'02'];
 
-                // window.frames["monthlyReportFrame"].focus();
-                // window.frames["monthlyReportFrame"].print();
-                // document.getElementById("reportFrame").contentWindow.print()​​​​​​;
+                case '03':
+                    return [year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03'];
 
-                // window.print();
+                case '04':
+                    return [year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04'];
 
+                case '05':
+                    return [year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05'];
 
+                case '06':
+                    return [year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06'];
 
-                // try{
-                //     var oIframe = document.getElementById('ifrmPrint');
-                //     var oContent = document.getElementById('divToPrint').innerHTML;
-                //     var oDoc = (oIframe.contentWindow || oIframe.contentDocument);
-                //     if (oDoc.document) oDoc = oDoc.document;
-                //     oDoc.write("<html><head><title>title</title>");
-                //     oDoc.write("</head><body onload='this.focus(); this.print();'>");
-                //     oDoc.write(oContent + "</body></html>");
-                //
-                //     oDoc.close();
-                //
-                // }
-                // catch(e){
-                //     self.print();
-                // }
+                case '07':
+                    return [year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07'];
 
+                case '08':
+                    return [year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08'];
 
+                case '09':
+                    return [year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09'];
 
+                case '10':
+                    return [year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10'];
 
+                case '11':
+                    return [year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11'];
+
+                case '12':
+                    return [year+'11',year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12'];
+            }
         }
 
             // PERIOD COMPONENT FUNCTIONS
@@ -818,7 +830,7 @@ angular.module("hmisPortal")
         }
         function sanitizedPeriods(periodArray) {
             var sanitizedPeriods = periodArray.map(function (period) {
-                return period.id;
+                return period;
             }).join(";");
             return sanitizedPeriods;
         }
@@ -1583,9 +1595,6 @@ angular.module("hmisPortal")
             $scope.showLoaderImage = false;
         }
         // END OF FACILITY DATA CODE REPORTS
-
-
-
 
 
     });
