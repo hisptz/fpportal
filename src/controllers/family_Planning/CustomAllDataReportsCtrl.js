@@ -858,7 +858,7 @@ angular.module("hmisPortal")
                     console.log("Data Available");
                     var header_data = "<thead>";
                     header_data += "<tr>";
-                    header_data += "<td>" + "Client Service, Served Through CBD" + "</td>";
+                    header_data += "<td style='width: 33%;'>" + "Client Service, Served Through CBD" + "</td>";
                     header_data += "</tr>";
 
                     header_data += "<th>Service</th>";
@@ -929,7 +929,7 @@ angular.module("hmisPortal")
                     console.log("Data Available");
                     var header_data = "<thead>";
                     header_data += "<tr>";
-                    header_data += "<td>" + "Client Service, Served Through Health Facility" + "</td>";
+                    header_data += "<td style='width: 33%;'>" + "Client Service, Served Through Health Facility" + "</td>";
                     header_data += "</tr>";
 
                     header_data += "<th>Service</th>";
@@ -1004,7 +1004,7 @@ angular.module("hmisPortal")
                     console.log("Data Available");
                     var header_data = "<thead>";
                     header_data += "<tr>";
-                    header_data += "<td>" + "Client Service, Served Through Outreach" + "</td>";
+                    header_data += "<td style='width: 33%;'>" + "Client Service, Served Through Outreach" + "</td>";
                     header_data += "</tr>";
 
                     header_data += "<th>Service</th>";
@@ -1075,7 +1075,7 @@ angular.module("hmisPortal")
                     console.log("Data Available");
                     var header_data = "<thead>";
                     header_data += "<tr>";
-                    header_data += "<td>" + "Client Service, Served < 20 years" + "</td>";
+                    header_data += "<td style='width: 33%;'>" + "Client Service, Served < 20 years" + "</td>";
                     header_data += "</tr>";
 
                     header_data += "<th>Service</th>";
@@ -1365,7 +1365,7 @@ angular.module("hmisPortal")
                     console.log("Data Available");
                     var header_data = "<thead>";
                     header_data += "<tr>";
-                    header_data += "<td>" + "Trained Health Workers" + "</td>";
+                    header_data += "<td style='width: 33%;'>" + "Trained Health Workers" + "</td>";
                     header_data += "</tr>";
 
                     header_data += "<th>Service</th>";
@@ -1443,7 +1443,7 @@ angular.module("hmisPortal")
                     console.log("Data Available");
                     var header_data = "<thead>";
                     header_data += "<tr>";
-                    header_data += "<td>" + "Commodities Stocked Out" + "</td>";
+                    header_data += "<td style='width: 33%;'>" + "Commodities Stocked Out" + "</td>";
                     header_data += "</tr>";
 
                     header_data += "<th>Commodities</th>";
@@ -1521,7 +1521,7 @@ angular.module("hmisPortal")
                     console.log("Data Available");
                     var header_data = "<thead>";
                     header_data += "<tr>";
-                    header_data += "<td>" + "Service and Intergrations" + "</td>";
+                    header_data += "<td style='width: 33%;'>" + "Service Intergrations" + "</td>";
                     header_data += "</tr>";
 
                     header_data += "<th>Service</th>";
@@ -1541,12 +1541,12 @@ angular.module("hmisPortal")
                     var header_data = "<tbody>";
                     var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
                     var title_array = [
-                        "Huduma nyingine za uzazi wa mpango baada ya mimba kuharibika",
-                        "Waliopata Njia za Uzazi wa Mpango Baada ya Mimba Kuharibika",
-                        "Waliopata Njia za Uzazi wa Mpango Siku 42 Baada ya Kujifungua",
-                        "Waliochunguzwa Matiti wakati wa Huduma ya Uzazi wa Mpango",
-                        "Waliochunguzwa Shingo ya Mfuko wa Kizazi wakati wa Huduma ya Uzazi wa Mpang",
-                        "Wateja Waliopima VVU",
+                        "Total number of Miscarriage/abortion clients adopting FP",
+                        "Total number of Miscarriage/abortion clients",
+                        "Total number of FP Adopting Postportum FP",
+                        "Total number of FP clients adopting Breast Cancer screening",
+                        "Total number of FP clients adopting Cervical Screening",
+                        "Total number of FP clients adopting HIV testing and Counselling",
                         "X FP Wateja waliochukua kondomu (Kituoni na CBD)",
                         "X FP wateja waliopatiwa huduma outreach jumla",
                         "X FP wateja waliopatiwa huduma na CBD jumla",
