@@ -342,10 +342,10 @@ angular.module("hmisPortal")
             }
             else {
                 // $scope.tableHeader = $scope.facilityDataViewHeader.concat($scope.tableHeaderOptions)
-                $scope.lastSelectedPeriods = $scope.selectedPeriods;
-                var month = $scope.selectedPeriods[0].id.substring(4,6);
-                var year = $scope.selectedPeriods[0].id.substring(0,4);
-                $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
+                // $scope.lastSelectedPeriods = $scope.selectedPeriods;
+                // var month = $scope.selectedPeriods[0].id.substring(4,6);
+                // var year = $scope.selectedPeriods[0].id.substring(0,4);
+                // $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
                 console.log(JSON.stringify($scope.selectedPeriods))
                 $scope.loadFacilityDataReport()
             }
@@ -818,22 +818,38 @@ angular.module("hmisPortal")
              // facility data collected functions
             // FACILITY DATA CODE REPORTS
             $( "#bcg1" ).html( $scope.data['outRegistrationOrganisationUnits'][0].name);
-            client_served_by_healthy_facility();
+            // client_served_by_healthy_facility();
+            // total_number_of_healthworkers();
+            // client_served_by_CBD();
+            // client_served_by_outreach();
+            // client_served_age_less_twenty();
+            // service_and_intergrations();
+            // commodities_stocked_out();
+
+            generate_orgunit_summary_data($scope.data['outRegistrationOrganisationUnits'][0]);
+
             total_number_of_healthworkers();
+
             client_served_by_CBD();
+
+            service_intergrations();
+
+            client_served_by_healthy_facility();
+
             client_served_by_outreach();
+
             client_served_age_less_twenty();
-            service_and_intergrations();
+
             commodities_stocked_out();
 
             // $scope.showLoaderImage = false;
         }
-        function sanitizedPeriods(periodArray) {
-            var sanitizedPeriods = periodArray.map(function (period) {
-                return period;
-            }).join(";");
-            return sanitizedPeriods;
-        }
+        // function sanitizedPeriods(periodArray) {
+        //     var sanitizedPeriods = periodArray.map(function (period) {
+        //         return period;
+        //     }).join(";");
+        //     return sanitizedPeriods;
+        // }
         function get_last_string(compound_word) {
             var sanitized_str = compound_word.split(" ");
             return sanitized_str[sanitized_str.length - 1];
@@ -846,755 +862,1404 @@ angular.module("hmisPortal")
             var processed_word = word.substring(0, 3);
             return processed_word.charAt(0).toUpperCase() + processed_word.slice(1).toLowerCase();
         }
-        function client_served_by_CBD() {
+        // function client_served_by_CBD() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( $scope.serverLink+"analytics.json?dimension=dx:CAZJesl4va5;NHnXpXYblEM;OxxbMcRjVbt&dimension=pe:"+ sanitizedPeriods($scope.selectedPeriods) +"&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         if(orgUnit.name) {
+        //             console.log("Data Available");
+        //             var header_data = "<thead>";
+        //             header_data += "<tr>";
+        //             header_data += "<td style='width: 33%;'>" + "Client Service, Served Through CBD" + "</td>";
+        //             header_data += "</tr>";
+        //
+        //             header_data += "<th>Service</th>";
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(value, function(key2, value2){
+        //                     $.each(pe, function(key3, value3){
+        //                         if(value3 == key) {
+        //                             var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
+        //                             header_data += "<th>" + final + "</th>";
+        //                         }
+        //                     });
+        //                 });
+        //             });
+        //             header_data += "</thead>";
+        //             $("#CBDTable").append(header_data);
+        //
+        //             var header_data = "<tbody>";
+        //             var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
+        //             var title_array = ["Female Condoms","Oral Pills", "Male Condoms"];
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(dx, function(key1, value1) {
+        //                     if(key == value1) {
+        //                         $.each(value, function(key2, value2) {
+        //                             header_data += "<tr>";
+        //                             header_data += "<td>" + title_array[key1] + "</td>";
+        //                             for(j = 0; j < 12; j++) {
+        //                                 for(i = 0; i < json.rows.length; i++) {
+        //                                     if(json.rows[i][0] == key) {
+        //                                         if(json.rows[i][1] == pe[j]) {
+        //                                             header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
+        //                                             var index = total.indexOf(total[j]);
+        //                                             total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                             header_data += "</tr>";
+        //                         });
+        //                     }
+        //                 });
+        //             });
+        //             header_data += "</tbody>";
+        //             $("#CBDTable").append(header_data);
+        //
+        //             var header_data = "<tfoot>";
+        //             header_data += "<td><strong>Total</strong></td>";
+        //             $.each(total, function(key, value){
+        //                 header_data += "<td>" + Math.ceil(value) + "</td>";
+        //             });
+        //             header_data += "</tfoot>";
+        //             $("#CBDTable").append(header_data);
+        //         }else {
+        //             console.log("Please Select Facility Level");
+        //             $("#notification").show();
+        //             $("#notification").html("Please Select Facility Level");
+        //         }
+        //     });
+        // }
+        // function client_served_by_healthy_facility() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( $scope.serverLink+"analytics.json?dimension=dx:Eh1uMcVwxEY;GEjpz3mQo6E;JSmtnnW6WrR;LmbDl4YdYAn;UjGebiXNg0t;bjkeLqFDDjo;c3f9YMx29Bx;isK24MvwQmy;lMFKZN3UaYp;xhcaH3H3pdK&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         if(orgUnit.name) {
+        //             console.log("Data Available");
+        //             var header_data = "<thead>";
+        //             header_data += "<tr>";
+        //             header_data += "<td style='width: 33%;'>" + "Client Service, Served Through Health Facility" + "</td>";
+        //             header_data += "</tr>";
+        //
+        //             header_data += "<th>Service</th>";
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(value, function(key2, value2){
+        //                     $.each(pe, function(key3, value3){
+        //                         if(value3 == key) {
+        //                             var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
+        //                             header_data += "<th>" + final + "</th>";
+        //                         }
+        //                     });
+        //                 });
+        //             });
+        //             header_data += "</thead>";
+        //             $("#HealthyFacilityTable").append(header_data);
+        //
+        //             var header_data = "<tbody>";
+        //             var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
+        //             var title_array = ["Implant Removal", "IUCD's Removal", "NSV", "Injectables", "IUCD's Insertion", "Oral Pills", "Female Condoms", "Male Condoms", "Implant Insertion", "Minilap"]
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(dx, function(key1, value1) {
+        //                     if(key == value1) {
+        //                         $.each(value, function(key2, value2) {
+        //                             console.log(key1);
+        //                             header_data += "<tr>";
+        //                             header_data += "<td>" + title_array[key1] + "</td>";
+        //                             for(j = 0; j < 12; j++) {
+        //                                 for(i = 0; i < json.rows.length; i++) {
+        //                                     if(json.rows[i][0] == key) {
+        //                                         if(json.rows[i][1] == pe[j]) {
+        //                                             header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
+        //                                             var index = total.indexOf(total[j]);
+        //                                             total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
+        //                                         }
+        //                                         // else {
+        //                                         //     header_data += "<td>" + 0 + "</td>";
+        //                                         // }
+        //                                     }
+        //                                 }
+        //                             }
+        //                             header_data += "</tr>";
+        //                         });
+        //                     }
+        //                 });
+        //             });
+        //             header_data += "</tbody>";
+        //             $("#HealthyFacilityTable").append(header_data);
+        //
+        //             var header_data = "<tfoot>";
+        //             header_data += "<td><strong>Total</strong></td>";
+        //             $.each(total, function(key, value){
+        //                 header_data += "<td>" + Math.ceil(value) + "</td>";
+        //             });
+        //             header_data += "</tfoot>";
+        //             $("#HealthyFacilityTable").append(header_data);
+        //         }else {
+        //             console.log("Please Select Facility Level");
+        //             $("#notification").show();
+        //             $("#notification").html("Please Select Facility Level");
+        //         }
+        //     });
+        // }
+        // function client_served_by_outreach() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( $scope.serverLink+"analytics.json?dimension=dx:O10liqQFwcI;PLfFV1fKVfQ;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         if(orgUnit.name) {
+        //             console.log("Data Available");
+        //             var header_data = "<thead>";
+        //             header_data += "<tr>";
+        //             header_data += "<td style='width: 33%;'>" + "Client Service, Served Through Outreach" + "</td>";
+        //             header_data += "</tr>";
+        //
+        //             header_data += "<th>Service</th>";
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(value, function(key2, value2){
+        //                     $.each(pe, function(key3, value3){
+        //                         if(value3 == key) {
+        //                             var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
+        //                             header_data += "<th>" + final + "</th>";
+        //                         }
+        //                     });
+        //                 });
+        //             });
+        //             header_data += "</thead>";
+        //             $("#OutReachTable").append(header_data);
+        //
+        //             var header_data = "<tbody>";
+        //             var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
+        //             var title_array = ["IUCD Removals", "Implant Removals", "IUCD Insertion", "Implant Insertion", "NSV", "Minilap"];
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(dx, function(key1, value1) {
+        //                     if(key == value1) {
+        //                         $.each(value, function(key2, value2) {
+        //                             header_data += "<tr>";
+        //                             header_data += "<td>" + title_array[key1] + "</td>";
+        //                             for(j = 0; j < 12; j++) {
+        //                                 for(i = 0; i < json.rows.length; i++) {
+        //                                     if(json.rows[i][0] == key) {
+        //                                         if(json.rows[i][1] == pe[j]) {
+        //                                             header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
+        //                                             var index = total.indexOf(total[j]);
+        //                                             total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                             header_data += "</tr>";
+        //                         });
+        //                     }
+        //                 });
+        //             });
+        //             header_data += "</tbody>";
+        //             $("#OutReachTable").append(header_data);
+        //
+        //             var header_data = "<tfoot>";
+        //             header_data += "<td><strong>Total</strong></td>";
+        //             $.each(total, function(key, value){
+        //                 header_data += "<td>" + Math.ceil(value) + "</td>";
+        //             });
+        //             header_data += "</tfoot>";
+        //             $("#OutReachTable").append(header_data);
+        //         }else {
+        //             console.log("Please Select Facility Level");
+        //             $("#notification").show();
+        //             $("#notification").html("Please Select Facility Level");
+        //         }
+        //     });
+        // }
+        // function client_served_age_less_twenty() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( $scope.serverLink+"analytics.json?dimension=dx:GvbkEo6sfSd;LpkdcaLc4I9;W74wyMy1mp0;aSJKs4oPZAf;p14JdJaG2aC;p8cgxI3yPx8&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         if(orgUnit.name) {
+        //             console.log("Data Available");
+        //             var header_data = "<thead>";
+        //             header_data += "<tr>";
+        //             header_data += "<td style='width: 33%;'>" + "Client Service, Served < 20 years" + "</td>";
+        //             header_data += "</tr>";
+        //
+        //             header_data += "<th>Service</th>";
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(value, function(key2, value2){
+        //                     $.each(pe, function(key3, value3){
+        //                         if(value3 == key) {
+        //                             var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
+        //                             header_data += "<th>" + final + "</th>";
+        //                         }
+        //                     });
+        //                 });
+        //             });
+        //             header_data += "</thead>";
+        //             $("#LessTwentyAgeTable").append(header_data);
+        //
+        //             var header_data = "<tbody>";
+        //             var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
+        //             var title_array = ["IUCD's", "Injectables", "Male Condoms", "Oral Pills", "Implants", "Female Condoms"];
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(dx, function(key1, value1) {
+        //                     if(key == value1) {
+        //                         $.each(value, function(key2, value2) {
+        //                             header_data += "<tr>";
+        //                             header_data += "<td>" + title_array[key1] + "</td>";
+        //                             for(j = 0; j < 12; j++) {
+        //                                 for(i = 0; i < json.rows.length; i++) {
+        //                                     if(json.rows[i][0] == key) {
+        //                                         if(json.rows[i][1] == pe[j]) {
+        //                                             $.each(pe, function(key4, value4){
+        //                                                 if(j == key4) {
+        //                                                     header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
+        //                                                     var index = total.indexOf(total[j]);
+        //                                                     total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
+        //                                                 }
+        //                                             });
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                             header_data += "</tr>";
+        //                         });
+        //                     }
+        //                 });
+        //             });
+        //             header_data += "</tbody>";
+        //             $("#LessTwentyAgeTable").append(header_data);
+        //
+        //             var header_data = "<tfoot>";
+        //             header_data += "<td><strong>Total</strong></td>";
+        //             $.each(total, function(key, value){
+        //                 header_data += "<td>" + Math.ceil(value) + "</td>";
+        //             });
+        //             header_data += "</tfoot>";
+        //             $("#LessTwentyAgeTable").append(header_data);
+        //         }else {
+        //             console.log("Please Select Facility Level");
+        //             $("#notification").show();
+        //             $("#notification").html("Please Select Facility Level");
+        //         }
+        //     });
+        // }
+        // function healthworkerstesting() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( $scope.serverLink+"analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         if(orgUnit.name) {
+        //             if(json.rows.length == 0) {
+        //                 console.log("No Data Returned For The Facility [" + orgUnit.name + "]");
+        //                 $("#notification").show();
+        //                 $("#notification").html("No Data Available For The Facility (" + orgUnit.name + ")");
+        //             }else {
+        //                 console.log("Data Available");
+        //                 var header_data = "<thead>";
+        //                 header_data += "<tr>";
+        //                 header_data += "<td>" + "Client Service, Served Through CBD" + "</td>";
+        //                 header_data += "</tr>";
+        //
+        //                 header_data += "<th>Service</th>";
+        //                 $.each(pe_OBJECT, function(key, value){
+        //                     $.each(value, function(key2, value2){
+        //                         $.each(pe, function(key3, value3){
+        //                             if(value3 == key) {
+        //                                 var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
+        //                                 header_data += "<th>" + final + "</th>";
+        //                             }
+        //                         });
+        //                     });
+        //                 });
+        //                 header_data += "</thead>";
+        //                 $("#testing").append(header_data);
+        //
+        //                 var header_data = "<tbody>";
+        //                 var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
+        //                 $.each(pe_OBJECT, function(key, value){
+        //                     $.each(dx, function(key1, value1) {
+        //                         if(key == value1) {
+        //                             $.each(value, function(key2, value2) {
+        //                                 header_data += "<tr>";
+        //                                 header_data += "<td>" + value2 + "</td>";
+        //                                 for(j = 0; j < 12; j++) {
+        //                                     for(i = 0; i < json.rows.length; i++) {
+        //                                         if(json.rows[i][0] == key) {
+        //                                             if(json.rows[i][1] == pe[j]) {
+        //                                                 header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
+        //                                                 var index = total.indexOf(total[j]);
+        //                                                 total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
+        //                                             }
+        //                                             // else {
+        //                                             //     header_data += "<td>" + 0 + "</td>";
+        //                                             // }
+        //                                         }
+        //                                     }
+        //                                 }
+        //                                 header_data += "</tr>";
+        //                             });
+        //                         }
+        //                     });
+        //                 });
+        //                 header_data += "</tbody>";
+        //                 $("#testing").append(header_data);
+        //
+        //                 var header_data = "<tfoot>";
+        //                 header_data += "<td><strong>Total</strong></td>";
+        //                 $.each(total, function(key, value){
+        //                     header_data += "<td>" + Math.ceil(value) + "</td>";
+        //                 });
+        //                 header_data += "</tfoot>";
+        //                 $("#testing").append(header_data);
+        //             }
+        //         }else {
+        //             console.log("Please Select Facility Level");
+        //             $("#notification").show();
+        //             $("#notification").html("Please Select Facility Level");
+        //         }
+        //     });
+        // }
+        // function total_number_of_healthworkers() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( $scope.serverLink+"analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         var header_data = "<thead>";
+        //         header_data += "<tr>";
+        //         header_data += "<td>" + "Trained HealthWorkers" + "</td>";
+        //         header_data += "</tr>";
+        //
+        //         header_data += "<th>Type Of Training</th>";
+        //         header_data += "<th>Trained HW's</th>";
+        //         header_data += "</thead>";
+        //         $("#TrainedHW").append(header_data);
+        //
+        //         var header_data = "<tbody>";
+        //         var total_hw = [0,0,0,0,0];
+        //         var title_array = ["NSV", "Implants", "Minilap", "Short-Acting", "IUCD's"]
+        //         $.each(pe_OBJECT, function(key, value){
+        //             $.each(dx, function(key1, value1) {
+        //                 if(key == value1) {
+        //                     $.each(value, function(key2, value2) {
+        //                         header_data += "<tr>";
+        //                         header_data += "<td>" + title_array[key1] + "</td>";
+        //                         for(i = 0; i < json.rows.length; i++) {
+        //                             for(j = 0; j < 12; j++) {
+        //                                 if(json.rows[i][0] == key) {
+        //                                     if(json.rows[i][1] == pe[j]) {
+        //                                         total_hw[key1] = total_hw[key1] + parseInt(json.rows[i][2]);
+        //                                     }
+        //                                 }
+        //                             }
+        //                         }
+        //                         header_data += "<td>" + total_hw[key1] + "</td>";
+        //                         header_data += "</tr>";
+        //                     });
+        //                 }
+        //             });
+        //         });
+        //         header_data += "</tbody>";
+        //         $("#TrainedHW").append(header_data);
+        //
+        //         var overall = 0;
+        //         var header_data = "<tfoot>";
+        //         header_data += "<td><strong>Total</strong></td>";
+        //         $.each(total_hw, function(key, value5){
+        //             overall = overall + value5;
+        //         });
+        //         header_data += "<td>" + Math.ceil(overall) + "</td>";
+        //         header_data += "</tfoot>";
+        //         $("#TrainedHW").append(header_data);
+        //
+        //     });
+        // }
+        // function healthworkerstesting() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         if(orgUnit.name) {
+        //             if(json.rows.length == 0) {
+        //                 console.log("No Data Returned For The Facility [" + orgUnit.name + "]");
+        //                 $("#notification").show();
+        //                 $("#notification").html("No Data Available For The Facility (" + orgUnit.name + ")");
+        //             }else {
+        //                 console.log("Data Available");
+        //                 var header_data = "<thead>";
+        //                 header_data += "<tr>";
+        //                 header_data += "<td>" + "Client Service, Served Through CBD" + "</td>";
+        //                 header_data += "</tr>";
+        //
+        //                 header_data += "<th>Service</th>";
+        //                 $.each(pe_OBJECT, function(key, value){
+        //                     $.each(value, function(key2, value2){
+        //                         $.each(pe, function(key3, value3){
+        //                             if(value3 == key) {
+        //                                 var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
+        //                                 header_data += "<th>" + final + "</th>";
+        //                             }
+        //                         });
+        //                     });
+        //                 });
+        //                 header_data += "</thead>";
+        //                 $("#testing").append(header_data);
+        //
+        //                 var header_data = "<tbody>";
+        //                 var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
+        //                 $.each(pe_OBJECT, function(key, value){
+        //                     $.each(dx, function(key1, value1) {
+        //                         if(key == value1) {
+        //                             $.each(value, function(key2, value2) {
+        //                                 header_data += "<tr>";
+        //                                 header_data += "<td>" + value2 + "</td>";
+        //                                 for(j = 0; j < 12; j++) {
+        //                                     for(i = 0; i < json.rows.length; i++) {
+        //                                         if(json.rows[i][0] == key) {
+        //                                             if(json.rows[i][1] == pe[j]) {
+        //                                                 header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
+        //                                                 var index = total.indexOf(total[j]);
+        //                                                 total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
+        //                                             }
+        //                                             // else {
+        //                                             //     header_data += "<td>" + 0 + "</td>";
+        //                                             // }
+        //                                         }
+        //                                     }
+        //                                 }
+        //                                 header_data += "</tr>";
+        //                             });
+        //                         }
+        //                     });
+        //                 });
+        //                 header_data += "</tbody>";
+        //                 $("#testing").append(header_data);
+        //
+        //                 var header_data = "<tfoot>";
+        //                 header_data += "<td><strong>Total</strong></td>";
+        //                 $.each(total, function(key, value){
+        //                     header_data += "<td>" + Math.ceil(value) + "</td>";
+        //                 });
+        //                 header_data += "</tfoot>";
+        //                 $("#testing").append(header_data);
+        //             }
+        //         }else {
+        //             console.log("Please Select Facility Level");
+        //             $("#notification").show();
+        //             $("#notification").html("Please Select Facility Level");
+        //         }
+        //     });
+        // }
+        // function total_number_of_healthworkers() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( $scope.serverLink+"analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         if(orgUnit.name) {
+        //             console.log("Data Available");
+        //             var header_data = "<thead>";
+        //             header_data += "<tr>";
+        //             header_data += "<td style='width: 33%;'>" + "Trained Health Workers" + "</td>";
+        //             header_data += "</tr>";
+        //
+        //             header_data += "<th>Service</th>";
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(value, function(key2, value2){
+        //                     $.each(pe, function(key3, value3){
+        //                         if(value3 == key) {
+        //                             var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
+        //                             header_data += "<th>" + final + "</th>";
+        //                         }
+        //                     });
+        //                 });
+        //             });
+        //             header_data += "</thead>";
+        //             $("#TrainedHW").append(header_data);
+        //
+        //             var header_data = "<tbody>";
+        //             var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
+        //             var title_array = [
+        //                 "Number of Health Workes Trained IUCDs",
+        //                 "Number of Health Workes Trained Implants",
+        //                 "Number of Health Workes Trained Minlap",
+        //                 "Number of Health Workes Trained NSV",
+        //                 "Number of Health Workes Trained Short Acting Methods"
+        //             ];
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(dx, function(key1, value1) {
+        //                     if(key == value1) {
+        //                         $.each(value, function(key2, value2) {
+        //                             header_data += "<tr>";
+        //                             header_data += "<td>" + title_array[key1] + "</td>";
+        //                             for(j = 0; j < 12; j++) {
+        //                                 for(i = 0; i < json.rows.length; i++) {
+        //                                     if(json.rows[i][0] == key) {
+        //                                         if(json.rows[i][1] == pe[j]) {
+        //                                             header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
+        //                                             var index = total.indexOf(total[j]);
+        //                                             total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                             header_data += "</tr>";
+        //                         });
+        //                     }
+        //                 });
+        //             });
+        //             header_data += "</tbody>";
+        //             $("#TrainedHW").append(header_data);
+        //
+        //             var header_data = "<tfoot>";
+        //             header_data += "<td><strong>Total</strong></td>";
+        //             $.each(total, function(key, value){
+        //                 header_data += "<td>" + Math.ceil(value) + "</td>";
+        //             });
+        //             header_data += "</tfoot>";
+        //             $("#TrainedHW").append(header_data);
+        //         }else {
+        //             console.log("Please Select Facility Level");
+        //             $("#notification").show();
+        //             $("#notification").html("Please Select Facility Level");
+        //         }
+        //     });
+        // }
+        // function commodities_stocked_out() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( $scope.serverLink+"analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods)+ "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         if(orgUnit.name) {
+        //             console.log("Data Available");
+        //             var header_data = "<thead>";
+        //             header_data += "<tr>";
+        //             header_data += "<td style='width: 33%;'>" + "Commodities Stocked Out" + "</td>";
+        //             header_data += "</tr>";
+        //
+        //             header_data += "<th>Commodities</th>";
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(value, function(key2, value2){
+        //                     $.each(pe, function(key3, value3){
+        //                         if(value3 == key) {
+        //                             var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
+        //                             header_data += "<th>" + final + "</th>";
+        //                         }
+        //                     });
+        //                 });
+        //             });
+        //             header_data += "</thead>";
+        //             $("#commoditiesTable").append(header_data);
+        //
+        //             var header_data = "<tbody>";
+        //             var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
+        //             var title_array = ["Injectables","Oral Pills"];
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(dx, function(key1, value1) {
+        //                     if(key == value1) {
+        //                         $.each(value, function(key2, value2) {
+        //                             header_data += "<tr>";
+        //                             header_data += "<td>" + title_array[key1] + "</td>";
+        //                             for(j = 0; j < 12; j++) {
+        //                                 for(i = 0; i < json.rows.length; i++) {
+        //                                     if(json.rows[i][0] == key) {
+        //                                         if(json.rows[i][1] == pe[j]) {
+        //                                             if(json.rows[i][2] >= 1) {
+        //                                                 header_data += "<td>" + "Yes" + "</td>";
+        //                                             } else if(json.rows[i][2] <= 0){
+        //                                                 header_data += "<td>" + "No" + "</td>";
+        //                                             }else if(json.rows[i][2] == "") {
+        //                                                 header_data += "<td>" + "No" + "</td>";
+        //                                             }
+        //                                             // header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
+        //                                             var index = total.indexOf(total[j]);
+        //                                             total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                             header_data += "</tr>";
+        //                         });
+        //                     }
+        //                 });
+        //             });
+        //             header_data += "</tbody>";
+        //             $("#commoditiesTable").append(header_data);
+        //
+        //             var header_data = "<tfoot>";
+        //             header_data += "<td><strong>Total</strong></td>";
+        //             $.each(total, function(key, value){
+        //                 header_data += "<td>" + Math.ceil(value) + "</td>";
+        //             });
+        //             header_data += "</tfoot>";
+        //             $("#commoditiesTable").append(header_data);
+        //         }else {
+        //             console.log("Please Select Facility Level");
+        //             $("#notification").show();
+        //             $("#notification").html("Please Select Facility Level");
+        //         }
+        //     });
+        // }
+        // function service_and_intergrations() {
+        //     var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        //     $.get( $scope.serverLink+"analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;X52ysvNZ7q4;Xs33A99SoMs;qEWJizgHHot;r5gmWoT3ywf;rJPeim9h6qY;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
+        //         var pe = json.metaData.dimensions.pe;
+        //         var dx = json.metaData.dimensions.dx;
+        //         var datas = json.rows;
+        //         var pe_OBJECT =  json.metaData.items;
+        //
+        //         if(orgUnit.name) {
+        //             console.log("Data Available");
+        //             var header_data = "<thead>";
+        //             header_data += "<tr>";
+        //             header_data += "<td style='width: 33%;'>" + "Service Intergrations" + "</td>";
+        //             header_data += "</tr>";
+        //
+        //             header_data += "<th>Service</th>";
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(value, function(key2, value2){
+        //                     $.each(pe, function(key3, value3){
+        //                         if(value3 == key) {
+        //                             var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
+        //                             header_data += "<th>" + final + "</th>";
+        //                         }
+        //                     });
+        //                 });
+        //             });
+        //             header_data += "</thead>";
+        //             $("#service_and_intergrationsTable").append(header_data);
+        //
+        //             var header_data = "<tbody>";
+        //             var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
+        //             var title_array = [
+        //                 "Total number of Miscarriage/abortion clients adopting FP",
+        //                 "Total number of Miscarriage/abortion clients",
+        //                 "Total number of FP Adopting Postportum FP",
+        //                 "Total number of FP clients adopting Breast Cancer screening",
+        //                 "Total number of FP clients adopting Cervical Screening",
+        //                 "Total number of FP clients adopting HIV testing and Counselling",
+        //                 "X FP Wateja waliochukua kondomu (Kituoni na CBD)",
+        //                 "X FP wateja waliopatiwa huduma outreach jumla",
+        //                 "X FP wateja waliopatiwa huduma na CBD jumla",
+        //                 "X FP wateja waliopatiwa huduma kituoni Marudio",
+        //             ];
+        //             $.each(pe_OBJECT, function(key, value){
+        //                 $.each(dx, function(key1, value1) {
+        //                     if(key == value1) {
+        //                         $.each(value, function(key2, value2) {
+        //                             header_data += "<tr>";
+        //                             header_data += "<td>" + title_array[key1] + "</td>";
+        //                             for(j = 0; j < 12; j++) {
+        //                                 for(i = 0; i < json.rows.length; i++) {
+        //                                     if(json.rows[i][0] == key) {
+        //                                         if(json.rows[i][1] == pe[j]) {
+        //                                             header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
+        //                                             var index = total.indexOf(total[j]);
+        //                                             total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                             header_data += "</tr>";
+        //                         });
+        //                     }
+        //                 });
+        //             });
+        //             header_data += "</tbody>";
+        //             $("#service_and_intergrationsTable").append(header_data);
+        //
+        //             var header_data = "<tfoot>";
+        //             header_data += "<td><strong>Total</strong></td>";
+        //             $.each(total, function(key, value){
+        //                 header_data += "<td>" + Math.ceil(value) + "</td>";
+        //             });
+        //             header_data += "</tfoot>";
+        //             $("#service_and_intergrationsTable").append(header_data);
+        //         }else {
+        //             console.log("Please Select Facility Level");
+        //             $("#notification").show();
+        //             $("#notification").html("Please Select Facility Level");
+        //         }
+        //         $("#loadingMessage").hide();
+        //         // $scope.apply();
+        //     });
+        //     $scope.showLoaderImage = false;
+        // }
+        // END OF FACILITY DATA CODE REPORTS
+
+        // var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+        // var code = orgUnit.code;
+
+        var orgUnitHierarchy = [];
+        // var orgUnitChildren = $scope.data['outRegistrationOrganisationUnits'][0].children;
+        // var date = dhis2.report.date;
+        $scope.lastSelectedPeriods = $scope.selectedPeriods;
+        var month = $scope.selectedPeriods[0].id.substring(4,6);
+        var year = $scope.selectedPeriods[0].id.substring(0,4);
+        // $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
+        var periods = $scope.customLast12Months(month, parseInt(year) );
+        var period = periods[0];
+
+        function generate_orgunit_summary_data() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:CAZJesl4va5;NHnXpXYblEM;OxxbMcRjVbt&dimension=pe:"+ sanitizedPeriods($scope.selectedPeriods) +"&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
-
-                if(orgUnit.name) {
-                    console.log("Data Available");
-                    var header_data = "<thead>";
-                    header_data += "<tr>";
-                    header_data += "<td style='width: 33%;'>" + "Client Service, Served Through CBD" + "</td>";
-                    header_data += "</tr>";
-
-                    header_data += "<th>Service</th>";
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(value, function(key2, value2){
-                            $.each(pe, function(key3, value3){
-                                if(value3 == key) {
-                                    var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
-                                    header_data += "<th>" + final + "</th>";
-                                }
-                            });
-                        });
-                    });
-                    header_data += "</thead>";
-                    $("#CBDTable").append(header_data);
-
-                    var header_data = "<tbody>";
-                    var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
-                    var title_array = ["Female Condoms","Oral Pills", "Male Condoms"];
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(dx, function(key1, value1) {
-                            if(key == value1) {
-                                $.each(value, function(key2, value2) {
-                                    header_data += "<tr>";
-                                    header_data += "<td>" + title_array[key1] + "</td>";
-                                    for(j = 0; j < 12; j++) {
-                                        for(i = 0; i < json.rows.length; i++) {
-                                            if(json.rows[i][0] == key) {
-                                                if(json.rows[i][1] == pe[j]) {
-                                                    header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
-                                                    var index = total.indexOf(total[j]);
-                                                    total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    header_data += "</tr>";
-                                });
-                            }
-                        });
-                    });
-                    header_data += "</tbody>";
-                    $("#CBDTable").append(header_data);
-
-                    var header_data = "<tfoot>";
-                    header_data += "<td><strong>Total</strong></td>";
-                    $.each(total, function(key, value){
-                        header_data += "<td>" + Math.ceil(value) + "</td>";
-                    });
-                    header_data += "</tfoot>";
-                    $("#CBDTable").append(header_data);
-                }else {
-                    console.log("Please Select Facility Level");
-                    $("#notification").show();
-                    $("#notification").html("Please Select Facility Level");
+            if (orgUnit) {
+                if(orgUnit.name && !orgUnitHierarchy[1] && !orgUnitHierarchy[2]) {
+                    $("#national_level").show();
+                    $("#country_level").html(orgUnit.name);
+                } else if (orgUnit.name && orgUnitHierarchy[1].name && !orgUnitHierarchy[2]) {
+                    $("#national_level").show();
+                    $("#reg_level").show();
+                    $("#regional_level").html(orgUnit.name);
+                    $("#country_level").html(orgUnitHierarchy[1].name);
+                } else if (orgUnit.name && orgUnitHierarchy[1].name && orgUnitHierarchy[2].name) {
+                    $("#national_level").show();
+                    $("#reg_level").show();
+                    $("#dist_level").show();
+                    $("#district_level").html(orgUnit.name);
+                    $("#regional_level").html(orgUnitHierarchy[1].name);
+                    $("#country_level").html(orgUnitHierarchy[2].name);
+                } else {
+                    $("#fac_level").show();
+                    $("#dist_level").show();
+                    $("#reg_level").show();
+                    $("#facility_level").html(orgUnit.name);
+                    $("#district_level").html(orgUnitHierarchy[1].name);
+                    $("#regional_level").html(orgUnitHierarchy[2].name);
                 }
-            });
+            }
         }
-        function client_served_by_healthy_facility() {
-            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:Eh1uMcVwxEY;GEjpz3mQo6E;JSmtnnW6WrR;LmbDl4YdYAn;UjGebiXNg0t;bjkeLqFDDjo;c3f9YMx29Bx;isK24MvwQmy;lMFKZN3UaYp;xhcaH3H3pdK&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
 
-                if(orgUnit.name) {
-                    console.log("Data Available");
-                    var header_data = "<thead>";
-                    header_data += "<tr>";
-                    header_data += "<td style='width: 33%;'>" + "Client Service, Served Through Health Facility" + "</td>";
-                    header_data += "</tr>";
-
-                    header_data += "<th>Service</th>";
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(value, function(key2, value2){
-                            $.each(pe, function(key3, value3){
-                                if(value3 == key) {
-                                    var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
-                                    header_data += "<th>" + final + "</th>";
-                                }
-                            });
-                        });
-                    });
-                    header_data += "</thead>";
-                    $("#HealthyFacilityTable").append(header_data);
-
-                    var header_data = "<tbody>";
-                    var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
-                    var title_array = ["Implant Removal", "IUCD's Removal", "NSV", "Injectables", "IUCD's Insertion", "Oral Pills", "Female Condoms", "Male Condoms", "Implant Insertion", "Minilap"]
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(dx, function(key1, value1) {
-                            if(key == value1) {
-                                $.each(value, function(key2, value2) {
-                                    console.log(key1);
-                                    header_data += "<tr>";
-                                    header_data += "<td>" + title_array[key1] + "</td>";
-                                    for(j = 0; j < 12; j++) {
-                                        for(i = 0; i < json.rows.length; i++) {
-                                            if(json.rows[i][0] == key) {
-                                                if(json.rows[i][1] == pe[j]) {
-                                                    header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
-                                                    var index = total.indexOf(total[j]);
-                                                    total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
-                                                }
-                                                // else {
-                                                //     header_data += "<td>" + 0 + "</td>";
-                                                // }
-                                            }
-                                        }
-                                    }
-                                    header_data += "</tr>";
-                                });
-                            }
-                        });
-                    });
-                    header_data += "</tbody>";
-                    $("#HealthyFacilityTable").append(header_data);
-
-                    var header_data = "<tfoot>";
-                    header_data += "<td><strong>Total</strong></td>";
-                    $.each(total, function(key, value){
-                        header_data += "<td>" + Math.ceil(value) + "</td>";
-                    });
-                    header_data += "</tfoot>";
-                    $("#HealthyFacilityTable").append(header_data);
-                }else {
-                    console.log("Please Select Facility Level");
-                    $("#notification").show();
-                    $("#notification").html("Please Select Facility Level");
-                }
-            });
+        function sanitized_periods(periods_data) {
+            var sanitized_periods = periods_data.map(function (period) {
+                return period;
+            }).join(";");
+            return sanitized_periods;
         }
-        function client_served_by_outreach() {
-            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:O10liqQFwcI;PLfFV1fKVfQ;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
 
-                if(orgUnit.name) {
-                    console.log("Data Available");
-                    var header_data = "<thead>";
-                    header_data += "<tr>";
-                    header_data += "<td style='width: 33%;'>" + "Client Service, Served Through Outreach" + "</td>";
-                    header_data += "</tr>";
-
-                    header_data += "<th>Service</th>";
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(value, function(key2, value2){
-                            $.each(pe, function(key3, value3){
-                                if(value3 == key) {
-                                    var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
-                                    header_data += "<th>" + final + "</th>";
-                                }
-                            });
-                        });
-                    });
-                    header_data += "</thead>";
-                    $("#OutReachTable").append(header_data);
-
-                    var header_data = "<tbody>";
-                    var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
-                    var title_array = ["IUCD Removals", "Implant Removals", "IUCD Insertion", "Implant Insertion", "NSV", "Minilap"];
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(dx, function(key1, value1) {
-                            if(key == value1) {
-                                $.each(value, function(key2, value2) {
-                                    header_data += "<tr>";
-                                    header_data += "<td>" + title_array[key1] + "</td>";
-                                    for(j = 0; j < 12; j++) {
-                                        for(i = 0; i < json.rows.length; i++) {
-                                            if(json.rows[i][0] == key) {
-                                                if(json.rows[i][1] == pe[j]) {
-                                                    header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
-                                                    var index = total.indexOf(total[j]);
-                                                    total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    header_data += "</tr>";
-                                });
-                            }
-                        });
-                    });
-                    header_data += "</tbody>";
-                    $("#OutReachTable").append(header_data);
-
-                    var header_data = "<tfoot>";
-                    header_data += "<td><strong>Total</strong></td>";
-                    $.each(total, function(key, value){
-                        header_data += "<td>" + Math.ceil(value) + "</td>";
-                    });
-                    header_data += "</tfoot>";
-                    $("#OutReachTable").append(header_data);
-                }else {
-                    console.log("Please Select Facility Level");
-                    $("#notification").show();
-                    $("#notification").html("Please Select Facility Level");
-                }
-            });
+        function get_last_string(compound_word) {
+            var sanitized_str = compound_word.split(" ");
+            return sanitized_str[sanitized_str.length - 1];
         }
-        function client_served_age_less_twenty() {
-            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:GvbkEo6sfSd;LpkdcaLc4I9;W74wyMy1mp0;aSJKs4oPZAf;p14JdJaG2aC;p8cgxI3yPx8&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
 
-                if(orgUnit.name) {
-                    console.log("Data Available");
-                    var header_data = "<thead>";
-                    header_data += "<tr>";
-                    header_data += "<td style='width: 33%;'>" + "Client Service, Served < 20 years" + "</td>";
-                    header_data += "</tr>";
-
-                    header_data += "<th>Service</th>";
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(value, function(key2, value2){
-                            $.each(pe, function(key3, value3){
-                                if(value3 == key) {
-                                    var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
-                                    header_data += "<th>" + final + "</th>";
-                                }
-                            });
-                        });
-                    });
-                    header_data += "</thead>";
-                    $("#LessTwentyAgeTable").append(header_data);
-
-                    var header_data = "<tbody>";
-                    var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
-                    var title_array = ["IUCD's", "Injectables", "Male Condoms", "Oral Pills", "Implants", "Female Condoms"];
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(dx, function(key1, value1) {
-                            if(key == value1) {
-                                $.each(value, function(key2, value2) {
-                                    header_data += "<tr>";
-                                    header_data += "<td>" + title_array[key1] + "</td>";
-                                    for(j = 0; j < 12; j++) {
-                                        for(i = 0; i < json.rows.length; i++) {
-                                            if(json.rows[i][0] == key) {
-                                                if(json.rows[i][1] == pe[j]) {
-                                                    $.each(pe, function(key4, value4){
-                                                        if(j == key4) {
-                                                            header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
-                                                            var index = total.indexOf(total[j]);
-                                                            total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                    }
-                                    header_data += "</tr>";
-                                });
-                            }
-                        });
-                    });
-                    header_data += "</tbody>";
-                    $("#LessTwentyAgeTable").append(header_data);
-
-                    var header_data = "<tfoot>";
-                    header_data += "<td><strong>Total</strong></td>";
-                    $.each(total, function(key, value){
-                        header_data += "<td>" + Math.ceil(value) + "</td>";
-                    });
-                    header_data += "</tfoot>";
-                    $("#LessTwentyAgeTable").append(header_data);
-                }else {
-                    console.log("Please Select Facility Level");
-                    $("#notification").show();
-                    $("#notification").html("Please Select Facility Level");
-                }
-            });
+        function get_first_string(compound_word) {
+            var sanitized_str = compound_word.split(" ");
+            return sanitized_str[0];
         }
-        function healthworkerstesting() {
-            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
 
-                if(orgUnit.name) {
-                    if(json.rows.length == 0) {
-                        console.log("No Data Returned For The Facility [" + orgUnit.name + "]");
-                        $("#notification").show();
-                        $("#notification").html("No Data Available For The Facility (" + orgUnit.name + ")");
-                    }else {
-                        console.log("Data Available");
-                        var header_data = "<thead>";
-                        header_data += "<tr>";
-                        header_data += "<td>" + "Client Service, Served Through CBD" + "</td>";
-                        header_data += "</tr>";
+        function get_first_three_letters(word) {
+            var processed_word = word.substring(0, 3);
+            return processed_word.charAt(0).toUpperCase() + processed_word.slice(1).toLowerCase();
+        }
 
-                        header_data += "<th>Service</th>";
-                        $.each(pe_OBJECT, function(key, value){
-                            $.each(value, function(key2, value2){
-                                $.each(pe, function(key3, value3){
-                                    if(value3 == key) {
-                                        var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
-                                        header_data += "<th>" + final + "</th>";
-                                    }
-                                });
-                            });
+        function get_all_indicators_data_element_names(metadata_json) {
+            var names = [];
+            var uid_matcher = '\\b[a-zA-Z0-9]{11}\\b|\\b[a-zA-Z0-9]{11}\\b';
+
+            $.each(metadata_json.metaData.items, function (key, value) {
+                $.each(metadata_json.metaData.dimensions.dx, function (key1, value1) {
+                    if (key.match(uid_matcher) && key == value1) {
+                        $.each(value, function (key2, value2) {
+                            names.push(value2)
                         });
-                        header_data += "</thead>";
-                        $("#testing").append(header_data);
-
-                        var header_data = "<tbody>";
-                        var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
-                        $.each(pe_OBJECT, function(key, value){
-                            $.each(dx, function(key1, value1) {
-                                if(key == value1) {
-                                    $.each(value, function(key2, value2) {
-                                        header_data += "<tr>";
-                                        header_data += "<td>" + value2 + "</td>";
-                                        for(j = 0; j < 12; j++) {
-                                            for(i = 0; i < json.rows.length; i++) {
-                                                if(json.rows[i][0] == key) {
-                                                    if(json.rows[i][1] == pe[j]) {
-                                                        header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
-                                                        var index = total.indexOf(total[j]);
-                                                        total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
-                                                    }
-                                                    // else {
-                                                    //     header_data += "<td>" + 0 + "</td>";
-                                                    // }
-                                                }
-                                            }
-                                        }
-                                        header_data += "</tr>";
-                                    });
-                                }
-                            });
-                        });
-                        header_data += "</tbody>";
-                        $("#testing").append(header_data);
-
-                        var header_data = "<tfoot>";
-                        header_data += "<td><strong>Total</strong></td>";
-                        $.each(total, function(key, value){
-                            header_data += "<td>" + Math.ceil(value) + "</td>";
-                        });
-                        header_data += "</tfoot>";
-                        $("#testing").append(header_data);
                     }
-                }else {
-                    console.log("Please Select Facility Level");
-                    $("#notification").show();
-                    $("#notification").html("Please Select Facility Level");
-                }
+                });
             });
+            return names;
         }
-        function total_number_of_healthworkers() {
-            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
 
-                var header_data = "<thead>";
-                header_data += "<tr>";
-                header_data += "<td>" + "Trained HealthWorkers" + "</td>";
-                header_data += "</tr>";
+        function get_all_raw_periods(metadata_json) {
+            var periods = [];
+            var meta_period = metadata_json.metaData.dimensions.pe;
+            $.each(meta_period, function (key, value) {
+                periods.push(value);
+            });
+            return periods;
+        }
 
-                header_data += "<th>Type Of Training</th>";
-                header_data += "<th>Trained HW's</th>";
-                header_data += "</thead>";
-                $("#TrainedHW").append(header_data);
+        function find_period_index_in_analytic_data(metadata_json) {
+            var index = -1;
+            var pe_matcher = "^[0-9]{4,6}$";
+            for (var i = 0; i < metadata_json.rows.length; i++) {
+                for (var j = 0; j < metadata_json.rows[i].length; j++) {
+                    if (metadata_json.rows[i][j].match(pe_matcher)) {
+                        index = j;
+                        break;
+                    }
+                }
+            }
+            return index;
+        }
 
-                var header_data = "<tbody>";
-                var total_hw = [0,0,0,0,0];
-                var title_array = ["NSV", "Implants", "Minilap", "Short-Acting", "IUCD's"]
-                $.each(pe_OBJECT, function(key, value){
-                    $.each(dx, function(key1, value1) {
-                        if(key == value1) {
-                            $.each(value, function(key2, value2) {
-                                header_data += "<tr>";
-                                header_data += "<td>" + title_array[key1] + "</td>";
-                                for(i = 0; i < json.rows.length; i++) {
-                                    for(j = 0; j < 12; j++) {
-                                        if(json.rows[i][0] == key) {
-                                            if(json.rows[i][1] == pe[j]) {
-                                                total_hw[key1] = total_hw[key1] + parseInt(json.rows[i][2]);
-                                            }
-                                        }
-                                    }
-                                }
-                                header_data += "<td>" + total_hw[key1] + "</td>";
-                                header_data += "</tr>";
-                            });
+        function find_uid_index_in_analytic_data(metadata_json) {
+            var uid_matcher = '\\b[a-zA-Z0-9]{11}\\b|\\b[a-zA-Z0-9]{11}\\b';
+            var index = -1;
+            for (var i = 0; i < metadata_json.rows.length; i++) {
+                for (var j = 0; j < metadata_json.rows[i].length; j++) {
+                    if (metadata_json.rows[i][j].match(uid_matcher)) {
+                        index = j;
+                        break;
+                    }
+                }
+            }
+            return index;
+        }
+
+        function find_datavalue_index_in_analytic_data(metadata_json) {
+            var index = -1;
+            var datavalue_matcher = /^[\d]+\.[\d]+$/g;
+            for (var i = 0; i < metadata_json.rows.length; i++) {
+                for (var j = 0; j < metadata_json.rows[i].length; j++) {
+                    if (metadata_json.rows[i][j].match(datavalue_matcher)) {
+                        index = j;
+                        break;
+                    }
+                }
+            }
+            return index;
+        }
+
+        function get_all_data_based_on_periods(metadata_json) {
+            var index = find_datavalue_index_in_analytic_data(metadata_json);
+            var uid = find_uid_index_in_analytic_data(metadata_json);
+            var period = find_period_index_in_analytic_data(metadata_json);
+            var complete_data = [];
+            var temp_data = [];
+
+            $.each(metadata_json.metaData.dimensions.dx, function (key, value) {
+                for (j = 0; j < get_all_raw_periods(metadata_json).length; j++) {
+                    var data_child = null;
+                    for (i = 0; i < metadata_json.rows.length; i++) {
+                        if (metadata_json.rows[i][uid] == value) {
+                            if (metadata_json.metaData.dimensions.pe[j] == metadata_json.rows[i][
+                                period
+                                ]) {
+                                data_child = metadata_json.rows[i][index];
+                            }
+                        }
+                    }
+                    temp_data.push(data_child);
+                }
+                complete_data.push(temp_data);
+                temp_data = [];
+            });
+            return complete_data;
+        }
+
+        function get_period_totality_for_each_indicators(data_array, metadata_json) {
+            var total_data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+            for (var i = 0; i < data_array.length; i++) {
+                for (var j = 0; j < get_all_raw_periods(metadata_json).length; j++) {
+                    if (data_array[i][j] == null) {
+                        total_data[j] = (parseFloat(total_data[j]) + 0).toFixed(1);
+                    } else {
+                        total_data[j] = (parseFloat(total_data[j]) + parseFloat(data_array[i][j])).toFixed(
+                            1);
+                    }
+                }
+            }
+            return total_data;
+        }
+
+        function generate_table_header_information(table_main_title, header_row_definition, metadata_json,
+                                                   division_id) {
+            var html_container = "<thead>";
+            html_container += "<tr>";
+            html_container += "<td class=\"main_header_title\">" + table_main_title + "</td>";
+            html_container += "</tr>";
+
+            html_container += "<th class=\"header_definition_props\">" + header_row_definition + "</th>";
+            $.each(metadata_json.metaData.items, function (key, value) {
+                $.each(value, function (key2, value2) {
+                    $.each(metadata_json.metaData.dimensions.pe, function (key3, value3) {
+                        if (value3 == key) {
+                            var final = get_first_three_letters(get_first_string(
+                                value2)) + " " + get_last_string(value2);
+                            html_container += "<th>" + final + "</th>";
                         }
                     });
                 });
-                header_data += "</tbody>";
-                $("#TrainedHW").append(header_data);
-
-                var overall = 0;
-                var header_data = "<tfoot>";
-                header_data += "<td><strong>Total</strong></td>";
-                $.each(total_hw, function(key, value5){
-                    overall = overall + value5;
-                });
-                header_data += "<td>" + Math.ceil(overall) + "</td>";
-                header_data += "</tfoot>";
-                $("#TrainedHW").append(header_data);
-
             });
+            html_container += "</thead>";
+            $("#" + division_id).append(html_container);
         }
-        function healthworkerstesting() {
-            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" +orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
 
-                if(orgUnit.name) {
-                    if(json.rows.length == 0) {
-                        console.log("No Data Returned For The Facility [" + orgUnit.name + "]");
-                        $("#notification").show();
-                        $("#notification").html("No Data Available For The Facility (" + orgUnit.name + ")");
-                    }else {
-                        console.log("Data Available");
-                        var header_data = "<thead>";
-                        header_data += "<tr>";
-                        header_data += "<td>" + "Client Service, Served Through CBD" + "</td>";
-                        header_data += "</tr>";
-
-                        header_data += "<th>Service</th>";
-                        $.each(pe_OBJECT, function(key, value){
-                            $.each(value, function(key2, value2){
-                                $.each(pe, function(key3, value3){
-                                    if(value3 == key) {
-                                        var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
-                                        header_data += "<th>" + final + "</th>";
-                                    }
-                                });
-                            });
-                        });
-                        header_data += "</thead>";
-                        $("#testing").append(header_data);
-
-                        var header_data = "<tbody>";
-                        var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
-                        $.each(pe_OBJECT, function(key, value){
-                            $.each(dx, function(key1, value1) {
-                                if(key == value1) {
-                                    $.each(value, function(key2, value2) {
-                                        header_data += "<tr>";
-                                        header_data += "<td>" + value2 + "</td>";
-                                        for(j = 0; j < 12; j++) {
-                                            for(i = 0; i < json.rows.length; i++) {
-                                                if(json.rows[i][0] == key) {
-                                                    if(json.rows[i][1] == pe[j]) {
-                                                        header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
-                                                        var index = total.indexOf(total[j]);
-                                                        total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
-                                                    }
-                                                    // else {
-                                                    //     header_data += "<td>" + 0 + "</td>";
-                                                    // }
-                                                }
-                                            }
-                                        }
-                                        header_data += "</tr>";
-                                    });
-                                }
-                            });
-                        });
-                        header_data += "</tbody>";
-                        $("#testing").append(header_data);
-
-                        var header_data = "<tfoot>";
-                        header_data += "<td><strong>Total</strong></td>";
-                        $.each(total, function(key, value){
-                            header_data += "<td>" + Math.ceil(value) + "</td>";
-                        });
-                        header_data += "</tfoot>";
-                        $("#testing").append(header_data);
+        function populate_table_with_respective_data(component_id, indicator_name, data_array, data_total) {
+            var body_container = "<tbody>";
+            body_container += "<tr>";
+            var local_indices = [4, 2, 1, 3, 0]
+            for (var i = 0; i < indicator_name.length; i++) {
+                body_container += "<td class=\"body_definition_props\">" + indicator_name[i] + "</td>";
+                for (var k = 0; k < data_array[i].length; k++) {
+                    if (data_array[i][k] == null) {
+                        body_container += "<td>" + "" + "</td>";
+                    } else {
+                        body_container += "<td>" + Math.round(data_array[i][k]) + "</td>";
                     }
-                }else {
-                    console.log("Please Select Facility Level");
-                    $("#notification").show();
-                    $("#notification").html("Please Select Facility Level");
                 }
-            });
+                body_container += "</tr>";
+            }
+            body_container += "</tbody>";
+            $("#" + component_id).append(body_container);
         }
+
+        function populate_table_with_respective_data_healthworkers(component_id, indicator_name, data_array,
+                                                                   data_total) {
+            var body_container = "<tbody>";
+            body_container += "<tr>";
+            var local_data_indices = [3, 1, 4, 0, 2];
+            var local_names_indices = [4, 2, 1, 3, 0];
+            var sanitized_names = ["Minilap", "IUCD's", "Implants", "NSV", "Short Acting"];
+            for (var i = 0; i < indicator_name.length; i++) {
+                body_container += "<td class=\"body_definition_props\">" + sanitized_names[
+                    local_names_indices[i]] + "</td>";
+                for (var k = 0; k < data_array[i].length; k++) {
+                    if (data_array[local_data_indices[i]][k] == null) {
+                        body_container += "<td>" + "" + "</td>";
+                    } else {
+                        body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
+                            "</td>";
+                    }
+                }
+                body_container += "</tr>";
+            }
+            body_container += "</tbody>";
+            $("#" + component_id).append(body_container);
+        }
+
+        function populate_table_with_respective_data_cbd(component_id, indicator_name, data_array,
+                                                         data_total) {
+            var body_container = "<tbody>";
+            body_container += "<tr>";
+            var local_data_indices = [2, 0, 1];
+            var local_names_indices = [2, 1, 0];
+            var sanitized_names = ["Oral Pills", "Female Condoms", "Male Condoms"];
+            for (var i = 0; i < indicator_name.length; i++) {
+                body_container += "<td class=\"body_definition_props\">" + sanitized_names[
+                    local_names_indices[i]] + "</td>";
+                for (var k = 0; k < data_array[i].length; k++) {
+                    if (data_array[local_data_indices[i]][k] == null) {
+                        body_container += "<td>" + "" + "</td>";
+                    } else {
+                        body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
+                            "</td>";
+                    }
+                }
+                body_container += "</tr>";
+            }
+            body_container += "</tbody>";
+            $("#" + component_id).append(body_container);
+        }
+
+        function populate_table_with_respective_data_service_intergrations(component_id, indicator_name,
+                                                                           data_array,
+                                                                           data_total) {
+            var body_container = "<tbody>";
+            body_container += "<tr>";
+            var local_data_indices = [5, 4, 3, 0, 1, 2];
+            var local_names_indices = [0, 3, 4, 5, 2, 1];
+            var sanitized_names = [
+                "Total number of Miscarriage/abortion clients",
+                "Total number of FP clients adopting HIV testing and Counselling",
+                "Total number of FP clients adopting Cervical Screening",
+                "Total number of Miscarriage/abortion clients adopting FP",
+                "Total number of FP Adopting Postportum FP",
+                "Total number of FP clients adopting Breast Cancer screening",
+            ];
+            for (var i = 0; i < indicator_name.length; i++) {
+                body_container += "<td class=\"body_definition_props\">" + sanitized_names[
+                    local_names_indices[i]] + "</td>";
+                for (var k = 0; k < data_array[i].length; k++) {
+                    if (data_array[local_data_indices[i]][k] == null) {
+                        body_container += "<td>" + "" + "</td>";
+                    } else {
+                        body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
+                            "</td>";
+                    }
+                }
+                body_container += "</tr>";
+            }
+            body_container += "</tbody>";
+            $("#" + component_id).append(body_container);
+        }
+
+        function populate_table_with_respective_data_commodities(component_id, indicator_name,
+                                                                 data_array,
+                                                                 data_total) {
+            var body_container = "<tbody>";
+            body_container += "<tr>";
+            var local_data_indices = [5, 4, 3, 0, 1, 2];
+            var local_names_indices = [0, 3, 4, 5, 2, 1];
+            var sanitized_names = [
+                "Total number of Miscarriage/abortion clients",
+                "Total number of FP clients adopting HIV testing and Counselling",
+                "Total number of FP clients adopting Cervical Screening",
+                "Total number of Miscarriage/abortion clients adopting FP",
+                "Total number of FP Adopting Postportum FP",
+                "Total number of FP clients adopting Breast Cancer screening",
+            ];
+            for (var i = 0; i < indicator_name.length; i++) {
+                body_container += "<td class=\"body_definition_props\">" + sanitized_names[
+                    local_names_indices[i]] + "</td>";
+                for (var k = 0; k < data_array[i].length; k++) {
+                    if (data_array[local_data_indices[i]][k] == null) {
+                        body_container += "<td>" + "" + "</td>";
+                    } else {
+                        body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
+                            "</td>";
+                    }
+                }
+                body_container += "</tr>";
+            }
+            body_container += "</tbody>";
+            $("#" + component_id).append(body_container);
+        }
+
+        function populate_table_with_respective_data_less_twenty(component_id, indicator_name,
+                                                                 data_array,
+                                                                 data_total) {
+            var body_container = "<tbody>";
+            body_container += "<tr>";
+            var local_data_indices = [2, 5, 3, 1, 4, 0];
+            var local_names_indices = [3, 5, 1, 2, 4, 0];
+            var sanitized_names = [
+                "UICD's",
+                "Oral Pills",
+                "Injectables",
+                "Male Condoms",
+                "Implants",
+                "Female Condoms",
+            ];
+            for (var i = 0; i < indicator_name.length; i++) {
+                body_container += "<td class=\"body_definition_props\">" + sanitized_names[
+                    local_names_indices[i]] + "</td>";
+                for (var k = 0; k < data_array[i].length; k++) {
+                    if (data_array[local_data_indices[i]][k] == null) {
+                        body_container += "<td>" + "" + "</td>";
+                    } else {
+                        body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
+                            "</td>";
+                    }
+                }
+                body_container += "</tr>";
+            }
+            body_container += "</tbody>";
+            $("#" + component_id).append(body_container);
+        }
+
+        function populate_table_with_respective_data_served_outreach(component_id, indicator_name,
+                                                                     data_array,
+                                                                     data_total) {
+            var body_container = "<tbody>";
+            body_container += "<tr>";
+            var local_data_indices = [3, 1, 2, 0, 4, 5];
+            var local_names_indices = [2, 3, 4, 0, 5, 1];
+            var sanitized_names = [
+                "UICD's Removals",
+                "Minilap",
+                "Implants Insertions",
+                "Implants Removals",
+                "UICD's Insertions",
+                "NSV",
+            ];
+            for (var i = 0; i < indicator_name.length; i++) {
+                body_container += "<td class=\"body_definition_props\">" + sanitized_names[
+                    local_names_indices[i]] + "</td>";
+                for (var k = 0; k < data_array[i].length; k++) {
+                    if (data_array[local_data_indices[i]][k] == null) {
+                        body_container += "<td>" + "" + "</td>";
+                    } else {
+                        body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
+                            "</td>";
+                    }
+                }
+                body_container += "</tr>";
+            }
+            body_container += "</tbody>";
+            $("#" + component_id).append(body_container);
+        }
+
+        function populate_table_with_respective_data_health_facility(component_id, indicator_name,
+                                                                     data_array,
+                                                                     data_total) {
+            var body_container = "<tbody>";
+            body_container += "<tr>";
+            var local_data_indices = [7, 6, 5, 3, 8, 0, 4, 1, 2, 9];
+            var local_names_indices = [5, 4, 6, 7, 9, 2, 1, 0, 8, 3];
+            var sanitized_names = [
+                "UICD's Removals",
+                "UICD's Insertions",
+                "Implants Removals",
+                "Minilap",
+                "Female Condoms",
+                "Male Condoms",
+                "Oral Pills",
+                "Injectables",
+                "NSV",
+                "Implants Insertions"
+            ];
+            for (var i = 0; i < indicator_name.length; i++) {
+                body_container += "<td class=\"body_definition_props\">" + sanitized_names[
+                    local_names_indices[i]] + "</td>";
+                for (var k = 0; k < data_array[i].length; k++) {
+                    if (data_array[local_data_indices[i]][k] == null) {
+                        body_container += "<td>" + "" + "</td>";
+                    } else {
+                        body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
+                            "</td>";
+                    }
+                }
+                body_container += "</tr>";
+            }
+            body_container += "</tbody>";
+            $("#" + component_id).append(body_container);
+        }
+
+        function populate_data_table_commodities(component_id, indicator_name, data_array, data_total) {
+            var body_container = "<tbody>";
+            body_container += "<tr>";
+            var local_data_indices = [5, 4, 3, 0, 1, 2];
+            var local_names_indices = [0, 3, 4, 5, 2, 1];
+            var sanitized_names = [
+                "Total number of Miscarriage/abortion clients",
+                "Total number of FP clients adopting HIV testing and Counselling",
+                "Total number of FP clients adopting Cervical Screening"
+            ];
+            for (var i = 0; i < indicator_name.length; i++) {
+                body_container += "<td class=\"body_definition_props\">" + indicator_name[i] + "</td>";
+                for (var k = 0; k < data_array[i].length; k++) {
+                    if (data_array[i][k] == null) {
+                        body_container += "<td>" + "No" + "</td>";
+                    } else {
+                        body_container += "<td>" + "Yes" + "</td>";
+                    }
+                }
+                body_container += "</tr>";
+            }
+            body_container += "</tbody>";
+            $("#" + component_id).append(body_container);
+        }
+
+        function populate_totality_based_on_period(component_id, array_total) {
+            var html_container = "<tfoot>";
+            html_container += "<td class=\"footer_definition_props\">" + "Total" + "</td>";
+            $.each(array_total, function (key, value) {
+                html_container += "<td>" + Math.round(value) + "</td>";
+            });
+            html_container += "</tfoot>";
+            $("#" + component_id).append(html_container);
+        }
+
+
+
+
+
+
         function total_number_of_healthworkers() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
+            $.get(
+                "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" +
+                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                "&displayProperty=NAME&skipMeta=false",
+                function (analytic_data) {
+                    var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
+                    var indicators_names = get_all_indicators_data_element_names(analytic_data);
+                    var indicators_total = get_period_totality_for_each_indicators(
+                        analytic_processed_data, analytic_data);
+                    var indicators_data = get_all_data_based_on_periods(analytic_data);
 
-                if(orgUnit.name) {
-                    console.log("Data Available");
-                    var header_data = "<thead>";
-                    header_data += "<tr>";
-                    header_data += "<td style='width: 33%;'>" + "Trained Health Workers" + "</td>";
-                    header_data += "</tr>";
-
-                    header_data += "<th>Service</th>";
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(value, function(key2, value2){
-                            $.each(pe, function(key3, value3){
-                                if(value3 == key) {
-                                    var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
-                                    header_data += "<th>" + final + "</th>";
-                                }
-                            });
-                        });
-                    });
-                    header_data += "</thead>";
-                    $("#TrainedHW").append(header_data);
-
-                    var header_data = "<tbody>";
-                    var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
-                    var title_array = [
-                        "Number of Health Workes Trained IUCDs",
-                        "Number of Health Workes Trained Implants",
-                        "Number of Health Workes Trained Minlap",
-                        "Number of Health Workes Trained NSV",
-                        "Number of Health Workes Trained Short Acting Methods"
-                    ];
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(dx, function(key1, value1) {
-                            if(key == value1) {
-                                $.each(value, function(key2, value2) {
-                                    header_data += "<tr>";
-                                    header_data += "<td>" + title_array[key1] + "</td>";
-                                    for(j = 0; j < 12; j++) {
-                                        for(i = 0; i < json.rows.length; i++) {
-                                            if(json.rows[i][0] == key) {
-                                                if(json.rows[i][1] == pe[j]) {
-                                                    header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
-                                                    var index = total.indexOf(total[j]);
-                                                    total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    header_data += "</tr>";
-                                });
-                            }
-                        });
-                    });
-                    header_data += "</tbody>";
-                    $("#TrainedHW").append(header_data);
-
-                    var header_data = "<tfoot>";
-                    header_data += "<td><strong>Total</strong></td>";
-                    $.each(total, function(key, value){
-                        header_data += "<td>" + Math.ceil(value) + "</td>";
-                    });
-                    header_data += "</tfoot>";
-                    $("#TrainedHW").append(header_data);
-                }else {
-                    console.log("Please Select Facility Level");
-                    $("#notification").show();
-                    $("#notification").html("Please Select Facility Level");
-                }
-            });
+                    generate_table_header_information("Trained Health Workers", "Service",
+                        analytic_data,
+                        "TrainedHW");
+                    populate_table_with_respective_data_healthworkers("TrainedHW", indicators_names,
+                        indicators_data,
+                        indicators_total);
+                    populate_totality_based_on_period("TrainedHW",
+                        get_period_totality_for_each_indicators(indicators_data, analytic_data));
+                });
         }
+
+        function client_served_by_CBD() {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get("../api/analytics.json?dimension=dx:CAZJesl4va5;NHnXpXYblEM;OxxbMcRjVbt&dimension=pe:" +
+                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                "&displayProperty=NAME&skipMeta=false&includeNumDen=false",
+                function (analytic_data) {
+                    var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
+                    var indicators_names = get_all_indicators_data_element_names(analytic_data);
+                    var indicators_total = get_period_totality_for_each_indicators(
+                        analytic_processed_data, analytic_data);
+                    var indicators_data = get_all_data_based_on_periods(analytic_data);
+
+                    generate_table_header_information("Client Service, Served Through CBD", "Service",
+                        analytic_data,
+                        "CDBTable");
+                    populate_table_with_respective_data_cbd("CDBTable", indicators_names,
+                        indicators_data,
+                        indicators_total);
+                    populate_totality_based_on_period("CDBTable",
+                        get_period_totality_for_each_indicators(indicators_data, analytic_data));
+                });
+        }
+
+        function service_intergrations() {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get(
+                "../api/analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;qEWJizgHHot;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" +
+                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                "&displayProperty=NAME&skipMeta=false&includeNumDen=false",
+                function (analytic_data) {
+                    var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
+                    var indicators_names = get_all_indicators_data_element_names(analytic_data);
+                    var indicators_total = get_period_totality_for_each_indicators(
+                        analytic_processed_data, analytic_data);
+                    var indicators_data = get_all_data_based_on_periods(analytic_data);
+
+                    generate_table_header_information("Service Intergrations", "Service",
+                        analytic_data,
+                        "ServiceIntergrationsTable");
+                    populate_table_with_respective_data_service_intergrations(
+                        "ServiceIntergrationsTable", indicators_names,
+                        indicators_data,
+                        indicators_total);
+                    // populate_totality_based_on_period("ServiceIntergrationsTable",
+                    //     get_period_totality_for_each_indicators(indicators_data, analytic_data));
+                });
+        }
+
+        function client_served_by_healthy_facility() {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get(
+                "../api/analytics.json?dimension=dx:Eh1uMcVwxEY;GEjpz3mQo6E;JSmtnnW6WrR;LmbDl4YdYAn;UjGebiXNg0t;bjkeLqFDDjo;c3f9YMx29Bx;isK24MvwQmy;lMFKZN3UaYp;xhcaH3H3pdK&dimension=pe:" +
+                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                "&displayProperty=NAME&skipMeta=false",
+                function (analytic_data) {
+
+                    var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
+                    var indicators_names = get_all_indicators_data_element_names(analytic_data);
+                    var indicators_total = get_period_totality_for_each_indicators(
+                        analytic_processed_data, analytic_data);
+                    var indicators_data = get_all_data_based_on_periods(analytic_data);
+
+                    generate_table_header_information("Client Service, Served Through Health Facility",
+                        "Service",
+                        analytic_data,
+                        "ClientServedThroughHealthFacilityTable");
+                    populate_table_with_respective_data_health_facility(
+                        "ClientServedThroughHealthFacilityTable",
+                        indicators_names,
+                        indicators_data,
+                        indicators_total);
+                    populate_totality_based_on_period("ClientServedThroughHealthFacilityTable",
+                        get_period_totality_for_each_indicators(indicators_data, analytic_data));
+                });
+        }
+
+        function client_served_by_outreach() {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get(
+                "../api/analytics.json?dimension=dx:O10liqQFwcI;PLfFV1fKVfQ;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" +
+                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                "&displayProperty=NAME&skipMeta=false",
+                function (analytic_data) {
+                    var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
+                    var indicators_names = get_all_indicators_data_element_names(analytic_data);
+                    var indicators_total = get_period_totality_for_each_indicators(
+                        analytic_processed_data, analytic_data);
+                    var indicators_data = get_all_data_based_on_periods(analytic_data);
+
+                    generate_table_header_information("Client Service, Served Through Outreach",
+                        "Service",
+                        analytic_data,
+                        "ClientServedByOutreachTable");
+                    populate_table_with_respective_data_served_outreach("ClientServedByOutreachTable",
+                        indicators_names,
+                        indicators_data,
+                        indicators_total);
+                    populate_totality_based_on_period("ClientServedByOutreachTable",
+                        get_period_totality_for_each_indicators(indicators_data, analytic_data));
+                });
+        }
+
+        function client_served_age_less_twenty() {
+            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
+            $.get(
+                "../api/analytics.json?dimension=dx:GvbkEo6sfSd;LpkdcaLc4I9;W74wyMy1mp0;aSJKs4oPZAf;p14JdJaG2aC;p8cgxI3yPx8&dimension=pe:" +
+                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                "&displayProperty=NAME&skipMeta=false",
+                function (analytic_data) {
+                    var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
+                    var indicators_names = get_all_indicators_data_element_names(analytic_data);
+                    var indicators_total = get_period_totality_for_each_indicators(
+                        analytic_processed_data, analytic_data);
+                    var indicators_data = get_all_data_based_on_periods(analytic_data);
+
+                    generate_table_header_information("Client Service, Served < 20 years",
+                        "Service",
+                        analytic_data,
+                        "ClientServedAgeLessThanTwenty");
+                    populate_table_with_respective_data_less_twenty("ClientServedAgeLessThanTwenty",
+                        indicators_names,
+                        indicators_data,
+                        indicators_total);
+                    populate_totality_based_on_period("ClientServedAgeLessThanTwenty",
+                        get_period_totality_for_each_indicators(indicators_data, analytic_data));
+                });
+        }
+
         function commodities_stocked_out() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods)+ "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
+            $.get("../api/analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" +
+                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                "&displayProperty=NAME&skipMeta=false",
+                function (analytic_data) {
+                    var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
+                    var indicators_names = get_all_indicators_data_element_names(analytic_data);
+                    var indicators_total = get_period_totality_for_each_indicators(
+                        analytic_processed_data, analytic_data);
+                    var indicators_data = get_all_data_based_on_periods(analytic_data);
 
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
-
-                if(orgUnit.name) {
-                    console.log("Data Available");
-                    var header_data = "<thead>";
-                    header_data += "<tr>";
-                    header_data += "<td style='width: 33%;'>" + "Commodities Stocked Out" + "</td>";
-                    header_data += "</tr>";
-
-                    header_data += "<th>Commodities</th>";
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(value, function(key2, value2){
-                            $.each(pe, function(key3, value3){
-                                if(value3 == key) {
-                                    var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
-                                    header_data += "<th>" + final + "</th>";
-                                }
-                            });
-                        });
-                    });
-                    header_data += "</thead>";
-                    $("#commoditiesTable").append(header_data);
-
-                    var header_data = "<tbody>";
-                    var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
-                    var title_array = ["Injectables","Oral Pills"];
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(dx, function(key1, value1) {
-                            if(key == value1) {
-                                $.each(value, function(key2, value2) {
-                                    header_data += "<tr>";
-                                    header_data += "<td>" + title_array[key1] + "</td>";
-                                    for(j = 0; j < 12; j++) {
-                                        for(i = 0; i < json.rows.length; i++) {
-                                            if(json.rows[i][0] == key) {
-                                                if(json.rows[i][1] == pe[j]) {
-                                                    if(json.rows[i][2] >= 1) {
-                                                        header_data += "<td>" + "Yes" + "</td>";
-                                                    } else if(json.rows[i][2] <= 0){
-                                                        header_data += "<td>" + "No" + "</td>";
-                                                    }else if(json.rows[i][2] == "") {
-                                                        header_data += "<td>" + "No" + "</td>";
-                                                    }
-                                                    // header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
-                                                    var index = total.indexOf(total[j]);
-                                                    total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    header_data += "</tr>";
-                                });
-                            }
-                        });
-                    });
-                    header_data += "</tbody>";
-                    $("#commoditiesTable").append(header_data);
-
-                    var header_data = "<tfoot>";
-                    header_data += "<td><strong>Total</strong></td>";
-                    $.each(total, function(key, value){
-                        header_data += "<td>" + Math.ceil(value) + "</td>";
-                    });
-                    header_data += "</tfoot>";
-                    $("#commoditiesTable").append(header_data);
-                }else {
-                    console.log("Please Select Facility Level");
-                    $("#notification").show();
-                    $("#notification").html("Please Select Facility Level");
-                }
-            });
+                    generate_table_header_information("Commodities Stocked Out",
+                        "Commodities",
+                        analytic_data,
+                        "CommoditiesStockedOut");
+                    populate_data_table_commodities("CommoditiesStockedOut",
+                        indicators_names,
+                        indicators_data,
+                        indicators_total);
+                    populate_totality_based_on_period("CommoditiesStockedOut",
+                        get_period_totality_for_each_indicators(indicators_data, analytic_data));
+                });
+            $("#loadingMessage").hide();
         }
-        function service_and_intergrations() {
-            var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;X52ysvNZ7q4;Xs33A99SoMs;qEWJizgHHot;r5gmWoT3ywf;rJPeim9h6qY;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" + sanitizedPeriods($scope.selectedPeriods) + "&filter=ou:" + orgUnit.id + "&displayProperty=NAME&skipMeta=false", function( json ) {
-                var pe = json.metaData.dimensions.pe;
-                var dx = json.metaData.dimensions.dx;
-                var datas = json.rows;
-                var pe_OBJECT =  json.metaData.items;
 
-                if(orgUnit.name) {
-                    console.log("Data Available");
-                    var header_data = "<thead>";
-                    header_data += "<tr>";
-                    header_data += "<td style='width: 33%;'>" + "Service Intergrations" + "</td>";
-                    header_data += "</tr>";
 
-                    header_data += "<th>Service</th>";
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(value, function(key2, value2){
-                            $.each(pe, function(key3, value3){
-                                if(value3 == key) {
-                                    var final = get_first_three_letters(get_first_string(value2)) + " " + get_last_string(value2);
-                                    header_data += "<th>" + final + "</th>";
-                                }
-                            });
-                        });
-                    });
-                    header_data += "</thead>";
-                    $("#service_and_intergrationsTable").append(header_data);
 
-                    var header_data = "<tbody>";
-                    var total = [0,0.0,0,0,0,0,0,0,0,0,0,0];
-                    var title_array = [
-                        "Total number of Miscarriage/abortion clients adopting FP",
-                        "Total number of Miscarriage/abortion clients",
-                        "Total number of FP Adopting Postportum FP",
-                        "Total number of FP clients adopting Breast Cancer screening",
-                        "Total number of FP clients adopting Cervical Screening",
-                        "Total number of FP clients adopting HIV testing and Counselling",
-                        "X FP Wateja waliochukua kondomu (Kituoni na CBD)",
-                        "X FP wateja waliopatiwa huduma outreach jumla",
-                        "X FP wateja waliopatiwa huduma na CBD jumla",
-                        "X FP wateja waliopatiwa huduma kituoni Marudio",
-                    ];
-                    $.each(pe_OBJECT, function(key, value){
-                        $.each(dx, function(key1, value1) {
-                            if(key == value1) {
-                                $.each(value, function(key2, value2) {
-                                    header_data += "<tr>";
-                                    header_data += "<td>" + title_array[key1] + "</td>";
-                                    for(j = 0; j < 12; j++) {
-                                        for(i = 0; i < json.rows.length; i++) {
-                                            if(json.rows[i][0] == key) {
-                                                if(json.rows[i][1] == pe[j]) {
-                                                    header_data += "<td>" + Math.ceil(json.rows[i][2]) + "</td>";
-                                                    var index = total.indexOf(total[j]);
-                                                    total[index] = parseInt(total[index]) + parseInt(json.rows[i][2]);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    header_data += "</tr>";
-                                });
-                            }
-                        });
-                    });
-                    header_data += "</tbody>";
-                    $("#service_and_intergrationsTable").append(header_data);
 
-                    var header_data = "<tfoot>";
-                    header_data += "<td><strong>Total</strong></td>";
-                    $.each(total, function(key, value){
-                        header_data += "<td>" + Math.ceil(value) + "</td>";
-                    });
-                    header_data += "</tfoot>";
-                    $("#service_and_intergrationsTable").append(header_data);
-                }else {
-                    console.log("Please Select Facility Level");
-                    $("#notification").show();
-                    $("#notification").html("Please Select Facility Level");
-                }
-                $("#loadingMessage").hide();
-                // $scope.apply();
-            });
-            $scope.showLoaderImage = false;
-        }
-        // END OF FACILITY DATA CODE REPORTS
 
 
     });
