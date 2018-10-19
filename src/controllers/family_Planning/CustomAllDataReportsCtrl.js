@@ -346,7 +346,7 @@ angular.module("hmisPortal")
                 // var month = $scope.selectedPeriods[0].id.substring(4,6);
                 // var year = $scope.selectedPeriods[0].id.substring(0,4);
                 // $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
-                console.log(JSON.stringify($scope.selectedPeriods))
+                // console.log(JSON.stringify($scope.selectedPeriods))
                 $scope.loadFacilityDataReport()
             }
             $scope.showReportSection = !$scope.showReportSection;
@@ -825,6 +825,11 @@ angular.module("hmisPortal")
             // client_served_age_less_twenty();
             // service_and_intergrations();
             // commodities_stocked_out();
+
+            // $scope.lastSelectedPeriods = $scope.selectedPeriods;
+            // var month = $scope.selectedPeriods[0].id.substring(4,6);
+            // var year = $scope.selectedPeriods[0].id.substring(0,4);
+            // $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
 
             generate_orgunit_summary_data($scope.data['outRegistrationOrganisationUnits'][0]);
 
@@ -1618,11 +1623,11 @@ angular.module("hmisPortal")
         var orgUnitHierarchy = [];
         // var orgUnitChildren = $scope.data['outRegistrationOrganisationUnits'][0].children;
         // var date = dhis2.report.date;
-        $scope.lastSelectedPeriods = $scope.selectedPeriods;
-        var month = $scope.selectedPeriods[0].id.substring(4,6);
-        var year = $scope.selectedPeriods[0].id.substring(0,4);
+        // $scope.lastSelectedPeriods = $scope.selectedPeriods;
+        // var month = $scope.selectedPeriods[0].id.substring(4,6);
+        // var year = $scope.selectedPeriods[0].id.substring(0,4);
         // $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
-        var periods = $scope.customLast12Months(month, parseInt(year) );
+        var periods = $scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)));
         var period = periods[0];
 
         function generate_orgunit_summary_data() {
@@ -2083,7 +2088,7 @@ angular.module("hmisPortal")
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get(
                 "../api/analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" +
-                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2106,7 +2111,7 @@ angular.module("hmisPortal")
         function client_served_by_CBD() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get("../api/analytics.json?dimension=dx:CAZJesl4va5;NHnXpXYblEM;OxxbMcRjVbt&dimension=pe:" +
-                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false&includeNumDen=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2130,7 +2135,7 @@ angular.module("hmisPortal")
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get(
                 "../api/analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;qEWJizgHHot;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" +
-                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false&includeNumDen=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2155,7 +2160,7 @@ angular.module("hmisPortal")
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get(
                 "../api/analytics.json?dimension=dx:Eh1uMcVwxEY;GEjpz3mQo6E;JSmtnnW6WrR;LmbDl4YdYAn;UjGebiXNg0t;bjkeLqFDDjo;c3f9YMx29Bx;isK24MvwQmy;lMFKZN3UaYp;xhcaH3H3pdK&dimension=pe:" +
-                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
 
@@ -2183,7 +2188,7 @@ angular.module("hmisPortal")
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get(
                 "../api/analytics.json?dimension=dx:O10liqQFwcI;PLfFV1fKVfQ;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" +
-                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2209,7 +2214,7 @@ angular.module("hmisPortal")
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get(
                 "../api/analytics.json?dimension=dx:GvbkEo6sfSd;LpkdcaLc4I9;W74wyMy1mp0;aSJKs4oPZAf;p14JdJaG2aC;p8cgxI3yPx8&dimension=pe:" +
-                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2234,7 +2239,7 @@ angular.module("hmisPortal")
         function commodities_stocked_out() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get("../api/analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" +
-                sanitized_periods(periods) + "&filter=ou:" + orgUnit.id +
+                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
