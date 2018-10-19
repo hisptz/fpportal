@@ -849,12 +849,12 @@ angular.module("hmisPortal")
 
             // $scope.showLoaderImage = false;
         }
-        // function sanitizedPeriods(periodArray) {
-        //     var sanitizedPeriods = periodArray.map(function (period) {
-        //         return period;
-        //     }).join(";");
-        //     return sanitizedPeriods;
-        // }
+        function sanitizedPeriods(periodArray) {
+            var sanitizedPeriods = periodArray.map(function (period) {
+                return period.id;
+            }).join(";");
+            return sanitizedPeriods;
+        }
         function get_last_string(compound_word) {
             var sanitized_str = compound_word.split(" ");
             return sanitized_str[sanitized_str.length - 1];
