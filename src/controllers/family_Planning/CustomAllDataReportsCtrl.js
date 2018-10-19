@@ -6,7 +6,7 @@ angular.module("hmisPortal")
     .controller("customReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
         //displaying loading during page change
         $scope.showLoader = 'none';
-        $scope.serverLink = '../dhis/api/';
+        $scope.serverLink = '../api/';
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
@@ -33,7 +33,7 @@ angular.module("hmisPortal")
         $scope.showReportSection = false;
         $scope.customDate = false;
         $scope.selectedPeriodType = '';
-        $scope.periodType = 'monthly';
+        $scope.periodType = 'Monthly';
         $scope.reportHeader = 'Report on ';
         $scope.aggregateDataViewHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
             {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}, {name: 'Total FP facilities', id: ''},
@@ -143,6 +143,7 @@ angular.module("hmisPortal")
         $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
         // end of portion code will clear multi-selected orgunit to single selected orgunit
 
+        // $scope.availablePeriods = $scope.getPeriodsBasedOnType('Monthly', $scope.selectedYear);
 
         $scope.selectedReportType = function (reportType) {
             angular.forEach($scope.reportTypes, function (report) {
@@ -698,7 +699,7 @@ angular.module("hmisPortal")
             $scope.updatePeriodType($scope.periodType, '')
         }
         $scope.updatePeriodType = function (periodType, e) {
-           $scope.periodType = periodType
+           $scope.periodType = periodType;
             $scope.availablePeriods = $scope.getPeriodsBasedOnType(periodType, $scope.selectedYear);
         }
         $scope.getPeriodsBasedOnType = function(periodType, year) {
