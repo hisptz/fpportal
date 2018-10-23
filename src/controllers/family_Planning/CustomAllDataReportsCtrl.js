@@ -6,7 +6,7 @@ angular.module("hmisPortal")
     .controller("customReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
         //displaying loading during page change
         $scope.showLoader = 'none';
-        $scope.serverLink = '../api/';
+        $scope.serverLink = '../dhis/api/';
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
@@ -126,6 +126,8 @@ angular.module("hmisPortal")
         $scope.lastSelectedPeriods = [];
         $scope.data.outOrganisationUnits = [];
 
+
+
             // this portion of code will clear multselected orgunit to single selected orgunit
         $scope.data.orgUnitTree1 = [];
         $scope.data.orgUnitTree = [];
@@ -141,7 +143,7 @@ angular.module("hmisPortal")
         // tempOrg.sort(function(a, b) {
         //     return a.name.localeCompare(b.name);
         // });
-
+        // $scope.updatePeriodType('Monthly', '');
             // arrange alphabetical the zones
         $scope.geographicalZones.organisationUnitGroups.sort(function(a, b) {
             return a.name.localeCompare(b.name);
@@ -164,7 +166,7 @@ angular.module("hmisPortal")
                     district.children.sort(function(a, b) {
                         return a.name.localeCompare(b.name);
                     });
-                    regionDistricts.push({name:district.name,id:district.id, children: district.children });
+                    regionDistricts.push({name:district.name,id:district.id, children: district.children }); // add this children proprty to allow facilities
                 });
                 zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
             });
@@ -174,7 +176,7 @@ angular.module("hmisPortal")
         //console.log("Tree:", $scope.data.orgUnitTree);
         // end of portion code will clear multi-selected orgunit to single selected orgunit
 
-        // $scope.availablePeriods = $scope.getPeriodsBasedOnType('Monthly', $scope.selectedYear);
+        $scope.updatePeriodType('Monthly', '');
 
         $scope.selectedReportType = function (reportType) {
             angular.forEach($scope.reportTypes, function (report) {
@@ -683,40 +685,40 @@ angular.module("hmisPortal")
             switch(month) {
                 case '01':
 
-                    return [newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03',newYear+'02',newYear+'01'];
+                    return [year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03',newYear+'02',newYear+'01'];
 
                 case '02':
-                    return [year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03',newYear+'02'];
+                    return [year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03',newYear+'02'];
 
                 case '03':
-                    return [year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03'];
+                    return [year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03'];
 
                 case '04':
-                    return [year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04'];
+                    return [year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04'];
 
                 case '05':
-                    return [year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05'];
+                    return [year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05'];
 
                 case '06':
-                    return [year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06'];
+                    return [year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06'];
 
                 case '07':
-                    return [year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07'];
+                    return [year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07'];
 
                 case '08':
-                    return [year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08'];
+                    return [year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08'];
 
                 case '09':
-                    return [year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09'];
+                    return [year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09'];
 
                 case '10':
-                    return [year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10'];
+                    return [year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10'];
 
                 case '11':
-                    return [year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11'];
+                    return [year+'11',year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11'];
 
                 case '12':
-                    return [year+'11',year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12'];
+                    return [year+'12',year+'11',year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12'];
             }
         }
 
@@ -730,7 +732,7 @@ angular.module("hmisPortal")
             $scope.updatePeriodType($scope.periodType, '')
         }
         $scope.updatePeriodType = function (periodType, e) {
-           $scope.periodType = periodType;
+            $scope.periodType = periodType;
             $scope.availablePeriods = $scope.getPeriodsBasedOnType(periodType, $scope.selectedYear);
         }
         $scope.getPeriodsBasedOnType = function(periodType, year) {
