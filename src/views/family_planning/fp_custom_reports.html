@@ -344,14 +344,18 @@
                             <form>
                                 <div class="form-group" >
                                     <label>Country:</label>
-
-                                    <multi-select-tree
-                                            data-input-model="data.orgUnitTree"
-                                            multi-select="false"
-                                            data-output-model="data.outRegistrationOrganisationUnits"
-                                            data-default-label="Select Organization Unit"
-                                            data-callback="selectOnly1Or2(item, selectedItems)">
-                                    </multi-select-tree>
+                                    <div ng-if="loadingOrganisationUnits">
+                                        Loading Organisation Units...
+                                    </div>
+                                    <div ng-if="!loadingOrganisationUnits">
+                                        <multi-select-tree
+                                                data-input-model="data.orgUnitTree"
+                                                multi-select="false"
+                                                data-output-model="data.outRegistrationOrganisationUnits"
+                                                data-default-label="Select Organization Unit"
+                                                data-callback="selectOnly1Or2(item, selectedItems)">
+                                        </multi-select-tree>
+                                    </div>
                                 </div>
 
                                 <div class="row" style="margin-top: 15px">

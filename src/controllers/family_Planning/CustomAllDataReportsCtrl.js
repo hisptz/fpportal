@@ -129,6 +129,14 @@ angular.module("hmisPortal")
             // this portion of code will clear multselected orgunit to single selected orgunit
         $scope.data.orgUnitTree1 = [];
         $scope.data.orgUnitTree = [];
+        console.log("$scope.geographicalZones.organisationUnitGroups:",$scope.geographicalZones.organisationUnitGroups);
+        $scope.loadingOrganisationUnits = true;
+        $http.get($scope.serverLink+ "organisationUnitGroups?fields=id,name,organisationUnits[id,name,children[id,name,children[id,name]]]&filter=name:ilike:zone")
+            .then(function(response) {
+                console.log("response", response.data);
+                $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:response.data.organisationUnitGroups,selected:true});
+                $scope.loadingOrganisationUnits = false;
+            })
         angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
             var zoneRegions = [];
             angular.forEach(value.organisationUnits,function(regions){
@@ -140,7 +148,8 @@ angular.module("hmisPortal")
             });
             $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
         });
-        $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
+        //$scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
+        //console.log("Tree:", $scope.data.orgUnitTree);
         // end of portion code will clear multi-selected orgunit to single selected orgunit
 
         // $scope.availablePeriods = $scope.getPeriodsBasedOnType('Monthly', $scope.selectedYear);

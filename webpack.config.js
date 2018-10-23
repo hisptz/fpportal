@@ -12,6 +12,11 @@ module.exports = {
                 "auth":"vincentminde:StrongPasswordABC123",
                 "changeOrigin": true
             },
+            "/dhis/api": {
+                "target": "https://hmisportal.moh.go.tz",
+                "auth":"vincentminde:StrongPasswordABC123",
+                "changeOrigin": true
+            },
             "/dhis-web-commons": {
                 "target": "https://hmisportal.moh.go.tz/dhis",
                 "auth":"vincentminde:StrongPasswordABC123",
