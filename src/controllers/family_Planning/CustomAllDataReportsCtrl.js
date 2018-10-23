@@ -131,7 +131,7 @@ angular.module("hmisPortal")
         $scope.data.orgUnitTree = [];
         console.log("$scope.geographicalZones.organisationUnitGroups:",$scope.geographicalZones.organisationUnitGroups);
         $scope.loadingOrganisationUnits = true;
-        $http.get($scope.serverLink+ "organisationUnitGroups?fields=id,name,organisationUnits[id,name,children[id,name,children[id,name]]]&filter=name:ilike:zone")
+        $http.get($scope.serverLink+ "organisationUnitGroups?fields=id,name,organisationUnits~rename(children)[id,name,children[id,name,children[id,name]]]&filter=name:ilike:zone")
             .then(function(response) {
                 console.log("response", response.data);
                 $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:response.data.organisationUnitGroups,selected:true});
