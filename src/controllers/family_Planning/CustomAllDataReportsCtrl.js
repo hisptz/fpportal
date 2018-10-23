@@ -6,7 +6,7 @@ angular.module("hmisPortal")
     .controller("customReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
         //displaying loading during page change
         $scope.showLoader = 'none';
-        $scope.serverLink = '../dhis/api/';
+        $scope.serverLink = '../api/';
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
@@ -129,26 +129,48 @@ angular.module("hmisPortal")
             // this portion of code will clear multselected orgunit to single selected orgunit
         $scope.data.orgUnitTree1 = [];
         $scope.data.orgUnitTree = [];
-        console.log("$scope.geographicalZones.organisationUnitGroups:",$scope.geographicalZones.organisationUnitGroups);
-        $scope.loadingOrganisationUnits = true;
-        $http.get($scope.serverLink+ "organisationUnitGroups?fields=id,name,organisationUnits~rename(children)[id,name,children[id,name,children[id,name]]]&filter=name:ilike:zone")
-            .then(function(response) {
-                console.log("response", response.data);
-                $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:response.data.organisationUnitGroups,selected:true});
-                $scope.loadingOrganisationUnits = false;
-            })
+        // console.log("$scope.geographicalZones.organisationUnitGroups:",$scope.geographicalZones.organisationUnitGroups);
+        // $scope.loadingOrganisationUnits = true;
+        // $http.get($scope.serverLink+ "organisationUnitGroups?fields=id,name,organisationUnits~rename(children)[id,name,children[id,name,children[id,name]]]&filter=name:ilike:zone")
+        //     .then(function(response) {
+        //         console.log("response", response.data);
+        //         $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:response.data.organisationUnitGroups,selected:true});
+        //         $scope.loadingOrganisationUnits = false;
+        //     })
+
+        // tempOrg.sort(function(a, b) {
+        //     return a.name.localeCompare(b.name);
+        // });
+
+            // arrange alphabetical the zones
+        $scope.geographicalZones.organisationUnitGroups.sort(function(a, b) {
+            return a.name.localeCompare(b.name);
+        });
+
         angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
             var zoneRegions = [];
+                // arrange alphabetical the regions
+            value.organisationUnits.sort(function(a, b) {
+                return a.name.localeCompare(b.name);
+            });
             angular.forEach(value.organisationUnits,function(regions){
                 var regionDistricts = [];
+                // arrange alphabetical the district
+                regions.children.sort(function(a, b) {
+                    return a.name.localeCompare(b.name);
+                });
                 angular.forEach(regions.children,function(district){
-                    regionDistricts.push({name:district.name,id:district.id });
+                    // arrange alphabetical the facilities
+                    district.children.sort(function(a, b) {
+                        return a.name.localeCompare(b.name);
+                    });
+                    regionDistricts.push({name:district.name,id:district.id, children: district.children });
                 });
                 zoneRegions.push({ name:regions.name,id:regions.id, children:regionDistricts });
             });
             $scope.data.orgUnitTree1.push({ name:value.name,id:value.id, children:zoneRegions });
         });
-        //$scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
+        $scope.data.orgUnitTree.push({name:"Tanzania",id:'m0frOspS7JY',children:$scope.data.orgUnitTree1,selected:true});
         //console.log("Tree:", $scope.data.orgUnitTree);
         // end of portion code will clear multi-selected orgunit to single selected orgunit
 
