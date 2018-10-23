@@ -176,7 +176,7 @@ angular.module("hmisPortal")
         //console.log("Tree:", $scope.data.orgUnitTree);
         // end of portion code will clear multi-selected orgunit to single selected orgunit
 
-        $scope.updatePeriodType('Monthly', '');
+        // $scope.updatePeriodType('Monthly', '');
 
         $scope.selectedReportType = function (reportType) {
             angular.forEach($scope.reportTypes, function (report) {
