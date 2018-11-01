@@ -45,7 +45,7 @@ angular.module("hmisPortal")
             {name: 'Short Acting',active: '',
                 aggregateIndicator: [{name: 'Total clients using short acting methods', id:'Tq5PQFhyMnz'}],
                 facilityIndicator: [{name: 'Total clients using short acting methods', id:'Tq5PQFhyMnz'}]
-               },
+            },
             {name: 'Implants',active: '',
                 aggregateIndicator: [{name: 'Facility staffed with HWs on implants insertion service', id:'ZnTi99UdGCS'},{name: 'Facility staffed with HWs on implants removal service', id:'Eh1uMcVwxEY'}],
                 facilityIndicator: [{name: 'Total facilities staffed with HWs on implants insertion service facility', id:'lMFKZN3UaYp'},{name: 'Facility staffed with HWs on implants removal service', id:'Eh1uMcVwxEY'}]},
@@ -61,7 +61,7 @@ angular.module("hmisPortal")
                 aggregateIndicator:[{name:'Total Minilap on women outreach', id:'xip1SDutimh'}],
                 facilityIndicator:[{name:'Total Minilap on women routine', id:'xhcaH3H3pdK'}]
             }
-            ];
+        ];
         $scope.reportTypes = [
             {name:'Comprehensive FP report', id:'1'},
             {name:'Trainings', id:'2' },
@@ -128,7 +128,7 @@ angular.module("hmisPortal")
 
 
 
-            // this portion of code will clear multselected orgunit to single selected orgunit
+        // this portion of code will clear multselected orgunit to single selected orgunit
         $scope.data.orgUnitTree1 = [];
         $scope.data.orgUnitTree = [];
         // console.log("$scope.geographicalZones.organisationUnitGroups:",$scope.geographicalZones.organisationUnitGroups);
@@ -144,14 +144,14 @@ angular.module("hmisPortal")
         //     return a.name.localeCompare(b.name);
         // });
         // $scope.updatePeriodType('Monthly', '');
-            // arrange alphabetical the zones
+        // arrange alphabetical the zones
         $scope.geographicalZones.organisationUnitGroups.sort(function(a, b) {
             return a.name.localeCompare(b.name);
         });
 
         angular.forEach($scope.geographicalZones.organisationUnitGroups,function(value){
             var zoneRegions = [];
-                // arrange alphabetical the regions
+            // arrange alphabetical the regions
             value.organisationUnits.sort(function(a, b) {
                 return a.name.localeCompare(b.name);
             });
@@ -352,9 +352,9 @@ angular.module("hmisPortal")
             $scope.reportHeader = $scope.reportHeader.replace(','+headerItemRemoval, '');
 
             angular.forEach(collection, function (collectedItem, index) {
-                    if(collectedItem[key] === removal[key]){
-                        collection.splice(index, 1);
-                    }
+                if(collectedItem[key] === removal[key]){
+                    collection.splice(index, 1);
+                }
             });
             return collection;
         }
@@ -382,13 +382,14 @@ angular.module("hmisPortal")
                 // $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
                 // console.log(JSON.stringify($scope.selectedPeriods))
                 $scope.loadFacilityDataReport()
+                console.log(FPManager.lastTwelveMonth($scope.selectedPeriods[0].id))
             }
             $scope.showReportSection = !$scope.showReportSection;
             // console.log($scope.data['outRegistrationOrganisationUnits']);
             // $scope.showLoaderImage = false;
         };
         $scope.toggleDataSelections = function (){
-             $scope.selectedPeriods = $scope.lastSelectedPeriods
+            $scope.selectedPeriods = $scope.lastSelectedPeriods
             $scope.showReportSection = !$scope.showReportSection;
         }
         $scope.reporDataWithChildren = function (){
@@ -440,7 +441,7 @@ angular.module("hmisPortal")
                     if(orgUnitCollected.name.indexOf('Zone' ) > -1){
                         var localHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
                             {name: 'Region', id: ''}, {name: 'Period', id: ''}];
-                            // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}];
+                        // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
@@ -456,7 +457,7 @@ angular.module("hmisPortal")
                         var localHeader = [{name: 'S/N', id:''},
                             {name: 'Region', id: ''}, {name: 'District', id: ''}, {name: 'Period', id: ''}
                             // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
-                            ];
+                        ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
@@ -472,7 +473,7 @@ angular.module("hmisPortal")
                         var localHeader = [{name: 'S/N', id:''},
                             {name: 'District', id: ''}, {name: 'Facility', id: ''}, {name: 'Facility type', id: ''},{name: 'Period', id: ''}
                             // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
-                            ];
+                        ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
@@ -489,17 +490,17 @@ angular.module("hmisPortal")
                         var localHeader = [{name: 'S/N', id:''},
                             {name: 'Period', id: ''},
                             // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
-                            ];
+                        ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
                             // angular.forEach($scope.selectedOrgunit.children, function (childOrgunit) {
-                                $scope.tableContents.push({
-                                    period: period, orgunit: $scope.selectedOrgunit.id,
-                                    // fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,
-                                    indicatorItems: $scope.tableHeaderOptions
-                                });
+                            $scope.tableContents.push({
+                                period: period, orgunit: $scope.selectedOrgunit.id,
+                                // fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,
+                                indicatorItems: $scope.tableHeaderOptions
                             });
+                        });
                         // });
                     }
                     $("#loadingMessage").hide();
@@ -552,58 +553,58 @@ angular.module("hmisPortal")
                         var localHeader = [{name: 'S/N', id:''}, {name: 'Zone', id: ''},
                             {name: 'Period', id: ''},
                             // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
-                            ];
+                        ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
-                                $scope.tableContents.push({
-                                    zone: $scope.selectedOrgunit.name, period: period, orgunit: $scope.selectedOrgunit.id,
-                                    // fpFacilities: Math.floor(Math.random() * 100) ,  fpFacilitiesReporting: 'Yes' ,
-                                    indicatorItems: $scope.tableHeaderOptions
-                                });
+                            $scope.tableContents.push({
+                                zone: $scope.selectedOrgunit.name, period: period, orgunit: $scope.selectedOrgunit.id,
+                                // fpFacilities: Math.floor(Math.random() * 100) ,  fpFacilitiesReporting: 'Yes' ,
+                                indicatorItems: $scope.tableHeaderOptions
+                            });
                         });
                     }else if(orgUnitCollected.name.indexOf('Region' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
                             {name: 'Region', id: ''}, {name: 'Period', id: ''},
                             // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
-                            ];
+                        ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
-                                $scope.tableContents.push({
-                                    region: $scope.selectedOrgunit.name, period: period, orgunit: $scope.selectedOrgunit.id,
-                                    // fpFacilities: Math.floor(Math.random() * 100),   fpFacilitiesReporting: 'Yes' ,
-                                    indicatorItems: $scope.tableHeaderOptions
-                                });
+                            $scope.tableContents.push({
+                                region: $scope.selectedOrgunit.name, period: period, orgunit: $scope.selectedOrgunit.id,
+                                // fpFacilities: Math.floor(Math.random() * 100),   fpFacilitiesReporting: 'Yes' ,
+                                indicatorItems: $scope.tableHeaderOptions
+                            });
                         });
                     }else if(orgUnitCollected.name.indexOf('Council' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
                             {name: 'District', id: ''},{name: 'Period', id: ''},
                             // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
-                            ];
+                        ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
-                                $scope.tableContents.push({
-                                    district: $scope.selectedOrgunit.name, orgunit: $scope.selectedOrgunit.id,
-                                    period: period,
-                                    // fpFacilities: Math.floor(Math.random() * 100) , fpFacilitiesReporting: 'Yes' ,
-                                    indicatorItems: $scope.tableHeaderOptions
-                                });
+                            $scope.tableContents.push({
+                                district: $scope.selectedOrgunit.name, orgunit: $scope.selectedOrgunit.id,
+                                period: period,
+                                // fpFacilities: Math.floor(Math.random() * 100) , fpFacilitiesReporting: 'Yes' ,
+                                indicatorItems: $scope.tableHeaderOptions
+                            });
                         });
                     }else if(orgUnitCollected.name.indexOf('Tanzania' ) > -1){
                         var localHeader = [{name: 'S/N', id:''},
                             {name: 'Period', id: ''},
                             // {name: 'Total FP facilities', id: ''}, {name: 'FP facilities reporting the FP template', id: ''}
-                            ];
+                        ];
                         $scope.tableHeader = localHeader.concat($scope.tableHeaderOptions);
 
                         angular.forEach($scope.selectedPeriods, function (period) {
-                                $scope.tableContents.push({
-                                    period: period, orgunit: $scope.selectedOrgunit.id,
-                                    // fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,
-                                    indicatorItems: $scope.tableHeaderOptions
-                                });
+                            $scope.tableContents.push({
+                                period: period, orgunit: $scope.selectedOrgunit.id,
+                                // fpFacilities: Math.floor(Math.random() * 100) ,fpFacilitiesReporting: 'Yes' ,
+                                indicatorItems: $scope.tableHeaderOptions
+                            });
                         });
                     }
                     $("#loadingMessage").hide();
@@ -630,11 +631,11 @@ angular.module("hmisPortal")
         }
         $scope.getIndicatorItemsValues = function (){
             var arrayLocal = []
-           angular.forEach( $scope.tableHeaderOptions, function (item) {
-               arrayLocal.push({
-                   name: item.name, id: item.id, value: Math.floor((Math.random() * 500) + 100)
-               })
-           });
+            angular.forEach( $scope.tableHeaderOptions, function (item) {
+                arrayLocal.push({
+                    name: item.name, id: item.id, value: Math.floor((Math.random() * 500) + 100)
+                })
+            });
             return arrayLocal;
         };
         $scope.getRandomValue = function (){
@@ -722,7 +723,7 @@ angular.module("hmisPortal")
             }
         }
 
-            // PERIOD COMPONENT FUNCTIONS
+        // PERIOD COMPONENT FUNCTIONS
         $scope.pushPeriodForward = function (e){
             $scope.selectedYear++;
             $scope.updatePeriodType($scope.periodType, '')
@@ -845,11 +846,11 @@ angular.module("hmisPortal")
                 }
             })
         }
-            // END OF PERIOD COMPONENT FUNCTIONS
+        // END OF PERIOD COMPONENT FUNCTIONS
 
 
         $scope.loadFacilityDataReport = function(){
-             // facility data collected functions
+            // facility data collected functions
             // FACILITY DATA CODE REPORTS
             $( "#bcg1" ).html( $scope.data['outRegistrationOrganisationUnits'][0].name);
             // client_served_by_healthy_facility();
@@ -1661,8 +1662,8 @@ angular.module("hmisPortal")
         // var month = $scope.selectedPeriods[0].id.substring(4,6);
         // var year = $scope.selectedPeriods[0].id.substring(0,4);
         // $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
-        var periods = $scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)));
-        var period = periods[0];
+        var periods = $scope.customLast12Months(FPManager.lastTwelveMonth($scope.selectedPeriods[0].id));
+        // var period = periods[0];
 
         function generate_orgunit_summary_data() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
@@ -1832,16 +1833,11 @@ angular.module("hmisPortal")
             html_container += "</tr>";
 
             html_container += "<th class=\"header_definition_props\">" + header_row_definition + "</th>";
-            $.each(metadata_json.metaData.items, function (key, value) {
-                $.each(value, function (key2, value2) {
-                    $.each(metadata_json.metaData.dimensions.pe, function (key3, value3) {
-                        if (value3 == key) {
-                            var final = get_first_three_letters(get_first_string(
-                                value2)) + " " + get_last_string(value2);
+            $.each(metadata_json.metaData.dimensions.pe, function (key, value) {
+
+                var final = get_first_three_letters(get_first_string(
+                    metadata_json.metaData.items[value].name)) + " " + get_last_string(metadata_json.metaData.items[value].name);
                             html_container += "<th>" + final + "</th>";
-                        }
-                    });
-                });
             });
             html_container += "</thead>";
             $("#" + division_id).append(html_container);
@@ -2016,12 +2012,11 @@ angular.module("hmisPortal")
             var body_container = "<tbody>";
             body_container += "<tr>";
             var local_data_indices = [3, 1, 2, 0, 4, 5];
-            var local_names_indices = [2, 3, 4, 0, 5, 1];
+            var local_names_indices = [2, 3, 4, 5, 1];
             var sanitized_names = [
                 "UICD's Removals",
                 "Minilap",
                 "Implants Insertions",
-                "Implants Removals",
                 "UICD's Insertions",
                 "NSV",
             ];
@@ -2113,15 +2108,10 @@ angular.module("hmisPortal")
             $("#" + component_id).append(html_container);
         }
 
-
-
-
-
-
         function total_number_of_healthworkers() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get($scope.serverLink+"analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" +
-                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
+                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2136,15 +2126,15 @@ angular.module("hmisPortal")
                     populate_table_with_respective_data_healthworkers("TrainedHW", indicators_names,
                         indicators_data,
                         indicators_total);
-                    populate_totality_based_on_period("TrainedHW",
-                        get_period_totality_for_each_indicators(indicators_data, analytic_data));
+                    // populate_totality_based_on_period("TrainedHW",
+                    //     get_period_totality_for_each_indicators(indicators_data, analytic_data));
                 });
         }
 
         function client_served_by_CBD() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( $scope.serverLink+"analytics.json?dimension=dx:CAZJesl4va5;NHnXpXYblEM;OxxbMcRjVbt&dimension=pe:" +
-                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
+                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false&includeNumDen=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2167,7 +2157,7 @@ angular.module("hmisPortal")
         function service_intergrations() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get($scope.serverLink+"analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;qEWJizgHHot;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" +
-                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
+                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false&includeNumDen=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2191,7 +2181,7 @@ angular.module("hmisPortal")
         function client_served_by_healthy_facility() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get($scope.serverLink+"analytics.json?dimension=dx:Eh1uMcVwxEY;GEjpz3mQo6E;JSmtnnW6WrR;LmbDl4YdYAn;UjGebiXNg0t;bjkeLqFDDjo;c3f9YMx29Bx;isK24MvwQmy;lMFKZN3UaYp;xhcaH3H3pdK&dimension=pe:" +
-                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
+                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
 
@@ -2201,7 +2191,7 @@ angular.module("hmisPortal")
                         analytic_processed_data, analytic_data);
                     var indicators_data = get_all_data_based_on_periods(analytic_data);
 
-                    generate_table_header_information("Client Service, Served Through Health Facility",
+                    generate_table_header_information("Client Service, Clients Served Through Routine Service",
                         "Service",
                         analytic_data,
                         "ClientServedThroughHealthFacilityTable");
@@ -2217,8 +2207,8 @@ angular.module("hmisPortal")
 
         function client_served_by_outreach() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get($scope.serverLink+"analytics.json?dimension=dx:O10liqQFwcI;PLfFV1fKVfQ;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" +
-                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
+            $.get($scope.serverLink+"analytics.json?dimension=dx:O10liqQFwcI;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" +
+                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2243,7 +2233,7 @@ angular.module("hmisPortal")
         function client_served_age_less_twenty() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get($scope.serverLink+"analytics.json?dimension=dx:GvbkEo6sfSd;LpkdcaLc4I9;W74wyMy1mp0;aSJKs4oPZAf;p14JdJaG2aC;p8cgxI3yPx8&dimension=pe:" +
-                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
+                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2268,7 +2258,7 @@ angular.module("hmisPortal")
         function commodities_stocked_out() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( $scope.serverLink+"analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" +
-                sanitized_periods($scope.customLast12Months($scope.selectedPeriods[0].id.substring(4,6), parseInt($scope.selectedPeriods[0].id.substring(0,4)))) + "&filter=ou:" + orgUnit.id +
+                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2290,10 +2280,4 @@ angular.module("hmisPortal")
                 });
             $("#loadingMessage").hide();
         }
-
-
-
-
-
-
     });
