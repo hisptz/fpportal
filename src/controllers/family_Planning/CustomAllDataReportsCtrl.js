@@ -681,46 +681,13 @@ angular.module("hmisPortal")
             }
         }
 
-        $scope.customLast12Months = function (month, year) {
-            var newYear = year - 1;
-            switch(month) {
-                case '01':
-
-                    return [year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03',newYear+'02',newYear+'01'];
-
-                case '02':
-                    return [year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03',newYear+'02'];
-
-                case '03':
-                    return [year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04',newYear+'03'];
-
-                case '04':
-                    return [year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05',newYear+'04'];
-
-                case '05':
-                    return [year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06',newYear+'05'];
-
-                case '06':
-                    return [year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07',newYear+'06'];
-
-                case '07':
-                    return [year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08',newYear+'07'];
-
-                case '08':
-                    return [year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09',newYear+'08'];
-
-                case '09':
-                    return [year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10',newYear+'09'];
-
-                case '10':
-                    return [year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11',newYear+'10'];
-
-                case '11':
-                    return [year+'11',year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12',newYear+'11'];
-
-                case '12':
-                    return [year+'12',year+'11',year+'10',year+'09',year+'08',year+'07',year+'06',year+'05',year+'04',year+'03',year+'02',year+'01',newYear+'12'];
+        $scope.customLast12Months = function () {
+            if ($scope.periodType === 'Monthly') {
+                return FPManager.lastTwelveMonth($scope.selectedPeriods[0].id);
+            } else {
+                return $scope.selectedPeriods[0].id;
             }
+
         }
 
         // PERIOD COMPONENT FUNCTIONS
@@ -1662,7 +1629,7 @@ angular.module("hmisPortal")
         // var month = $scope.selectedPeriods[0].id.substring(4,6);
         // var year = $scope.selectedPeriods[0].id.substring(0,4);
         // $scope.selectedPeriods = $scope.customLast12Months(month, parseInt(year) );
-        var periods = $scope.customLast12Months(FPManager.lastTwelveMonth($scope.selectedPeriods[0].id));
+        var periods = $scope.customLast12Months();
         // var period = periods[0];
 
         function generate_orgunit_summary_data() {
@@ -2111,7 +2078,7 @@ angular.module("hmisPortal")
         function total_number_of_healthworkers() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get($scope.serverLink+"analytics.json?dimension=dx:BLqgpawRwGN;Igxe3yXGEoW;acbet8SSjCY;iWDh2fUbRTJ;t8vQoqdY0en&dimension=pe:" +
-                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
+                $scope.customLast12Months()  + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2134,7 +2101,7 @@ angular.module("hmisPortal")
         function client_served_by_CBD() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( $scope.serverLink+"analytics.json?dimension=dx:CAZJesl4va5;NHnXpXYblEM;OxxbMcRjVbt&dimension=pe:" +
-                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
+                $scope.customLast12Months()  + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false&includeNumDen=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2157,7 +2124,7 @@ angular.module("hmisPortal")
         function service_intergrations() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get($scope.serverLink+"analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;qEWJizgHHot;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" +
-                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
+                $scope.customLast12Months()  + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false&includeNumDen=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2181,7 +2148,7 @@ angular.module("hmisPortal")
         function client_served_by_healthy_facility() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get($scope.serverLink+"analytics.json?dimension=dx:Eh1uMcVwxEY;GEjpz3mQo6E;JSmtnnW6WrR;LmbDl4YdYAn;UjGebiXNg0t;bjkeLqFDDjo;c3f9YMx29Bx;isK24MvwQmy;lMFKZN3UaYp;xhcaH3H3pdK&dimension=pe:" +
-                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
+                $scope.customLast12Months()  + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
 
@@ -2208,7 +2175,7 @@ angular.module("hmisPortal")
         function client_served_by_outreach() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get($scope.serverLink+"analytics.json?dimension=dx:O10liqQFwcI;RfSsrHPGBXV;ZnTi99UdGCS;chmWn8ksICz;xip1SDutimh&dimension=pe:" +
-                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
+                $scope.customLast12Months() + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2233,7 +2200,7 @@ angular.module("hmisPortal")
         function client_served_age_less_twenty() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get($scope.serverLink+"analytics.json?dimension=dx:GvbkEo6sfSd;LpkdcaLc4I9;W74wyMy1mp0;aSJKs4oPZAf;p14JdJaG2aC;p8cgxI3yPx8&dimension=pe:" +
-                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
+                $scope.customLast12Months()  + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
@@ -2258,7 +2225,7 @@ angular.module("hmisPortal")
         function commodities_stocked_out() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
             $.get( $scope.serverLink+"analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" +
-                FPManager.lastTwelveMonth($scope.selectedPeriods[0].id) + "&filter=ou:" + orgUnit.id +
+                $scope.customLast12Months()  + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
                     var analytic_processed_data = get_all_data_based_on_periods(analytic_data);
