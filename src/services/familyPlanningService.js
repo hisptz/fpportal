@@ -35070,13 +35070,13 @@ FPServices.factory('FPManager',function($http,$q,portalService,$location){
                 }
             ]
         },
-        lastMonthWithData :'201809',
+        lastMonthWithData :'201806',
         lastMonthWithDataName :'March 2018',
         lastMonthWithOtherData :'201712',
         lastMonthWithOtherDataName :'Dec 2017',
         lastTwelveMonthName:"Jan to Dec 2017",
         latestYear: '2018',
-        latestMonth: '201809',
+        latestMonth: '201806',
 
         //display selected period name
         getMonthName : function(period){
