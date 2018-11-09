@@ -49,7 +49,7 @@ angular.module("hmisPortal")
             {name: 'Implants',active: '',
                 aggregateIndicator: [{name: 'Facility staffed with HWs on implants insertion service', id:'ZnTi99UdGCS'},{name: 'Facility staffed with HWs on implants removal service', id:'Eh1uMcVwxEY'}],
                 facilityIndicator: [{name: 'Total facilities staffed with HWs on implants insertion service facility', id:'lMFKZN3UaYp'},{name: 'Facility staffed with HWs on implants removal service', id:'Eh1uMcVwxEY'}]},
-            {name: 'UICDs',active: '',
+            {name: 'IUCD',active: '',
                 aggregateIndicator: [{name: 'Total clients of IUCD insertions services Outreach based', id: 'RfSsrHPGBXV'}, {name: 'Total clients of IUCD removal services Outreach based', id: 'O10liqQFwcI'}],
                 facilityIndicator: [{name: 'Total clients of IUCD insertions services Facility based', id: 'UjGebiXNg0t'},{name: 'Total clients of IUCD removal services Facility based', id: 'GEjpz3mQo6E'}],
             },
@@ -75,8 +75,8 @@ angular.module("hmisPortal")
             {name:'Short Acting',active: '',indicator: {name: 'Total Short acting outreach', id:'Tq5PQFhyMnz'}},
             {name: 'Implants insertions',active: '', indicator: {name: 'Total Implants insertions outreach', id:'ZnTi99UdGCS'}},
             {name: 'Implants removal',active: '', indicator: {name: 'Total Implants removals outreach', id:'Eh1uMcVwxEY'}},
-            {name: 'UICDs insertion',active: '', indicator: {name: 'Total UICDs insertions outreach', id:'RfSsrHPGBXV'}},
-            {name: 'UICDs removal',active: '', indicator: {name: 'Total UICDs removals outreach', id:'O10liqQFwcI'}}
+            {name: 'IUCD insertion',active: '', indicator: {name: 'Total IUCD insertions outreach', id:'RfSsrHPGBXV'}},
+            {name: 'IUCD removal',active: '', indicator: {name: 'Total IUCD removals outreach', id:'O10liqQFwcI'}}
         ];
         $scope.cbdServiceData =[
             {name:'Male condoms',active: '',indicator: {name: 'Total male condoms CBD', id:'OxxbMcRjVbt'}},
@@ -90,8 +90,8 @@ angular.module("hmisPortal")
             {name: 'Injectables',active: '', indicator: {name: 'Total clients of injectables Facility based', id:'epPM7fO8CnH'}},
             {name: 'Implants insertions',active: '', indicator: {name: 'Total clients of Implants insertions Facility based', id:'lMFKZN3UaYp'}},
             {name: 'Implants removal',active: '', indicator: {name: 'Total clients of Implants removals Facility based', id:'Eh1uMcVwxEY'}},
-            {name: 'UICDs insertion',active: '', indicator: {name: 'Total clients of UICDs insertions Facility based', id:'UjGebiXNg0t'}},
-            {name: 'UICDs removal',active: '', indicator: {name: 'Total clients of UICDs removals Facility based', id:'GEjpz3mQo6E'}},
+            {name: 'IUCD insertion',active: '', indicator: {name: 'Total clients of IUCD insertions Facility based', id:'UjGebiXNg0t'}},
+            {name: 'IUCD removal',active: '', indicator: {name: 'Total clients of IUCD removals Facility based', id:'GEjpz3mQo6E'}},
             {name: 'NSV',active: '', indicator: {name: 'Total clients of NSV Facility based', id:'JSmtnnW6WrR'}},
             {name: 'Minilap',active: '', indicator: {name: 'Total clients of Minilap Facility based', id:'xhcaH3H3pdK'}}
         ];
@@ -1076,7 +1076,7 @@ angular.module("hmisPortal")
             body_container += "<tr>";
             var local_data_indices = [3, 1, 4, 0, 2];
             var local_names_indices = [4, 2, 1, 3, 0];
-            var sanitized_names = ["Minilap", "IUCD's", "Implants", "NSV", "Short Acting"];
+            var sanitized_names = ["Minilap", "IUCD", "Implants", "NSV", "Short Acting"];
             for (var i = 0; i < indicator_name.length; i++) {
                 body_container += "<td class=\"body_definition_props\">" + sanitized_names[
                     local_names_indices[i]] + "</td>";
@@ -1190,7 +1190,7 @@ angular.module("hmisPortal")
             var local_data_indices = [2, 5, 3, 1, 4, 0];
             var local_names_indices = [3, 5, 1, 2, 4, 0];
             var sanitized_names = [
-                "UICDs",
+                "IUCD",
                 "Oral Pills",
                 "Injectables",
                 "Male Condoms",
