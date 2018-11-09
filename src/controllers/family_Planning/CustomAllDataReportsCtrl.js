@@ -1098,7 +1098,7 @@ angular.module("hmisPortal")
                                                          data_total) {
             var body_container = "<tbody>";
             body_container += "<tr>";
-            var local_data_indices = [2, 0, 1];
+            var local_data_indices = [0, 1, 2];
             var local_names_indices = [2, 1, 0];
             var sanitized_names = ["Oral Pills", "Female Condoms", "Male Condoms"];
             for (var i = 0; i < indicator_name.length; i++) {
@@ -1219,7 +1219,9 @@ angular.module("hmisPortal")
                                                                      data_total) {
             var body_container = "<tbody>";
             body_container += "<tr>";
-            var local_data_indices = [1,2,3,0,4];
+            // var local_data_indices = [1,2,3,0,4];
+            // var local_names_indices = [2, 3, 4, 0, 1];
+            var local_data_indices = [0,1,4,2,3];
             var local_names_indices = [2, 3, 4, 0, 1];
             var sanitized_names = [
                 "UICD's Removals",
