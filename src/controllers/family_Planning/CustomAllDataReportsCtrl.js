@@ -1059,7 +1059,7 @@ angular.module("hmisPortal")
                 body_container += "<td class=\"body_definition_props\">" + indicator_name[i] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
                     if (data_array[i][k] == null) {
-                        body_container += "<td>" + "" + "</td>";
+                        body_container += "<td>" + "0" + "</td>";
                     } else {
                         body_container += "<td>" + Math.round(data_array[i][k]) + "</td>";
                     }
@@ -1082,7 +1082,7 @@ angular.module("hmisPortal")
                     local_names_indices[i]] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
                     if (data_array[local_data_indices[i]][k] == null) {
-                        body_container += "<td>" + "" + "</td>";
+                        body_container += "<td>" + "0" + "</td>";
                     } else {
                         body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
                             "</td>";
@@ -1106,7 +1106,7 @@ angular.module("hmisPortal")
                     local_names_indices[i]] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
                     if (data_array[local_data_indices[i]][k] == null) {
-                        body_container += "<td>" + "" + "</td>";
+                        body_container += "<td>" + "0" + "</td>";
                     } else {
                         body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
                             "</td>";
@@ -1138,7 +1138,7 @@ angular.module("hmisPortal")
                     local_names_indices[i]] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
                     if (data_array[local_data_indices[i]][k] == null) {
-                        body_container += "<td>" + "" + "</td>";
+                        body_container += "<td>" + "0" + "</td>";
                     } else {
                         body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
                             "</td>";
@@ -1170,7 +1170,7 @@ angular.module("hmisPortal")
                     local_names_indices[i]] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
                     if (data_array[local_data_indices[i]][k] == null) {
-                        body_container += "<td>" + "" + "</td>";
+                        body_container += "<td>" + "0" + "</td>";
                     } else {
                         body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
                             "</td>";
@@ -1202,7 +1202,7 @@ angular.module("hmisPortal")
                     local_names_indices[i]] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
                     if (data_array[local_data_indices[i]][k] == null) {
-                        body_container += "<td>" + "" + "</td>";
+                        body_container += "<td>" + "0" + "</td>";
                     } else {
                         body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
                             "</td>";
@@ -1235,7 +1235,7 @@ angular.module("hmisPortal")
                     local_names_indices[i]] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
                     if (data_array[local_data_indices[i]][k] == null) {
-                        body_container += "<td>" + "" + "</td>";
+                        body_container += "<td>" + "0" + "</td>";
                     } else {
                         body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
                             "</td>";
@@ -1271,7 +1271,7 @@ angular.module("hmisPortal")
                     local_names_indices[i]] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
                     if (data_array[local_data_indices[i]][k] == null) {
-                        body_container += "<td>" + "" + "</td>";
+                        body_container += "<td>" + "0" + "</td>";
                     } else {
                         body_container += "<td>" + Math.round(data_array[local_data_indices[i]][k]) +
                             "</td>";
