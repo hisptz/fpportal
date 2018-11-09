@@ -870,7 +870,7 @@ angular.module("hmisPortal")
             return processed_word.charAt(0).toUpperCase() + processed_word.slice(1).toLowerCase();
         }
         var orgUnitHierarchy = [];
-        var periods = $scope.customLast12Months();
+        // var periods = $scope.customLast12Months();
         // var period = periods[0];
 
         function generate_orgunit_summary_data() {
