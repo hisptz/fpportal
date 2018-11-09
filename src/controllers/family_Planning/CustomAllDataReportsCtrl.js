@@ -122,7 +122,7 @@ angular.module("hmisPortal")
             {value: 'RelativeYear', name: 'Relative Year', shown: false},
         ];
         $scope.availablePeriods = [];
-        $scope.selectedPeriods = [{id: '201809', name: 'September 2018'}];
+        $scope.selectedPeriods = [];
         $scope.lastSelectedPeriods = [];
         $scope.data.outOrganisationUnits = [];
 
