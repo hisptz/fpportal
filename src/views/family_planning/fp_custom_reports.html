@@ -441,182 +441,182 @@
                     </div>
 
                     <!--second card row on page items-->
-                    <div class="row">
-                        <div class="col" style="width: 50%;">
-                            <!--report type selection-->
-                            <div class="col" style="width: 50%;" >
-                                <form>
-                                    <label>Report type:</label>
-                                    <div class="form-group" >
-                                        <div class="col input-field" style="width: 100%;">
-                                            <select ng-model="selectedReport" ng-change="selectedReportType(selectedReport)" material-select watch >
-                                                <option ng-repeat="report in reportTypes track by $index" ng-value="report.id" >{{report.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!--report type selection-->
+                    <!--<div class="row">-->
+                        <!--<div class="col" style="width: 50%;">-->
+                            <!--&lt;!&ndash;report type selection&ndash;&gt;-->
+                            <!--<div class="col" style="width: 50%;" >-->
+                                <!--<form>-->
+                                    <!--<label>Report type:</label>-->
+                                    <!--<div class="form-group" >-->
+                                        <!--<div class="col input-field" style="width: 100%;">-->
+                                            <!--<select ng-model="selectedReport" ng-change="selectedReportType(selectedReport)" material-select watch >-->
+                                                <!--<option ng-repeat="report in reportTypes track by $index" ng-value="report.id" >{{report.name}}</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</form>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;report type selection&ndash;&gt;-->
 
-                            <!--aggregation type-->
-                            <div ng-if="!showfacilityReport" class="col" style="width: 50%;" >
-                                <form>
-                                    <label>Aggregation type:</label>
-                                    <div class="form-group" >
-                                        <div class="col input-field" style="width: 100%;">
-                                            <select ng-model="selectedAggregagtionType" ng-change="selectedAggregate(selectedAggregagtionType)"  material-select watch >
-                                                <option ng-repeat="aggregate in aggregationTypes track by $index" ng-value="aggregate.name" selected="{{aggregate.selected}}">{{aggregate.name}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!--aggregation type-->
-                        </div>
-                        <div ng-if="!showfacilityReport">
-                        <div class="col" style="width: 50%;" ng-if="showstaffedOptions">
-                            <div class="card">
-                                <div class="col" style="margin-top: 2%;width: 100%">
-                                    <form>
-                                        <div class="form-group" >
-                                            <label>Facility staffed with HWs Trained in :</label>
-                                            <div class="card">
-                                                <ul class="list-group">
-                                                    <li ng-repeat="option in staffedHWstrained track by $index"
-                                                        class="list-group-item custom-item {{option.active}}"
-                                                        ng-click="updateOutreachCBD(option)">{{option.name}}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                            <!--&lt;!&ndash;aggregation type&ndash;&gt;-->
+                            <!--<div ng-if="!showfacilityReport" class="col" style="width: 50%;" >-->
+                                <!--<form>-->
+                                    <!--<label>Aggregation type:</label>-->
+                                    <!--<div class="form-group" >-->
+                                        <!--<div class="col input-field" style="width: 100%;">-->
+                                            <!--<select ng-model="selectedAggregagtionType" ng-change="selectedAggregate(selectedAggregagtionType)"  material-select watch >-->
+                                                <!--<option ng-repeat="aggregate in aggregationTypes track by $index" ng-value="aggregate.name" selected="{{aggregate.selected}}">{{aggregate.name}}</option>-->
+                                            <!--</select>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</form>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;aggregation type&ndash;&gt;-->
+                        <!--</div>-->
+                        <!--<div ng-if="!showfacilityReport">-->
+                        <!--<div class="col" style="width: 50%;" ng-if="showstaffedOptions">-->
+                            <!--<div class="card">-->
+                                <!--<div class="col" style="margin-top: 2%;width: 100%">-->
+                                    <!--<form>-->
+                                        <!--<div class="form-group" >-->
+                                            <!--<label>Facility staffed with HWs Trained in :</label>-->
+                                            <!--<div class="card">-->
+                                                <!--<ul class="list-group">-->
+                                                    <!--<li ng-repeat="option in staffedHWstrained track by $index"-->
+                                                        <!--class="list-group-item custom-item {{option.active}}"-->
+                                                        <!--ng-click="updateOutreachCBD(option)">{{option.name}}</li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                        <div class="col" style="width: 50%;" ng-if="showclientsOptions">
-                            <div class="card">
+                        <!--<div class="col" style="width: 50%;" ng-if="showclientsOptions">-->
+                            <!--<div class="card">-->
 
-                                <div class="row">
-                                    <div class="col" style="margin-top: 2%;width: 33%">
-                                        <form>
-                                            <div class="form-group" >
-                                                <label>Clients by service : <br>
-                                                    Routine facility based
-                                                </label>
-                                                <div class="card">
-                                                    <ul class="list-group">
-                                                        <li ng-repeat="routineData in routineFacilityData track by $index"
-                                                            class="list-group-item custom-item {{routineData.active}} "
-                                                            ng-click="updatingsRoutineDatatoTable(routineData)"> {{routineData.name}}</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                <!--<div class="row">-->
+                                    <!--<div class="col" style="margin-top: 2%;width: 33%">-->
+                                        <!--<form>-->
+                                            <!--<div class="form-group" >-->
+                                                <!--<label>Clients by service : <br>-->
+                                                    <!--Routine facility based-->
+                                                <!--</label>-->
+                                                <!--<div class="card">-->
+                                                    <!--<ul class="list-group">-->
+                                                        <!--<li ng-repeat="routineData in routineFacilityData track by $index"-->
+                                                            <!--class="list-group-item custom-item {{routineData.active}} "-->
+                                                            <!--ng-click="updatingsRoutineDatatoTable(routineData)"> {{routineData.name}}</li>-->
+                                                    <!--</ul>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</form>-->
+                                    <!--</div>-->
 
-                                    <div class="col" style="margin-top: 2%;width: 33%">
-                                        <form>
-                                            <div class="form-group" >
-                                                <label>Clients by service : <br>
-                                                    Outreach
-                                                </label>
-                                                <div class="card">
-                                                    <ul class="list-group">
-                                                        <li ng-repeat="outReacher in outreachData track by $index"
-                                                            class="list-group-item custom-item {{outReacher.active}} "
-                                                            ng-click="updatingsOutreachOptionsToTable(outReacher)"> {{outReacher.name}}</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <!--<div class="col" style="margin-top: 2%;width: 33%">-->
+                                        <!--<form>-->
+                                            <!--<div class="form-group" >-->
+                                                <!--<label>Clients by service : <br>-->
+                                                    <!--Outreach-->
+                                                <!--</label>-->
+                                                <!--<div class="card">-->
+                                                    <!--<ul class="list-group">-->
+                                                        <!--<li ng-repeat="outReacher in outreachData track by $index"-->
+                                                            <!--class="list-group-item custom-item {{outReacher.active}} "-->
+                                                            <!--ng-click="updatingsOutreachOptionsToTable(outReacher)"> {{outReacher.name}}</li>-->
+                                                    <!--</ul>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</form>-->
+                                    <!--</div>-->
 
-                                    <div class="col" style="margin-top: 2%;width: 33%">
-                                        <form>
-                                            <div class="form-group" >
-                                                <label>Clients by service : <br>
-                                                    CBD
-                                                </label>
-                                                <div class="card">
-                                                    <ul class="list-group">
-                                                        <li ng-repeat="cbdService in cbdServiceData track by $index"
-                                                            class="list-group-item custom-item {{cbdService.active}} "
-                                                            ng-click="updatingsCBDtoTable(cbdService)"> {{cbdService.name}}</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    <!--<div class="col" style="margin-top: 2%;width: 33%">-->
+                                        <!--<form>-->
+                                            <!--<div class="form-group" >-->
+                                                <!--<label>Clients by service : <br>-->
+                                                    <!--CBD-->
+                                                <!--</label>-->
+                                                <!--<div class="card">-->
+                                                    <!--<ul class="list-group">-->
+                                                        <!--<li ng-repeat="cbdService in cbdServiceData track by $index"-->
+                                                            <!--class="list-group-item custom-item {{cbdService.active}} "-->
+                                                            <!--ng-click="updatingsCBDtoTable(cbdService)"> {{cbdService.name}}</li>-->
+                                                    <!--</ul>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</form>-->
+                                    <!--</div>-->
 
-                                </div>
+                                <!--</div>-->
 
-                            </div>
-                        </div>
+                            <!--</div>-->
+                        <!--</div>-->
 
-                        <div class="col" style="width: 50%;" ng-if="showfacilityOptions">
-                            <div class="card">
-                                <div class="col" style="margin-top: 2%;width: 100%">
-                                    <form>
-                                        <label>Facility providing services </label>
-                                        <div class="form-group" >
-                                            <div class="card">
-                                                <ul class="list-group">
-                                                    <li ng-repeat="service in providingServiceData track by $index"
-                                                        class="list-group-item custom-item {{service.active}} "
-                                                        ng-click="updatingHistoryOfProvisionDatatoTable(service)"> {{service.name}}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <!--<div class="col" style="width: 50%;" ng-if="showfacilityOptions">-->
+                            <!--<div class="card">-->
+                                <!--<div class="col" style="margin-top: 2%;width: 100%">-->
+                                    <!--<form>-->
+                                        <!--<label>Facility providing services </label>-->
+                                        <!--<div class="form-group" >-->
+                                            <!--<div class="card">-->
+                                                <!--<ul class="list-group">-->
+                                                    <!--<li ng-repeat="service in providingServiceData track by $index"-->
+                                                        <!--class="list-group-item custom-item {{service.active}} "-->
+                                                        <!--ng-click="updatingHistoryOfProvisionDatatoTable(service)"> {{service.name}}</li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                        <div class="col" style="width: 50%" ng-if="showstockOptions">
-                            <div class="card">
-                                <div class="col" style="margin-top: 2%;width: 100%">
-                                    <form>
-                                        <div class="form-group" >
-                                            <label>Facility stocked out:</label>
-                                            <div class="card">
-                                                <ul class="list-group">
-                                                    <li ng-repeat="stock in facilityStockOutData track by $index"
-                                                        class="list-group-item custom-item {{stock.active}} "
-                                                        ng-click="updatingfacilityStockDatatoTable(stock)"> {{stock.name}}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <!--<div class="col" style="width: 50%" ng-if="showstockOptions">-->
+                            <!--<div class="card">-->
+                                <!--<div class="col" style="margin-top: 2%;width: 100%">-->
+                                    <!--<form>-->
+                                        <!--<div class="form-group" >-->
+                                            <!--<label>Facility stocked out:</label>-->
+                                            <!--<div class="card">-->
+                                                <!--<ul class="list-group">-->
+                                                    <!--<li ng-repeat="stock in facilityStockOutData track by $index"-->
+                                                        <!--class="list-group-item custom-item {{stock.active}} "-->
+                                                        <!--ng-click="updatingfacilityStockDatatoTable(stock)"> {{stock.name}}</li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
 
-                        <div class="col" style="width: 50%;" ng-if="showserviceIntegrationOptions">
-                            <div class="card">
-                                <div class="col" style="margin-top: 2%;width: 100%">
-                                    <form>
-                                        <div class="form-group" >
-                                            <label>Service integration </label>
-                                            <div class="card">
-                                                <ul class="list-group">
-                                                    <li ng-repeat="serviceData in serviceIntergrationData track by $index"
-                                                        class="list-group-item custom-item {{serviceData.active}} "
-                                                        ng-click="updatingServiceIntergrationDatatoTable(serviceData)"> {{serviceData.name}}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                        <!--<div class="col" style="width: 50%;" ng-if="showserviceIntegrationOptions">-->
+                            <!--<div class="card">-->
+                                <!--<div class="col" style="margin-top: 2%;width: 100%">-->
+                                    <!--<form>-->
+                                        <!--<div class="form-group" >-->
+                                            <!--<label>Service integration </label>-->
+                                            <!--<div class="card">-->
+                                                <!--<ul class="list-group">-->
+                                                    <!--<li ng-repeat="serviceData in serviceIntergrationData track by $index"-->
+                                                        <!--class="list-group-item custom-item {{serviceData.active}} "-->
+                                                        <!--ng-click="updatingServiceIntergrationDatatoTable(serviceData)"> {{serviceData.name}}</li>-->
+                                                <!--</ul>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
 
-                            </div>
+                            <!--</div>-->
 
-                        </div>
-                        </div>
-                    </div>
+                        <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
 
                     <!--preview button for the displaying reports-->
                     <div class="row">
-                        <div class="col" style="width: 6%;margin-left: 45%;">
+                        <div class="col" style="width: 6%;margin-top: 2%">
                             <form>
                                 <p>
                                     <button  class="btn btn-info" ng-click="previewReport()">Preview</button><br>

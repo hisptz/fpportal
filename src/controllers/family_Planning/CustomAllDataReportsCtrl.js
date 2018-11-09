@@ -64,11 +64,11 @@ angular.module("hmisPortal")
         ];
         $scope.reportTypes = [
             {name:'Comprehensive FP report', id:'1'},
-            {name:'Trainings', id:'2' },
-            {name:'Clients & services', id:'3'},
-            {name:'History of provision', id:'4'},
-            {name:'Commodities', id:'5' },
-            {name:'Service integration', id:'6' },
+            // {name:'Trainings', id:'2' },
+            // {name:'Clients & services', id:'3'},
+            // {name:'History of provision', id:'4'},
+            // {name:'Commodities', id:'5' },
+            // {name:'Service integration', id:'6' },
         ];
         $scope.aggregationTypes = [ {name:'Facility data',id:'2',selected:'selected'},{name:'Aggregate data',id:'1', selected:''}];
         $scope.outreachData =[
@@ -1297,9 +1297,9 @@ angular.module("hmisPortal")
                 body_container += "<td class=\"body_definition_props\">" + indicator_name[i] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
                     if (data_array[i][k] == null) {
-                        body_container += "<td>" + "No" + "</td>";
+                        body_container += "<td>" + "0" + "</td>";
                     } else {
-                        body_container += "<td>" + "Yes" + "</td>";
+                        body_container += "<td>" + parseInt(data_array[i][k]) + "</td>";
                     }
                 }
                 body_container += "</tr>";
@@ -1467,7 +1467,8 @@ angular.module("hmisPortal")
 
         function commodities_stocked_out() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get( $scope.serverLink+"analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" +
+            // $.get( $scope.serverLink+"analytics.json?dimension=dx:gOnXFvuLClY;n91UibSDCbn&dimension=pe:" +
+            $.get( $scope.serverLink+"analytics.json?dimension=dx:TfoI3vTGv1f.EXPECTED_REPORTS;ZOvFj2vtlor.EXPECTED_REPORTS;gOnXFvuLClY;n91UibSDCbn&dimension=pe:" +
                 $scope.customLast12Months()  + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false",
                 function (analytic_data) {
@@ -1485,8 +1486,8 @@ angular.module("hmisPortal")
                         indicators_names,
                         indicators_data,
                         indicators_total);
-                    populate_totality_based_on_period("CommoditiesStockedOut",
-                        get_period_totality_for_each_indicators(indicators_data, analytic_data));
+                    // populate_totality_based_on_period("CommoditiesStockedOut",
+                    //     get_period_totality_for_each_indicators(indicators_data, analytic_data));
                 });
             $("#loadingMessage").hide();
         }
