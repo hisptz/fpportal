@@ -816,7 +816,7 @@ angular.module("hmisPortal")
 
         }
         $scope.toggleAvailablePeriod = function (selectedPeriod, e) {
-            $scope.selectedPeriods.push(selectedPeriod);
+            $scope.selectedPeriods = [selectedPeriod];
         };
         $scope.toggleSelectedPeriod = function (selectedPeriod, e) {
             angular.forEach($scope.selectedPeriods, function (period, index) {
