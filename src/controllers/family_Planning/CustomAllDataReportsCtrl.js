@@ -922,6 +922,7 @@ angular.module("hmisPortal")
         function get_first_three_letters(word) {
             var processed_word = word.substring(0, 3);
             return processed_word.charAt(0).toUpperCase() + processed_word.slice(1).toLowerCase();
+            // return word;
         }
 
         function get_all_indicators_data_element_names(metadata_json) {
@@ -994,7 +995,8 @@ angular.module("hmisPortal")
         function get_all_data_based_on_periods(metadata_json) {
             var index = find_datavalue_index_in_analytic_data(metadata_json);
             var uid = find_uid_index_in_analytic_data(metadata_json);
-            var period = find_period_index_in_analytic_data(metadata_json);
+            // var period = find_period_index_in_analytic_data(metadata_json);
+            var period = 1;
             var complete_data = [];
             var temp_data = [];
 
@@ -1043,9 +1045,11 @@ angular.module("hmisPortal")
             html_container += "<th class=\"header_definition_props\">" + header_row_definition + "</th>";
             $.each(metadata_json.metaData.dimensions.pe, function (key, value) {
 
-                var final = get_first_three_letters(get_first_string(
-                    metadata_json.metaData.items[value].name)) + " " + get_last_string(metadata_json.metaData.items[value].name);
-                            html_container += "<th>" + final + "</th>";
+                // var final = get_first_three_letters(get_first_string(
+                //     metadata_json.metaData.items[value].name)) + " " + get_last_string(metadata_json.metaData.items[value].name);
+                //             html_container += "<th>" + final + "</th>";
+
+                html_container += "<th>" + metadata_json.metaData.items[value].name + "</th>";
             });
             html_container += "</thead>";
             $("#" + division_id).append(html_container);
@@ -1286,26 +1290,41 @@ angular.module("hmisPortal")
         function populate_data_table_commodities(component_id, indicator_name, data_array, data_total) {
             var body_container = "<tbody>";
             body_container += "<tr>";
-            var local_data_indices = [5, 4, 3, 0, 1, 2];
-            var local_names_indices = [0, 3, 4, 5, 2, 1];
+            var local_data_indices = [0,3,2,1];
+            var local_names_indices = [0, 1, 2, 3];
             var sanitized_names = [
-                "Total number of Miscarriage/abortion clients",
-                "Total number of FP clients adopting HIV testing and Counselling",
-                "Total number of FP clients adopting Cervical Screening"
+                "Combineoral Contraceptives - Available",
+                "Depo - Provera Available",
+                "HMIS_Uzazi wa Mpango (FP) Expected reports",
+                "HMIS_Tracer Medicine Expected reports",
             ];
             for (var i = 0; i < indicator_name.length; i++) {
-                body_container += "<td class=\"body_definition_props\">" + indicator_name[i] + "</td>";
+                body_container += "<td class=\"body_definition_props\">" + sanitized_names[local_names_indices[i]] + "</td>";
                 for (var k = 0; k < data_array[i].length; k++) {
-                    if (data_array[i][k] == null) {
+                    if (data_array[local_data_indices[i]][k] == null) {
                         body_container += "<td>" + "0" + "</td>";
                     } else {
-                        body_container += "<td>" + parseInt(data_array[i][k]) + "</td>";
+                        body_container += "<td>" + parseInt(data_array[local_data_indices[i]][k]) + "</td>";
                     }
                 }
                 body_container += "</tr>";
             }
             body_container += "</tbody>";
             $("#" + component_id).append(body_container);
+
+            // for (var i = 0; i < indicator_name.length; i++) {
+            //     body_container += "<td class=\"body_definition_props\">" + indicator_name[i] + "</td>";
+            //     for (var k = 0; k < data_array[i].length; k++) {
+            //         if (data_array[i][k] == null) {
+            //             body_container += "<td>" + "0" + "</td>";
+            //         } else {
+            //             body_container += "<td>" + parseInt(data_array[i][k]) + "</td>";
+            //         }
+            //     }
+            //     body_container += "</tr>";
+            // }
+            // body_container += "</tbody>";
+            // $("#" + component_id).append(body_container);
         }
 
         function populate_totality_based_on_period(component_id, array_total) {
