@@ -6,7 +6,7 @@ angular.module("hmisPortal")
     .controller("customReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
         //displaying loading during page change
         $scope.showLoader = 'none';
-        $scope.serverLink = '../play/api/';
+        $scope.serverLink = '../dhis/api/';
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
@@ -666,6 +666,10 @@ angular.module("hmisPortal")
                 var htmlPrinted =  document.getElementById('comprehensiveReport');
                 var htmlToPrint = '' +
                     '<style type="text/css">' +
+                    'table {' +
+                    'page-break-inside: avoid !important;'+
+                    'width: 100%;' +
+                    '}' +
                     'table th, table td {' +
                     'border:1px solid #000;' +
                     'padding:1em;' +
@@ -683,7 +687,15 @@ angular.module("hmisPortal")
 
         $scope.customLast12Months = function () {
             if ($scope.periodType === 'Monthly') {
-                return FPManager.lastTwelveMonth($scope.selectedPeriods[0].id);
+                var newPeriodsOrder = [];
+                var periodStr = FPManager.lastTwelveMonth($scope.selectedPeriods[0].id)
+                periodStr = periodStr.substr(0, periodStr.length -1);
+                var orginalPeriods = JSON.parse("[" + periodStr.split(";").join(",") + "]");
+
+                $.each(orginalPeriods, function (key, value) {
+                    newPeriodsOrder.push(orginalPeriods[orginalPeriods.length - 1 - key]);
+                });
+                return newPeriodsOrder.map(function (period) {return period;}).join(";");
             } else {
                 return $scope.selectedPeriods[0].id;
             }
@@ -1037,6 +1049,15 @@ angular.module("hmisPortal")
 
         function generate_table_header_information(table_main_title, header_row_definition, metadata_json,
                                                    division_id) {
+            // var newPeriodsOrder = [];
+            // var orginalPeriods = metadata_json.metaData.dimensions.pe;
+            //
+            // $.each(metadata_json.metaData.dimensions.pe, function (key, value) {
+            //     newPeriodsOrder.push(orginalPeriods[orginalPeriods.length - 1 - key]);
+            // });
+            //
+            // metadata_json.metaData.dimensions.pe = newPeriodsOrder;
+
             var html_container = "<thead>";
             html_container += "<tr>";
             html_container += "<td class=\"main_header_title\">" + table_main_title + "</td>";
