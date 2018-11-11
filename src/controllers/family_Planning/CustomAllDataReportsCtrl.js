@@ -1406,7 +1406,8 @@ angular.module("hmisPortal")
 
         function service_intergrations() {
             var orgUnit = $scope.data['outRegistrationOrganisationUnits'][0];
-            $.get($scope.serverLink+"analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;qEWJizgHHot;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" +
+            $.get($scope.serverLink+"analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;qEWJizgHHot;vmb30UUSG8G;j3298RSJzVN;qqbywy02Cx3&dimension=pe:" +
+            // $.get($scope.serverLink+"analytics.json?dimension=dx:GQ3JD2MeTIp;KLiLjLEQDrh;qEWJizgHHot;twBzX6Uja4u;udebdxs4kt0;wCLnMe5fRFu&dimension=pe:" +
                 $scope.customLast12Months()  + "&filter=ou:" + orgUnit.id +
                 "&displayProperty=NAME&skipMeta=false&includeNumDen=false",
                 function (analytic_data) {
