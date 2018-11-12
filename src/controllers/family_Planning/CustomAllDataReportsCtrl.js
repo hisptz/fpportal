@@ -1493,7 +1493,7 @@ angular.module("hmisPortal")
                         analytic_processed_data, analytic_data);
                     var indicators_data = get_all_data_based_on_periods(analytic_data);
 
-                    generate_table_header_information("Client Service, Served < 20 years",
+                    generate_table_header_information("Routine Client Service, Served < 20 years",
                         "Service",
                         analytic_data,
                         "ClientServedAgeLessThanTwenty");
