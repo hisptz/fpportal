@@ -1311,7 +1311,7 @@ angular.module("hmisPortal")
         function populate_data_table_commodities(component_id, indicator_name, data_array, data_total) {
             var body_container = "<tbody>";
             body_container += "<tr>";
-            var local_data_indices = [0,3,2,1];
+            var local_data_indices = [3,2,0,1];
             var local_names_indices = [0, 1, 2, 3];
             var sanitized_names = [
                 "Combineoral Contraceptives - Available",
