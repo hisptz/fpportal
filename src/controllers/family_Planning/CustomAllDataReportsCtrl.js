@@ -6,7 +6,7 @@ angular.module("hmisPortal")
     .controller("customReportsCtrl",function ($rootScope,$scope,$http,$location,$timeout,olData,olHelpers,shared,portalService,FPManager) {
         //displaying loading during page change
         $scope.showLoader = 'none';
-        $scope.serverLink = '../play/api/';
+        $scope.serverLink = '../dhis/api/';
         $scope.showstaffedOptions = false;
         $scope.showclientsOptions = false;
         $scope.showfacilityOptions = false;
